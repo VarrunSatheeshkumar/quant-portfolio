@@ -7,6 +7,8 @@ OLS regression on real UK macroeconomic data (ONS/BoE, 2000–2023) looking at t
 - OLS from scratch via `β̂ = (XᵀX)⁻¹Xᵀy`
 - Three regressions: Phillips Curve, Fisher equation, multiple regression
 - Standard diagnostic tests: Durbin-Watson (autocorrelation), Jarque-Bera (normality)
+- Newey-West HAC standard errors to correct for autocorrelation-induced bias
+- Chow structural break test (2022 split)
 - Confidence bands computed analytically from the covariance matrix of the estimator
 - Pre/post 2022 subsample comparison (the Phillips Curve shifted materially)
 
@@ -37,7 +39,7 @@ R² = 0.51  (t-stat on slope = -4.77)
 ```
 A 1pp rise in unemployment is associated with a 0.95pp fall in wage growth. The negative slope is consistent with the original Phillips (1958) relationship.
 
-**Durbin-Watson = 0.47** — well below 2, indicating strong positive autocorrelation. This means the standard errors are probably understated and the t-statistics are inflated. The right fix is Newey-West HAC standard errors, which I've flagged but not implemented.
+**Durbin-Watson = 0.47** — well below 2, indicating strong positive autocorrelation. This means the standard errors are understated and the t-statistics are inflated. I implemented Newey-West HAC standard errors to correct for this: the intercept SE is 47% larger than OLS (1.65 vs 1.12), and the slope SE is 22% larger (0.24 vs 0.20). The Chow test for a structural break at 2022 gives F = 4.97, p = 0.018 — rejecting stability at 5%.
 
 **Fisher equation:** β̂ = 0.054 (not significantly different from 0, let alone 1). The model predicts rates should track inflation one-for-one. They didn't over this period — the BoE was stuck near the zero lower bound for most of 2010–2021, so rates barely moved while inflation varied.
 
