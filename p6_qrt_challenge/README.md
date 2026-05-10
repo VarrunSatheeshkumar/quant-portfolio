@@ -42,6 +42,12 @@ Train set: ~527,000 rows. Test set: ~31,870 rows.
 
 ---
 
+## A note on what I built
+
+Some of the techniques here — particularly the domain adaptation (CORAL, adversarial reweighting) and the sequence transformer — were genuinely beyond my level when I started. I researched and implemented them to understand what was possible, reading the relevant papers and working through the maths from scratch, not because I already had command of the theory. I'd say I understand them now, but they weren't techniques I came in knowing.
+
+---
+
 ## The thing that surprised me
 
 About halfway through I noticed something: allocations that consistently underperform relative to their peers across many training days keep underperforming. Same in the other direction.
