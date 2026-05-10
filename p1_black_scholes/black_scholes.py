@@ -45,9 +45,12 @@ def _d1_d2(S, K, T, r, sigma):
 def bs_call(S, K, T, r, sigma):
     """
     Black-Scholes call: C = S*N(d1) - K*e^(-rT)*N(d2)
-    
-    S*N(d1)         -- expected stock price received if exercised (prob weighted)
-    K*e^(-rT)*N(d2) -- expected strike paid, discounted back to today
+
+    N(d2) is the risk-neutral probability the option expires in the money.
+    N(d1) is not the same probability -- it equals the option delta and
+    arises from a change of numeraire (using the stock as numeraire rather
+    than the risk-free bond). The two terms are not symmetric probabilities:
+    N(d1) >= N(d2) always, with equality only at expiry.
     """
     d1, d2 = _d1_d2(S, K, T, r, sigma)
     return S * norm.cdf(d1) - K * np.exp(-r * T) * norm.cdf(d2)
@@ -122,7 +125,9 @@ def greeks(S, K, T, r, sigma, kind='call'):
 def implied_vol(market_price, S, K, T, r, kind='call', guess=0.20, tol=1e-6):
     """
     Newton-Raphson: sigma_new = sigma - (BS(sigma) - target) / vega(sigma)
-    Usually converges in ~5 iterations.
+    Converges reliably for near-ATM options where vega is substantial.
+    For deep OTM/ITM options vega approaches zero and the Newton step can
+    blow up -- the guard below returns None in that case rather than diverging.
     """
     sigma = guess
     for _ in range(100):
