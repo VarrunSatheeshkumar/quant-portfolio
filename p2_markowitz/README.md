@@ -9,54 +9,65 @@ Mean-variance portfolio optimisation across five UK-relevant asset classes. The 
 - Identifies the minimum variance portfolio and maximum Sharpe ratio (tangency) portfolio
 - Plots the Capital Market Line showing how mixing the tangency portfolio with a risk-free asset dominates the frontier
 - Demonstrates the model's biggest practical problem: optimal weights swing dramatically with small changes in estimated returns
+- Implements Ledoit-Wolf covariance shrinkage and compares the resulting frontier against the raw sample estimate
 
 ## The maths
 
 **Portfolio variance:**
 
 ```
-σ²_p = wᵀ Σ w = Σᵢ Σⱼ wᵢ wⱼ σᵢ σⱼ ρᵢⱼ
+sigma^2_p = w^T Sigma w = sum_i sum_j w_i w_j sigma_i sigma_j rho_ij
 ```
 
-The cross terms `wᵢwⱼσᵢσⱼρᵢⱼ` are where diversification comes from. When ρᵢⱼ < 1, portfolio vol is less than the weighted average of individual vols. With ρ = -1 you can construct a riskless portfolio. This is why correlation matters more than individual volatility.
+The cross terms are where diversification comes from. When rho_ij < 1, portfolio vol is less than the weighted average of individual vols. With rho = -1 you can construct a riskless portfolio.
 
 Worked example (two assets, 20% vol each):
-- ρ = 1.0 → σ_p = 20% (no benefit)
-- ρ = 0.0 → σ_p = 14.1%
-- ρ = -0.5 → σ_p = 10.0%
+- rho = 1.0 → sigma_p = 20% (no benefit)
+- rho = 0.0 → sigma_p = 14.1%
+- rho = -0.5 → sigma_p = 10.0%
 
 **The optimisation:**
 
 ```
-Minimise   wᵀ Σ w
-subject to wᵀ μ = μ_target
-           wᵀ 1 = 1
-           wᵢ ≥ 0  (long-only)
+Minimise   w^T Sigma w
+subject to w^T mu = mu_target
+           w^T 1 = 1
+           w_i >= 0  (long-only)
 ```
 
-Quadratic objective, linear constraints — this is a QP problem solved numerically using scipy SLSQP. The efficient frontier comes from solving this for 200 different target return levels.
+Quadratic objective, linear constraints — solved numerically using scipy SLSQP. The efficient frontier comes from solving this for 200 different target return levels.
 
-**Why the frontier is a curve:** σ_p = √(wᵀΣw) is a square root of a quadratic, which traces a hyperbola in (σ, μ) space. If all assets were perfectly correlated, it would be a line. The leftward bend is diversification.
-
-**Tangency portfolio and CML:** The tangency portfolio maximises the Sharpe ratio. If you can also hold a risk-free asset, mix it with the tangency portfolio to get the Capital Market Line. Every point on the CML dominates the corresponding point on the frontier at the same risk level.
+**Tangency portfolio and CML:** The tangency portfolio maximises the Sharpe ratio. Mixed with a risk-free asset, it traces the Capital Market Line — every point on the CML dominates the corresponding frontier point at the same risk level.
 
 ## The estimation problem
 
-This is the model's central practical issue, and I think it's worth being direct about it. The optimiser needs expected returns as input. These are very hard to estimate — the standard error of the sample mean for equities is roughly σ/√T, which is enormous. With 10 years of data and 20% vol, you have a ±13% confidence interval around your 7% return estimate.
+The optimiser needs expected returns as input. These are very hard to estimate — the standard error of the sample mean for equities is roughly sigma/sqrt(T). With 10 years of data and 20% vol, you have a ±13% confidence interval around your 7% return estimate.
 
-The demonstration in the code shows this concretely: two different simulated 10-year windows of returns give wildly different "optimal" portfolios, even though the underlying assets are identical. The model concentrates bets in whichever assets you happened to overestimate — this is the Michaud (1989) "error maximisation" critique.
+The demo shows this concretely: two simulated 10-year windows give wildly different "optimal" portfolios from identical underlying assets. The model concentrates bets wherever you happened to overestimate — the Michaud (1989) "error maximisation" critique.
 
-In practice the fixes are: constrain weight ranges, use Bayesian return estimates (Black-Litterman), or use minimum variance / risk parity which don't need return inputs at all.
+## Ledoit-Wolf covariance shrinkage
+
+The same estimation problem affects the covariance matrix. With T observations and p assets, extreme eigenvalues of the sample covariance matrix are systematically biased — the largest are too large, the smallest too small. The optimiser treats noisy small eigenvalues as real structure and piles into them.
+
+Ledoit-Wolf (2004) fixes this by shrinking the sample covariance towards a scaled identity matrix:
+
+```
+Sigma_shrunk = (1 - alpha) * Sigma_sample + alpha * mu_bar * I
+```
+
+where mu_bar is the average eigenvalue (preserves the scale of the matrix) and alpha is chosen analytically to minimise the expected estimation error. `sklearn.covariance.LedoitWolf` computes the optimal alpha from the data — you don't pick it by hand.
+
+The effect is a better-conditioned matrix that produces more stable, more diversified portfolios. The code runs all three frontiers — true, sample, and shrunk — and plots them together. The LW frontier sits closer to the true one than the raw sample frontier does.
 
 ## Crisis correlation
 
-The other major failure: correlations are not constant. In 2008 and March 2020, almost everything fell simultaneously as correlations spiked toward 1. The model's diversification promise fails exactly when you need it. The code has a simulation showing what this looks like.
+Correlations are not constant. In 2008 and March 2020, almost everything fell simultaneously as correlations spiked toward 1. The model's diversification promise fails exactly when you need it. The code has a simulation showing what this looks like.
 
 ## Running
 
 ```bash
-pip install numpy scipy matplotlib
+pip install numpy scipy matplotlib scikit-learn
 python markowitz.py
 ```
 
-Plots saved to `./plots/`: correlation matrix, efficient frontier, composition along frontier, crisis correlation demo.
+Plots saved to `./plots/`: correlation matrix, efficient frontier with CML, composition along frontier, crisis correlation demo, shrinkage comparison.
