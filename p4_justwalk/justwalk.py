@@ -37,7 +37,9 @@ N_TILES = 50                 # tiles installed
 TILE_COST = 800              # £ per tile (installed)
 MAINTENANCE = 500            # £/year
 ELEC_RATE  = 0.30            # £/kWh (UK commercial, 2023-24)
-DISCOUNT_R = 0.08            # WACC: 8% (reasonable for hardware startup)
+DISCOUNT_R = 0.08            # required return on capital: 8%
+                               # (a full WACC needs a capital structure; at early stage
+                               #  this is better read as minimum required return)
 PROJECT_YRS = 10
 
 # Physical parameters -- every number has a source
