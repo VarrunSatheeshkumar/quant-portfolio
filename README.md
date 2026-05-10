@@ -1,6 +1,6 @@
 # Quant Finance Portfolio
 
-Five projects built over several months alongside first-year Maths and Economics at Nottingham. Some of the material goes well beyond my current level — I researched each topic specifically to implement it, and I'm still actively working through the deeper theory. The goal was to get hands-on with models I was reading about rather than just understanding them conceptually. Uploaded together once the repo was in a state I was happy with - more projects and improvements to come. 
+Five projects built independently in my own time, alongside first-year Maths and Economics at Nottingham. The goal was to go beyond coursework and actually implement the models I was reading about — not just understand them conceptually but build them from scratch and see what the numbers say.
 
 ---
 
@@ -31,6 +31,11 @@ A research note arguing that the 2022 UK gilt crisis was not primarily caused by
 
 → `p5_market_report/`
 
+### P6 — QRT × ENS Data Challenge 2026
+Binary classification of daily asset allocation returns. Given 20 days of return and volume history per allocation, predict whether the next-day return is positive or negative. Rank 339 / 1,106. Accuracy: 0.5177 (QRT LightGBM baseline: 0.5079). The key finding: cross-sectional momentum — allocations that consistently underperform relative to peers in training stay underperforming — maps directly onto statistical arbitrage framing. Implementation uses CORAL domain adaptation, adversarial sample reweighting, a sequence transformer, and magnitude-weighted gradient boosting. Code not shared while the challenge is open.
+
+→ `p6_qrt_challenge/`
+
 ---
 
 ## What's built from scratch
@@ -48,7 +53,7 @@ To make sure I understood what was happening:
 
 ## Limitations I'm aware of
 
-- OLS residuals show autocorrelation — the proper fix is Newey-West HAC standard errors, which I've flagged but not implemented
+- OLS residuals show autocorrelation — implemented Newey-West HAC standard errors: SE is 47% larger than OLS, confirming the bias. Chow test also flags a structural break post-2022 (F = 4.97, p = 0.018)
 - Markowitz is very sensitive to estimated returns — the code demonstrates this problem rather than solving it
 - Black-Scholes assumes constant vol and lognormal returns — the vol smile shows directly that the market disagrees
 - JustWalk NPV depends heavily on the SaaS analytics revenue assumption
