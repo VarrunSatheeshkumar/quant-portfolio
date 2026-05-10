@@ -1,6 +1,6 @@
 # Quant Finance Portfolio
 
-Five projects built independently in my own time, alongside first-year Maths and Economics at Nottingham. The goal was to go beyond coursework and actually implement the models I was reading about — not just understand them conceptually but build them from scratch and see what the numbers say.
+Projects built independently in my own time, alongside first-year Maths and Economics at Nottingham. The goal was to go beyond coursework and actually implement the models I was reading about — not just understand them conceptually but build them from scratch and see what the numbers say.
 
 ---
 
