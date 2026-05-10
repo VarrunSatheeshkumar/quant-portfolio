@@ -12,16 +12,18 @@ inside that boundary is suboptimal.
 
 One thing I found really interesting in practice: the model is very sensitive
 to the expected return inputs, which are nearly impossible to estimate reliably.
-I demonstrate this at the bottom by showing how the "optimal" portfolio changes
-dramatically depending on which historical period you use to estimate returns.
-That's a known problem with the model and it's worth being upfront about.
+The estimation instability demo and the Ledoit-Wolf shrinkage section both
+address this -- one shows the problem concretely, the other implements the
+standard practitioner fix for the covariance side.
 
-References: Markowitz (1952) JPE, Hull for intuition, scipy docs for SLSQP.
+References: Markowitz (1952) JPE, Ledoit-Wolf (2004) JMVA,
+Hull for intuition, scipy docs for SLSQP.
 """
 
 import numpy as np
 import matplotlib.pyplot as plt
 from scipy.optimize import minimize
+from sklearn.covariance import LedoitWolf
 import os
 
 
@@ -188,7 +190,7 @@ def estimation_instability_demo(cov, seed=99):
     w_true = max_sharpe_portfolio(MU, cov)
 
     print("\n--- Estimation Instability (same model, different data windows) ---")
-    print(f"{'Asset':<15} {'True μ':>8} {'Est1 μ':>8} {'Est2 μ':>8}")
+    print(f"{'Asset':<15} {'True mu':>8} {'Est1 mu':>8} {'Est2 mu':>8}")
     for i, name in enumerate(ASSETS):
         print(f"{name:<15} {MU[i]:>8.1%} {mu_est1[i]:>8.1%} {mu_est2[i]:>8.1%}")
 
@@ -198,6 +200,113 @@ def estimation_instability_demo(cov, seed=99):
     print("\nDramatic swings in weights from tiny changes in estimated returns.")
     print("This is the model's central practical problem.")
     return w1, w2, w_true
+
+
+# ── LEDOIT-WOLF COVARIANCE SHRINKAGE ─────────────────────────────────────────
+# The estimation instability demo shows the problem with expected returns.
+# The covariance matrix has the same issue: with T observations and p assets,
+# the sample covariance over-fits. Extreme eigenvalues are biased -- the
+# largest are too large, the smallest too small -- and the optimiser piles
+# into the fake low-variance directions.
+#
+# Ledoit-Wolf (2004) fixes this by shrinking the sample covariance towards
+# a scaled identity matrix:
+#
+#   Sigma_shrunk = (1 - alpha) * Sigma_sample + alpha * mu_bar * I
+#
+# where mu_bar is the average eigenvalue (preserves scale) and alpha is
+# chosen analytically to minimise the expected Frobenius norm error.
+# sklearn computes the optimal alpha from the data -- you don't pick it.
+#
+# The result: a better-conditioned matrix that produces more diversified,
+# more stable portfolios.
+
+def simulate_returns(n_years=20, seed=7):
+    """
+    Simulate annual returns from the true parameter set.
+    This gives us a realistic finite sample to apply shrinkage to.
+    n_years=20 is realistic (roughly how much data you'd have in practice).
+    """
+    cov_true = build_cov(VOLS, CORR)
+    rng = np.random.default_rng(seed)
+    returns = rng.multivariate_normal(MU, cov_true, size=n_years)
+    return returns
+
+
+def ledoit_wolf_comparison(n_years=20, seed=7):
+    """
+    Compare three covariance estimates and the portfolios they produce:
+      1. True covariance (known parameters -- the benchmark)
+      2. Sample covariance estimated from n_years of data
+      3. Ledoit-Wolf shrunk covariance from the same data
+
+    Shows how shrinkage pulls the noisy sample estimate back towards
+    something more stable and better-conditioned.
+    """
+    returns = simulate_returns(n_years=n_years, seed=seed)
+    cov_true   = build_cov(VOLS, CORR)
+    cov_sample = np.cov(returns.T)                    # raw sample estimate
+    lw = LedoitWolf().fit(returns)
+    cov_lw     = lw.covariance_                       # shrunk estimate
+    alpha      = lw.shrinkage_                        # how much shrinkage was applied
+
+    print(f"\n--- Ledoit-Wolf Shrinkage (n={n_years} years, p={len(ASSETS)} assets) ---")
+    print(f"Shrinkage intensity alpha = {alpha:.3f}")
+    print(f"  (0 = no shrinkage / pure sample;  1 = full shrinkage / identity)")
+    print(f"  alpha={alpha:.2f} means the matrix is pulled {alpha*100:.0f}% towards the identity")
+
+    # Condition number: how ill-conditioned is the matrix?
+    # A high condition number means small errors in inputs blow up in the inverse.
+    # The optimiser uses the inverse implicitly -- ill-conditioning = unstable weights.
+    cond_sample = np.linalg.cond(cov_sample)
+    cond_lw     = np.linalg.cond(cov_lw)
+    print(f"\nCondition number (lower = more stable):")
+    print(f"  Sample:       {cond_sample:.1f}")
+    print(f"  Ledoit-Wolf:  {cond_lw:.1f}")
+    print(f"  Ratio:        {cond_sample/cond_lw:.1f}x improvement")
+
+    # Tangency portfolios under each estimate
+    w_true   = max_sharpe_portfolio(MU, cov_true)
+    w_sample = max_sharpe_portfolio(MU, cov_sample)
+    w_lw     = max_sharpe_portfolio(MU, cov_lw)
+
+    print(f"\n{'Asset':<15} {'True Sigma w':>14} {'Sample Sigma w':>16} {'LW Sigma w':>12}")
+    for i, name in enumerate(ASSETS):
+        print(f"{name:<15} {w_true[i]:>14.1%} {w_sample[i]:>16.1%} {w_lw[i]:>12.1%}")
+
+    # Herfindahl concentration index: sum of squared weights
+    # 1/p = perfectly diversified, 1.0 = fully concentrated
+    def hhi(w): return float(np.sum(w**2))
+    p = len(ASSETS)
+    print(f"\nConcentration (HHI, min={1/p:.2f} = equal weight, max=1.0 = concentrated):")
+    print(f"  True:         {hhi(w_true):.3f}")
+    print(f"  Sample:       {hhi(w_sample):.3f}")
+    print(f"  Ledoit-Wolf:  {hhi(w_lw):.3f}")
+
+    return cov_true, cov_sample, cov_lw, w_true, w_sample, w_lw
+
+
+def plot_shrinkage_comparison(mu, cov_true, cov_sample, cov_lw):
+    """
+    Plot the efficient frontiers under all three covariance estimates.
+    LW frontier should sit between sample and true -- closer to true.
+    """
+    v_true,   r_true,   _ = efficient_frontier(mu, cov_true)
+    v_sample, r_sample, _ = efficient_frontier(mu, cov_sample)
+    v_lw,     r_lw,     _ = efficient_frontier(mu, cov_lw)
+
+    fig, ax = plt.subplots(figsize=(10, 6))
+    ax.plot(v_true   * 100, r_true   * 100, 'g-',  lw=2.5, label='True covariance (benchmark)')
+    ax.plot(v_sample * 100, r_sample * 100, 'r--', lw=2,   label='Sample covariance (noisy)')
+    ax.plot(v_lw     * 100, r_lw     * 100, 'b-',  lw=2.5, label='Ledoit-Wolf shrinkage')
+    ax.set_xlabel('Volatility (%)'); ax.set_ylabel('Expected Return (%)')
+    ax.set_title('Efficient Frontier: True vs Sample vs Ledoit-Wolf\n'
+                 'Shrinkage pulls the noisy sample frontier back towards the truth')
+    ax.legend(fontsize=10); ax.grid(alpha=0.3)
+    plt.tight_layout()
+    plt.savefig('plots/shrinkage_comparison.png', dpi=150)
+    plt.show()
+    print("saved plots/shrinkage_comparison.png")
 
 
 # ── VISUALISATIONS ────────────────────────────────────────────────────────────
@@ -287,12 +396,12 @@ def plot_crisis_corr():
     fig.suptitle('Correlation Breakdown in Crises', fontweight='bold')
     for ax, data, label, col in zip(
         axes, [normal, crisis],
-        ['Normal (ρ ≈ 0.3)', 'Crisis (ρ ≈ 0.9)'],
+        ['Normal (rho approx 0.3)', 'Crisis (rho approx 0.9)'],
         ['steelblue', 'tomato']
     ):
         rho_emp = np.corrcoef(data[:, 0], data[:, 1])[0, 1]
         ax.scatter(data[:, 0], data[:, 1], alpha=0.5, color=col, s=20)
-        ax.set_title(f'{label}\n(empirical ρ = {rho_emp:.2f})')
+        ax.set_title(f'{label}\n(empirical rho = {rho_emp:.2f})')
         ax.set_xlabel('UK Equity Return'); ax.set_ylabel('US Equity Return')
         ax.grid(alpha=0.3)
     plt.tight_layout()
@@ -332,9 +441,13 @@ if __name__ == '__main__':
     # Estimation instability demonstration
     estimation_instability_demo(cov)
 
+    # Ledoit-Wolf shrinkage
+    cov_true, cov_sample, cov_lw, w_true, w_sample, w_lw = ledoit_wolf_comparison()
+
     print("\nGenerating plots...")
     plot_correlation(CORR)
     plot_frontier(MU, cov, vols, rets, mvp_w, ms_w)
     plot_weights(vols, weights_list)
     plot_crisis_corr()
+    plot_shrinkage_comparison(MU, cov_true, cov_sample, cov_lw)
     print("\nAll plots saved to ./plots/")
