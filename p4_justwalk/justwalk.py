@@ -53,7 +53,12 @@ def energy_kwh(footfall, n_tiles=N_TILES):
     Energy from footfall:
     Wh = persons × steps/tile × J/step × efficiency × n_tiles / 3600
     (divide by 3600 because 1 Wh = 3600 J)
-    
+
+    Physical assumption: every visitor traverses the full tile corridor,
+    so each person contributes STEPS_PER_TILE steps across all n_tiles tiles.
+    At Paddington this is a ~25m corridor; the n_tiles multiplier reflects
+    that the tiles are laid end-to-end and each person crosses all of them.
+
     Slightly surprised at how small the numbers are in practice --
     piezoelectric energy density is genuinely low.
     """
