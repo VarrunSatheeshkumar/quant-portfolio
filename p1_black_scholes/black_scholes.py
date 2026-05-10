@@ -115,8 +115,9 @@ def greeks(S, K, T, r, sigma, kind='call'):
 
 # ── IMPLIED VOLATILITY ────────────────────────────────────────────────────────
 # Traders quote vol, not price. IV is the vol that makes BS = market price.
-# Newton-Raphson works because vega > 0 always (price strictly increases
-# in sigma), so there's exactly one solution and it always converges.
+# Newton-Raphson works because vega > 0 (price strictly increases in sigma),
+# so there's exactly one solution. Convergence is fast in practice but can
+# stall for very deep ITM/OTM options where vega is tiny -- guarded below.
 
 def implied_vol(market_price, S, K, T, r, kind='call', guess=0.20, tol=1e-6):
     """
@@ -128,7 +129,8 @@ def implied_vol(market_price, S, K, T, r, kind='call', guess=0.20, tol=1e-6):
         price = bs_call(S, K, T, r, sigma) if kind == 'call' else bs_put(S, K, T, r, sigma)
         v = vega(S, K, T, r, sigma) * 100  # full units for the Newton step
         if abs(v) < 1e-10:
-            return None  # vega vanishes for very deep ITM/OTM options
+            # vega ~ 0 for very deep ITM/OTM options -- Newton step would blow up
+            return None
         sigma -= (price - market_price) / v
         if abs(price - market_price) < tol:
             return sigma
