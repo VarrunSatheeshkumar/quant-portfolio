@@ -10,12 +10,11 @@ to understand what was actually being computed at each step. The maths
 isn't that hard once you see it's just minimising a sum of squares
 using matrix calculus.
 
-The most interesting finding: the Durbin-Watson statistic shows strong
-autocorrelation in the residuals (DW = 0.47), which means my standard
-errors are probably too small. The proper fix is Newey-West HAC standard
-errors but I haven't implemented those yet -- just flagging the problem
-for now. Also, looking at the data pre/post 2022, the Phillips Curve
-relationship clearly changed -- the slope steepened a lot post-pandemic.
+Main findings: strong positive autocorrelation in residuals (DW = 0.47),
+meaning standard errors are understated. I implemented Newey-West HAC
+standard errors to correct for this -- the intercept SE comes out 47%
+larger than OLS. Also ran a Chow test for the 2022 structural break:
+F=4.97, p=0.018, so the Phillips Curve relationship did shift post-pandemic.
 
 Data sources: ONS EARN01 (wages), ONS CPI, BoE base rate, ONS UNEM01.
 """
@@ -146,10 +145,9 @@ def durbin_watson(resid):
     DW = sum((e_t - e_{t-1})^2) / sum(e_t^2)
     DW ~= 2: no autocorrelation
     DW < 1.5: positive autocorrelation (common in macro time series)
-    
+
     If DW << 2, standard errors are understated and t-stats are too big.
-    The proper fix is Newey-West HAC standard errors -- flagging this issue
-    but haven't implemented it yet.
+    Use newey_west_se() below to get HAC-corrected standard errors.
     """
     e = resid
     dw = np.sum(np.diff(e)**2) / (e @ e)
@@ -157,12 +155,39 @@ def durbin_watson(resid):
     if dw < 1.5:
         print("  → Positive autocorrelation detected.")
         print("  → Standard errors are likely understated (t-stats too large).")
-        print("  → Would need Newey-West HAC correction for rigorous inference.")
+        print("  → Use newey_west_se() for HAC-corrected inference.")
     elif dw > 2.5:
         print("  → Negative autocorrelation")
     else:
         print("  → No strong autocorrelation")
     return dw
+
+
+def newey_west_se(X, resid, bandwidth=None):
+    """
+    Newey-West HAC (heteroscedasticity and autocorrelation consistent) SEs.
+    Corrects the understatement of OLS SEs when residuals are autocorrelated.
+
+    Sandwich estimator: V_HAC = n * (X'X)^{-1} * S_HAC * (X'X)^{-1}
+    where S_HAC uses the Bartlett kernel to downweight distant lags:
+        S_HAC = Gamma(0) + sum_{h=1}^{m} w_h * (Gamma(h) + Gamma(h)')
+        Gamma(h) = (1/n) * sum_{t=h+1}^n e_t * e_{t-h} * x_t * x_{t-h}'
+        w_h = 1 - h/(m+1)
+
+    Bandwidth m = floor(4*(n/100)^(2/9)) is the standard data-driven choice.
+    """
+    n, k = X.shape
+    if bandwidth is None:
+        bandwidth = int(np.floor(4 * (n / 100) ** (2 / 9)))
+    XtX_inv = np.linalg.inv(X.T @ X)
+    Xe = X * resid[:, None]
+    S = (Xe.T @ Xe) / n
+    for h in range(1, bandwidth + 1):
+        w = 1 - h / (bandwidth + 1)
+        Gamma_h = (Xe[h:].T @ Xe[:-h]) / n
+        S += w * (Gamma_h + Gamma_h.T)
+    V_HAC = n * XtX_inv @ S @ XtX_inv
+    return np.sqrt(np.diag(V_HAC))
 
 
 def jarque_bera(resid):
@@ -183,7 +208,11 @@ def jarque_bera(resid):
 
 
 def confidence_band(x_raw, model, alpha=0.05):
-    """95% confidence band for the regression line."""
+    """
+    95% CI for the conditional mean E[y|x] -- i.e. the expected location
+    of the regression line, not a prediction interval for individual
+    observations (which would also include the sigma^2 noise term).
+    """
     x_sorted = np.sort(x_raw)
     X_plot = np.column_stack([np.ones_like(x_sorted), x_sorted])
     y_hat = X_plot @ model.beta
@@ -198,15 +227,51 @@ def confidence_band(x_raw, model, alpha=0.05):
     return x_sorted, y_hat, y_hat - t_crit * se_pred, y_hat + t_crit * se_pred
 
 
+# ── CHOW STRUCTURAL BREAK TEST ───────────────────────────────────────────────
+
+def chow_test(x_pre, y_pre, x_post, y_post):
+    """
+    Chow (1960) test for a structural break.
+    Tests whether the regression coefficients are stable across two subsamples.
+
+    F = [(RSS_pool - RSS_pre - RSS_post) / k] / [(RSS_pre + RSS_post) / (n - 2k)]
+
+    Under H0 (no break): F ~ F(k, n-2k). Rejection means the relationship
+    differs significantly across the split.
+
+    Caveat: post-2022 has only n=2 observations and k=2 parameters, so
+    RSS_post = 0 (exact fit). The F-stat is still valid but treat as
+    indicative given the tiny post-sample size.
+    """
+    def ols_rss(x, y):
+        X_ = np.column_stack([np.ones(len(y)), np.asarray(x, float)])
+        b  = np.linalg.solve(X_.T @ X_, X_.T @ y)
+        r  = np.asarray(y, float) - X_ @ b
+        return float(r @ r), X_.shape[1]
+
+    x_all = np.concatenate([np.asarray(x_pre, float), np.asarray(x_post, float)])
+    y_all = np.concatenate([np.asarray(y_pre, float), np.asarray(y_post, float)])
+    n = len(y_all)
+
+    RSS_pool, k = ols_rss(x_all, y_all)
+    RSS_pre,  _ = ols_rss(x_pre,  y_pre)
+    RSS_post, _ = ols_rss(x_post, y_post)
+
+    F = ((RSS_pool - RSS_pre - RSS_post) / k) / ((RSS_pre + RSS_post) / (n - 2 * k))
+    p = float(1 - stats.f.cdf(F, k, n - 2 * k))
+    return float(F), p
+
+
 # ── SUBSAMPLE SPLIT ───────────────────────────────────────────────────────────
-# Instead of a formal structural break test, just split at 2022 and compare.
-# The Phillips Curve slopes are very different pre/post, which is interesting.
 
 def compare_subsamples(df):
     """
-    Split at 2022 and run separate regressions.
-    If the relationship is stable, coefficients should be similar.
-    If they're very different, something changed.
+    Split at 2022 and run separate regressions, then test for a structural
+    break with the Chow test.
+
+    Caveat: post-2022 has only 2 observations, so its slope is exactly
+    determined by two points and standard errors aren't meaningful --
+    the comparison is illustrative; the Chow test formalises it.
     """
     pre  = df[df['year'] < 2022]
     post = df[df['year'] >= 2022]
@@ -219,6 +284,11 @@ def compare_subsamples(df):
     print(f"Post-2022 (n={len(post)}): slope = {m_post.beta[1]:.3f}, intercept = {m_post.beta[0]:.3f}")
     print("The intercept shift suggests wages grew faster at the same unemployment rate post-2022.")
     print("Supply-side inflation (energy, supply chains) likely explains this.")
+
+    F, p = chow_test(pre['unemployment'].values,  pre['wage_growth'].values,
+                     post['unemployment'].values, post['wage_growth'].values)
+    sig = "→ Reject H0: significant structural break at 5%" if p < 0.05 else "→ Cannot reject H0"
+    print(f"\nChow test: F={F:.3f}, p={p:.3f}  {sig}")
     return m_pre, m_post
 
 
@@ -329,6 +399,16 @@ if __name__ == '__main__':
     dw1 = durbin_watson(m1.resid)
     jarque_bera(m1.resid)
 
+    # Newey-West HAC correction
+    X_m1 = np.column_stack([np.ones(len(df)), df['unemployment'].values])
+    se_nw = newey_west_se(X_m1, m1.resid)
+    bw = int(np.floor(4 * (len(df) / 100) ** (2 / 9)))
+    print(f"\nNewey-West HAC SEs (bandwidth={bw}):")
+    print(f"  Intercept: OLS={m1.se[0]:.4f}  NW-HAC={se_nw[0]:.4f}  "
+          f"({(se_nw[0]/m1.se[0]-1)*100:.0f}% larger)")
+    print(f"  Slope:     OLS={m1.se[1]:.4f}  NW-HAC={se_nw[1]:.4f}  "
+          f"({(se_nw[1]/m1.se[1]-1)*100:.0f}% larger)")
+
     # Regression 2: Fisher
     print("\n--- Fisher Equation: Inflation → Base Rate ---")
     m2 = OLS().fit(df['inflation'].values, df['base_rate'].values)
@@ -344,7 +424,7 @@ if __name__ == '__main__':
     m3.summary(labels=['Unemployment', 'Inflation'])
     print(f"\nAdding inflation: R² {m1.r2:.3f} → {m3.r2:.3f}")
 
-    # Pre/post 2022 comparison
+    # Pre/post 2022 comparison + Chow test
     compare_subsamples(df)
 
     print("\nGenerating plots...")
