@@ -1,84 +1,68 @@
 # QRT × ENS Data Challenge 2026 — Asset Allocation Forecasting
 
-**Rank: 339 / 1,106 · Accuracy: 0.5177 · Beat official LightGBM baseline (0.5079)**
+**Rank: 178 / 1,106 · Accuracy: 0.5212 · Beat official LightGBM baseline (0.5079) by ~1.3 percentage points**
 
 ---
 
 ## What this is
 
-This is my entry for the [QRT × ENS Data Challenge 2026](https://challengedata.ens.fr/). The task was to predict whether a given asset allocation's daily return is positive or negative — basically, should you go long or short? Binary classification, evaluated on accuracy.
+My entry for the [QRT × ENS Data Challenge 2026](https://challengedata.ens.fr/). Binary classification: predict whether each asset allocation's daily return will be positive or negative. Evaluated on accuracy.
 
-I did this alongside first-year coursework. Nothing here was part of any module or supervised project. I just found the problem interesting and wanted to see how far I could get.
+Independent project, done alongside first-year coursework. Not part of any module.
 
 ---
 
 ## The data
 
-Each row represents one allocation on one day. You get:
-- 20 days of past returns (RET_1 to RET_20)
-- 20 days of signed volume (a liquidity proxy)
-- Median daily turnover
-- A group label and an allocation ID
+Each row is one allocation on one day: 20 days of past returns, 20 days of signed volume, median daily turnover, a group label, and an allocation ID. No prices, no names, no ordered timestamps — the date labels are shuffled, so you can't use temporal structure directly.
 
-No prices. No names. No timestamps in order. The date labels are deliberately shuffled, so you can't exploit any temporal structure directly. That caught me off guard at first.
-
-Train set: ~527,000 rows. Test set: ~31,870 rows.
+Train: ~527,000 rows. Test: ~31,870 rows.
 
 ---
 
-## What I tried
+## My method
 
-**Feature engineering** was most of the work. From the 20-day return and volume windows I computed rolling means and standard deviations at multiple lookback windows, Sharpe-like ratios, skewness, kurtosis, autocorrelation, return-volume correlation, trend slopes, and drawdown stats. I also built cross-sectional features: how does this allocation rank relative to others on the same day?
+The submission is an **equal-weight average of 10 independently-trained models**, thresholded at 0.5.
 
-**Models**: LightGBM and CatBoost, both with magnitude-weighted samples — rows where the absolute return is larger are weighted more heavily at training time, since those are the ones where getting the sign right actually matters. Binary classification objective worked better than regression in cross-validation, which makes sense since the task only scores the sign.
+- **Tree models** (LightGBM and CatBoost, multiple variants — binary, Random Forest mode, two-stage magnitude-then-sign, residual targets) for the bulk of the signal.
+- **Set Transformer** (a neural net that does attention across all allocations within the same day) — this was the breakthrough component. The data signal is dominantly cross-sectional, so a model that natively handles "the set of allocations on this day" extracts signal per-row models miss.
+- **Pseudo-labelling**: the test set's most-confident predictions from an earlier model are added back as extra training data, weighted at 0.3×. This is the trick that unlocked most of the gain.
+- **Domain adaptation** (CORAL + adversarial reweighting) to reduce the train-vs-test distribution gap.
+- **GroupKFold by time** across 5 folds — random row splits leak because cross-sectional features touch all allocations on the same day.
 
-**Domain adaptation**: there's a measurable distribution shift between training and test rows. I used CORAL (aligning covariance matrices between train and test feature spaces per fold) and adversarial sample reweighting (a classifier that distinguishes train from test, whose outputs become per-sample training weights). These reduced the gap between cross-validation score and leaderboard score.
-
-**Sequence model**: a small two-layer transformer on the 20-day return and volume sequences. Gave a modest independent signal that blended well with the tabular models.
-
-**Cross-validation**: GroupKFold by time period across 5 folds. This is critical — random row splits leak information because cross-sectional features are computed across all rows on the same day.
-
-**Final blend**: weighted average across five component models, with weights optimised on adversarially-reweighted out-of-fold predictions.
+Hyperparameters were pre-committed in writing before training; blend formula was locked equal-weight; submission rule was "only submit if the new blend's out-of-fold score improves by ≥ 1 basis point."
 
 ---
 
-## A note on what I built
+## What I tried before settling on this
 
-Some of the techniques here — particularly the domain adaptation (CORAL, adversarial reweighting) and the sequence transformer — were genuinely beyond my level when I started. I researched and implemented them to understand what was possible, reading the relevant papers and working through the maths from scratch, not because I already had command of the theory. I'd say I understand them now, but they weren't techniques I came in knowing.
+A lot. Briefly: deeper boosting, quantile/Tweedie regression, lambdarank, random forests, multi-task NN, CNN on the return sequence, bigger/wider Set Transformers, different pseudo-label teachers, fold-partition bagging, trailing target features. Across 19 audited candidates, **18 were rejected** by the locked rules (they passed individual gates but diluted the blend or failed standalone). The one that cleared the +1 bp threshold — a bigger Set Transformer trained with the strongest pseudo-teacher — moved the LB from 0.5207 to 0.5212.
 
 ---
 
 ## The thing that surprised me
 
-About halfway through I noticed something: allocations that consistently underperform relative to their peers across many training days keep underperforming. Same in the other direction.
+Allocations that consistently underperform their peers across many training days keep underperforming. Same in the other direction. That's a momentum signal at the allocation level, and it maps directly to statistical arbitrage — predicting *relative* performance, not absolute returns. I came to it from first principles rather than reading it, and adding features that capture it explicitly helped.
 
-That's a momentum signal at the allocation level. Once I saw it I realised the problem is really about predicting *relative* performance, not absolute returns. The allocations that are structurally worth shorting versus going long are partially identifiable from their cross-sectional history. This maps directly to statistical arbitrage — and I came to it from first principles rather than reading it somewhere. I added features that capture this explicitly and they helped.
+---
+
+## A note on what I built
+
+Some techniques — particularly the Set Transformer with pseudo-labels, CORAL/adversarial domain adaptation, and the disciplined pseudo-label chain — were genuinely beyond my level when I started. I researched and implemented them from the relevant papers, working through the maths from scratch.
 
 ---
 
 ## Result
 
-- **0.5177 accuracy** on the held-out test set
-- **Rank 339 out of 1,106 participants**
-- The official QRT LightGBM baseline scores 0.5079 — I beat it by roughly 1 percentage point
-- The signal-to-noise ratio here is genuinely tiny. Going from 0.50 to 0.52 is meaningful. Going further is very hard.
+- **0.5212 accuracy**, **rank 178 / 1,106**
+- Official LightGBM baseline: 0.5079 — beat it by ~1.3 percentage points
+- The signal-to-noise ratio here is tiny. Going from 0.50 to 0.52 is meaningful; going further is very hard.
 
 ---
 
 ## Why the code isn't here
 
-The challenge is still running. I'm not sharing the full implementation until it closes. Happy to discuss the approach.
-
----
-
-## What I'd try with more time
-
-- Better probability calibration before thresholding
-- Learned allocation embeddings — treating each allocation ID as an entity with a learnable vector derived from its training history
-- Stronger domain adaptation — the train/test feature distribution gap is the main ceiling and I only partially addressed it
-- More principled ensembling — the blend weights were tuned on a noisy estimator
-
-The problem is hard enough that I'm genuinely uncertain any of these would move the rank dramatically. The ceiling feels structural.
+The challenge is still running. Happy to discuss the approach.
 
 ---
 
