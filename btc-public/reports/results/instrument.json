@@ -1,0 +1,131 @@
+{
+  "structures": {
+    "calendar_7_30_gamma": {
+      "n_train_trades": 102,
+      "sd_per_trade_bps": 929.8315287411275,
+      "mde_bps": 257.9718470789893,
+      "mean_cost_bps": 198.82448064151689
+    },
+    "calendar_7_30_vega": {
+      "n_train_trades": 102,
+      "sd_per_trade_bps": 257.4310253310429,
+      "mde_bps": 71.42149416034299,
+      "mean_cost_bps": 86.58968128741338
+    },
+    "straddle_7d_daily_hedge": {
+      "n_train_trades": 201,
+      "sd_per_trade_bps": 372.70719228270565,
+      "mde_bps": 73.66104501797584,
+      "mean_cost_bps": 20.052815543364996
+    },
+    "straddle_7d_hourly_hedge": {
+      "n_train_trades": 201,
+      "sd_per_trade_bps": 236.17655952762522,
+      "mde_bps": 46.677425452952036,
+      "mean_cost_bps": 46.728365246267984
+    },
+    "strip_30d_narrow": {
+      "n_train_trades": 53,
+      "sd_per_trade_bps": 440.0030244098869,
+      "mde_bps": 169.35025612894253,
+      "mean_cost_bps": 269.8547250532166
+    },
+    "strip_30d_wide": {
+      "n_train_trades": 53,
+      "sd_per_trade_bps": 444.7129975240062,
+      "mde_bps": 171.16305083485685,
+      "mean_cost_bps": 259.0287714251218
+    },
+    "strip_7d_narrow": {
+      "n_train_trades": 242,
+      "sd_per_trade_bps": 235.5467721655429,
+      "mde_bps": 42.42653901067022,
+      "mean_cost_bps": 135.8015244899515
+    },
+    "strip_7d_wide": {
+      "n_train_trades": 242,
+      "sd_per_trade_bps": 231.884988847141,
+      "mde_bps": 41.76698086271303,
+      "mean_cost_bps": 130.89872276372716
+    }
+  },
+  "idealised": {
+    "strip_30d_narrow": {
+      "n_train_trades": 53,
+      "mde_bps": 575.2277054102959,
+      "mean_short_variance_pnl_bps": -85.77316675541267,
+      "years_of_sample": 5.497604368709914
+    },
+    "strip_30d_wide": {
+      "n_train_trades": 53,
+      "mde_bps": 566.810561489493,
+      "mean_short_variance_pnl_bps": -66.871980286216,
+      "years_of_sample": 5.497604368709914
+    },
+    "strip_7d_narrow": {
+      "n_train_trades": 242,
+      "mde_bps": 137.27669067390372,
+      "mean_short_variance_pnl_bps": -5.4891425728945205,
+      "years_of_sample": 5.634491146475017
+    },
+    "strip_7d_wide": {
+      "n_train_trades": 242,
+      "mde_bps": 137.27135693026716,
+      "mean_short_variance_pnl_bps": 7.740395861905534,
+      "years_of_sample": 5.634491146475017
+    }
+  },
+  "idealised_2021_on": {
+    "strip_30d_narrow": {
+      "n_train_trades": 42,
+      "mde_bps": 325.3705100177351,
+      "mean_short_variance_pnl_bps": -2.036884810754487,
+      "years_of_sample": 4.580423446364743
+    },
+    "strip_30d_wide": {
+      "n_train_trades": 42,
+      "mde_bps": 321.46825240024066,
+      "mean_short_variance_pnl_bps": 14.5594840956263,
+      "years_of_sample": 4.580423446364743
+    },
+    "strip_7d_narrow": {
+      "n_train_trades": 190,
+      "mde_bps": 81.83513522697652,
+      "mean_short_variance_pnl_bps": 18.58863234773044,
+      "years_of_sample": 4.63791839851573
+    },
+    "strip_7d_wide": {
+      "n_train_trades": 190,
+      "mde_bps": 81.61340491068086,
+      "mean_short_variance_pnl_bps": 31.053160460085124,
+      "years_of_sample": 4.63791839851573
+    }
+  },
+  "validation": {
+    "strip_30d_narrow": {
+      "median_k_var_minus_atm_volpts": 3.2402176327444243,
+      "median_variance_risk_premium_volpts": 4.601967368600363
+    },
+    "strip_30d_wide": {
+      "median_k_var_minus_atm_volpts": 3.841439265254276,
+      "median_variance_risk_premium_volpts": 5.482610529734155
+    },
+    "strip_7d_narrow": {
+      "median_k_var_minus_atm_volpts": 3.503287072720357,
+      "median_variance_risk_premium_volpts": 8.105317613001981
+    },
+    "strip_7d_wide": {
+      "median_k_var_minus_atm_volpts": 4.34454334385615,
+      "median_variance_risk_premium_volpts": 9.127851875846336
+    }
+  },
+  "n_structures_costed": 8,
+  "band_bps": 10.0,
+  "best_structure_mde_bps": 41.76698086271303,
+  "best_idealised_mde_bps": 81.61340491068086,
+  "best_idealised_structure": "strip_7d_wide",
+  "best_idealised_mde_full_sample_bps": 137.27135693026716,
+  "ceiling_broken": false,
+  "sample_multiple_needed": 66.60747861114744,
+  "years_needed": 308.9200505293837
+}

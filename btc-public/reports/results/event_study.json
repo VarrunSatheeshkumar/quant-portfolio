@@ -1,0 +1,135 @@
+{
+  "ground_truth": {
+    "cluster": {
+      "n": 36.0,
+      "pct_with_liquidation": 1.0,
+      "mean_liq_notional": 1449269.2614930556
+    },
+    "empty": {
+      "n": 5164.0,
+      "pct_with_liquidation": 0.923702556158017,
+      "mean_liq_notional": 274300.2858054628
+    },
+    "mid": {
+      "n": 908.0,
+      "pct_with_liquidation": 0.998898678414097,
+      "mean_liq_notional": 1537901.6006418061
+    },
+    "notional_multiple_cluster_over_empty": 5.283513494116064,
+    "empty_zero_mass_share": 0.9390007745933385,
+    "notional_multiple_excluding_emptied": 2.3787033346215427
+  },
+  "framings": {
+    "1_acceleration": {
+      "matched_diff_bps": 8.72431173258017,
+      "n_cells": 11,
+      "placebo": {
+        "real": 8.72431173258017,
+        "placebo_mean": -0.34600518038828054,
+        "placebo_abs_p95": 9.941138085580391,
+        "clears": false,
+        "label_rate": 0.004030485123845816,
+        "n_placebo": 300
+      },
+      "abs_move_slope": {
+        "n": 129875,
+        "n_days": 1452,
+        "slope": 332.1824504278361,
+        "ci_lo": 197.4228337796599,
+        "ci_hi": 446.3467642924745,
+        "mde": 172.4756583372876
+      }
+    },
+    "2_pressure": {
+      "slope": {
+        "n": 4036,
+        "n_days": 70,
+        "slope": -0.09170689654223352,
+        "ci_lo": -0.6329636877997136,
+        "ci_hi": 0.4179280795633532,
+        "mde": 0.7531377614801823
+      },
+      "control_notional_only": {
+        "n": 4036,
+        "n_days": 70,
+        "slope": -0.05516430231324044,
+        "ci_lo": -0.38974714930679155,
+        "ci_hi": 0.25676329012536897,
+        "mde": 0.4610672736964204
+      }
+    },
+    "3_age": {
+      "raw_slope": {
+        "n": 28220,
+        "n_days": 1373,
+        "slope": -11.640907096539111,
+        "ci_lo": -17.669612813145235,
+        "ci_hi": -6.443516931338256,
+        "mde": 8.002640174249153
+      },
+      "controlled_for_momentum": {
+        "beta_log_age": -2.842230216301072,
+        "beta_momentum": -1960.697803789141,
+        "corr_age_momentum": 0.399331187208808
+      }
+    },
+    "4_regime": {
+      "weekend": {
+        "matched_diff_bps": -1.3701683516544556,
+        "n_cells": 178
+      },
+      "asia": {
+        "matched_diff_bps": 1.161059670128032,
+        "n_cells": 45
+      }
+    },
+    "5_anticipation": {
+      "level_after_unpredicted": {
+        "15m": {
+          "n": 53088,
+          "n_days": 61,
+          "level_bps": -0.9402804141075379,
+          "ci_lo": -3.5364400902581004,
+          "ci_hi": 1.6730355205003384,
+          "mde_bps": 3.7869283094829393,
+          "testable": true
+        },
+        "30m": {
+          "n": 53088,
+          "n_days": 61,
+          "level_bps": -0.3153672352353938,
+          "ci_lo": -4.82124809478011,
+          "ci_hi": 4.0014357302441885,
+          "mde_bps": 6.539877972145575,
+          "testable": true
+        },
+        "60m": {
+          "n": 53088,
+          "n_days": 61,
+          "level_bps": 3.811541105803489,
+          "ci_lo": -1.4827267270451774,
+          "ci_hi": 10.270053417730102,
+          "mde_bps": 8.759848492073763,
+          "testable": true
+        }
+      },
+      "matched_diff_bps": -7.06893578499682,
+      "placebo": {
+        "real": -7.06893578499682,
+        "placebo_mean": -0.01781359035107077,
+        "placebo_abs_p95": 1.135274206000648,
+        "clears": true,
+        "label_rate": 0.20032536490577973,
+        "n_placebo": 300
+      },
+      "band_bps": 10.0
+    }
+  },
+  "randomisation": {
+    "real": -0.3153672352353938,
+    "placebo_mean": 1.562790701009803,
+    "placebo_abs_p95": 4.0325796357360835,
+    "clears": false,
+    "n_placebo": 300
+  }
+}

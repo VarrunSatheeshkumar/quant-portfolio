@@ -1,0 +1,23 @@
+# data is fetched from public sources at run time, never committed
+data/
+*.parquet
+*.zip
+*.csv.gz
+
+# secrets: never commit endpoints, keys or host addresses
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*_rsa
+credentials*
+secrets*
+
+# python
+__pycache__/
+*.pyc
+.venv/
+venv/
+.ipynb_checkpoints/
+.DS_Store

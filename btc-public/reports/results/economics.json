@@ -1,0 +1,149 @@
+{
+  "benchmark": "har_intraday",
+  "incremental_r2_over_benchmark": {
+    "1h_train": {
+      "gain": 0.022785369192600546,
+      "looks": 0
+    },
+    "1h_sealed_2022": {
+      "gain": 0.023665257545595675,
+      "looks": 1
+    },
+    "1h_sealed_recent": {
+      "gain": 0.025840223939536777,
+      "looks": 1
+    },
+    "4h_train": {
+      "gain": 0.037951927667248975,
+      "looks": 0
+    },
+    "4h_sealed_2022": {
+      "gain": 0.038254256565312006,
+      "looks": 1
+    },
+    "4h_sealed_recent": {
+      "gain": 0.051165167537689404,
+      "looks": 1
+    }
+  },
+  "rho_sealed_low": 0.15383516355370666,
+  "rho_sealed_high": 0.22619718728951826,
+  "structures": {
+    "calendar_7_30_gamma": {
+      "edge_bps_low": 114.1300341570123,
+      "edge_bps_high": 167.81529082952503,
+      "cost_bps": 198.82448064151689,
+      "net_bps_low": -84.69444648450458,
+      "net_bps_high": -31.00918981199186,
+      "net_over_sd_low": -0.09108579765967927,
+      "sd_per_trade_bps": 929.8315287411275,
+      "mde_bps": 257.9718470789893,
+      "edge_exceeds_mde": false,
+      "n_train_trades": 102
+    },
+    "calendar_7_30_vega": {
+      "edge_bps_low": 31.59777960410119,
+      "edge_bps_high": 46.46095668853067,
+      "cost_bps": 86.58968128741338,
+      "net_bps_low": -54.99190168331219,
+      "net_bps_high": -40.12872459888271,
+      "net_over_sd_low": -0.21361800355103067,
+      "sd_per_trade_bps": 257.4310253310429,
+      "mde_bps": 71.42149416034299,
+      "edge_exceeds_mde": false,
+      "n_train_trades": 102
+    },
+    "straddle_7d_daily_hedge": {
+      "edge_bps_low": 45.74708780135591,
+      "edge_bps_high": 67.2659120860928,
+      "cost_bps": 20.052815543364996,
+      "net_bps_low": 25.694272257990914,
+      "net_bps_high": 47.2130965427278,
+      "net_over_sd_low": 0.06893956647474972,
+      "sd_per_trade_bps": 372.70719228270565,
+      "mde_bps": 73.66104501797584,
+      "edge_exceeds_mde": false,
+      "n_train_trades": 201
+    },
+    "straddle_7d_hourly_hedge": {
+      "edge_bps_low": 28.98894904377668,
+      "edge_bps_high": 42.624966780707524,
+      "cost_bps": 46.728365246267984,
+      "net_bps_low": -17.739416202491302,
+      "net_bps_high": -4.10339846556046,
+      "net_over_sd_low": -0.0751108248759816,
+      "sd_per_trade_bps": 236.17655952762522,
+      "mde_bps": 46.677425452952036,
+      "edge_exceeds_mde": false,
+      "n_train_trades": 201
+    },
+    "strip_30d_narrow": {
+      "edge_bps_low": 54.00716006379913,
+      "edge_bps_high": 79.41141295475816,
+      "cost_bps": 269.8547250532166,
+      "net_bps_low": -215.8475649894175,
+      "net_bps_high": -190.44331209845845,
+      "net_over_sd_low": -0.4905592757661222,
+      "sd_per_trade_bps": 440.0030244098869,
+      "mde_bps": 169.35025612894253,
+      "edge_exceeds_mde": false,
+      "n_train_trades": 53
+    },
+    "strip_30d_wide": {
+      "edge_bps_low": 54.585274889740575,
+      "edge_bps_high": 80.26146533899521,
+      "cost_bps": 259.0287714251218,
+      "net_bps_low": -204.44349653538126,
+      "net_bps_high": -178.7673060861266,
+      "net_over_sd_low": -0.4597200839050024,
+      "sd_per_trade_bps": 444.7129975240062,
+      "mde_bps": 171.16305083485685,
+      "edge_exceeds_mde": false,
+      "n_train_trades": 53
+    },
+    "strip_7d_narrow": {
+      "edge_bps_low": 28.91164724132713,
+      "edge_bps_high": 42.51130323407377,
+      "cost_bps": 135.8015244899515,
+      "net_bps_low": -106.88987724862437,
+      "net_bps_high": -93.29022125587773,
+      "net_over_sd_low": -0.4537947018586265,
+      "sd_per_trade_bps": 235.5467721655429,
+      "mde_bps": 42.42653901067022,
+      "edge_exceeds_mde": true,
+      "n_train_trades": 242
+    },
+    "strip_7d_wide": {
+      "edge_bps_low": 28.462190063024522,
+      "edge_bps_high": 41.85042735114444,
+      "cost_bps": 130.89872276372716,
+      "net_bps_low": -102.43653270070264,
+      "net_bps_high": -89.04829541258272,
+      "net_over_sd_low": -0.44175577388594567,
+      "sd_per_trade_bps": 231.884988847141,
+      "mde_bps": 41.76698086271303,
+      "edge_exceeds_mde": true,
+      "n_train_trades": 242
+    }
+  },
+  "best_net_structure": "straddle_7d_daily_hedge",
+  "best_net_bps_low": 25.694272257990914,
+  "best_net_bps_high": 47.2130965427278,
+  "best_edge_bps_low": 45.74708780135591,
+  "best_edge_bps_high": 67.2659120860928,
+  "best_cost_bps": 20.052815543364996,
+  "best_mde_bps": 73.66104501797584,
+  "independent_trades_needed": 521.1285945380558,
+  "years_needed_weekly": 10.021703741116458,
+  "any_edge_resolvable": true,
+  "any_positive_and_resolvable": false,
+  "n_structures_net_positive": 1,
+  "assumptions": [
+    "Skill transfers across horizon: Model A's measured gain at 1h and 4h is assumed to hold undiminished at the 7-day tenor of the traded structures. It will not -- forecast skill decays with horizon -- so this inflates the edge.",
+    "Incremental correlation is the square root of incremental R-squared, and that correlation is assumed to survive the change from log realised volatility, where it was measured, to the variance payoff of the structure.",
+    "None of the improvement over HAR is assumed to be in the option price already; any part of it that is has already been paid for and is not edge.",
+    "The rule is to trade the sign of the forecast error each period at constant vega notional, with the forecast and the payoff jointly normal.",
+    "Per-trade dispersion is the structure's own measured paired P&L dispersion on training trades, and cost is its measured round-trip cost -- both from the instrument stage, neither assumed.",
+    "The same rho is assumed for every structure, which flatters any structure whose dispersion comes from noise a volatility forecast cannot see."
+  ]
+}

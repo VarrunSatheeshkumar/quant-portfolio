@@ -1,0 +1,131 @@
+{
+  "scores": {
+    "1h": {
+      "train": {
+        "n": 366630,
+        "looks": 0,
+        "r2_model": 0.6596606441253188,
+        "r2_garch": 0.40432922429437645,
+        "qlike_model": -9.379693277706725,
+        "qlike_garch": -9.424038973680108,
+        "r2_har_dwm": 0.5168992832443782,
+        "gain_over_har_dwm": 0.1427613608809406,
+        "qlike_har_dwm": -9.107460237357477,
+        "r2_har_intraday": 0.6368752749327182,
+        "gain_over_har_intraday": 0.022785369192600546,
+        "qlike_har_intraday": -9.353451986590768
+      },
+      "sealed_2022": {
+        "n": 87552,
+        "looks": 1,
+        "r2_model": 0.45692553370922195,
+        "r2_garch": 0.310880854068614,
+        "qlike_model": -8.989394838053535,
+        "qlike_garch": -9.042425969062489,
+        "r2_har_dwm": 0.3023026483279144,
+        "gain_over_har_dwm": 0.15462288538130753,
+        "qlike_har_dwm": -8.937600489827418,
+        "r2_har_intraday": 0.4332602761636263,
+        "gain_over_har_intraday": 0.023665257545595675,
+        "qlike_har_intraday": -9.036675376093921
+      },
+      "sealed_recent": {
+        "n": 87264,
+        "looks": 1,
+        "r2_model": 0.5540261395884554,
+        "r2_garch": 0.16544001494576288,
+        "qlike_model": -9.792911645111035,
+        "qlike_garch": -9.864453780401961,
+        "r2_har_dwm": 0.3341099492253665,
+        "gain_over_har_dwm": 0.21991619036308885,
+        "qlike_har_dwm": -9.528663368721178,
+        "r2_har_intraday": 0.5281859156489186,
+        "gain_over_har_intraday": 0.025840223939536777,
+        "qlike_har_intraday": -9.794061075673538
+      }
+    },
+    "4h": {
+      "train": {
+        "n": 366641,
+        "looks": 0,
+        "r2_model": 0.6775262220332758,
+        "r2_garch": 0.21324749359352224,
+        "qlike_model": -7.947606227152889,
+        "qlike_garch": -7.8666738936831395,
+        "r2_har_dwm": 0.5636345041726014,
+        "gain_over_har_dwm": 0.11389171786067442,
+        "qlike_har_dwm": -7.8072014901943225,
+        "r2_har_intraday": 0.6395742943660269,
+        "gain_over_har_intraday": 0.037951927667248975,
+        "qlike_har_intraday": -7.899948847840916
+      },
+      "sealed_2022": {
+        "n": 87552,
+        "looks": 1,
+        "r2_model": 0.46369443210190786,
+        "r2_garch": 0.23175454804169704,
+        "qlike_model": -7.612740218750075,
+        "qlike_garch": -7.6202631384213175,
+        "r2_har_dwm": 0.3314858546114815,
+        "gain_over_har_dwm": 0.13220857749042636,
+        "qlike_har_dwm": -7.60550085428337,
+        "r2_har_intraday": 0.42544017553659585,
+        "gain_over_har_intraday": 0.038254256565312006,
+        "qlike_har_intraday": -7.653463004520547
+      },
+      "sealed_recent": {
+        "n": 87264,
+        "looks": 1,
+        "r2_model": 0.540398559306384,
+        "r2_garch": -0.2332349171001149,
+        "qlike_model": -8.35648871116336,
+        "qlike_garch": -8.288354390845889,
+        "r2_har_dwm": 0.35304006172442404,
+        "gain_over_har_dwm": 0.18735849758196,
+        "qlike_har_dwm": -8.193085245997755,
+        "r2_har_intraday": 0.4892333917686946,
+        "gain_over_har_intraday": 0.051165167537689404,
+        "qlike_har_intraday": -8.315554723414987
+      }
+    }
+  },
+  "model_beats_har_everywhere_r2": {
+    "har_dwm": {
+      "1h": true,
+      "4h": true
+    },
+    "har_intraday": {
+      "1h": true,
+      "4h": true
+    }
+  },
+  "model_beats_har_everywhere_qlike": {
+    "har_dwm": {
+      "1h": true,
+      "4h": true
+    },
+    "har_intraday": {
+      "1h": false,
+      "4h": false
+    }
+  },
+  "smallest_gain_over_any_har": 0.022785369192600546,
+  "n_sealed_cells": 4,
+  "sealed_cells_lost_on_qlike": {
+    "har_dwm": 0,
+    "har_intraday": 3
+  },
+  "windows_bars": {
+    "har_dwm": {
+      "d": 288,
+      "w": 2016,
+      "m": 8640
+    },
+    "har_intraday": {
+      "h": 12,
+      "d": 288,
+      "w": 2016
+    }
+  },
+  "note": "Sealed-block outcomes are the ones the single counted look already revealed; HAR was fitted on training rows only and no look counter is incremented."
+}
