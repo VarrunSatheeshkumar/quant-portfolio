@@ -1,0 +1,52 @@
+{
+  "s0": {
+    "status": "complete",
+    "at": "2026-09-12T04:51:25+00:00",
+    "summary": "gate PASS \u2014 27 markets, 820 as-of checks, rolls at expiry+1; largest removed artefact NG 10.98%/yr"
+  },
+  "s1": {
+    "status": "complete",
+    "at": "2026-09-12T04:51:26+00:00",
+    "summary": "gate PASS \u2014 edge/cost 2.3 (favourable); turnover 76.8x/yr, 1.8 bp/side, Sharpe drag 0.177"
+  },
+  "s2": {
+    "status": "complete",
+    "at": "2026-09-12T04:51:29+00:00",
+    "summary": "gate PASS \u2014 trend net Sharpe 0.24, placebo p95 0.02, 10.0 bp/side vs 3.24 cost, splice artefact -0.14"
+  },
+  "s3": {
+    "status": "complete",
+    "at": "2026-09-12T04:51:32+00:00",
+    "summary": "gate PASS \u2014 trend-carry corr -0.07 (covered -0.05); carry standalone net Sharpe 0.08 (OUTSIDE BAND: MDE 0.61, underpowered by design), placebo NOT cleared (p95 0.24), 6.2 bp/side vs 2.81 cost"
+  },
+  "s4": {
+    "status": "complete",
+    "at": "2026-09-12T04:51:34+00:00",
+    "summary": "gate PASS \u2014 realised vol 17.6% vs target 15% (rolling-year median 17.5%); effective breadth 10.2; trend+carry net Sharpe 0.34"
+  },
+  "s5": {
+    "status": "complete",
+    "at": "2026-09-12T04:51:37+00:00",
+    "summary": "gate PASS \u2014 value-trend corr -0.47; value net Sharpe -0.44 (OUTSIDE BAND: MDE 0.57), placebo NOT cleared (p95 0.19), -31.8 bp/side vs 5.59 cost"
+  },
+  "s6": {
+    "status": "complete",
+    "at": "2026-09-12T04:52:54+00:00",
+    "summary": "gate PASS \u2014 combined net Sharpe 0.06 (OUTSIDE BAND, machinery verified: result recorded), vol 16.6%, maxDD -53%, breadth 8.6, shuffled gross -0.07, placebo cleared (p95 0.05)"
+  },
+  "s7": {
+    "status": "complete",
+    "at": "2026-09-12T04:52:54+00:00",
+    "summary": "gate PASS \u2014 base mandate at 15% vol: pass 22.3%, timeout 49.9%, breach dd 12.2% / daily 15.6%, median 30 days"
+  },
+  "s8": {
+    "status": "complete",
+    "at": "2026-09-12T04:53:23+00:00",
+    "summary": "gate PASS \u2014 53/500 mandates attainable; binds: breach_daily 68%, breach_dd 28%, timeout 4%; pass-max vol 25% vs Calmar-max 40% on SPEC mandate"
+  },
+  "s9": {
+    "status": "complete",
+    "at": "2026-09-12T04:53:24+00:00",
+    "summary": "hold-out opened once (2026-09-12): combined net Sharpe -1.28 vs training 0.06, consistent True; RESULTS.md written"
+  }
+}

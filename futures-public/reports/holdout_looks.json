@@ -1,0 +1,11 @@
+{
+  "holdout": {
+    "looks": 1,
+    "history": [
+      {
+        "note": "opened 2026-09-12 after s0-s8 complete and every decision final",
+        "at": "2026-09-12T04:53:23.298212+00:00"
+      }
+    ]
+  }
+}

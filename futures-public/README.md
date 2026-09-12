@@ -35,8 +35,9 @@ pip install -r requirements.txt
 candidate fetch, the splice check, the pre-registration dispersions, the eight tests in
 their pre-registered order, and the C18 audit. About an hour on a laptop. All data
 sources are keyless: Yahoo Finance, TreasuryDirect, Binance, EIA. `config.END` fixes the
-last bar at 2026-09-09 so the numbers match the write-up; `data/` and `reports/` are
-rebuilt and are not tracked.
+last bar at 2026-09-09 so the numbers match the write-up. `data/` is rebuilt and not
+tracked; `reports/` is tracked so the results can be read without running the pipeline,
+and a reproduction overwrites it.
 
 The hold-out (`config.SEALED_START`, the last two years) is opened by s9 and counted in
 `reports/holdout_looks.json`. In the original run it was opened once, on 2026-09-09; a
