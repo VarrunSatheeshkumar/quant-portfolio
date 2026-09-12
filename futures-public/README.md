@@ -40,9 +40,11 @@ tracked; `reports/` is tracked so the results can be read without running the pi
 and a reproduction overwrites it.
 
 The hold-out (`config.SEALED_START`, the last two years) is opened by s9 and counted in
-`reports/holdout_looks.json`. In the original run it was opened once, on 2026-09-09; a
-fresh reproduction opens it once again and produces the same number. Do not tune anything
-on it.
+`reports/holdout_looks.json`. In the original run it was opened once, on 2026-09-09; the
+reproduction of 2026-09-12 opened it once again and produced the same number, and the
+tracked `holdout_looks.json` and `RESULTS.md` carry that reproduction's date and single
+look. Re-deriving a recorded result is not a second look; no decision was taken after
+either. Do not tune anything on it.
 
 Reproduction note: the original run fetched its data on 2026-09-09 before that session had
 closed, so its final bar was a partial print; it reported a hold-out Sharpe of −1.18. With the

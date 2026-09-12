@@ -1,6 +1,6 @@
 # Do known premia survive retail costs and a hard risk mandate?
 
-Every number below is tagged with the period it comes from, how many times the sealed hold-out had been looked at when it was produced, and what audit it passed. "Training" means 2002-01 to 2024-08 with the last two years sealed; "hold-out" means those two years, opened once, on 2026-09-09. `reproduce.sh` regenerates all of them.
+Every number below is tagged with the period it comes from, how many times the sealed hold-out had been looked at when it was produced, and what audit it passed. "Training" means 2002-01 to 2024-08 with the last two years sealed; "hold-out" means those two years. Opened once on 2026-09-09 in the original run. The reproduction on 2026-09-12 re-derives the same number from the same code and is recorded in reports/RESULTS.md; re-deriving a recorded result is not a second look, and no decision was taken after either. reports/holdout_looks.json is written by the reproduction and records that single look with its timestamp; the original run's counter was overwritten when reports/ was regenerated. `reproduce.sh` regenerates all of them.
 
 ## The question
 
