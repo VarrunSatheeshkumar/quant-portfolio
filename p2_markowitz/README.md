@@ -11,6 +11,8 @@ Mean-variance portfolio optimisation across five UK-relevant asset classes. The 
 - Demonstrates the model's biggest practical problem: optimal weights swing dramatically with small changes in estimated returns
 - Implements Ledoit-Wolf covariance shrinkage and compares the resulting frontier against the raw sample estimate
 
+Inputs (expected returns, vols, correlations) are stylised long-run parameters rather than estimates from a specific sample — the point of the project is the optimisation and its instability, not the parameter estimation.
+
 ## The maths
 
 **Portfolio variance:**

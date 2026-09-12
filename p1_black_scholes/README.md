@@ -35,13 +35,13 @@ The result I find most interesting: the expected return μ of the stock doesn't 
 | Vega  | S·N'(d₁)·√T/100 | Per 1% change in vol |
 | Rho   | K·T·e^(-rT)·N(d₂)/100 | Per 1% change in rate |
 
-**Implied volatility** is found using Newton-Raphson. Given a market price, find the σ that makes BS equal that price. Works because vega is always positive — the price is strictly increasing in σ, so there's exactly one solution and Newton-Raphson always converges.
+**Implied volatility** is found using Newton-Raphson. Given a market price, find the σ that makes BS equal that price. Works because vega is always positive — the price is strictly increasing in σ, so there's exactly one solution. Convergence is fast near the money; for deep ITM/OTM options vega approaches zero and the Newton step blows up, so the solver returns `None` rather than diverging.
 
 **Binomial tree** (Cox-Ross-Rubinstein): discretise time into N steps, price goes up by u = e^(σ√Δt) or down by d = 1/u at each step. As N→∞ it converges to the BS price for European options. The advantage: it can handle American options by checking early exercise at each node, which BS can't do.
 
 ## Where it breaks
 
-**The volatility smile** is the most obvious failure. If BS were correct, implied vol would be flat across strikes. It isn't — OTM puts trade at higher IV than ATM options because the market prices in crash risk that the lognormal distribution ignores. The skew became a permanent feature of equity markets after 1987.
+**The volatility smile** is the most obvious failure. If BS were correct, implied vol would be flat across strikes. It isn't — OTM puts trade at higher IV than ATM options because the market prices in crash risk that the lognormal distribution ignores. The skew became a permanent feature of equity markets after 1987. The skew shown in the plot is a stylised illustration of the characteristic equity shape, not live market quotes.
 
 Other assumptions that fail in practice:
 - Constant volatility (it's stochastic and mean-reverting)

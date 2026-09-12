@@ -225,15 +225,18 @@ def plot_vol_smile():
     In theory IV should be flat across strikes if BS were the right model.
     In practice OTM puts are more expensive -- the market prices in crash
     risk that lognormal returns can't capture. This is the skew.
+
+    The IV values here are stylised, chosen to show the characteristic
+    equity skew shape. Not quotes from a live surface.
     """
     strikes = np.array([80, 85, 90, 95, 100, 105, 110, 115, 120])
     iv_mkt  = np.array([0.28, 0.26, 0.24, 0.22, 0.20, 0.195, 0.195, 0.20, 0.205])
     fig, ax = plt.subplots(figsize=(8, 5))
-    ax.plot(strikes, iv_mkt * 100, 'bo-', lw=2, markersize=7, label='Market IV')
+    ax.plot(strikes, iv_mkt * 100, 'bo-', lw=2, markersize=7, label='Illustrative IV (stylised)')
     ax.axhline(20, color='red', ls='--', lw=1.5, label='BS flat assumption (20%)')
     ax.axvline(100, color='grey', ls=':', alpha=0.6)
     ax.set_xlabel('Strike'); ax.set_ylabel('Implied Vol (%)')
-    ax.set_title('Volatility Skew\n(OTM puts price crash risk the model ignores)')
+    ax.set_title('Volatility Skew (stylised illustration)\n(OTM puts price crash risk the model ignores)')
     ax.legend(); ax.grid(alpha=0.3)
     plt.tight_layout(); plt.savefig('plots/vol_smile.png', dpi=150); plt.show()
     print("saved plots/vol_smile.png")

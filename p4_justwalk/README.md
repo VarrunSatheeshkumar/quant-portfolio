@@ -4,6 +4,8 @@ JustWalk is a clean energy startup I founded. We secured £50,000 from Vodafone 
 
 ## The three questions
 
+A note on the data: the footfall series in this model is simulated — Poisson arrivals with a time-varying intraday, weekday and seasonal rate — rather than telemetry from the Paddington tiles. The purpose is to test the energy, DCF and anomaly-detection logic against a known ground truth, which is also why the anomaly section injects known anomalies and checks whether the detector recovers them. The site parameters (tile count, cost, maintenance, electricity rate) are real.
+
 **1. How much energy does it actually generate?**
 
 The energy model starts from physics rather than assumptions. A person stepping on a tile does roughly 2.5 joules of work on the tile (conservative mid-range from the literature; actual range is 1–7J depending on tile design and body weight). After rectifier and voltage regulator losses, about 22% of that becomes usable electricity.
