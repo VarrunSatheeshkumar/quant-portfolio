@@ -1,6 +1,8 @@
 # QRT × ENS Data Challenge 2026 — Asset Allocation Forecasting
 
-**Rank: 178 / 1,106 · Accuracy: 0.5212 · Beat official LightGBM baseline (0.5079) by ~1.3 percentage points**
+**Public leaderboard: rank 178 / 1,175, accuracy 0.5212 (May 2026) · Private leaderboard: rank 210 / 1,280 (June 2026) · Official LightGBM baseline: 0.5079**
+
+The challenge is ongoing — the public leaderboard updates on every submission and the private one twice a year — so both figures are dated snapshots.
 
 ---
 
@@ -54,8 +56,10 @@ Some techniques — particularly the Set Transformer with pseudo-labels, CORAL/a
 
 ## Result
 
-- **0.5212 accuracy**, **rank 178 / 1,106**
-- Official LightGBM baseline: 0.5079 — beat it by ~1.3 percentage points
+- Public leaderboard: **0.5212 accuracy**, **rank 178 / 1,175** (May 2026)
+- Private leaderboard: **rank 210 / 1,280** (June 2026)
+- Both are dated snapshots of an ongoing challenge
+- Official LightGBM baseline: 0.5079 — beat it by ~1.3 percentage points on the public leaderboard
 - The signal-to-noise ratio here is tiny. Going from 0.50 to 0.52 is meaningful; going further is very hard.
 
 ---
