@@ -13,7 +13,11 @@ Part one of three. Part two: [futures trend, carry and value](../futures-public/
 
 A liquidation map built from public open interest, price and funding on a five-minute grid; five framings of "does price respond to the map?", each with a hypothesis recorded privately before its result commit (the public statistics for framing 1 are not the registered statistic); a 24-feature ridge volatility model compared against GARCH(1,1) and two HAR-RV specifications; and eight costed option structures.
 
-The measurements, with their intervals and what could not be established, are in `WRITEUP.md`. In summary of the locator: in the touch bar and the next three five-minute bars, on print-covered days, a liquidation print somewhere in the market occurred for 100 % of cluster touches (n 36), 99.9 % of mid touches (n 908) and 92.4 % of empty touches (n 5,164). Of the price response: continuation after unpredicted prints, print unit, day-block bootstrap: at 30 min −0.3 [−4.8, 4.0]; at 15 min −0.9 [−3.5, 1.7]; at 60 min +3.8 [−1.5, 10.3] bps. Of the volatility comparison: point R² differences over the hour/day/week HAR of +0.024/+0.026/+0.038/+0.051 on 87,552 and 87,264 evaluated rows per block (304 and 303 complete-day equivalents out of 365); no uncertainty was computed; on QLIKE the intraday HAR beats Model A in three of the four sealed cells.
+The measurements, with their intervals and what could not be established, are in `WRITEUP.md`.
+
+- **Locator:** in the touch bar and the next three five-minute bars, on print-covered days, a liquidation print somewhere in the market occurred for 100 % of cluster touches (n 36), 99.9 % of mid touches (n 908) and 92.4 % of empty touches (n 5,164).
+- **Price response:** continuation after unpredicted prints, print unit, day-block bootstrap: at 30 min −0.3 [−4.8, 4.0]; at 15 min −0.9 [−3.5, 1.7]; at 60 min +3.8 [−1.5, 10.3] bps.
+- **Volatility comparison:** point R² differences over the hour/day/week HAR of +0.024/+0.026/+0.038/+0.051 on 87,552 and 87,264 evaluated rows per block (304 and 303 complete-day equivalents out of 365); no uncertainty was computed; on QLIKE the intraday HAR beats Model A in three of the four sealed cells.
 
 ## Running it
 
@@ -22,7 +26,11 @@ pip install -r requirements.txt
 python run.py
 ```
 
-The fetch code uses public keyless endpoints; the option-fill file in the archive was not produced by that code as written. Default `run.py` runs skip stages whose artefacts exist; `--only` and `--force-from` recompute them. `data/` is gitignored; `reports/results/` is tracked. 52 selected literal phrases in this README and `WRITEUP.md` are checked for presence against `reports/results/` and `config.py` by `tests/test_documents.py`, without validating their interpretation; up to five further data-derived phrases are checked when their source files are available.
+Default `run.py` runs skip stages whose artefacts exist; `--only` and `--force-from` recompute them. `data/` is gitignored; `reports/results/` is tracked.
+
+The fetch code uses public keyless endpoints; the option-fill file in the archive was not produced by that code as written.
+
+52 selected literal phrases in this README and `WRITEUP.md` are checked for presence against `reports/results/` and `config.py` by `tests/test_documents.py`, without validating their interpretation; up to five further data-derived phrases are checked when their source files are available.
 
 The [saved reproduction record](../audit/REPRODUCTION.md) includes the previous session's log: it reaches `pipeline complete`, followed by a wrapper timeout marker, without a captured process exit code. The five tracked result JSONs were skipped. The fetched option-fill sample differed from the archive, so forcing the instrument/economics stages would use different inputs; those stages were not recomputed in that run.
 

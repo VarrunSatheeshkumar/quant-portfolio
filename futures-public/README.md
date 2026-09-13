@@ -11,9 +11,15 @@ Part two of three. Part one: [BTC forced flow](../btc-public/) · Part three: eq
 
 ## What the repository contains
 
-Three signals — trend, carry and value — specified in advance on daily futures data from free sources across 13–27 markets, with a modelled cost, a portfolio layer and a drawdown-mandate simulator; a sealed two-year hold-out; and a screen of candidate claims recorded in a private local repository in commits preceding the result commits (not verifiable from this repository; commit order, not execution order).
+The measurements are in `WRITEUP.md`.
 
-The measurements are in `WRITEUP.md`. In summary: trend net Sharpe 0.24, carry 0.08 (design MDE in Sharpe units 0.61), value −0.44, combined 0.06; no Sharpe interval has been computed for any of them. Hold-out net Sharpe −1.28; the block was scored 2026-09-09 (−1.18 on a partial final bar) and 2026-09-12 (−1.28 on the settled close). Of the candidate screen: none of the three non-control candidates predicted to clear cleared; three of the four predicted sign-right/not-cleared matched that prediction; the fourth, C18 (crypto funding-rate carry), cleared with gross alpha +1.015 %/wk, month-block SE 0.27, t 3.73; net alpha with costs entered into the weekly series has not been computed. The halt-rule record and the registration status are in `WRITEUP.md`.
+- **Signals:** trend net Sharpe 0.24, carry 0.08 (design MDE in Sharpe units 0.61), value −0.44, combined 0.06; no Sharpe interval has been computed for any of them.
+- **Hold-out:** net Sharpe −1.28; the block was scored 2026-09-09 (−1.18 on a partial final bar) and 2026-09-12 (−1.28 on the settled close).
+- **Candidate screen:** none of the three non-control candidates predicted to clear cleared; three of the four predicted sign-right/not-cleared matched that prediction; the fourth, C18 (crypto funding-rate carry), cleared with gross alpha +1.015 %/wk, month-block SE 0.27, t 3.73; net alpha with costs entered into the weekly series has not been computed.
+
+The halt-rule record and the registration status are in `WRITEUP.md`.
+
+Three signals — trend, carry and value — specified in advance on daily futures data from free sources across 13–27 markets, with a modelled cost, a portfolio layer and a drawdown-mandate simulator; a sealed two-year hold-out; and a screen of candidate claims recorded in a private local repository in commits preceding the result commits (not verifiable from this repository; commit order, not execution order).
 
 ## Running it
 
