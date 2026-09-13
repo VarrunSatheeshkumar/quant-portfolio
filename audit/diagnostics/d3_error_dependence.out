@@ -1,0 +1,6 @@
+training rows 366641 | R2 1h/4h 0.66 0.678
+corr(err1h, err4h) row-level 0.574
+corr(daily MSE 1h, 4h) 0.823 over 1274 days
+autocorr err1h lag 1/12/288: 0.924 0.013 0.064
+autocorr err4h lag 1/48/288: 0.981 0.028 0.074
+autocorr daily MSE1h lag 1/7/30: 0.146 0.194 0.074

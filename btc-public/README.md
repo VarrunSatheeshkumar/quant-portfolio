@@ -5,11 +5,13 @@ Part one of three. Part two: futures trend, carry and value (`../futures-public`
 **Start here**
 
 - Begin with the [measurements and dispositions](WRITEUP.md#what-the-measurements-are), then follow [one cluster touch](WRITEUP.md#one-touch-from-map-state-to-measurement) through the calculation.
+- The [claim ledger](../audit/CLAIM_LEDGER.md): every numerical and interpretive claim in these two projects, traced to the artefact that produces it, with the wording each source permits — 117 rows, one per assertion, with withdraw and unknown as permitted outcomes. Claims the sources did not support were withdrawn rather than softened. Section H records the worked examples and navigation added on 2026-09-13; section I cites 8 operational statements. The [evidence record](../audit/EVIDENCE_RECORD.md) holds the registration artefacts, the halt-rule record and the sealed-block inspection history behind the rows.
 - Read [event_study.json](reports/results/event_study.json) for locator/price-response outputs, [har.json](reports/results/har.json) for the forecast comparison, and [instrument.json](reports/results/instrument.json) / [economics.json](reports/results/economics.json) for option measurements and conditional formula outputs.
 - Those JSONs are tracked and readable on a fresh clone. Default `python run.py` attempts to fetch/build missing `data/`, runs the as-of and document checks, and skips the tracked result JSONs; it does not regenerate those estimates by default.
 - Recomputing with `--only` or `--force-from` needs the upstream data; the archived option-fill file is not reproducible by the fetch code as written. See [Running it](#running-it).
 
-The claim ledger records the 2026-09-12 audit and the presentation provenance added on 2026-09-13. The write-up reports the retained measurements, their limitations and the withdrawn wording.
+
+The write-up reports the retained measurements, their limitations and the withdrawn wording; every sentence in it and in this README corresponds to a ledger row.
 
 ## What the repository contains
 

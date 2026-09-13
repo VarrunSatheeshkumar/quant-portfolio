@@ -38,7 +38,7 @@ Binary classification of asset allocation returns from 20 days of return and sig
 
 → [p6_qrt_challenge/](p6_qrt_challenge/)
 
-P7 and P8 are two research projects on the same audit machinery. Both were re-examined in a claim-by-claim audit in September 2026; their READMEs and write-ups now carry only sentences the audit's ledger permits, and the audit's own findings — the halt-rule record, the registration status, the sealed-block scoring history and the corrections to previously published figures — are stated in each write-up. Part three, equities, is in progress.
+P7 and P8 are two research projects on the same audit machinery. Both were re-examined in a claim-by-claim audit in September 2026, recorded in the [claim ledger](audit/CLAIM_LEDGER.md): every numerical and interpretive claim in these two projects, traced to the artefact that produces it, with the wording each source permits — 117 rows, with withdraw and unknown as permitted outcomes. Claims the sources did not support were withdrawn rather than softened. The audit's own findings — the halt-rule record, the registration status, the sealed-block scoring history and the corrections to previously published figures — are stated in each write-up, with the underlying artefacts in the [evidence record](audit/EVIDENCE_RECORD.md). Part three, equities, is in progress.
 
 ### P7 — BTC Forced Flow: Liquidation Map, Price Response, Volatility Forecast
 

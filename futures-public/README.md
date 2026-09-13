@@ -5,11 +5,13 @@ Part two of three. Part one: BTC forced flow (`../btc-public`) · Part three: eq
 **Start here**
 
 - Begin with the [strategy table](WRITEUP.md#the-three-signals), then follow [one C18 week](WRITEUP.md#worked-example-constructing-one-c18-week) from funding ranks to its return and cost proxy.
+- The [claim ledger](../audit/CLAIM_LEDGER.md): every numerical and interpretive claim in these two projects, traced to the artefact that produces it, with the wording each source permits — 117 rows, one per assertion, with withdraw and unknown as permitted outcomes. Claims the sources did not support were withdrawn rather than softened. Section H records the worked examples and navigation added on 2026-09-13; section I cites 8 operational statements. The [evidence record](../audit/EVIDENCE_RECORD.md) holds the registration artefacts, the halt-rule record and the sealed-block inspection history behind the rows.
 - The tracked [stage reports](reports/stage_reports/) answer how the futures signals and combined programme scored; [C18.md](reports/candidates/C18.md) and [C18_AUDIT.md](reports/candidates/C18_AUDIT.md) contain the funding candidate's reported outputs, read with the write-up's cost and halt-rule qualifications.
 - On a fresh clone, `./reproduce.sh` skips the completed build stages, then attempts the candidate fetch and splice check; missing core futures data prevents a complete reproduction. The tracked reports can be read without data.
 - Recomputing needs `data/`; `python build.py --force-from s0` rebuilds the core stages but halts at s9 on the tracked look counter. See [Running it](#running-it) for the command sequence and limits.
 
-The claim ledger records the 2026-09-12 audit and the presentation provenance added on 2026-09-13. The write-up reports the retained measurements, their limitations and the withdrawn wording.
+
+The write-up reports the retained measurements, their limitations and the withdrawn wording; every sentence in it and in this README corresponds to a ledger row.
 
 ## What the repository contains
 

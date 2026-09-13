@@ -1,0 +1,9 @@
+weeks 342 formation 2020-02-17 -> 2026-08-31
+names/leg mean 22.2 max 29
+union turnover (run.py definition) mean 0.4147 charged 0.20*turnover = 0.083 %/wk
+gross sum|w| mean 2.0
+sum|dw| per week, one-leg units: mean 1.888 median 1.895
+entries/exits/flips per week (both legs): 20.8 20.7 2.5
+cost at 5 bp/side on sum|dw|: 0.094 %/wk
+cost at 10 bp/side on sum|dw|: 0.189 %/wk
+cost at 25 bp/side on sum|dw|: 0.472 %/wk

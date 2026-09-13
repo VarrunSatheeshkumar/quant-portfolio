@@ -1,6 +1,6 @@
 # Trend, carry and value on free futures data: the measurements
 
-The claim ledger (`remediation/CLAIM_LEDGER.md` in the portfolio repository) records the 2026-09-12 audit and the presentation provenance added on 2026-09-13. Where the ledger records a figure as unknown, this document says unknown.
+The claim ledger ([`audit/CLAIM_LEDGER.md`](../audit/CLAIM_LEDGER.md)) records the 2026-09-12 audit and the presentation provenance added on 2026-09-13. Where the ledger records a figure as unknown, this document says unknown.
 
 ## What was asked
 
@@ -93,7 +93,7 @@ For example, QTUM's long return is `(2.183 / 2.360 − 1) × 100 − 0.210000 = 
 
 The preceding book held NEO, VET, XMR, BAT and BTC long; LTC, ETH, ONT, ZEC and LINK short. Moving to this week's targets closes four longs and two shorts, opens five longs and one short, and flips NEO from +0.2 to −0.2; ETH, ONT and ZEC retain their −0.2 targets. Absolute target-weight changes sum to 2.8 one-leg units, with drift ignored; these are not recorded execution trades. Four names remain in the ten-name union, so the reported turnover proxy is `1 − 4/10 = 0.6`. Applying its 20 bp round-trip rate gives **0.120000% for this example**. The report subtracts the mean of this proxy from fitted gross alpha and labels the result "net alpha"; that is the withdrawn A9 figure. Net alpha with costs entered into the weekly series has not been computed. The funding calculation has not been reconciled to payments on actual held notionals at payment timestamps.
 
-Construction: [`c18_weekly` and `alpha_se`](candidates/common.py), [C18 reporting](candidates/run.py); cached inputs in `data/raw/cand/binance_funding.parquet` and `binance_klines_1d.parquet`. The [preserved example inputs](../remediation/WORKED_EXAMPLES.json) include all 23 eligible funding scores and the preceding book, so the ranks and weight changes can be checked without those files. Ledger H2 records this instance; A8–A9 and C13 constrain its interpretation. It adds no inference about net alpha or execution profitability.
+Construction: [`c18_weekly` and `alpha_se`](candidates/common.py), [C18 reporting](candidates/run.py); cached inputs in `data/raw/cand/binance_funding.parquet` and `binance_klines_1d.parquet`. The [preserved example inputs](../audit/WORKED_EXAMPLES.json) include all 23 eligible funding scores and the preceding book, so the ranks and weight changes can be checked without those files. Ledger H2 records this instance; A8–A9 and C13 constrain its interpretation. It adds no inference about net alpha or execution profitability.
 
 ### The mandate simulator
 
@@ -130,6 +130,8 @@ The twenty-candidate list, ranking and predictions, and the per-candidate criter
 The hold-out was scored on 2026-09-09 and 2026-09-12, with an aborted registration before the first scoring. Roll-switch offsets were selected on the full price history including the sealed period; cost normalisation uses the final 250 observations (inside the sealed period), and schedule turnover is evaluated from 2002 through the end of the series without a training cutoff. The candidate tests other than C19 use data through 2026-09-09. On a fresh clone the default build skips every stage because the tracked progress file marks them complete; a forced rebuild runs the stages and halts at s9 because the tracked look counter already records a look.
 
 ### Corrections to previously published figures and sentences
+
+Each correction below is a row of the [claim ledger](../audit/CLAIM_LEDGER.md): every numerical and interpretive claim in these two projects, traced to the artefact that produces it, with the wording each source permits. Claims the sources did not support were withdrawn rather than softened. The registration artefacts, the halt-rule record and the inspection history behind the rows are in the [evidence record](../audit/EVIDENCE_RECORD.md).
 
 - "timing +0.44 against a standing tilt of −0.22" attributed to trend: those are the combined book's figures; trend's own are 0.22 and 0.13, one draw, the code's labels.
 - "Trend alone had life": withdrawn.

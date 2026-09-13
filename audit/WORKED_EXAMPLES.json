@@ -1,0 +1,1785 @@
+{
+  "purpose": "Construction examples for the final documentation additions, 2026-09-13. These are extracted input instances, not new aggregate study findings.",
+  "P7": {
+    "source_grid": "btc-public/data/grid/grid.parquet",
+    "source_mix": "btc-public/data/interim/leverage_mix.json",
+    "source_algorithms": [
+      "src/liquidation_map.py:35-128",
+      "src/event_study.py:51-138",
+      "src/event_study.py:192-224"
+    ],
+    "selection": "First covered cluster touch in code enumeration order; stop replay there.",
+    "grid_start": "2020-09-01 00:05:00+00:00",
+    "mix": {
+      "5": 0.0,
+      "10": 0.2,
+      "20": 0.25,
+      "50": 0.55
+    },
+    "event": {
+      "ts": "2020-09-01 06:00:00+00:00",
+      "bar": 71,
+      "previous_ts": "2020-09-01 05:55:00+00:00",
+      "bucket": 988,
+      "bucket_lower": 11786.061874168865,
+      "bucket_upper": 11815.527028854287,
+      "previous_close": 11759.39,
+      "bar_low": 11759.38,
+      "bar_high": 11810.93,
+      "bar_close": 11805.78,
+      "previous_close_bucket": 987,
+      "low_bucket": 987,
+      "high_bucket": 988,
+      "is_down": false,
+      "no_previous_accepted_touch": true,
+      "bars_since_previous_accepted_touch": null,
+      "long_mass": 0.0,
+      "short_mass": 995398.090689931,
+      "mass": 995398.090689931,
+      "total": 17341431.19828345,
+      "share": 0.05739999653479933,
+      "dist": 0.0022681341607742045,
+      "age_bars": 54.13048237504,
+      "depth": 732327.5508293504,
+      "pressure": 1.359225239529302,
+      "rv24": 0.017609097754570237,
+      "liq_notional": 620897.37411,
+      "locator_bars": [
+        {
+          "ts": "2020-09-01 06:00:00+00:00",
+          "liq_long": 0.0,
+          "liq_short": 300841.56839,
+          "total": 300841.56839,
+          "covered": true
+        },
+        {
+          "ts": "2020-09-01 06:05:00+00:00",
+          "liq_long": 7630.28451,
+          "liq_short": 312425.52121,
+          "total": 320055.80572,
+          "covered": true
+        },
+        {
+          "ts": "2020-09-01 06:10:00+00:00",
+          "liq_long": 0.0,
+          "liq_short": 0.0,
+          "total": 0.0,
+          "covered": true
+        },
+        {
+          "ts": "2020-09-01 06:15:00+00:00",
+          "liq_long": 0.0,
+          "liq_short": 0.0,
+          "total": 0.0,
+          "covered": true
+        }
+      ],
+      "continuations": {
+        "15m": {
+          "end_ts": "2020-09-01 06:15:00+00:00",
+          "end_close": 11795.61,
+          "signed_bps": -8.618137007587734
+        },
+        "30m": {
+          "end_ts": "2020-09-01 06:30:00+00:00",
+          "end_close": 11848.99,
+          "signed_bps": 36.53389828878417
+        },
+        "60m": {
+          "end_ts": "2020-09-01 07:00:00+00:00",
+          "end_close": 11869.83,
+          "signed_bps": 54.106446470125746
+        }
+      }
+    }
+  },
+  "P8": {
+    "selection_rule": "First eligible C18 week with a preceding eligible book; no return-based selection",
+    "source_funding": "futures-public/data/raw/cand/binance_funding.parquet",
+    "source_prices": "futures-public/data/raw/cand/binance_klines_1d.parquet",
+    "code_sources": [
+      "candidates/common.py:346-387",
+      "candidates/run.py:192-225"
+    ],
+    "existing_ledger_mechanics": [
+      "A8",
+      "A9",
+      "C13",
+      "E5"
+    ],
+    "date": "2020-02-24",
+    "ending_date": "2020-03-02",
+    "n_eligible": 23,
+    "names_per_leg": 5,
+    "previous_date": "2020-02-17",
+    "previous_longs": [
+      "NEOUSDT",
+      "VETUSDT",
+      "XMRUSDT",
+      "BATUSDT",
+      "BTCUSDT"
+    ],
+    "previous_shorts": [
+      "LTCUSDT",
+      "ETHUSDT",
+      "ONTUSDT",
+      "ZECUSDT",
+      "LINKUSDT"
+    ],
+    "previous_targets": {
+      "NEOUSDT": 0.2,
+      "VETUSDT": 0.2,
+      "XMRUSDT": 0.2,
+      "BATUSDT": 0.2,
+      "BTCUSDT": 0.2,
+      "LTCUSDT": -0.2,
+      "ETHUSDT": -0.2,
+      "ONTUSDT": -0.2,
+      "ZECUSDT": -0.2,
+      "LINKUSDT": -0.2
+    },
+    "current_targets": {
+      "IOSTUSDT": 0.2,
+      "QTUMUSDT": 0.2,
+      "IOTAUSDT": 0.2,
+      "XLMUSDT": 0.2,
+      "ADAUSDT": 0.2,
+      "ONTUSDT": -0.2,
+      "ETHUSDT": -0.2,
+      "BNBUSDT": -0.2,
+      "ZECUSDT": -0.2,
+      "NEOUSDT": -0.2
+    },
+    "candidate_scores": [
+      {
+        "symbol": "IOSTUSDT",
+        "ascending_rank": 1,
+        "signal_pct": 0.08,
+        "entry_price_available": true,
+        "entry_close": 0.006162,
+        "previous_funding_payment_count": 8,
+        "previous_funding_daily_rates": {
+          "2020-02-17": null,
+          "2020-02-18": null,
+          "2020-02-19": null,
+          "2020-02-20": null,
+          "2020-02-21": 0.0002,
+          "2020-02-22": 0.00030000000000000003,
+          "2020-02-23": 0.00030000000000000003
+        },
+        "selected_side": "long"
+      },
+      {
+        "symbol": "QTUMUSDT",
+        "ascending_rank": 2,
+        "signal_pct": 0.12000000000000001,
+        "entry_price_available": true,
+        "entry_close": 2.36,
+        "previous_funding_payment_count": 12,
+        "previous_funding_daily_rates": {
+          "2020-02-17": null,
+          "2020-02-18": null,
+          "2020-02-19": null,
+          "2020-02-20": 0.00030000000000000003,
+          "2020-02-21": 0.00030000000000000003,
+          "2020-02-22": 0.00030000000000000003,
+          "2020-02-23": 0.00030000000000000003
+        },
+        "selected_side": "long"
+      },
+      {
+        "symbol": "IOTAUSDT",
+        "ascending_rank": 3,
+        "signal_pct": 0.21,
+        "entry_price_available": true,
+        "entry_close": 0.2622,
+        "previous_funding_payment_count": 21,
+        "previous_funding_daily_rates": {
+          "2020-02-17": 0.00030000000000000003,
+          "2020-02-18": 0.00030000000000000003,
+          "2020-02-19": 0.00030000000000000003,
+          "2020-02-20": 0.00030000000000000003,
+          "2020-02-21": 0.00030000000000000003,
+          "2020-02-22": 0.00030000000000000003,
+          "2020-02-23": 0.00030000000000000003
+        },
+        "selected_side": "long"
+      },
+      {
+        "symbol": "XLMUSDT",
+        "ascending_rank": 4,
+        "signal_pct": 0.21311799999999997,
+        "entry_price_available": true,
+        "entry_close": 0.06909,
+        "previous_funding_payment_count": 21,
+        "previous_funding_daily_rates": {
+          "2020-02-17": 0.00030000000000000003,
+          "2020-02-18": 0.00033118000000000004,
+          "2020-02-19": 0.00030000000000000003,
+          "2020-02-20": 0.00030000000000000003,
+          "2020-02-21": 0.00030000000000000003,
+          "2020-02-22": 0.00030000000000000003,
+          "2020-02-23": 0.00030000000000000003
+        },
+        "selected_side": "long"
+      },
+      {
+        "symbol": "ADAUSDT",
+        "ascending_rank": 5,
+        "signal_pct": 0.21625,
+        "entry_price_available": true,
+        "entry_close": 0.05907,
+        "previous_funding_payment_count": 21,
+        "previous_funding_daily_rates": {
+          "2020-02-17": 0.00030000000000000003,
+          "2020-02-18": 0.00030000000000000003,
+          "2020-02-19": 0.00030000000000000003,
+          "2020-02-20": 0.00030000000000000003,
+          "2020-02-21": 0.00030000000000000003,
+          "2020-02-22": 0.00030000000000000003,
+          "2020-02-23": 0.0003625
+        },
+        "selected_side": "long"
+      },
+      {
+        "symbol": "XMRUSDT",
+        "ascending_rank": 6,
+        "signal_pct": 0.276169,
+        "entry_price_available": true,
+        "entry_close": 79.3,
+        "previous_funding_payment_count": 21,
+        "previous_funding_daily_rates": {
+          "2020-02-17": 0.00034814000000000004,
+          "2020-02-18": 0.00039447,
+          "2020-02-19": 0.00030000000000000003,
+          "2020-02-20": 0.00030000000000000003,
+          "2020-02-21": 0.00030000000000000003,
+          "2020-02-22": 0.00039988,
+          "2020-02-23": 0.0007192
+        },
+        "selected_side": null
+      },
+      {
+        "symbol": "ETCUSDT",
+        "ascending_rank": 7,
+        "signal_pct": 0.289328,
+        "entry_price_available": true,
+        "entry_close": 9.36,
+        "previous_funding_payment_count": 21,
+        "previous_funding_daily_rates": {
+          "2020-02-17": 0.00030000000000000003,
+          "2020-02-18": 0.00030000000000000003,
+          "2020-02-19": 0.0006979999999999999,
+          "2020-02-20": 0.0006952799999999999,
+          "2020-02-21": 0.00030000000000000003,
+          "2020-02-22": 0.00030000000000000003,
+          "2020-02-23": 0.00030000000000000003
+        },
+        "selected_side": null
+      },
+      {
+        "symbol": "TRXUSDT",
+        "ascending_rank": 8,
+        "signal_pct": 0.30660899999999996,
+        "entry_price_available": true,
+        "entry_close": 0.01992,
+        "previous_funding_payment_count": 21,
+        "previous_funding_daily_rates": {
+          "2020-02-17": 0.00030000000000000003,
+          "2020-02-18": 0.00033488,
+          "2020-02-19": 0.00098758,
+          "2020-02-20": 0.00030000000000000003,
+          "2020-02-21": 0.00030000000000000003,
+          "2020-02-22": 0.00030000000000000003,
+          "2020-02-23": 0.00054363
+        },
+        "selected_side": null
+      },
+      {
+        "symbol": "ATOMUSDT",
+        "ascending_rank": 9,
+        "signal_pct": 0.356719,
+        "entry_price_available": true,
+        "entry_close": 4.399,
+        "previous_funding_payment_count": 21,
+        "previous_funding_daily_rates": {
+          "2020-02-17": 0.00033213000000000003,
+          "2020-02-18": 0.00043819999999999997,
+          "2020-02-19": 0.00051301,
+          "2020-02-20": 0.00058177,
+          "2020-02-21": 0.00030000000000000003,
+          "2020-02-22": 0.0007001700000000001,
+          "2020-02-23": 0.00070191
+        },
+        "selected_side": null
+      },
+      {
+        "symbol": "BATUSDT",
+        "ascending_rank": 10,
+        "signal_pct": 0.389081,
+        "entry_price_available": true,
+        "entry_close": 0.2572,
+        "previous_funding_payment_count": 21,
+        "previous_funding_daily_rates": {
+          "2020-02-17": 0.00030000000000000003,
+          "2020-02-18": 0.0003778,
+          "2020-02-19": 0.00066091,
+          "2020-02-20": 0.00033431,
+          "2020-02-21": 0.00030000000000000003,
+          "2020-02-22": 0.00161779,
+          "2020-02-23": 0.00030000000000000003
+        },
+        "selected_side": null
+      },
+      {
+        "symbol": "VETUSDT",
+        "ascending_rank": 11,
+        "signal_pct": 0.5400149999999999,
+        "entry_price_available": true,
+        "entry_close": 0.006727,
+        "previous_funding_payment_count": 21,
+        "previous_funding_daily_rates": {
+          "2020-02-17": 0.00030000000000000003,
+          "2020-02-18": 0.00100113,
+          "2020-02-19": 0.00030000000000000003,
+          "2020-02-20": 0.00030000000000000003,
+          "2020-02-21": 0.00300475,
+          "2020-02-22": 0.00019427000000000002,
+          "2020-02-23": 0.00030000000000000003
+        },
+        "selected_side": null
+      },
+      {
+        "symbol": "XTZUSDT",
+        "ascending_rank": 12,
+        "signal_pct": 0.5686380000000001,
+        "entry_price_available": true,
+        "entry_close": 3.186,
+        "previous_funding_payment_count": 21,
+        "previous_funding_daily_rates": {
+          "2020-02-17": 0.00034323000000000003,
+          "2020-02-18": 0.0007857000000000001,
+          "2020-02-19": 0.00104726,
+          "2020-02-20": 8.076e-05,
+          "2020-02-21": 0.00135658,
+          "2020-02-22": 0.00010512,
+          "2020-02-23": 0.00196773
+        },
+        "selected_side": null
+      },
+      {
+        "symbol": "LINKUSDT",
+        "ascending_rank": 13,
+        "signal_pct": 0.572675,
+        "entry_price_available": true,
+        "entry_close": 3.923,
+        "previous_funding_payment_count": 21,
+        "previous_funding_daily_rates": {
+          "2020-02-17": -1.5990000000000015e-05,
+          "2020-02-18": 0.0015974700000000001,
+          "2020-02-19": 0.00382731,
+          "2020-02-20": 0.00031796,
+          "2020-02-21": 0.0,
+          "2020-02-22": 0.0,
+          "2020-02-23": 0.0
+        },
+        "selected_side": null
+      },
+      {
+        "symbol": "BTCUSDT",
+        "ascending_rank": 14,
+        "signal_pct": 0.6176600000000001,
+        "entry_price_available": true,
+        "entry_close": 9662.95,
+        "previous_funding_payment_count": 21,
+        "previous_funding_daily_rates": {
+          "2020-02-17": 0.0019521500000000002,
+          "2020-02-18": 0.00070581,
+          "2020-02-19": 0.0012564,
+          "2020-02-20": 0.00030000000000000003,
+          "2020-02-21": 0.00030000000000000003,
+          "2020-02-22": 0.00032243,
+          "2020-02-23": 0.0013398099999999999
+        },
+        "selected_side": null
+      },
+      {
+        "symbol": "DASHUSDT",
+        "ascending_rank": 15,
+        "signal_pct": 0.62679,
+        "entry_price_available": true,
+        "entry_close": 103.61,
+        "previous_funding_payment_count": 21,
+        "previous_funding_daily_rates": {
+          "2020-02-17": 0.00030000000000000003,
+          "2020-02-18": 0.00030000000000000003,
+          "2020-02-19": 0.00051882,
+          "2020-02-20": 0.00087451,
+          "2020-02-21": 0.00202493,
+          "2020-02-22": 0.00061351,
+          "2020-02-23": 0.00163613
+        },
+        "selected_side": null
+      },
+      {
+        "symbol": "LTCUSDT",
+        "ascending_rank": 16,
+        "signal_pct": 0.7144640000000001,
+        "entry_price_available": true,
+        "entry_close": 75.64,
+        "previous_funding_payment_count": 21,
+        "previous_funding_daily_rates": {
+          "2020-02-17": 0.0014286899999999998,
+          "2020-02-18": 0.00205468,
+          "2020-02-19": 0.00251424,
+          "2020-02-20": 0.0007879299999999999,
+          "2020-02-21": 0.0001417,
+          "2020-02-22": 0.0002174,
+          "2020-02-23": 0.0
+        },
+        "selected_side": null
+      },
+      {
+        "symbol": "XRPUSDT",
+        "ascending_rank": 17,
+        "signal_pct": 0.73488,
+        "entry_price_available": true,
+        "entry_close": 0.2707,
+        "previous_funding_payment_count": 21,
+        "previous_funding_daily_rates": {
+          "2020-02-17": 0.0004768,
+          "2020-02-18": 0.00132346,
+          "2020-02-19": 0.0022193,
+          "2020-02-20": 0.00034727,
+          "2020-02-21": 0.0005193999999999999,
+          "2020-02-22": 0.00093558,
+          "2020-02-23": 0.00152699
+        },
+        "selected_side": null
+      },
+      {
+        "symbol": "BCHUSDT",
+        "ascending_rank": 18,
+        "signal_pct": 0.7827209999999999,
+        "entry_price_available": true,
+        "entry_close": 378.53,
+        "previous_funding_payment_count": 21,
+        "previous_funding_daily_rates": {
+          "2020-02-17": 0.0016608299999999999,
+          "2020-02-18": 0.0013600399999999999,
+          "2020-02-19": 0.00175158,
+          "2020-02-20": 0.0016945,
+          "2020-02-21": 0.00044844000000000004,
+          "2020-02-22": 0.00040084,
+          "2020-02-23": 0.0005109800000000001
+        },
+        "selected_side": null
+      },
+      {
+        "symbol": "NEOUSDT",
+        "ascending_rank": 19,
+        "signal_pct": 0.785896,
+        "entry_price_available": true,
+        "entry_close": 13.394,
+        "previous_funding_payment_count": 20,
+        "previous_funding_daily_rates": {
+          "2020-02-17": 0.00057557,
+          "2020-02-18": 0.00268944,
+          "2020-02-19": 0.00338288,
+          "2020-02-20": 0.00030000000000000003,
+          "2020-02-21": 0.00030000000000000003,
+          "2020-02-22": 0.00031107,
+          "2020-02-23": 0.00030000000000000003
+        },
+        "selected_side": "short"
+      },
+      {
+        "symbol": "ZECUSDT",
+        "ascending_rank": 20,
+        "signal_pct": 0.796941,
+        "entry_price_available": true,
+        "entry_close": 60.76,
+        "previous_funding_payment_count": 21,
+        "previous_funding_daily_rates": {
+          "2020-02-17": 0.00030000000000000003,
+          "2020-02-18": 0.00034757,
+          "2020-02-19": 0.0040971,
+          "2020-02-20": 0.00060562,
+          "2020-02-21": 0.00111276,
+          "2020-02-22": 0.00042003,
+          "2020-02-23": 0.00108633
+        },
+        "selected_side": "short"
+      },
+      {
+        "symbol": "BNBUSDT",
+        "ascending_rank": 21,
+        "signal_pct": 0.8566520000000001,
+        "entry_price_available": true,
+        "entry_close": 22.11,
+        "previous_funding_payment_count": 21,
+        "previous_funding_daily_rates": {
+          "2020-02-17": 0.0014089600000000001,
+          "2020-02-18": 0.00024926,
+          "2020-02-19": 0.00140107,
+          "2020-02-20": 0.00139687,
+          "2020-02-21": 0.00066626,
+          "2020-02-22": 0.00167088,
+          "2020-02-23": 0.0017732199999999998
+        },
+        "selected_side": "short"
+      },
+      {
+        "symbol": "ETHUSDT",
+        "ascending_rank": 22,
+        "signal_pct": 1.088768,
+        "entry_price_available": true,
+        "entry_close": 265.7,
+        "previous_funding_payment_count": 21,
+        "previous_funding_daily_rates": {
+          "2020-02-17": 0.0020593399999999998,
+          "2020-02-18": 0.00060246,
+          "2020-02-19": 0.00235701,
+          "2020-02-20": 0.0008334099999999999,
+          "2020-02-21": 0.0018084899999999998,
+          "2020-02-22": 0.0015391200000000002,
+          "2020-02-23": 0.00168785
+        },
+        "selected_side": "short"
+      },
+      {
+        "symbol": "ONTUSDT",
+        "ascending_rank": 23,
+        "signal_pct": 1.144581,
+        "entry_price_available": true,
+        "entry_close": 0.8603,
+        "previous_funding_payment_count": 21,
+        "previous_funding_daily_rates": {
+          "2020-02-17": 0.00154864,
+          "2020-02-18": 0.00305596,
+          "2020-02-19": 0.00059939,
+          "2020-02-20": 0.00029332,
+          "2020-02-21": 0.00030000000000000003,
+          "2020-02-22": 0.00372841,
+          "2020-02-23": 0.0019200900000000002
+        },
+        "selected_side": "short"
+      }
+    ],
+    "selected": [
+      {
+        "symbol": "IOSTUSDT",
+        "side": "long",
+        "target_weight": 0.2,
+        "signal_pct": 0.08,
+        "entry_close": 0.006162,
+        "exit_close": 0.005292,
+        "entry_close_time_ms": 1582588799999,
+        "exit_close_time_ms": 1583193599999,
+        "price_return_pct": -14.118792599805264,
+        "holding_funding_pct": 0.21,
+        "holding_funding_payment_count": 21,
+        "holding_funding_daily_rates": {
+          "2020-02-25": 0.00030000000000000003,
+          "2020-02-26": 0.00030000000000000003,
+          "2020-02-27": 0.00030000000000000003,
+          "2020-02-28": 0.00030000000000000003,
+          "2020-02-29": 0.00030000000000000003,
+          "2020-03-01": 0.00030000000000000003,
+          "2020-03-02": 0.00030000000000000003
+        },
+        "holding_funding_raw_rows": [
+          {
+            "timestamp": "2020-02-25 00:00:00.001000",
+            "rate": 0.0001
+          },
+          {
+            "timestamp": "2020-02-25 08:00:00",
+            "rate": 0.0001
+          },
+          {
+            "timestamp": "2020-02-25 16:00:00.001000",
+            "rate": 0.0001
+          },
+          {
+            "timestamp": "2020-02-26 00:00:00",
+            "rate": 0.0001
+          },
+          {
+            "timestamp": "2020-02-26 08:00:00.001000",
+            "rate": 0.0001
+          },
+          {
+            "timestamp": "2020-02-26 16:00:00",
+            "rate": 0.0001
+          },
+          {
+            "timestamp": "2020-02-27 00:00:00.001000",
+            "rate": 0.0001
+          },
+          {
+            "timestamp": "2020-02-27 08:00:00.001000",
+            "rate": 0.0001
+          },
+          {
+            "timestamp": "2020-02-27 16:00:00",
+            "rate": 0.0001
+          },
+          {
+            "timestamp": "2020-02-28 00:00:00",
+            "rate": 0.0001
+          },
+          {
+            "timestamp": "2020-02-28 08:00:00",
+            "rate": 0.0001
+          },
+          {
+            "timestamp": "2020-02-28 16:00:00",
+            "rate": 0.0001
+          },
+          {
+            "timestamp": "2020-02-29 00:00:00",
+            "rate": 0.0001
+          },
+          {
+            "timestamp": "2020-02-29 08:00:00",
+            "rate": 0.0001
+          },
+          {
+            "timestamp": "2020-02-29 16:00:00",
+            "rate": 0.0001
+          },
+          {
+            "timestamp": "2020-03-01 00:00:00",
+            "rate": 0.0001
+          },
+          {
+            "timestamp": "2020-03-01 08:00:00",
+            "rate": 0.0001
+          },
+          {
+            "timestamp": "2020-03-01 16:00:00.001000",
+            "rate": 0.0001
+          },
+          {
+            "timestamp": "2020-03-02 00:00:00",
+            "rate": 0.0001
+          },
+          {
+            "timestamp": "2020-03-02 08:00:00",
+            "rate": 0.0001
+          },
+          {
+            "timestamp": "2020-03-02 16:00:00.004000",
+            "rate": 0.0001
+          }
+        ],
+        "signed_return_including_funding_pct": -14.328792599805261
+      },
+      {
+        "symbol": "QTUMUSDT",
+        "side": "long",
+        "target_weight": 0.2,
+        "signal_pct": 0.12000000000000001,
+        "entry_close": 2.36,
+        "exit_close": 2.183,
+        "entry_close_time_ms": 1582588799999,
+        "exit_close_time_ms": 1583193599999,
+        "price_return_pct": -7.500000000000007,
+        "holding_funding_pct": 0.21,
+        "holding_funding_payment_count": 21,
+        "holding_funding_daily_rates": {
+          "2020-02-25": 0.00030000000000000003,
+          "2020-02-26": 0.00030000000000000003,
+          "2020-02-27": 0.00030000000000000003,
+          "2020-02-28": 0.00030000000000000003,
+          "2020-02-29": 0.00030000000000000003,
+          "2020-03-01": 0.00030000000000000003,
+          "2020-03-02": 0.00030000000000000003
+        },
+        "holding_funding_raw_rows": [
+          {
+            "timestamp": "2020-02-25 00:00:00.001000",
+            "rate": 0.0001
+          },
+          {
+            "timestamp": "2020-02-25 08:00:00",
+            "rate": 0.0001
+          },
+          {
+            "timestamp": "2020-02-25 16:00:00.001000",
+            "rate": 0.0001
+          },
+          {
+            "timestamp": "2020-02-26 00:00:00",
+            "rate": 0.0001
+          },
+          {
+            "timestamp": "2020-02-26 08:00:00.001000",
+            "rate": 0.0001
+          },
+          {
+            "timestamp": "2020-02-26 16:00:00",
+            "rate": 0.0001
+          },
+          {
+            "timestamp": "2020-02-27 00:00:00.001000",
+            "rate": 0.0001
+          },
+          {
+            "timestamp": "2020-02-27 08:00:00.001000",
+            "rate": 0.0001
+          },
+          {
+            "timestamp": "2020-02-27 16:00:00",
+            "rate": 0.0001
+          },
+          {
+            "timestamp": "2020-02-28 00:00:00",
+            "rate": 0.0001
+          },
+          {
+            "timestamp": "2020-02-28 08:00:00",
+            "rate": 0.0001
+          },
+          {
+            "timestamp": "2020-02-28 16:00:00",
+            "rate": 0.0001
+          },
+          {
+            "timestamp": "2020-02-29 00:00:00",
+            "rate": 0.0001
+          },
+          {
+            "timestamp": "2020-02-29 08:00:00",
+            "rate": 0.0001
+          },
+          {
+            "timestamp": "2020-02-29 16:00:00",
+            "rate": 0.0001
+          },
+          {
+            "timestamp": "2020-03-01 00:00:00",
+            "rate": 0.0001
+          },
+          {
+            "timestamp": "2020-03-01 08:00:00",
+            "rate": 0.0001
+          },
+          {
+            "timestamp": "2020-03-01 16:00:00.001000",
+            "rate": 0.0001
+          },
+          {
+            "timestamp": "2020-03-02 00:00:00",
+            "rate": 0.0001
+          },
+          {
+            "timestamp": "2020-03-02 08:00:00",
+            "rate": 0.0001
+          },
+          {
+            "timestamp": "2020-03-02 16:00:00.004000",
+            "rate": 0.0001
+          }
+        ],
+        "signed_return_including_funding_pct": -7.710000000000007
+      },
+      {
+        "symbol": "IOTAUSDT",
+        "side": "long",
+        "target_weight": 0.2,
+        "signal_pct": 0.21,
+        "entry_close": 0.2622,
+        "exit_close": 0.2244,
+        "entry_close_time_ms": 1582588799999,
+        "exit_close_time_ms": 1583193599999,
+        "price_return_pct": -14.416475972540043,
+        "holding_funding_pct": 0.139949,
+        "holding_funding_payment_count": 21,
+        "holding_funding_daily_rates": {
+          "2020-02-25": 0.00030000000000000003,
+          "2020-02-26": 0.00030000000000000003,
+          "2020-02-27": 0.00030000000000000003,
+          "2020-02-28": 0.00030000000000000003,
+          "2020-02-29": 0.00030000000000000003,
+          "2020-03-01": 0.00030000000000000003,
+          "2020-03-02": -0.0004005099999999999
+        },
+        "holding_funding_raw_rows": [
+          {
+            "timestamp": "2020-02-25 00:00:00.001000",
+            "rate": 0.0001
+          },
+          {
+            "timestamp": "2020-02-25 08:00:00",
+            "rate": 0.0001
+          },
+          {
+            "timestamp": "2020-02-25 16:00:00.001000",
+            "rate": 0.0001
+          },
+          {
+            "timestamp": "2020-02-26 00:00:00",
+            "rate": 0.0001
+          },
+          {
+            "timestamp": "2020-02-26 08:00:00.001000",
+            "rate": 0.0001
+          },
+          {
+            "timestamp": "2020-02-26 16:00:00",
+            "rate": 0.0001
+          },
+          {
+            "timestamp": "2020-02-27 00:00:00.001000",
+            "rate": 0.0001
+          },
+          {
+            "timestamp": "2020-02-27 08:00:00.001000",
+            "rate": 0.0001
+          },
+          {
+            "timestamp": "2020-02-27 16:00:00",
+            "rate": 0.0001
+          },
+          {
+            "timestamp": "2020-02-28 00:00:00",
+            "rate": 0.0001
+          },
+          {
+            "timestamp": "2020-02-28 08:00:00",
+            "rate": 0.0001
+          },
+          {
+            "timestamp": "2020-02-28 16:00:00",
+            "rate": 0.0001
+          },
+          {
+            "timestamp": "2020-02-29 00:00:00",
+            "rate": 0.0001
+          },
+          {
+            "timestamp": "2020-02-29 08:00:00",
+            "rate": 0.0001
+          },
+          {
+            "timestamp": "2020-02-29 16:00:00",
+            "rate": 0.0001
+          },
+          {
+            "timestamp": "2020-03-01 00:00:00",
+            "rate": 0.0001
+          },
+          {
+            "timestamp": "2020-03-01 08:00:00",
+            "rate": 0.0001
+          },
+          {
+            "timestamp": "2020-03-01 16:00:00.001000",
+            "rate": 0.0001
+          },
+          {
+            "timestamp": "2020-03-02 00:00:00",
+            "rate": 0.0001
+          },
+          {
+            "timestamp": "2020-03-02 08:00:00",
+            "rate": -0.00060051
+          },
+          {
+            "timestamp": "2020-03-02 16:00:00.004000",
+            "rate": 0.0001
+          }
+        ],
+        "signed_return_including_funding_pct": -14.556424972540045
+      },
+      {
+        "symbol": "XLMUSDT",
+        "side": "long",
+        "target_weight": 0.2,
+        "signal_pct": 0.21311799999999997,
+        "entry_close": 0.06909,
+        "exit_close": 0.0598,
+        "entry_close_time_ms": 1582588799999,
+        "exit_close_time_ms": 1583193599999,
+        "price_return_pct": -13.446229555652046,
+        "holding_funding_pct": 0.460526,
+        "holding_funding_payment_count": 21,
+        "holding_funding_daily_rates": {
+          "2020-02-25": 0.00030000000000000003,
+          "2020-02-26": 0.00047528999999999996,
+          "2020-02-27": 0.00030000000000000003,
+          "2020-02-28": 0.00053816,
+          "2020-02-29": 0.00100055,
+          "2020-03-01": 0.0009986700000000001,
+          "2020-03-02": 0.00099259
+        },
+        "holding_funding_raw_rows": [
+          {
+            "timestamp": "2020-02-25 00:00:00.001000",
+            "rate": 0.0001
+          },
+          {
+            "timestamp": "2020-02-25 08:00:00",
+            "rate": 0.0001
+          },
+          {
+            "timestamp": "2020-02-25 16:00:00.001000",
+            "rate": 0.0001
+          },
+          {
+            "timestamp": "2020-02-26 00:00:00",
+            "rate": 0.00027529
+          },
+          {
+            "timestamp": "2020-02-26 08:00:00.001000",
+            "rate": 0.0001
+          },
+          {
+            "timestamp": "2020-02-26 16:00:00",
+            "rate": 0.0001
+          },
+          {
+            "timestamp": "2020-02-27 00:00:00.001000",
+            "rate": 0.0001
+          },
+          {
+            "timestamp": "2020-02-27 08:00:00.001000",
+            "rate": 0.0001
+          },
+          {
+            "timestamp": "2020-02-27 16:00:00",
+            "rate": 0.0001
+          },
+          {
+            "timestamp": "2020-02-28 00:00:00",
+            "rate": 0.0001
+          },
+          {
+            "timestamp": "2020-02-28 08:00:00",
+            "rate": 0.0001
+          },
+          {
+            "timestamp": "2020-02-28 16:00:00",
+            "rate": 0.00033816
+          },
+          {
+            "timestamp": "2020-02-29 00:00:00",
+            "rate": 0.0001
+          },
+          {
+            "timestamp": "2020-02-29 08:00:00",
+            "rate": 0.00062992
+          },
+          {
+            "timestamp": "2020-02-29 16:00:00",
+            "rate": 0.00027063
+          },
+          {
+            "timestamp": "2020-03-01 00:00:00",
+            "rate": 0.0001
+          },
+          {
+            "timestamp": "2020-03-01 08:00:00",
+            "rate": 0.00036824
+          },
+          {
+            "timestamp": "2020-03-01 16:00:00.001000",
+            "rate": 0.00053043
+          },
+          {
+            "timestamp": "2020-03-02 00:00:00",
+            "rate": 0.00019735
+          },
+          {
+            "timestamp": "2020-03-02 08:00:00",
+            "rate": 0.00031202
+          },
+          {
+            "timestamp": "2020-03-02 16:00:00.004000",
+            "rate": 0.00048322
+          }
+        ],
+        "signed_return_including_funding_pct": -13.906755555652046
+      },
+      {
+        "symbol": "ADAUSDT",
+        "side": "long",
+        "target_weight": 0.2,
+        "signal_pct": 0.21625,
+        "entry_close": 0.05907,
+        "exit_close": 0.04933,
+        "entry_close_time_ms": 1582588799999,
+        "exit_close_time_ms": 1583193599999,
+        "price_return_pct": -16.488911460978496,
+        "holding_funding_pct": 0.26628499999999994,
+        "holding_funding_payment_count": 21,
+        "holding_funding_daily_rates": {
+          "2020-02-25": 0.00086285,
+          "2020-02-26": 0.00030000000000000003,
+          "2020-02-27": 0.00030000000000000003,
+          "2020-02-28": 0.00030000000000000003,
+          "2020-02-29": 0.00030000000000000003,
+          "2020-03-01": 0.00030000000000000003,
+          "2020-03-02": 0.00030000000000000003
+        },
+        "holding_funding_raw_rows": [
+          {
+            "timestamp": "2020-02-25 00:00:00.001000",
+            "rate": 0.00066285
+          },
+          {
+            "timestamp": "2020-02-25 08:00:00",
+            "rate": 0.0001
+          },
+          {
+            "timestamp": "2020-02-25 16:00:00.001000",
+            "rate": 0.0001
+          },
+          {
+            "timestamp": "2020-02-26 00:00:00",
+            "rate": 0.0001
+          },
+          {
+            "timestamp": "2020-02-26 08:00:00.001000",
+            "rate": 0.0001
+          },
+          {
+            "timestamp": "2020-02-26 16:00:00",
+            "rate": 0.0001
+          },
+          {
+            "timestamp": "2020-02-27 00:00:00.001000",
+            "rate": 0.0001
+          },
+          {
+            "timestamp": "2020-02-27 08:00:00.001000",
+            "rate": 0.0001
+          },
+          {
+            "timestamp": "2020-02-27 16:00:00",
+            "rate": 0.0001
+          },
+          {
+            "timestamp": "2020-02-28 00:00:00",
+            "rate": 0.0001
+          },
+          {
+            "timestamp": "2020-02-28 08:00:00",
+            "rate": 0.0001
+          },
+          {
+            "timestamp": "2020-02-28 16:00:00",
+            "rate": 0.0001
+          },
+          {
+            "timestamp": "2020-02-29 00:00:00",
+            "rate": 0.0001
+          },
+          {
+            "timestamp": "2020-02-29 08:00:00",
+            "rate": 0.0001
+          },
+          {
+            "timestamp": "2020-02-29 16:00:00",
+            "rate": 0.0001
+          },
+          {
+            "timestamp": "2020-03-01 00:00:00",
+            "rate": 0.0001
+          },
+          {
+            "timestamp": "2020-03-01 08:00:00",
+            "rate": 0.0001
+          },
+          {
+            "timestamp": "2020-03-01 16:00:00.001000",
+            "rate": 0.0001
+          },
+          {
+            "timestamp": "2020-03-02 00:00:00",
+            "rate": 0.0001
+          },
+          {
+            "timestamp": "2020-03-02 08:00:00",
+            "rate": 0.0001
+          },
+          {
+            "timestamp": "2020-03-02 16:00:00.004000",
+            "rate": 0.0001
+          }
+        ],
+        "signed_return_including_funding_pct": -16.755196460978496
+      },
+      {
+        "symbol": "ONTUSDT",
+        "side": "short",
+        "target_weight": -0.2,
+        "signal_pct": 1.144581,
+        "entry_close": 0.8603,
+        "exit_close": 0.7245,
+        "entry_close_time_ms": 1582588799999,
+        "exit_close_time_ms": 1583193599999,
+        "price_return_pct": -15.785191212367767,
+        "holding_funding_pct": 0.3265370000000001,
+        "holding_funding_payment_count": 21,
+        "holding_funding_daily_rates": {
+          "2020-02-25": 0.00057343,
+          "2020-02-26": 0.00022238,
+          "2020-02-27": 0.00135529,
+          "2020-02-28": 0.00044125999999999996,
+          "2020-02-29": -0.00013789999999999996,
+          "2020-03-01": 0.0010757800000000001,
+          "2020-03-02": -0.00026486999999999995
+        },
+        "holding_funding_raw_rows": [
+          {
+            "timestamp": "2020-02-25 00:00:00.001000",
+            "rate": 0.0001
+          },
+          {
+            "timestamp": "2020-02-25 08:00:00",
+            "rate": 0.0001
+          },
+          {
+            "timestamp": "2020-02-25 16:00:00.001000",
+            "rate": 0.00037343
+          },
+          {
+            "timestamp": "2020-02-26 00:00:00",
+            "rate": 2.238e-05
+          },
+          {
+            "timestamp": "2020-02-26 08:00:00.001000",
+            "rate": 0.0001
+          },
+          {
+            "timestamp": "2020-02-26 16:00:00",
+            "rate": 0.0001
+          },
+          {
+            "timestamp": "2020-02-27 00:00:00.001000",
+            "rate": 0.00012655
+          },
+          {
+            "timestamp": "2020-02-27 08:00:00.001000",
+            "rate": 0.0001
+          },
+          {
+            "timestamp": "2020-02-27 16:00:00",
+            "rate": 0.00112874
+          },
+          {
+            "timestamp": "2020-02-28 00:00:00",
+            "rate": 0.00125724
+          },
+          {
+            "timestamp": "2020-02-28 08:00:00",
+            "rate": 0.0001
+          },
+          {
+            "timestamp": "2020-02-28 16:00:00",
+            "rate": -0.00091598
+          },
+          {
+            "timestamp": "2020-02-29 00:00:00",
+            "rate": 0.0001
+          },
+          {
+            "timestamp": "2020-02-29 08:00:00",
+            "rate": 0.0001
+          },
+          {
+            "timestamp": "2020-02-29 16:00:00",
+            "rate": -0.0003379
+          },
+          {
+            "timestamp": "2020-03-01 00:00:00",
+            "rate": 0.0001
+          },
+          {
+            "timestamp": "2020-03-01 08:00:00",
+            "rate": 0.00087578
+          },
+          {
+            "timestamp": "2020-03-01 16:00:00.001000",
+            "rate": 0.0001
+          },
+          {
+            "timestamp": "2020-03-02 00:00:00",
+            "rate": -0.00046487
+          },
+          {
+            "timestamp": "2020-03-02 08:00:00",
+            "rate": 0.0001
+          },
+          {
+            "timestamp": "2020-03-02 16:00:00.004000",
+            "rate": 0.0001
+          }
+        ],
+        "signed_return_including_funding_pct": 16.111728212367765
+      },
+      {
+        "symbol": "ETHUSDT",
+        "side": "short",
+        "target_weight": -0.2,
+        "signal_pct": 1.088768,
+        "entry_close": 265.7,
+        "exit_close": 232.22,
+        "entry_close_time_ms": 1582588799999,
+        "exit_close_time_ms": 1583193599999,
+        "price_return_pct": -12.600677455777188,
+        "holding_funding_pct": 0.688358,
+        "holding_funding_payment_count": 21,
+        "holding_funding_daily_rates": {
+          "2020-02-25": 0.00124051,
+          "2020-02-26": 0.00198428,
+          "2020-02-27": 0.00046167999999999996,
+          "2020-02-28": 0.00068276,
+          "2020-02-29": 0.0014422,
+          "2020-03-01": 0.0006682999999999999,
+          "2020-03-02": 0.00040385
+        },
+        "holding_funding_raw_rows": [
+          {
+            "timestamp": "2020-02-25 00:00:00.001000",
+            "rate": 0.00031422
+          },
+          {
+            "timestamp": "2020-02-25 08:00:00",
+            "rate": 0.00040545
+          },
+          {
+            "timestamp": "2020-02-25 16:00:00.001000",
+            "rate": 0.00052084
+          },
+          {
+            "timestamp": "2020-02-26 00:00:00",
+            "rate": 0.00047129
+          },
+          {
+            "timestamp": "2020-02-26 08:00:00.001000",
+            "rate": 0.00079802
+          },
+          {
+            "timestamp": "2020-02-26 16:00:00",
+            "rate": 0.00071497
+          },
+          {
+            "timestamp": "2020-02-27 00:00:00.001000",
+            "rate": 0.0001
+          },
+          {
+            "timestamp": "2020-02-27 08:00:00.001000",
+            "rate": 0.00025833
+          },
+          {
+            "timestamp": "2020-02-27 16:00:00",
+            "rate": 0.00010335
+          },
+          {
+            "timestamp": "2020-02-28 00:00:00",
+            "rate": 0.00012465
+          },
+          {
+            "timestamp": "2020-02-28 08:00:00",
+            "rate": 0.00025289
+          },
+          {
+            "timestamp": "2020-02-28 16:00:00",
+            "rate": 0.00030522
+          },
+          {
+            "timestamp": "2020-02-29 00:00:00",
+            "rate": 0.00040998
+          },
+          {
+            "timestamp": "2020-02-29 08:00:00",
+            "rate": 0.00055451
+          },
+          {
+            "timestamp": "2020-02-29 16:00:00",
+            "rate": 0.00047771
+          },
+          {
+            "timestamp": "2020-03-01 00:00:00",
+            "rate": 0.00032216
+          },
+          {
+            "timestamp": "2020-03-01 08:00:00",
+            "rate": 0.00018986
+          },
+          {
+            "timestamp": "2020-03-01 16:00:00.001000",
+            "rate": 0.00015628
+          },
+          {
+            "timestamp": "2020-03-02 00:00:00",
+            "rate": 0.00014747
+          },
+          {
+            "timestamp": "2020-03-02 08:00:00",
+            "rate": 0.00015638
+          },
+          {
+            "timestamp": "2020-03-02 16:00:00.004000",
+            "rate": 0.0001
+          }
+        ],
+        "signed_return_including_funding_pct": 13.289035455777187
+      },
+      {
+        "symbol": "BNBUSDT",
+        "side": "short",
+        "target_weight": -0.2,
+        "signal_pct": 0.8566520000000001,
+        "entry_close": 22.11,
+        "exit_close": 19.9,
+        "entry_close_time_ms": 1582588799999,
+        "exit_close_time_ms": 1583193599999,
+        "price_return_pct": -9.995477159656263,
+        "holding_funding_pct": 0.226368,
+        "holding_funding_payment_count": 21,
+        "holding_funding_daily_rates": {
+          "2020-02-25": 0.00074721,
+          "2020-02-26": 0.00033832,
+          "2020-02-27": 0.0,
+          "2020-02-28": 0.0,
+          "2020-02-29": 0.00028972,
+          "2020-03-01": 0.0008884300000000001,
+          "2020-03-02": 0.0
+        },
+        "holding_funding_raw_rows": [
+          {
+            "timestamp": "2020-02-25 00:00:00.001000",
+            "rate": 0.00012455
+          },
+          {
+            "timestamp": "2020-02-25 08:00:00",
+            "rate": 0.00030493
+          },
+          {
+            "timestamp": "2020-02-25 16:00:00.001000",
+            "rate": 0.00031773
+          },
+          {
+            "timestamp": "2020-02-26 00:00:00",
+            "rate": 0.00015623
+          },
+          {
+            "timestamp": "2020-02-26 08:00:00.001000",
+            "rate": 0.00018209
+          },
+          {
+            "timestamp": "2020-02-26 16:00:00",
+            "rate": 0.0
+          },
+          {
+            "timestamp": "2020-02-27 00:00:00.001000",
+            "rate": 0.0
+          },
+          {
+            "timestamp": "2020-02-27 08:00:00.001000",
+            "rate": 0.0
+          },
+          {
+            "timestamp": "2020-02-27 16:00:00",
+            "rate": 0.0
+          },
+          {
+            "timestamp": "2020-02-28 00:00:00",
+            "rate": 0.0
+          },
+          {
+            "timestamp": "2020-02-28 08:00:00",
+            "rate": 0.0
+          },
+          {
+            "timestamp": "2020-02-28 16:00:00",
+            "rate": 0.0
+          },
+          {
+            "timestamp": "2020-02-29 00:00:00",
+            "rate": 0.0
+          },
+          {
+            "timestamp": "2020-02-29 08:00:00",
+            "rate": 0.0
+          },
+          {
+            "timestamp": "2020-02-29 16:00:00",
+            "rate": 0.00028972
+          },
+          {
+            "timestamp": "2020-03-01 00:00:00",
+            "rate": 0.00019026
+          },
+          {
+            "timestamp": "2020-03-01 08:00:00",
+            "rate": 0.00031743
+          },
+          {
+            "timestamp": "2020-03-01 16:00:00.001000",
+            "rate": 0.00038074
+          },
+          {
+            "timestamp": "2020-03-02 00:00:00",
+            "rate": 0.0
+          },
+          {
+            "timestamp": "2020-03-02 08:00:00",
+            "rate": 0.0
+          },
+          {
+            "timestamp": "2020-03-02 16:00:00.004000",
+            "rate": 0.0
+          }
+        ],
+        "signed_return_including_funding_pct": 10.221845159656263
+      },
+      {
+        "symbol": "ZECUSDT",
+        "side": "short",
+        "target_weight": -0.2,
+        "signal_pct": 0.796941,
+        "entry_close": 60.76,
+        "exit_close": 52.39,
+        "entry_close_time_ms": 1582588799999,
+        "exit_close_time_ms": 1583193599999,
+        "price_return_pct": -13.77551020408163,
+        "holding_funding_pct": 0.362575,
+        "holding_funding_payment_count": 21,
+        "holding_funding_daily_rates": {
+          "2020-02-25": 0.00058829,
+          "2020-02-26": 0.00053159,
+          "2020-02-27": 0.00030000000000000003,
+          "2020-02-28": 0.00030128,
+          "2020-02-29": 0.00127677,
+          "2020-03-01": 0.00032782,
+          "2020-03-02": 0.00030000000000000003
+        },
+        "holding_funding_raw_rows": [
+          {
+            "timestamp": "2020-02-25 00:00:00.001000",
+            "rate": 0.00026112
+          },
+          {
+            "timestamp": "2020-02-25 08:00:00",
+            "rate": 0.0001
+          },
+          {
+            "timestamp": "2020-02-25 16:00:00.001000",
+            "rate": 0.00022717
+          },
+          {
+            "timestamp": "2020-02-26 00:00:00",
+            "rate": 0.00033159
+          },
+          {
+            "timestamp": "2020-02-26 08:00:00.001000",
+            "rate": 0.0001
+          },
+          {
+            "timestamp": "2020-02-26 16:00:00",
+            "rate": 0.0001
+          },
+          {
+            "timestamp": "2020-02-27 00:00:00.001000",
+            "rate": 0.0001
+          },
+          {
+            "timestamp": "2020-02-27 08:00:00.001000",
+            "rate": 0.0001
+          },
+          {
+            "timestamp": "2020-02-27 16:00:00",
+            "rate": 0.0001
+          },
+          {
+            "timestamp": "2020-02-28 00:00:00",
+            "rate": 0.0001
+          },
+          {
+            "timestamp": "2020-02-28 08:00:00",
+            "rate": 0.0001
+          },
+          {
+            "timestamp": "2020-02-28 16:00:00",
+            "rate": 0.00010128
+          },
+          {
+            "timestamp": "2020-02-29 00:00:00",
+            "rate": 0.00046544
+          },
+          {
+            "timestamp": "2020-02-29 08:00:00",
+            "rate": 0.00065467
+          },
+          {
+            "timestamp": "2020-02-29 16:00:00",
+            "rate": 0.00015666
+          },
+          {
+            "timestamp": "2020-03-01 00:00:00",
+            "rate": 0.0001
+          },
+          {
+            "timestamp": "2020-03-01 08:00:00",
+            "rate": 0.00012782
+          },
+          {
+            "timestamp": "2020-03-01 16:00:00.001000",
+            "rate": 0.0001
+          },
+          {
+            "timestamp": "2020-03-02 00:00:00",
+            "rate": 0.0001
+          },
+          {
+            "timestamp": "2020-03-02 08:00:00",
+            "rate": 0.0001
+          },
+          {
+            "timestamp": "2020-03-02 16:00:00.004000",
+            "rate": 0.0001
+          }
+        ],
+        "signed_return_including_funding_pct": 14.138085204081632
+      },
+      {
+        "symbol": "NEOUSDT",
+        "side": "short",
+        "target_weight": -0.2,
+        "signal_pct": 0.785896,
+        "entry_close": 13.394,
+        "exit_close": 12.109,
+        "entry_close_time_ms": 1582588799999,
+        "exit_close_time_ms": 1583193599999,
+        "price_return_pct": -9.59384799163805,
+        "holding_funding_pct": 0.21693400000000002,
+        "holding_funding_payment_count": 21,
+        "holding_funding_daily_rates": {
+          "2020-02-25": 0.00036934,
+          "2020-02-26": 0.00030000000000000003,
+          "2020-02-27": 0.00030000000000000003,
+          "2020-02-28": 0.00030000000000000003,
+          "2020-02-29": 0.00030000000000000003,
+          "2020-03-01": 0.00030000000000000003,
+          "2020-03-02": 0.00030000000000000003
+        },
+        "holding_funding_raw_rows": [
+          {
+            "timestamp": "2020-02-25 00:00:00.001000",
+            "rate": 0.00016934
+          },
+          {
+            "timestamp": "2020-02-25 08:00:00",
+            "rate": 0.0001
+          },
+          {
+            "timestamp": "2020-02-25 16:00:00.001000",
+            "rate": 0.0001
+          },
+          {
+            "timestamp": "2020-02-26 00:00:00",
+            "rate": 0.0001
+          },
+          {
+            "timestamp": "2020-02-26 08:00:00.001000",
+            "rate": 0.0001
+          },
+          {
+            "timestamp": "2020-02-26 16:00:00",
+            "rate": 0.0001
+          },
+          {
+            "timestamp": "2020-02-27 00:00:00.001000",
+            "rate": 0.0001
+          },
+          {
+            "timestamp": "2020-02-27 08:00:00.001000",
+            "rate": 0.0001
+          },
+          {
+            "timestamp": "2020-02-27 16:00:00",
+            "rate": 0.0001
+          },
+          {
+            "timestamp": "2020-02-28 00:00:00",
+            "rate": 0.0001
+          },
+          {
+            "timestamp": "2020-02-28 08:00:00",
+            "rate": 0.0001
+          },
+          {
+            "timestamp": "2020-02-28 16:00:00",
+            "rate": 0.0001
+          },
+          {
+            "timestamp": "2020-02-29 00:00:00",
+            "rate": 0.0001
+          },
+          {
+            "timestamp": "2020-02-29 08:00:00",
+            "rate": 0.0001
+          },
+          {
+            "timestamp": "2020-02-29 16:00:00",
+            "rate": 0.0001
+          },
+          {
+            "timestamp": "2020-03-01 00:00:00",
+            "rate": 0.0001
+          },
+          {
+            "timestamp": "2020-03-01 08:00:00",
+            "rate": 0.0001
+          },
+          {
+            "timestamp": "2020-03-01 16:00:00.001000",
+            "rate": 0.0001
+          },
+          {
+            "timestamp": "2020-03-02 00:00:00",
+            "rate": 0.0001
+          },
+          {
+            "timestamp": "2020-03-02 08:00:00",
+            "rate": 0.0001
+          },
+          {
+            "timestamp": "2020-03-02 16:00:00.004000",
+            "rate": 0.0001
+          }
+        ],
+        "signed_return_including_funding_pct": 9.81078199163805
+      }
+    ],
+    "target_changes": [
+      {
+        "symbol": "ADAUSDT",
+        "previous": 0.0,
+        "current": 0.2,
+        "delta": 0.2
+      },
+      {
+        "symbol": "BATUSDT",
+        "previous": 0.2,
+        "current": 0.0,
+        "delta": -0.2
+      },
+      {
+        "symbol": "BNBUSDT",
+        "previous": 0.0,
+        "current": -0.2,
+        "delta": -0.2
+      },
+      {
+        "symbol": "BTCUSDT",
+        "previous": 0.2,
+        "current": 0.0,
+        "delta": -0.2
+      },
+      {
+        "symbol": "ETHUSDT",
+        "previous": -0.2,
+        "current": -0.2,
+        "delta": 0.0
+      },
+      {
+        "symbol": "IOSTUSDT",
+        "previous": 0.0,
+        "current": 0.2,
+        "delta": 0.2
+      },
+      {
+        "symbol": "IOTAUSDT",
+        "previous": 0.0,
+        "current": 0.2,
+        "delta": 0.2
+      },
+      {
+        "symbol": "LINKUSDT",
+        "previous": -0.2,
+        "current": 0.0,
+        "delta": 0.2
+      },
+      {
+        "symbol": "LTCUSDT",
+        "previous": -0.2,
+        "current": 0.0,
+        "delta": 0.2
+      },
+      {
+        "symbol": "NEOUSDT",
+        "previous": 0.2,
+        "current": -0.2,
+        "delta": -0.4
+      },
+      {
+        "symbol": "ONTUSDT",
+        "previous": -0.2,
+        "current": -0.2,
+        "delta": 0.0
+      },
+      {
+        "symbol": "QTUMUSDT",
+        "previous": 0.0,
+        "current": 0.2,
+        "delta": 0.2
+      },
+      {
+        "symbol": "VETUSDT",
+        "previous": 0.2,
+        "current": 0.0,
+        "delta": -0.2
+      },
+      {
+        "symbol": "XLMUSDT",
+        "previous": 0.0,
+        "current": 0.2,
+        "delta": 0.2
+      },
+      {
+        "symbol": "XMRUSDT",
+        "previous": 0.2,
+        "current": 0.0,
+        "delta": -0.2
+      },
+      {
+        "symbol": "ZECUSDT",
+        "previous": -0.2,
+        "current": -0.2,
+        "delta": 0.0
+      }
+    ],
+    "summary": {
+      "long_return_pct": -13.45143391779517,
+      "short_return_pct": 12.714295204704179,
+      "gross_ls_pct": -0.7371387130909901,
+      "price_component_pct": -0.8439411130909917,
+      "funding_component_pct": 0.10680240000000002,
+      "btc_return_pct": -7.691750448879486,
+      "union_retained": [
+        "ETHUSDT",
+        "NEOUSDT",
+        "ONTUSDT",
+        "ZECUSDT"
+      ],
+      "union_turnover": 0.6,
+      "illustrative_weekly_proxy_cost_pct": 0.12,
+      "sum_abs_target_changes_one_leg_units": 2.8000000000000007
+    },
+    "limitations": [
+      "Prices are daily candle closes indexed by opening date, not fills at the label timestamp.",
+      "The code does not require seven complete days of prior funding; missing values follow its fill and sum rules.",
+      "Target changes ignore within-week drift and are not realised execution trades.",
+      "run.py subtracts mean turnover times 0.20 from gross alpha; this example applies that proxy to one week, not a stored weekly charge.",
+      "This extraction neither estimates net alpha nor recomputes statistical inference.",
+      "Numerical instance values are not individually enumerated in the existing claim ledger."
+    ]
+  }
+}

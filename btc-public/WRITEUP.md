@@ -1,6 +1,6 @@
 # Forced flow in BTC perpetuals: the measurements
 
-The claim ledger (`remediation/CLAIM_LEDGER.md` in the portfolio repository) records the 2026-09-12 audit and the presentation provenance added on 2026-09-13. Where the ledger records a figure as unknown, this document says unknown.
+The claim ledger ([`audit/CLAIM_LEDGER.md`](../audit/CLAIM_LEDGER.md)) records the 2026-09-12 audit and the presentation provenance added on 2026-09-13. Where the ledger records a figure as unknown, this document says unknown.
 
 ## What was asked
 
@@ -43,7 +43,7 @@ Take the first print-covered cluster touch produced by the cached grid and store
 3. **Measure the outcome.** The market-wide liquidation totals at 06:00, 06:05, 06:10 and 06:15 are $300,841.56839, $320,055.80572, $0 and $0: $620,897.37411 altogether. Separately, the touch-bar close is $11,805.78 and the 07:00 close is $11,869.83, giving signed 60-minute continuation `10000 × log(11869.83 / 11805.78) = +54.11 bps`; upward touches use sign +1.
 4. **Locate its contribution.** This supplies one of the 36 cluster windows, one positive liquidation indicator, and $620,897.37 to the sum used for their mean market-wide notional. Its continuation belongs to the bucket-touch stream; it is not an observation in the unpredicted-print continuation table below. Prints in the touch bar are not ordered relative to the crossing within that bar.
 
-Construction: [`collect` and `_outcomes`](src/event_study.py), [`run_map` and `bucket_of`](src/liquidation_map.py); inputs in `data/grid/grid.parquet` and `data/interim/leverage_mix.json`. The [example inputs](../remediation/WORKED_EXAMPLES.json) are preserved without requiring those data files. Ledger H1 records this instance; A20–A21 constrain the locator interpretation and B17 describes the calibration.
+Construction: [`collect` and `_outcomes`](src/event_study.py), [`run_map` and `bucket_of`](src/liquidation_map.py); inputs in `data/grid/grid.parquet` and `data/interim/leverage_mix.json`. The [example inputs](../audit/WORKED_EXAMPLES.json) are preserved without requiring those data files. Ledger H1 records this instance; A20–A21 constrain the locator interpretation and B17 describes the calibration.
 
 ### Price after liquidation prints
 
@@ -126,6 +126,8 @@ The public repository re-implements four analyses of a private project; its figu
 HAR was fitted on training rows and scored on the sealed outcomes; the repository has no look counter; the sealed blocks have been scored repeatedly: 2026-09-02 (twice, the first with a single-mask defect disclosed privately), 2026-09-06, 2026-09-07, and 2026-09-12 (twice). The "looks" values in `reports/results/` are literals written by the code. The locator statistics were computed on all 73 OI-covered print days, 26 of which fall inside the sealed blocks including their ±3-day purge.
 
 ### Corrections to previously published figures and sentences
+
+Each correction below is a row of the [claim ledger](../audit/CLAIM_LEDGER.md): every numerical and interpretive claim in these two projects, traced to the artefact that produces it, with the wording each source permits. Claims the sources did not support were withdrawn rather than softened. The registration artefacts, the halt-rule record and the inspection history behind the rows are in the [evidence record](../audit/EVIDENCE_RECORD.md).
 
 - "seven-day half-life" → 3.5-day half-life (the configured value).
 - "(looks: 0; measured on sample days inside the training window)" on the locator result: withdrawn; the sample includes sealed-block days.
