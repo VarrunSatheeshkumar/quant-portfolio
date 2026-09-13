@@ -1,6 +1,6 @@
 # futures-public
 
-Part two of three. Part one: BTC forced flow (`../btc-public`) · Part three: equities (in progress)
+Part two of three. Part one: [BTC forced flow](../btc-public/) · Part three: equities (in progress) · [Portfolio home](../README.md)
 
 **Start here**
 

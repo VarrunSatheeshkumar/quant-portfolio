@@ -109,6 +109,8 @@ Of 500 specified mandates, 53 reach a pass probability of at least 50 % at their
 
 The relevant material is the construction of signal and portfolio returns, explicit cost units, benchmark and placebo comparisons, and the distinction between a point estimate and what its uncertainty supports. I would present this as research machinery and inference practice, including the documented halt-rule departures; it is not evidence of live trading, execution or inventory management.
 
+What this does not demonstrate: readiness to turn research into a trading decision. No strategy return is presented net of costs, and nothing here concerns execution, inventory, adverse selection or continuous quoting.
+
 ## What could not be established
 
 Whether C18 would clear with costs in the series: unknown. The direction of the survivorship bias in the C18 universe: not computed. The per-side cost applicable to Binance small-cap perpetuals: unknown here. No interval for the hold-out Sharpe, or for any standalone Sharpe, has been computed. Whether the score files read by the combined placebo include sealed rows: not established. Settlement verification of the splice premise covers the four energy contracts only. The synthetic 23 % prior has not been recovered.
@@ -164,3 +166,7 @@ Each correction below is a row of the [claim ledger](../audit/CLAIM_LEDGER.md): 
 - "verified against NYMEX settlements": inferred from price matching, for the four energy contracts.
 - "a 35 % sector cap": realised maxima exceed 35 %.
 - "the whole study re-run under five roll treatments": the sensitivity recomputes the specified Sharpes.
+
+### What I would do differently
+
+With the same data again I would stop when a registered halt condition fired: the three-same-reason halt fired after C11, I chose to run C18 and C15 anyway, and C15 ran after C18 had cleared, so those two results carry labels rather than standing as registered-rule results.

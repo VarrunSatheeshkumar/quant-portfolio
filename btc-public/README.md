@@ -1,6 +1,6 @@
 # BTC forced-flow: liquidation map, price response, volatility forecast
 
-Part one of three. Part two: futures trend, carry and value (`../futures-public`) · Part three: equities (in progress)
+Part one of three. Part two: [futures trend, carry and value](../futures-public/) · Part three: equities (in progress) · [Portfolio home](../README.md)
 
 **Start here**
 

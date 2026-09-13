@@ -2,47 +2,21 @@
 
 Projects built independently in my own time, alongside an undergraduate degree in maths and economics. The goal was to go beyond coursework and actually implement the models I was reading about — not just understand them conceptually but build them from scratch and see what the numbers say.
 
-P1–P6 were built in spring 2026, across the same period rather than in sequence, and P7–P8 in September 2026; this repository was consolidated and published in September 2026.
+P1–P6 were built in spring 2026, across the same period rather than in sequence, and P7–P8 in September 2026; this repository was consolidated and published in September 2026. The projects are grouped below by what they are, not by when they were built.
 
 ---
 
-## Projects
+## Independent research — P7, P8 and the audit
 
-### P1 — Black-Scholes Options Pricing
-European call/put pricing, all five Greeks, Newton-Raphson implied volatility solver, and a CRR binomial tree that cross-validates the formula and extends it to American options. The thing I found most interesting: why the stock's expected return doesn't appear in the formula. Includes a stylised volatility skew illustration showing the model's most visible real-world failure.
+P7 and P8 are two independent research programmes that tested whether specific effects survive retail transaction costs: forced-liquidation flow in BTC perpetual futures, and trend, carry and value in futures on free daily data, followed by a registered screen of twenty further candidate claims. Neither produced a tradeable result: no strategy return is presented net of costs, the one statistic that cleared its registered threshold has not been computed net of costs, and the price-response, mechanism and economic conclusions were withdrawn. Both were then audited claim by claim, to the point where several headline claims were withdrawn; the ledger recording that is linked below.
 
-→ [p1_black_scholes/](p1_black_scholes/)
+Every sentence in the two repositories' READMEs and write-ups corresponds to a row of the [claim ledger](audit/CLAIM_LEDGER.md): every numerical and interpretive claim in these two projects, traced to the artefact that produces it, with the wording each source permits — 117 rows, with withdraw and unknown as permitted outcomes. Claims the sources did not support were withdrawn rather than softened. The registration artefacts, the halt-rule record and the sealed-block inspection history are in the [evidence record](audit/EVIDENCE_RECORD.md). Part three, equities, is in progress.
 
-### P2 — Markowitz Portfolio Optimisation
-Efficient frontier across five UK-relevant asset classes via constrained quadratic optimisation (SLSQP), with the tangency portfolio and Capital Market Line. Demonstrates the model's central practical problem — optimal weights swing wildly across historical windows because expected returns can't be estimated precisely — then implements Ledoit-Wolf covariance shrinkage as the standard fix, comparing true, sample and shrunk frontiers directly. Also includes a crisis-correlation simulation showing diversification failing exactly when it's needed. Asset parameters are stylised long-run assumptions, not estimated from data.
-
-→ [p2_markowitz/](p2_markowitz/)
-
-### P3 — OLS Regression on UK Macro Data
-OLS from the normal equations (no statsmodels) on 2000–2023 ONS/BoE data. Runs the Phillips Curve and Fisher equation regressions with full diagnostics. Main findings: strong positive autocorrelation in residuals (DW = 0.47), corrected with Newey-West HAC standard errors — the intercept SE comes out 47% larger, confirming OLS t-stats were inflated. A Chow test flags a structural break at 2022 (F = 4.97, p = 0.018), though the post-2022 subsample is only 2 observations, so the split coefficients are indicative rather than estimated.
-
-→ [p3_econometrics/](p3_econometrics/)
-
-### P4 — JustWalk Quantitative Model
-JustWalk is a real company I founded. We raised £50,000 from Vodafone and installed piezoelectric tiles at their Paddington office. This model answers the three questions investors actually ask: how much energy, is it financially viable, and how do we detect anomalous data. The honest financial answer: electricity revenue alone (~£2/year at the office site) doesn't justify the CapEx. The transit hub scenario shows where it does work — with SaaS analytics revenue, NPV ≈ £125k and P(NPV > 0) ≈ 93% across Monte Carlo scenarios. Footfall is simulated rather than taken from tile telemetry, so the detector can be tested against known ground truth.
-
-→ [p4_justwalk/](p4_justwalk/)
-
-### P5 — Market Insight Report
-A research note arguing that the 2022 UK gilt crisis was not primarily caused by the mini-budget, but that the mini-budget acted as a coordination device revealing pre-existing structural fragility: long debt maturity (~15yr average), ~25% index-linked exposure, and concentrated LDI leverage in pension funds. The argument rests on the gilt risk premium over Bunds remaining structurally wider after the fiscal measures were reversed — if it were purely a policy panic, it should have reverted.
-
-→ [p5_market_report/](p5_market_report/)
-
-### P6 — QRT × ENS Data Challenge 2026
-Binary classification of asset allocation returns from 20 days of return and signed-volume history (~527k train rows, shuffled dates). Rank 178 / 1,175 on the public leaderboard (May 2026) and 210 / 1,280 on the private leaderboard (June 2026), against QRT's LightGBM baseline; public accuracy 0.5212 vs the baseline's 0.5079. Challenge ongoing — the public leaderboard updates on every submission and the private one twice a year, so both figures are dated snapshots. Key finding: the signal is dominantly cross-sectional — allocations that persistently underperform their peers keep underperforming, which is statistical arbitrage framing rather than return forecasting. Submission is an equal-weight blend of 10 models: LightGBM/CatBoost variants (two-stage magnitude-then-sign, residual targets) plus a Set Transformer attending across all allocations within a day, trained with pseudo-labels from the confident tail of the test set. CORAL and adversarial reweighting for train/test drift; GroupKFold by time to avoid leakage from cross-sectional features. Hyperparameters and blend weights pre-committed in writing; 18 of 19 audited candidates rejected under a ≥1bp out-of-fold improvement rule. Independent project. Code withheld while the challenge is open.
-
-→ [p6_qrt_challenge/](p6_qrt_challenge/)
-
-P7 and P8 are two research projects on the same audit machinery. Both were re-examined in a claim-by-claim audit in September 2026, recorded in the [claim ledger](audit/CLAIM_LEDGER.md): every numerical and interpretive claim in these two projects, traced to the artefact that produces it, with the wording each source permits — 117 rows, with withdraw and unknown as permitted outcomes. Claims the sources did not support were withdrawn rather than softened. The audit's own findings — the halt-rule record, the registration status, the sealed-block scoring history and the corrections to previously published figures — are stated in each write-up, with the underlying artefacts in the [evidence record](audit/EVIDENCE_RECORD.md). Part three, equities, is in progress.
+What this work does not demonstrate: readiness to turn research into a trading decision. No strategy return is presented net of costs, and nothing here concerns execution, inventory, adverse selection or continuous quoting.
 
 ### P7 — BTC Forced Flow: Liquidation Map, Price Response, Volatility Forecast
 
-**Asked.** Whether price responds to a liquidation map built from public open interest, price and funding, and whether the map's features forecast realised volatility beyond GARCH(1,1) and HAR-RV.
+P7 asked whether price responds to a liquidation map built from public open interest, price and funding, and whether the map's features forecast realised volatility beyond GARCH(1,1) and HAR-RV; it found a liquidation print somewhere in the market after 100 % of cluster touches and 92.4 % of unmapped ones, continuation after unpredicted prints of −0.3 [−4.8, 4.0] bps at 30 minutes, and point R² differences over the hour/day/week HAR of +0.024 to +0.051 with no uncertainty computed.
 
 **Found.**
 - In the touch bar and the next three five-minute bars, on print-covered days, a liquidation print somewhere in the market occurred for 100 % of cluster touches (n 36), 99.9 % of mid touches (n 908) and 92.4 % of empty touches (n 5,164).
@@ -53,11 +27,13 @@ P7 and P8 are two research projects on the same audit machinery. Both were re-ex
 
 **Audit.** Five framings, each with a hypothesis recorded privately before its result commit. The repository has no look counter and the sealed blocks have been scored repeatedly. The corrections to previously published sentences are itemised in the write-up, with a disposition at the end of each investigation.
 
+**Next time.** With the same data again I would compute the cost ratio before mining for any signal: the private v1 record's six-basis-points-against-ten arithmetic (not reproducible here) was computed after the variant mining, and P8's cost ratio was projected before any signal was evaluated as a result.
+
 → [btc-public/](btc-public/) · [write-up](btc-public/WRITEUP.md)
 
 ### P8 — Futures Trend, Carry and Value on Free Daily Data
 
-**Asked.** Whether trend, carry and value, specified in advance on 13–27 futures markets with a modelled cost, survive that cost and a drawdown mandate; and whether twenty candidate claims, recorded privately before testing, clear a corrected threshold.
+P8 asked whether trend, carry and value, specified in advance on 13–27 futures markets with a modelled cost, survive that cost and a drawdown mandate, and whether twenty candidate claims recorded privately before testing clear a corrected threshold; it found net Sharpes of 0.24, 0.08, −0.44 and 0.06 (combined) with no interval computed for any of them, a hold-out of −1.28, and one candidate of eight clearing on its gross statistic with net alpha not computed.
 
 **Found.**
 - Net Sharpe 0.24 (trend), 0.08 (carry), −0.44 (value) and 0.06 (combined) on the training period, with no Sharpe interval computed for any of them; hold-out −1.28, scored twice (−1.18 on a partial final bar, −1.28 on the settled close).
@@ -68,7 +44,51 @@ P7 and P8 are two research projects on the same audit machinery. Both were re-ex
 
 **Audit.** Four halt conditions were registered. The three-same-reason halt fired after C11; I was advised to run C18 and C15 to complete the scoreable set and chose to; C18 then cleared; C15 ran after it, contrary to the registered clear-halt. The registration is verifiable only as commit order in a private repository. The corrections to previously published sentences are itemised in the write-up, with a disposition at the end of each investigation.
 
+**Next time.** With the same data again I would stop when a registered halt condition fired: the three-same-reason halt fired after C11, I chose to run C18 and C15 anyway, and C15 ran after C18 had cleared, so those two results carry labels rather than standing as registered-rule results.
+
 → [futures-public/](futures-public/) · [write-up](futures-public/WRITEUP.md)
+
+## Competition — P6
+
+### P6 — QRT × ENS Data Challenge 2026
+
+P6 asked whether the sign of an asset allocation's next-day return can be classified from 20 days of return and signed-volume history (~527k train rows, shuffled dates); it reached rank 178 / 1,175 on the public leaderboard (May 2026) and 210 / 1,280 on the private leaderboard (June 2026), with public accuracy 0.5212 against QRT's LightGBM baseline of 0.5079. Challenge ongoing — the public leaderboard updates on every submission and the private one twice a year, so both figures are dated snapshots. Key finding: the signal is dominantly cross-sectional — allocations that persistently underperform their peers keep underperforming, which is statistical arbitrage framing rather than return forecasting. Submission is an equal-weight blend of 10 models: LightGBM/CatBoost variants (two-stage magnitude-then-sign, residual targets) plus a Set Transformer attending across all allocations within a day, trained with pseudo-labels from the confident tail of the test set. CORAL and adversarial reweighting for train/test drift; GroupKFold by time to avoid leakage from cross-sectional features. Hyperparameters and blend weights pre-committed in writing; 18 of 19 audited candidates rejected under a ≥1bp out-of-fold improvement rule. Independent project. Code withheld while the challenge is open.
+
+→ [p6_qrt_challenge/](p6_qrt_challenge/)
+
+## Applied — P4
+
+### P4 — JustWalk Quantitative Model
+
+P4 asked, for a company I founded that installed piezoelectric tiles at Vodafone's Paddington office after raising £50,000, the three questions investors actually ask — how much energy, is it financially viable, and how to detect anomalous data — and found that electricity revenue alone (~£2/year at the office site) doesn't justify the CapEx, with a positive case only in a transit-hub scenario carrying SaaS analytics revenue (NPV ≈ £125k, P(NPV > 0) ≈ 93% across Monte Carlo scenarios). Footfall is simulated rather than taken from tile telemetry, so the detector can be tested against known ground truth.
+
+→ [p4_justwalk/](p4_justwalk/)
+
+## Foundations — P1, P2, P3, P5
+
+### P1 — Black-Scholes Options Pricing
+
+P1 asked how Black-Scholes prices a European option and where the model fails; it implements the formula, all five Greeks, a Newton-Raphson implied-volatility solver and a CRR binomial tree that cross-validates the formula and extends it to American options, and shows the model's most visible real-world failure as a stylised volatility skew illustration. The thing I found most interesting: why the stock's expected return doesn't appear in the formula.
+
+→ [p1_black_scholes/](p1_black_scholes/)
+
+### P2 — Markowitz Portfolio Optimisation
+
+P2 asked what the efficient frontier across five UK-relevant asset classes looks like and how stable it is; it finds that optimal weights swing wildly across historical windows because expected returns can't be estimated precisely, then implements Ledoit-Wolf covariance shrinkage as the standard fix, comparing true, sample and shrunk frontiers directly. Built on constrained quadratic optimisation (SLSQP) with the tangency portfolio and Capital Market Line; also includes a crisis-correlation simulation showing diversification failing exactly when it's needed. Asset parameters are stylised long-run assumptions, not estimated from data.
+
+→ [p2_markowitz/](p2_markowitz/)
+
+### P3 — OLS Regression on UK Macro Data
+
+P3 asked whether the Phillips Curve and Fisher equation relationships hold in 2000–2023 ONS/BoE data, using OLS from the normal equations (no statsmodels) with full diagnostics; it found strong positive autocorrelation in residuals (DW = 0.47), corrected with Newey-West HAC standard errors — the intercept SE comes out 47% larger, confirming OLS t-stats were inflated — and a Chow test flagging a structural break at 2022 (F = 4.97, p = 0.018), though the post-2022 subsample is only 2 observations, so the split coefficients are indicative rather than estimated.
+
+→ [p3_econometrics/](p3_econometrics/)
+
+### P5 — Market Insight Report
+
+P5 asked what caused the 2022 UK gilt crisis and argues that the mini-budget was not the primary cause but a coordination device revealing pre-existing structural fragility: long debt maturity (~15yr average), ~25% index-linked exposure, and concentrated LDI leverage in pension funds. The argument rests on the gilt risk premium over Bunds remaining structurally wider after the fiscal measures were reversed — if it were purely a policy panic, it should have reverted.
+
+→ [p5_market_report/](p5_market_report/)
 
 ---
 

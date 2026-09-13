@@ -109,6 +109,8 @@ On the 2021-onward subsample (190 weekly strips) the stored idealised MDE is 81.
 
 The relevant work here is constructing event rows from timestamped market data, comparing volatility forecasts with explicit benchmarks, and reporting intervals alongside their observation unit and assumptions. I would present this as research machinery and inference practice, with the limitations above; it is not evidence of live trading, execution or inventory management.
 
+What this does not demonstrate: readiness to turn research into a trading decision. No strategy return is presented net of costs, and nothing here concerns execution, inventory, adverse selection or continuous quoting.
+
 ## What could not be established
 
 Whether within-cell absolute movement rises or falls with map share: unknown. Whether the GARCH optimiser converged: unknown. Which per-trade dispersion convention was intended (one side of the trade, or the paired difference): unknown. Whether the difference over HAR-RV is attributable to the map-derived features rather than to DVOL, GARCH, funding, premium index, OI ratio, liquidation counts or time-of-day: not tested. No uncertainty was computed for the differences over HAR-RV. The option-fill file in the archive was not produced by the fetch code as written; its acquisition schedule is unknown. The origin of the 14 day-blocks beyond the 47 first-of-month training days was not verified.
@@ -151,3 +153,7 @@ Each correction below is a row of the [claim ledger](../audit/CLAIM_LEDGER.md): 
 - "reproduces four results": re-implements; the figures differ from the private ones.
 - "so the prose cannot drift from the run": withdrawn; the test checks selected literal phrases.
 - "a value may appear at time t only if it was publicly knowable at t": withdrawn as a description of what the test establishes.
+
+### What I would do differently
+
+With the same data again I would compute the cost ratio before mining for any signal: the private v1 record's six-basis-points-against-ten arithmetic (not reproducible here) was computed after the variant mining, and P8's cost ratio was projected before any signal was evaluated as a result.
