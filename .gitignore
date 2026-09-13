@@ -2,3 +2,7 @@ __pycache__/
 *.pyc
 plots/
 .DS_Store
+
+# Local session and review-copy artifacts
+.Rhistory
+ARCHIVE_NOTES.txt

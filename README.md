@@ -1,6 +1,6 @@
 # Quantitative Finance Portfolio
 
-I'm studying maths and economics at the University of Nottingham, with an interest in quantitative trading. These projects cover market signals, modelled trading costs, portfolio construction and the decisions supported by the resulting evidence.
+I'm an undergraduate in mathematics and statistics, applying for quantitative trading roles. These projects are the work I've done outside coursework: foundations, a scored competition entry, and two independent research programmes with a published audit of both.
 
 ## Selected work
 
