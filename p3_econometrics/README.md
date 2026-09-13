@@ -7,10 +7,10 @@ OLS regression on real UK macroeconomic data (ONS/BoE, 2000–2023) looking at t
 - OLS from scratch via `β̂ = (XᵀX)⁻¹Xᵀy`
 - Three regressions: Phillips Curve, Fisher equation, multiple regression
 - Standard diagnostic tests: Durbin-Watson (autocorrelation), Jarque-Bera (normality)
-- Newey-West HAC standard errors to correct for autocorrelation-induced bias
+- Newey-West HAC standard errors as a comparison under residual dependence
 - Chow structural break test (2022 split)
 - Confidence bands computed analytically from the covariance matrix of the estimator
-- Pre/post 2022 subsample comparison (the Phillips Curve shifted materially)
+- Pre/post 2022 subsample comparison (only two observations in the later subsample)
 
 ## The maths
 
@@ -39,7 +39,7 @@ R² = 0.51  (t-stat on slope = -4.77)
 ```
 A 1pp rise in unemployment is associated with a 0.95pp fall in wage growth. The negative slope is consistent with the original Phillips (1958) relationship.
 
-**Durbin-Watson = 0.47** — well below 2, indicating strong positive autocorrelation. This means the standard errors are understated and the t-statistics are inflated. I implemented Newey-West HAC standard errors to correct for this: the intercept SE is 47% larger than OLS (1.65 vs 1.12), and the slope SE is 22% larger (0.24 vs 0.20). With n=24, the data-driven bandwidth formula gives m=1, so first-order autocorrelation is corrected; with DW=0.47 there may be higher-order autocorrelation the one-lag correction doesn't fully capture. The Chow test for a structural break at 2022 gives F = 4.97, p = 0.018 — rejecting stability at 5%, though the post-2022 subsample has only 2 observations so this result should be treated as indicative.
+**Durbin-Watson = 0.47** — well below 2, indicating strong positive autocorrelation. This motivates checking the conventional standard errors against an autocorrelation-robust estimate. In this sample, the Newey-West HAC calculation gives larger estimates: the intercept SE is 47% larger than OLS (1.65 vs 1.12), and the slope SE is 22% larger (0.24 vs 0.20). With n=24, the data-driven bandwidth formula gives m=1, so the calculation includes one lag; this does not establish that the remaining dependence is adequately represented. The Chow test for a structural break at 2022 gives F = 4.97, p = 0.018 under the classical test calculation. Residual dependence and a post-2022 subsample of only two observations limit the interpretation; this is not presented as a defensible rejection of stability.
 
 **Fisher equation:** β̂ = 0.054 (not significantly different from 0, let alone 1). The model predicts rates should track inflation one-for-one. They didn't over this period — the BoE was stuck near the zero lower bound for most of 2010–2021, so rates barely moved while inflation varied.
 
@@ -47,7 +47,7 @@ A 1pp rise in unemployment is associated with a 0.95pp fall in wage growth. The 
 - Pre-2022: slope = -0.75, intercept = 7.81
 - Post-2022: slope = -1.20, intercept = 12.34
 
-The intercept shift is large — wages grew faster at the same unemployment rate post-pandemic, consistent with supply-side inflation and post-COVID expectation resetting.
+With two observations and two fitted coefficients, the later line is saturated. The difference between these fitted lines does not identify a post-pandemic mechanism or provide a reliable estimate of a regime change.
 
 ## The simultaneity problem
 
