@@ -127,7 +127,7 @@ The twenty-candidate list, ranking and predictions, and the per-candidate criter
 
 ### Inspection history
 
-The hold-out was scored on 2026-09-09 and 2026-09-12, with an aborted registration before the first scoring. Roll-switch offsets were selected on the full price history including the sealed period; cost normalisation uses the final 250 observations (inside the sealed period), and schedule turnover is evaluated from 2002 through the end of the series without a training cutoff. The candidate tests other than C19 use data through 2026-09-09. On a fresh clone the default build skips every stage because the tracked progress file marks them complete; a forced rebuild runs the stages and halts at s9 because the tracked look counter already records a look.
+The hold-out was scored on 2026-09-09 and 2026-09-12, with an aborted registration before the first scoring. Roll-switch offsets were selected on the full price history including the sealed period; cost normalisation uses the final 250 observations (inside the sealed period), and schedule turnover is evaluated from 2002 through the end of the series without a training cutoff. The candidate tests other than C19 use data through 2026-09-09. On a fresh clone the build ignores the tracked progress file when `data/` is absent and runs every stage; at s9 the tracked look counter already records a scoring, so the hold-out is not re-scored and the tracked results are retained.
 
 ### Corrections to previously published figures and sentences
 

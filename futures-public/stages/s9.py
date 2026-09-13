@@ -36,7 +36,14 @@ def main():
         entry["aborted"] = False
         counter.path.write_text(json.dumps(counter.data, indent=2))
     elif counter.count("holdout") > 0:
-        progress.halt("s9", f"hold-out already opened {counter.count('holdout')} time(s); a second look is not a hold-out")
+        # The tracked counter already records a scoring. A second scoring is not a hold-out, so
+        # this run does not re-score: the tracked RESULTS.md and s9.md are retained as they are,
+        # and the reproduction continues to the candidate tests.
+        last = (entry.get("history") or [{}])[-1].get("at", "")[:10]
+        line = (f"hold-out already scored (look count {counter.count('holdout')}, last {last}); not re-scored -- "
+                f"a second scoring is not a hold-out; tracked RESULTS.md and s9.md retained")
+        print(f"s9: {line}")
+        return line
     else:
         counter.look("holdout", note=f"opened {date.today().isoformat()} after s0-s8 complete and every decision final")
 

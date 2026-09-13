@@ -18,7 +18,7 @@ The ridge model is refitted monthly on a trailing year; its GARCH and map-featur
 
 Option entry prices are amount-weighted averages of buy-flagged and sell-flagged fills over the four-hour entry window, with missing sides imputed from the other leg's half-spread. Eight structures were costed; the smallest stored MDE is 41.8 bps, computed as 2.80 × SD(long − short)/√(2n) on weekly entries treated as independent.
 
-52 selected literal phrases in this document and the README are checked for presence against `reports/results/` by `tests/test_documents.py`, without validating their interpretation. Default `run.py` runs skip stages whose artefacts exist; `--only` and `--force-from` recompute them.
+52 selected literal phrases in this document and the README are checked for presence against `reports/results/` and `config.py` by `tests/test_documents.py`, without validating their interpretation; five further figures that come from `data/` are checked only when it is present. Default `run.py` runs skip stages whose artefacts exist; `--only` and `--force-from` recompute them.
 
 ## What the measurements are
 

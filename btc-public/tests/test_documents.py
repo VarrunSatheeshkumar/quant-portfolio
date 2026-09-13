@@ -122,9 +122,6 @@ def main():
     from src import vol_model  # noqa: E402
     add("both", f"{len(vol_model.FEATURES)}-feature ridge")
     add("both", f"{config.MAP_HALF_LIFE_BARS / 288:.1f}-day half-life")
-    mix = json.load(open(config.INTERIM / "leverage_mix.json"))
-    corr = next(v for k, v in mix.items() if "corr" in k)
-    add("both", f"log-scale correlation {corr:.2f}")
 
     # ---- option structures and the economics formula outputs
     ideal = ins["best_idealised_mde_bps"]
@@ -147,10 +144,17 @@ def main():
     # ---- sealed-block rows and the test's own count (self-referential by design)
     docs = {"readme": flat((config.ROOT / "README.md").read_text()),
             "writeup": flat((config.ROOT / "WRITEUP.md").read_text())}
-    add("both", f"{len(checks) + 2} selected literal phrases")  # +2 for these two checks themselves
+    add("both", f"{len(checks) + 4} selected literal phrases")  # +4: these two checks and the two data/ sentence checks below
+    add("both", "five further figures that come from data/ are checked only when it is present")
 
     # ---- figures from data/ (not tracked): checked only when the data is present
     data_checks = []
+    mix_path = config.INTERIM / "leverage_mix.json"
+    if mix_path.exists():
+        mix = json.load(open(mix_path))
+        corr = next(v for k, v in mix.items() if "corr" in k)
+        for doc in ("readme", "writeup"):
+            data_checks.append((doc, f"log-scale correlation {corr:.2f}"))
     liq = config.RAW / "liquidations.parquet"
     if liq.exists():
         import pandas as pd
@@ -168,6 +172,8 @@ def main():
             data_checks.append((doc, f"all {n_oi} OI-covered print days, of which {n_sealed} fall inside the sealed blocks"))
         data_checks.append(("writeup", f"({n_train} first-of-month training days)"))
 
+    if data_checks:
+        assert len(data_checks) == 5, len(data_checks)
     fails = []
     for doc, phrase in checks + data_checks:
         if phrase not in docs[doc]:
@@ -181,7 +187,7 @@ def main():
         print("\n".join(fails))
         sys.exit(1)
     print(f"documents: {len(checks)} quoted phrases match reports/results/, 0 failures"
-          + (f"; {len(data_checks)} data-derived phrases match data/" if data_checks else "; data/ absent, data-derived phrases not checked"))
+          + (f"; {len(data_checks)} data-derived phrases match data/" if data_checks else "; data/ absent, 5 data-derived phrases not checked"))
     print(f"  ({len(noted)} historical figures from the private project are quoted and not checkable here)")
 
 
