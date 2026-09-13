@@ -1,25 +1,21 @@
-# BTC forced-flow: liquidation maps, volatility forecasting, and what you can trade
+# BTC forced-flow: liquidation map, price response, volatility forecast
 
 Part one of three. Part two: futures trend, carry and value (`../futures-public`) · Part three: equities (in progress)
 
-The question this project set out to answer: **leveraged perpetual-futures positions
-are forced to exit at prices you can compute in advance — can you locate that flow,
-and is it worth anything?**
+**Start here**
 
-The map locates the flow. Reconstructed liquidation levels sit where real forced
-selling actually happens: on the days with tick-level liquidation prints, mapped
-price levels carried 5.3x the liquidation notional of unmapped ones, and every
-cluster touch coincided with real forced selling. But price does not respond to those
-levels in any way a trader can capture — five pre-registered framings, the last of
-them adequately powered, all returned effects smaller than a round trip. The same
-flow reconstruction *does* forecast volatility, in both sealed hold-out blocks at
-both horizons: comfortably against a GARCH(1,1) baseline, by a few points of R²
-against a horizon-matched HAR-RV, and losing to that HAR on QLIKE in three of the
-four sealed cells. That is the one result here that survived, and it is worth less
-than the cheapest instrument that could express it.
+- Begin with the [measurements and dispositions](WRITEUP.md#what-the-measurements-are), then follow [one cluster touch](WRITEUP.md#one-touch-from-map-state-to-measurement) through the calculation.
+- Read [event_study.json](reports/results/event_study.json) for locator/price-response outputs, [har.json](reports/results/har.json) for the forecast comparison, and [instrument.json](reports/results/instrument.json) / [economics.json](reports/results/economics.json) for option measurements and conditional formula outputs.
+- Those JSONs are tracked and readable on a fresh clone. Default `python run.py` attempts to fetch/build missing `data/`, runs the as-of and document checks, and skips the tracked result JSONs; it does not regenerate those estimates by default.
+- Recomputing with `--only` or `--force-from` needs the upstream data; the archived option-fill file is not reproducible by the fetch code as written. See [Running it](#running-it).
 
-Read [`WRITEUP.md`](WRITEUP.md) for the story end to end, or
-[`reports/SUMMARY.md`](reports/SUMMARY.md) for the findings and the numbers alone.
+The claim ledger records the 2026-09-12 audit and the presentation provenance added on 2026-09-13. The write-up reports the retained measurements, their limitations and the withdrawn wording.
+
+## What the repository contains
+
+A liquidation map built from public open interest, price and funding on a five-minute grid; five framings of "does price respond to the map?", each with a hypothesis recorded privately before its result commit (the public statistics for framing 1 are not the registered statistic); a 24-feature ridge volatility model compared against GARCH(1,1) and two HAR-RV specifications; and eight costed option structures.
+
+The measurements, with their intervals and what could not be established, are in `WRITEUP.md`. In summary of the locator: in the touch bar and the next three five-minute bars, on print-covered days, a liquidation print somewhere in the market occurred for 100 % of cluster touches (n 36), 99.9 % of mid touches (n 908) and 92.4 % of empty touches (n 5,164). Of the price response: continuation after unpredicted prints, print unit, day-block bootstrap: at 30 min −0.3 [−4.8, 4.0]; at 15 min −0.9 [−3.5, 1.7]; at 60 min +3.8 [−1.5, 10.3] bps. Of the volatility comparison: point R² differences over the hour/day/week HAR of +0.024/+0.026/+0.038/+0.051 on 87,552 and 87,264 evaluated rows per block (304 and 303 complete-day equivalents out of 365); no uncertainty was computed; on QLIKE the intraday HAR beats Model A in three of the four sealed cells.
 
 ## Running it
 
@@ -28,42 +24,29 @@ pip install -r requirements.txt
 python run.py
 ```
 
-The pipeline fetches its own data from public endpoints into `data/` (gitignored,
-several GB, a few hours on a cold start) and writes results to `reports/results/`.
-Stages skip themselves if their output already exists, so an interrupted run
-resumes. `--force-from <stage>` re-runs from a stage onward, `--only <stage>` runs
-one. Any stage that cannot verify its own output halts the run rather than passing
-bad data downstream.
-
-No credentials are needed. Every source used here is public and keyless, and
-nothing in the code reads an environment variable or a key file.
+The fetch code uses public keyless endpoints; the option-fill file in the archive was not produced by that code as written. Default `run.py` runs skip stages whose artefacts exist; `--only` and `--force-from` recompute them. `data/` is gitignored; `reports/results/` is tracked. 52 selected literal phrases in this README and `WRITEUP.md` are checked for presence against `reports/results/` by `tests/test_documents.py`, without validating their interpretation.
 
 ## What each module does
 
 | Module | What it does |
 | --- | --- |
-| `config.py` | Every constant: date ranges, horizons, hold-out block bounds, the leverage ladder, bucket width, cost band. Nothing is hard-coded elsewhere. |
-| `src/fetch.py` | Pulls klines, open interest, funding, premium index, DVOL, liquidation prints, book snapshots and Deribit option fills from public endpoints. |
-| `src/grid.py` | Builds the 5-minute as-of grid. Every value enters at the time it was publicly knowable, every join carries a staleness tolerance, and every joined column gets a `tsu_` companion recording how old it is — so a dead feed shows up as null, not as a flat line. |
-| `src/liquidation_map.py` | Turns ΔOI × sign(Δprice) into leveraged cohorts, walks them down a leverage ladder to their forced-exit prices, and bins the result into a decaying histogram of expected forced flow per price bucket. The leverage weights are calibrated against real liquidation prints on the log1p scale. |
-| `src/vol_model.py` | Model A. Ridge on map-derived and market features, walk-forward monthly on a trailing year, scored against an analytic multi-step GARCH(1,1) forecast at 1h and 4h. |
-| `src/har.py` | The benchmark that matters. HAR-RV in two specifications — Corsi's day/week/month cascade, and the same cascade shifted to hour/day/week for these horizons — fitted on Model A's schedule and scored on the same rows. Reads Model A's stored predictions rather than refitting, so no hold-out counter moves. |
-| `src/event_study.py` | The map's ground truth (do touches coincide with real prints?) and the five pre-registered framings of "does price move through a cluster?", each with its placebo and its MDE. |
-| `src/instrument.py` | Prices eight option structures plus an idealised variance swap against the volatility forecast, to find the cheapest instrument that could express it. |
-| `src/economics.py` | Turns the forecast's improvement over HAR into expected basis points per trade and puts it beside each structure's measured cost, so the ceiling reads economically and not only as a power calculation. Every assumption it makes favours the trade. |
-| `src/audit.py` | The machinery the claims rest on: sealed-block masks, purge/embargo, block bootstrap, label-shuffle placebos, the randomisation test, and the MDE calculator. |
-| `tests/test_asof.py` | Rebuilds sampled grid values independently from the raw sources and checks forward-target direction. Runs as a pipeline stage, not a side quest. |
-| `tests/test_documents.py` | Checks every number quoted in this README, in `WRITEUP.md` and in `SUMMARY.md` against `reports/results/`, so the prose cannot drift from the run. Figures it cannot reproduce — those belonging to components the public cut does not contain — are named rather than skipped. |
+| `config.py` | Constants: date ranges, horizons, sealed-block bounds, the leverage ladder, bucket width, the 3.5-day map half-life, the 10 bps band. |
+| `src/fetch.py` | Fetches klines, open interest, funding, premium index, DVOL, liquidation prints, book snapshots and Deribit option fills from public endpoints. |
+| `src/grid.py` | Builds the five-minute grid with as-of joins, tolerances and staleness columns. |
+| `src/liquidation_map.py` | Infers leveraged cohorts from open-interest changes, walks them down a leverage ladder to forced-exit prices, and accumulates a histogram with a 3.5-day half-life. The leverage mix is calibrated once on training print days (log-scale correlation 0.30) and applied to all periods, including the 2022 sealed block. |
+| `src/vol_model.py` | The ridge model, refitted monthly on a trailing year; its GARCH and map-feature inputs are fitted once on all training rows (2020-09 to 2025-08) and supplied to every month, including the 2022 sealed block. |
+| `src/har.py` | HAR-RV in two specifications (day/week/month; hour/day/week), fitted on training rows and scored on the sealed outcomes; three trailing realised-volatility features, the shortest a trailing one-day average ending at the current bar. |
+| `src/event_study.py` | The locator statistics and the five framings. |
+| `src/instrument.py` | Eight option structures priced from amount-weighted buy-flagged and sell-flagged fills over the four-hour entry window, with missing sides imputed from the other leg's half-spread. |
+| `src/economics.py` | Multiplies √ΔR² by √(2/π) and each structure's stored dispersion; its assumptions are listed in `reports/results/economics.json` and in `WRITEUP.md`. |
+| `src/audit.py` | Masks, purge, block bootstrap, label placebo, block permutation, MDE calculator. |
+| `tests/test_asof.py` | At 20 sampled timestamps, checks that grid values match the raw files under the raw files' own as-of timestamps and tolerances, and that forward targets are null at the series tail. |
+| `tests/test_documents.py` | Checks selected literal phrases in this README and `WRITEUP.md` against `reports/results/`. |
 
-## Hold-out discipline
+## Sealed blocks
 
-Two sealed blocks and a live forward window are held out of everything. Each
-sealed-block number in `SUMMARY.md` carries the number of times that block was
-looked at to produce it. The live forward window was never opened.
+The repository has no look counter; the "looks" values in `reports/results/` are literals written by the code. The sealed blocks have been scored repeatedly: 2026-09-02 (twice), 2026-09-06, 2026-09-07 and 2026-09-12 (twice). The window after 2026-09-01 contains no data and has not been scored. The locator statistics were computed on all 73 OI-covered print days, of which 26 fall inside the sealed blocks including their ±3-day purge.
 
 ## Scope
 
-This repository is a consolidation of a larger private project. It reproduces four
-results and nothing else. The variant mining, the direction model, the calendar and
-term-structure tests, the daily model and the news pipeline are not here — they are
-described in `SUMMARY.md` only where they bear on what survived.
+This repository re-implements four analyses of a private project; its figures differ from the private figures. For v2 through v12 of that project, a commit recording the hypothesis precedes the commit recording the result (author-dated, local, unpushed); for v13, hypothesis, code and result were committed together.

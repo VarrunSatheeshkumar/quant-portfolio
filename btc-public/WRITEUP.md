@@ -1,203 +1,151 @@
-# Forced flow and the price of knowing where it is
+# Forced flow in BTC perpetuals: the measurements
 
-## The question
+The claim ledger (`remediation/CLAIM_LEDGER.md` in the portfolio repository) records the 2026-09-12 audit and the presentation provenance added on 2026-09-13. Where the ledger records a figure as unknown, this document says unknown.
 
-Most flow in a market is optional. A trader who decides to sell can change their mind
-between the decision and the order, and usually does. Forced flow is the exception:
-when a leveraged position moves far enough against its holder, the exchange closes it
-automatically, at a price fixed in advance by the size of the position and the margin
-behind it. The decision has already been made and written down.
+## What was asked
 
-Bitcoin perpetual futures publish the inputs needed to reconstruct where that flow
-sits. Open interest, price and funding are all public and continuous. From them it is
-possible to infer roughly where leveraged positions were opened, at what leverage, and
-therefore the prices at which they will be closed out — a *liquidation map*. The
-question this project set out to answer is whether that map is worth anything: if you
-know where the forced sellers are, do you know something about what price does when it
-reaches them, or something a volatility model does not already know?
+Five framings of "does price respond to the liquidation map?" were tested, each with a hypothesis recorded privately before its result commit; the public statistics for framing 1 are not the registered statistic. The registered v2 statistic was a ratio of mean signed continuations after cluster touches to the same after matched empty touches; neither absolute-move regression reported below is the registered statistic.
 
-The answer is that the map is real, and it is not tradeable. That is the finding, and
-the rest of this explains how it was established and what it cost to learn.
+For the volatility comparison against HAR-RV (private v13), hypothesis, code and result were committed together; commit order is silent on sequence. For v2 through v12, a commit recording the hypothesis precedes the commit recording the result (author-dated, local, unpushed). Nothing may be said about when the v13 criterion was written.
 
 ## What was built
 
-Everything rests on an **as-of grid**: a five-minute panel spanning 2020 to 2026 in
-which a value may appear at time *t* only if it was publicly knowable at *t*. Every
-source carries the moment it became knowable, which is not the moment it describes.
-Joins are as-of with an explicit tolerance, so a feed that stops updating produces a
-gap rather than a flat line, and every joined column has a companion column recording
-how stale it is. An automated test rebuilds sampled grid values from the raw sources
-by an independent path and refuses the grid if any disagree.
+An automated test checks, at 20 sampled timestamps, that grid values match the raw files under the raw files' own as-of timestamps and tolerances, and that forward targets are null at the series tail. The window after 2026-09-01 contains no data and has not been scored.
 
-On top of that sits the **liquidation map**. Each bar, the change in open interest and
-the sign of the price move imply a cohort of new positions; those are spread across a
-leverage ladder, converted to their forced-exit prices, and accumulated into a
-histogram of expected forced flow per price bucket, which decays with a seven-day
-half-life. The leverage weights are not assumed. They are calibrated against real
-tick-level liquidation prints, on a log scale — fitting raw notional collapses the
-whole weight onto one rung, because a handful of cascade bars carry the entire squared
-error and the fit reduces to "which rung best flags that something big happened".
+The liquidation map accumulates inferred forced-exit prices into a histogram with a 3.5-day half-life. The leverage mix is calibrated once on training print days (log-scale correlation 0.30) and applied to all periods, including the 2022 sealed block.
 
-Two models sit on the map, kept apart by construction: a **volatility model** and a
-**direction model**, never allowed to share features, so that a failure in one cannot
-be laundered into the other. Around them: a variant-mining pipeline with a
-multiple-testing correction, and audit machinery — as-of tests, purge-and-embargo
-walk-forward, block bootstraps, label-shuffle placebos, a randomisation test, and a
-minimum-detectable-effect calculator run *before* any criterion was committed. Two
-sealed hold-out blocks and a live forward window were held out throughout, and each
-sealed number below carries the number of times its block was opened.
+The ridge model is refitted monthly on a trailing year; its GARCH and map-feature inputs are fitted once on all training rows (2020-09 to 2025-08) and supplied to every month, including the 2022 sealed block. It is a 24-feature ridge model including map-derived features, DVOL, GARCH, funding, premium index, OI ratio and time-of-day. The HAR-RV benchmark uses three trailing realised-volatility features; Corsi's shortest component is a trailing one-day average ending at the current bar.
 
-## The mistake
+Option entry prices are amount-weighted averages of buy-flagged and sell-flagged fills over the four-hour entry window, with missing sides imputed from the other leg's half-spread. Eight structures were costed; the smallest stored MDE is 41.8 bps, computed as 2.80 × SD(long − short)/√(2n) on weekly entries treated as independent.
 
-The edge, when it was finally found, was about six basis points per trade against a
-ten-basis-point round trip. That arithmetic needed ten minutes and the fee schedule,
-and was computed after 82,152 feature variants had been generated, screened and
-deflated.
+52 selected literal phrases in this document and the README are checked for presence against `reports/results/` by `tests/test_documents.py`, without validating their interpretation. Default `run.py` runs skip stages whose artefacts exist; `--only` and `--force-from` recompute them.
 
-Nothing that follows is worth reading past that. Cost the trade before you mine for
-the signal: the cost sets the size the signal has to clear, and it is a fixed,
-knowable number available on day one.
+## What the measurements are
 
-## The finding
+### The locator
 
-The map works as a locator. On the sample days where tick-level liquidation prints
-exist, **every one of the 36 cluster touches coincided with real forced selling**, and
-mapped price levels carried **5.3 times the liquidation notional** of unmapped ones —
-$1.45m against $274k in the twenty minutes around a touch (looks: 0; measured on
-sample days inside the training window). *Unmapped* means a level holding under 0.5%
-of the map's notional, emptied buckets included — 94% of the control group. Excluding
-them gives 2.4x.
+In the touch bar and the next three five-minute bars, on print-covered days, a liquidation print somewhere in the market occurred for 100 % of cluster touches (n 36), 99.9 % of mid touches (n 908) and 92.4 % of empty touches (n 5,164).
 
-Price does not respond to those levels in any way a trader can capture. The hypothesis
-was pre-registered in five framings: acceleration through a cluster against matched
-empty levels, dose-response in flow-to-depth pressure, cluster age, regime
-conditioning, and anticipation ahead of unpredicted liquidations. Each named in
-advance the confound it had to separate, and each was paired with a label-shuffle
-placebo.
+Mean market-wide liquidation notional in the touch bar and the next three five-minute bars: cluster $1.45m (n 36), mid $1.54m (n 908), empty $0.27m (n 5,164); 94 % of empty touches are zero-mass buckets; cluster/empty = 5.3, cluster/non-zero-mass empty = 2.4. Computed on all 73 OI-covered print days, of which 26 fall inside the sealed blocks including their ±3-day purge.
 
-Four were underpowered, which is a fact about the design and not a result. The fifth
-was adequately powered: 53,088 touches across 61 print-covered days give a minimum
-detectable effect of **6.5bps against a 10bps band**, and the measured level was
-**−0.3bps, 95% CI [−4.8, 4.0]** (looks: 0). Its matched difference cleared its placebo
-comfortably — real −7.1bps against a shuffled 95th percentile of 1.1bps — so the
-machinery was detecting the *structure* it was supposed to. The randomisation test on
-the level itself could not distinguish the measured value from shuffled labels, which
-is what a real null looks like. Adequate power and a null is a finding.
+**Disposition.**
+- Question: whether liquidation prints occur at mapped levels more than at unmapped ones.
+- Established: in the touch bar and the next three five-minute bars, a print occurred somewhere in the market after 100 % of cluster touches, 99.9 % of mid touches and 92.4 % of empty touches; mean notional cluster $1.45m, mid $1.54m, empty $0.27m; computed on all 73 OI-covered print days, 26 of them inside the sealed blocks including their ±3-day purge.
+- Unresolved: whether prints at the touched level and side exceed those at matched unmapped levels — the statistic does not condition on the touched level or its side.
+- Decision: stopped. The "100 %" and "5.3×" headline is withdrawn and the bucket figures are kept as descriptions; no level-specific statistic was built, because the existing statistic does not condition on the touched level, a print follows 92.4 % of empty touches, and the sample includes sealed-block days.
 
-The mechanism is unsurprising once stated. Every input to the map — open interest,
-price, funding — is public and watched. Anyone who wants to know where the
-liquidations sit already knows. The flow arrives exactly where the map says it will
-and is absorbed at the price the order book was already showing.
+### One touch, from map state to measurement
 
-## The volatility model
+Take the first print-covered cluster touch produced by the cached grid and stored leverage mix: **2020-09-01 06:00 UTC**. This illustrates row construction using the calibration described above. Grid timestamps label bar ends: the 06:00 touch bar is the exchange candle opened at 05:55, and its liquidation total covers 05:55:00–05:59:59 UTC.
 
-The same reconstruction does forecast volatility, and how much depends entirely on
-what it is measured against.
+1. **Find the bucket and direction.** Buckets use `floor(log(price / 1000) / log(1.0025))`. The previous close, $11,759.39, is in bucket 987; this bar's high, $11,810.93, reaches bucket 988, whose lower edge is $11,786.06. The collector records an upward touch (`is_down = False`). The edge is 0.2268% from the previous close, inside the 5% distance limit; this bucket has no earlier accepted touch.
+2. **Classify the pre-touch state.** Before applying the touch bar, bucket 988 contains $995,398.09 of map mass against $17,341,431.20 across both maps: `995398.09 / 17341431.20 = 5.7400%`. This exceeds the 5% cluster threshold. These are modelled masses; the label does not identify an observed liquidation at that level.
+3. **Measure the outcome.** The market-wide liquidation totals at 06:00, 06:05, 06:10 and 06:15 are $300,841.56839, $320,055.80572, $0 and $0: $620,897.37411 altogether. Separately, the touch-bar close is $11,805.78 and the 07:00 close is $11,869.83, giving signed 60-minute continuation `10000 × log(11869.83 / 11805.78) = +54.11 bps`; upward touches use sign +1.
+4. **Locate its contribution.** This supplies one of the 36 cluster windows, one positive liquidation indicator, and $620,897.37 to the sum used for their mean market-wide notional. Its continuation belongs to the bucket-touch stream; it is not an observation in the unpredicted-print continuation table below. Prints in the touch bar are not ordered relative to the crossing within that bar.
 
-Against GARCH(1,1) the margin looks decisive: sealed-block R² of 0.457 against 0.311
-and 0.554 against 0.165 at one hour, 0.464 against 0.232 and 0.540 against −0.233 at
-four hours (looks: 1 for each sealed block, taken once).
+Construction: [`collect` and `_outcomes`](src/event_study.py), [`run_map` and `bucket_of`](src/liquidation_map.py); inputs in `data/grid/grid.parquet` and `data/interim/leverage_mix.json`. The [example inputs](../remediation/WORKED_EXAMPLES.json) are preserved without requiring those data files. Ledger H1 records this instance; A20–A21 constrain the locator interpretation and B17 describes the calibration.
 
-GARCH is the textbook baseline, though, not the one the realised-volatility literature
-uses. That is HAR-RV, which reads realised variance directly instead of inferring it
-from squared returns one step at a time. Corsi's standard day/week/month cascade loses
-by 0.13 to 0.22 R² in the sealed blocks — but it was built for daily forecasting, and
-at a one-hour horizon its shortest input is already a full day stale, which handicaps
-it rather than tests it. Shifting the same cascade one scale down, to hour/day/week,
-gives the benchmark that matters.
+### Price after liquidation prints
 
-Against that benchmark Model A still wins in both sealed blocks at both horizons, but
-by **+0.024 and +0.026 at one hour and +0.038 and +0.051 at four** — roughly a tenth
-of what the GARCH comparison advertises. And on QLIKE, which punishes under-forecast
-variance, the intraday HAR **beats Model A in three of the four sealed cells**. No
-hold-out counter moved to establish this: HAR was fitted on training rows only and
-scored against outcomes the single existing look had already revealed.
+53,088 prints on 61 day-blocks (47 first-of-month training days); day-block bootstrap MDE 6.5 bps. The three stored continuation estimates are:
 
-Converted to money, the improvement is worth **45.7 to 67.3bps per trade** on the
-cheapest costed structure — a weekly straddle hedged daily — against that structure's
-**measured round trip of 20.1bps** (looks: 0). Every assumption in that conversion
-favours the trade. Even so, the structure's own minimum detectable effect is 73.7bps,
-larger than the most generous estimate of its edge, so the sample cannot distinguish
-+25.7bps of net expectation from zero.
+| Horizon | Continuation (bps) | 95% interval (bps) | What the estimate is conditioned on |
+| --- | ---: | --- | --- |
+| 15 min | −0.9 | [−3.5, 1.7] | Unpredicted prints in the training sample; print unit; day-block bootstrap. |
+| 30 min | −0.3 | [−4.8, 4.0] | Unpredicted prints in the training sample; print unit; day-block bootstrap. |
+| 60 min | +3.8 | [−1.5, 10.3] | Unpredicted prints in the training sample; print unit; day-block bootstrap. |
 
-## The instrument ceiling
+The 30-minute interval [−4.8, 4.0] lies inside ±10 bps; the design's MDE is 6.5 bps. These are the stored intervals in ledger B4–B5 and B8, with the observation-unit and day-block limitations below.
 
-Eight structures were costed against the forecast: straddles at two hedging
-frequencies, two calendar weightings, and 1/K²-weighted option strips at two tenors
-and two grid widths (looks: 0, all costed inside the training window). The best of them
-resolves 41.8bps against a 10bps band.
+The matched difference is −7.1 bps; under independent per-print relabelling (min cell 3; 300 draws) the 95th percentile of absolute deviations from the placebo mean is 1.1 bps; the real difference uses min cell 15.
 
-The decisive measurement contained no instrument at all. An **idealised variance swap
-— zero spread, zero fees, zero hedging error** — still has a minimum detectable effect
-of **81.6bps**. Nothing tradeable can beat a costless, perfectly-hedged variance swap,
-so that is a floor, and reaching 10bps from it needs 67 times the sample: roughly
-**309 years** of non-overlapping weekly trades. Trading more often buys nothing,
-because overlapping trades are not independent observations.
+**Disposition.**
+- Question: whether price continues after liquidation prints the map did not predict.
+- Established: the three intervals above at the print unit; the 30-minute interval lies inside ±10 bps with a design MDE of 6.5 bps; the matched difference −7.1 bps under the placebo procedure described.
+- Unresolved: the observation unit (53,088 prints share bars and days on 61 day-blocks, and the origin of the 14 blocks beyond the 47 first-of-month days was not verified); the placebo's null (independent per-print relabelling, min cell 3 against 15 for the real difference); why price does not respond — anticipation was tested privately through two implications and both were inconclusive.
+- Decision: preserved as unresolved. The three intervals stand as the measurement at the print unit; the randomisation sentence and the mechanism sentence are withdrawn. Resolution would require recomputing the interval with prints sharing a bar counted once, on the same day blocks; that has not been done.
 
-The binding constraint was therefore never the instrument and never really the sample.
-It is the dispersion of the quantity being measured. Realised variance over a week
-varies too much from week to week for a few hundred observations to pin its mean to
-trading precision, and no structure reduces the variance of the thing it is measuring.
-The same cancellation makes the point sharply: expected edge and minimum detectable
-effect both scale with dispersion, so the ratio is independent of the structure
-entirely. Only independent trades move it — 521 of them, about ten years of weekly
-ones.
+### The other four framings
 
-## What the audit caught
+Framing 1 = matched difference without an interval plus an absolute-move slope with one; framing 2 = null with an interval, MDE above the registered band; framing 3 = raw effect with an interval, controlled effect without one; framing 4 = point differences without intervals.
 
-The audit machinery was not decoration. Five things it caught, none of which would
-have announced itself:
+Framing 1's matched difference (+8.7 bps over 11 cells) has no interval; its absolute-move slope has an interval [197, 446] and MDE 172. The public within-cell regression of absolute 60-minute move (bps) on map share has slope +332 [197, 446]; the private v2 regression of absolute move (decimal) on log share had slope −0.00053 [−0.00065, −0.00004]. The specifications differ and do not support a common directional conclusion.
 
-**A sign inversion.** The direction model's downside-loss feature was assigned the
-up-move magnitude, inverting exactly the asymmetry the system was meant to trade.
-Training Sharpe went from −0.108 to positive the moment it was fixed — a bug that
-made results look *worse*, which is the kind nobody goes looking for.
+Framing 2: slope −0.09 [−0.63, 0.42], MDE 0.75 bps per unit log-pressure, n 4,036 on 70 book days.
 
-**A stale price forward-filled across a month.** Binance publishes monthly archives
-weeks late. An unbounded as-of join carried a July price across the whole of August,
-inside a sealed window. Bounded tolerances and a daily-file backfill fixed it; without
-the staleness columns it would have looked like a quiet month.
+Framing 3: raw slope −11.6 [−17.7, −6.4] bps per unit log-age, MDE 8.0, n 28,220 on 1,373 days; the momentum-controlled slope is −2.8 with no interval. The momentum control is not in the v3 registration and is present in the completed analysis; the docstring gives its rationale.
 
-**Infinity poisoning.** One zero-variance window produced an infinity that propagated
-through an exponentially-weighted mean and truncated a 700,000-row variant panel to
-648 rows, yielding a spurious information coefficient of 0.52 that tripped the leakage
-gate. The gate is what caught it.
+Framing 4's differences (weekend −1.4 bps over 178 cells; Asia +1.2 bps over 45 cells) have no intervals.
 
-**A walk-forward mask.** Training and prediction shared one mask, so sealed months
-never appeared as test rows and the hold-out came back empty rather than failing. It
-was disclosed in full, including what the invalid first open had shown and the
-statement that no decision was changed in response.
+**Disposition.**
+- Question: whether the response appears through a cluster relative to matched empty levels (1), when flow is scaled by the depth waiting for it (2), by cluster age (3), or when liquidity providers are thin (4).
+- Established: the per-framing statement above — 1 = matched difference without an interval plus an absolute-move slope with one; 2 = null with an interval; 3 = raw effect with an interval, controlled effect without one; 4 = point differences without intervals.
+- Unresolved: framing 1's direction (the two stored regressions differ in specification and the registered v2 statistic is not among them); framing 3's controlled slope has no interval and the control is not in the v3 registration.
+- Decision: framings 1, 2 and 4 stopped — nothing further was computed: the registered v2 statistic was a ratio that is not among the stored statistics, framing 2's interval includes zero on 70 book days, and framing 4 has no intervals. Framing 3 preserved as unresolved; resolution would require an interval for the momentum-controlled contrast, which has not been computed.
 
-**A result that looked like signal and was a clock.** A news feature appeared to
-improve the volatility model. A pre-committed staleness clause put the entire gain in
-the six hours after each daily value published and zero elsewhere, and the placebo
-named the cause: the feature's companion staleness column is "hours since midnight"
-under another name. The model improved because a time-of-day variable had been added
-to it.
+### The volatility forecast
 
-## In one line
+R² in the sealed blocks: 0.457 against 0.311 and 0.554 against 0.165 at one hour, 0.464 against 0.232 and 0.540 against −0.233 at four hours, Model A against GARCH(1,1); the GARCH parameters coincide with arch's starting-value grid and convergence status is not preserved in the reported output; on QLIKE GARCH is better in three of four sealed cells.
 
-The map is real, the flow arrives where it predicts, the information is already in the
-price, and the one component that does generalise is worth less than the cheapest
-instrument that could express it.
+Corsi's day/week/month HAR loses by 0.13 to 0.22 R² in the sealed blocks. Point R² differences over the hour/day/week HAR of +0.024/+0.026/+0.038/+0.051 on 87,552 and 87,264 evaluated rows per block (304 and 303 complete-day equivalents out of 365); no uncertainty was computed. On QLIKE the intraday HAR beats Model A in three of the four sealed cells. By arithmetic from the minimum-training-rows rule, the last two months of each block have no forecasts.
 
-## What this project determined next
+**Disposition.**
+- Question: whether Model A forecasts realised volatility better than GARCH(1,1) and HAR-RV, and whether the map-derived features carry the difference.
+- Established: the R² and QLIKE values above; point differences over the hour/day/week HAR of +0.024/+0.026/+0.038/+0.051 with no uncertainty computed; the intraday HAR better on QLIKE in three of four sealed cells; two of Model A's inputs fitted once on all training rows and supplied to every month.
+- Unresolved: whether the differences over HAR are distinguishable from zero (no uncertainty computed); which features carry them (not tested); whether the GARCH optimiser converged (not preserved in the output).
+- Decision: preserved as unresolved. The point differences stand; "the map features carry a few points of R²" is withdrawn. Resolution would require an interval for the paired loss differences and a comparison without the map-derived features on the same evaluation rows; neither has been computed.
 
-This project asked whether an effect exists. The answer was no, and the mechanism is
-known: the liquidation map is computable from public data, so the flow is anticipated
-and the impact is arbitraged away before it arrives. But the project did not end on
-that finding. It ended on arithmetic. Six basis points of edge against a
-ten-basis-point round trip made the strategy impossible before any signal was found.
+### The option structures
 
-That distinction set the next question. If the method was sound and the economics were
-not, the next project should hold the method fixed and change the cost structure.
-Futures cost roughly one to two basis points a round trip against daily moves of fifty
-to a hundred — the same ratio inverted. The question type should change too: not "does
-this effect exist", which has a low prior and produced only refutations, but "do
-known, well-documented effects survive my costs and my constraints", which has a high
-prior and a usable answer either way.
+On the 2021-onward subsample (190 weekly strips) the stored idealised MDE is 81.6 bps (137.3 on the full sample); (81.6/10)² = 67; 67 × 4.6 years = 309. Cost of 20.1 bps for the daily-hedged straddle comprises fees and hedge fees; the option bid-ask spread is not included. The stored MDE for the daily-hedged straddle is 73.7 bps; the stored edge range is 45.7–67.3 bps. That range is the output of the formula √ΔR² × √(2/π) × stored dispersion, under the assumptions that the correlation equals the square root of the incremental R² measured on 1h/4h log volatility, that it applies unchanged to a 7-day variance payoff and to hedging noise, and that the stored dispersion convention is the intended one. 521 independent trades, about ten years of weekly ones, is arithmetic under the same formula and independence.
 
-The reusable output is the machinery, not the finding: as-of discipline, minimum
-detectable effect computed before any criterion is committed, placebo on every result,
-randomisation on the pipeline itself, and sealed hold-outs opened once. Five standing
-rules, each bought with a specific failure. All of it carried forward unchanged.
+**Disposition.**
+- Question: whether any option structure could express the forecast at the 10 bps band, and what the measured difference over HAR would be worth per trade.
+- Established: eight stored MDEs, the smallest 41.8 bps; the idealised MDE 81.6 bps on the 2021-onward subsample and 137.3 bps on the full sample; a cost of 20.1 bps that excludes the bid-ask spread; the formula outputs above under their listed assumptions; entry prices that are four-hour transaction-side averages with imputed sides.
+- Unresolved: which per-trade dispersion convention was intended; how the option-fill file was acquired; whether the same correlation applies to every structure (assumed, unsupported).
+- Decision: stopped. The economic conclusions are withdrawn and no repair was undertaken, because each input to them is unresolved — the dispersion convention, the cost basis and the file's provenance — and the formula's assumptions have no support in the artefacts.
+
+## Relevance to a research or trading role
+
+The relevant work here is constructing event rows from timestamped market data, comparing volatility forecasts with explicit benchmarks, and reporting intervals alongside their observation unit and assumptions. I would present this as research machinery and inference practice, with the limitations above; it is not evidence of live trading, execution or inventory management.
+
+## What could not be established
+
+Whether within-cell absolute movement rises or falls with map share: unknown. Whether the GARCH optimiser converged: unknown. Which per-trade dispersion convention was intended (one side of the trade, or the paired difference): unknown. Whether the difference over HAR-RV is attributable to the map-derived features rather than to DVOL, GARCH, funding, premium index, OI ratio, liquidation counts or time-of-day: not tested. No uncertainty was computed for the differences over HAR-RV. The option-fill file in the archive was not produced by the fetch code as written; its acquisition schedule is unknown. The origin of the 14 day-blocks beyond the 47 first-of-month training days was not verified.
+
+Anticipation of forced flow was tested privately through two implications; both were inconclusive. The six-basis-point edge against a ten-basis-point round trip, and the 82,152 variants, are the author's account from the private v1 record and are not reproducible here. Five audit episodes are documented in the private decision log; the consequences attributed to each are the author's retrospective account.
+
+## What the audit found
+
+### Registration
+
+The public repository re-implements four analyses of a private project; its figures differ from the private figures. For v2 through v12, a commit recording the hypothesis precedes the commit recording the result (author-dated, local, unpushed). For v13, hypothesis, code and result were committed together; commit order is silent on sequence.
+
+### Sealed-block scoring history
+
+HAR was fitted on training rows and scored on the sealed outcomes; the repository has no look counter; the sealed blocks have been scored repeatedly: 2026-09-02 (twice, the first with a single-mask defect disclosed privately), 2026-09-06, 2026-09-07, and 2026-09-12 (twice). The "looks" values in `reports/results/` are literals written by the code. The locator statistics were computed on all 73 OI-covered print days, 26 of which fall inside the sealed blocks including their ±3-day purge.
+
+### Corrections to previously published figures and sentences
+
+- "seven-day half-life" → 3.5-day half-life (the configured value).
+- "(looks: 0; measured on sample days inside the training window)" on the locator result: withdrawn; the sample includes sealed-block days.
+- "every one of the 36 cluster touches coincided with real forced selling": replaced by the base-rate statement above (92.4 % of empty touches also had a print).
+- "5.3× the liquidation notional of unmapped ones": replaced by the three-bucket statement; mid-share levels carry a higher mean than clusters, and 94 % of the control are zero-mass buckets.
+- "53,088 touches": prints, not touches.
+- The 30-minute result quoted alone: all three registered horizons are now reported.
+- "cleared its placebo comfortably": withdrawn; the placebo procedure is described instead.
+- "The randomisation test on the level itself could not distinguish the measured value from shuffled labels": withdrawn.
+- "Four were underpowered" and "each was paired with a label-shuffle placebo" and "each named in advance the confound": withdrawn.
+- "comfortably against a GARCH(1,1) baseline": withdrawn; the QLIKE comparison against GARCH is now stated.
+- "Model A still wins": point differences with no uncertainty.
+- "No hold-out counter moved … the single existing look": withdrawn.
+- "Each sealed-block number carries the number of times that block was looked at": withdrawn.
+- "the map features carry a few points of R²": withdrawn; no ablation exists.
+- "worth 45.7 to 67.3 bps per trade", "measured round trip", "every assumption favours the trade": replaced by the formula-output statement with its assumptions; the bid-ask spread is not in the cost.
+- "no structure reduces the variance of the thing it is measuring": withdrawn.
+- 81.6 bps identified as the 2021-onward subsample; the full-sample figure (137.3) is now stated.
+- "at a one-hour horizon its shortest input is already a full day stale": withdrawn.
+- "walk-forward monthly on a trailing year": qualified; two inputs are fitted once on all training rows.
+- "reproduces four results": re-implements; the figures differ from the private ones.
+- "so the prose cannot drift from the run": withdrawn; the test checks selected literal phrases.
+- "a value may appear at time t only if it was publicly knowable at t": withdrawn as a description of what the test establishes.

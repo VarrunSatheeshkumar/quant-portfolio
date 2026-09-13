@@ -23,7 +23,8 @@ METRICS_START = "2020-09-01"      # 5-minute open interest starts here, so the m
 H1, H4 = 12, 48
 HORIZONS = {"1h": H1, "4h": H4}
 
-# ---- hold-outs. Each was opened exactly once; the look counts are in SUMMARY.md.
+# ---- hold-outs. The repository has no look counter; the sealed blocks have been
+# scored repeatedly (see WRITEUP.md, "Sealed-block scoring history").
 SEALED_RECENT = ("2025-09-01", "2026-09-01")
 SEALED_2022 = ("2022-01-01", "2023-01-01")
 LIVE_FORWARD_START = "2026-09-01"

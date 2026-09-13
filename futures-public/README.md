@@ -2,26 +2,20 @@
 
 Part two of three. Part one: BTC forced flow (`../btc-public`) · Part three: equities (in progress)
 
-A systematic futures study on free daily data, and the pre-registered candidate screen
-that followed it. The question: do well-documented premia — trend, carry, value — survive
-a retail cost model and a hard drawdown mandate? The answer, in three sentences:
+**Start here**
 
-1. The three-signal programme does not work as specified: trend alone earns a Sharpe of
-   0.24 after costs, carry is unmeasurable on the 13 markets where free data exposes a
-   curve, value is refuted (−0.44), and the combination is 0.06 in training and −1.28 on a
-   two-year hold-out opened once.
-2. Twenty further claims were ranked and pre-registered before any test and run in order
-   under a fixed twenty-way correction; a positive control cleared at t = 4.1, one
-   candidate cleared — crypto funding carry, t = 3.73, +0.93% per week net of cost, decayed
-   fourfold after 2021 — and every futures premium showed the predicted sign at roughly its
-   published size but could not be resolved at that correction on 24 years of 13 markets.
-3. The mandate simulator says what binds: of 500 mandates, 53 are attainable; the daily
-   loss limit binds 68% of the time against 4% for the time window; and the volatility
-   target that maximises pass probability sits *below* the one that maximises
-   risk-adjusted return.
+- Begin with the [strategy table](WRITEUP.md#the-three-signals), then follow [one C18 week](WRITEUP.md#worked-example-constructing-one-c18-week) from funding ranks to its return and cost proxy.
+- The tracked [stage reports](reports/stage_reports/) answer how the futures signals and combined programme scored; [C18.md](reports/candidates/C18.md) and [C18_AUDIT.md](reports/candidates/C18_AUDIT.md) contain the funding candidate's reported outputs, read with the write-up's cost and halt-rule qualifications.
+- On a fresh clone, `./reproduce.sh` skips the completed build stages, then attempts the candidate fetch and splice check; missing core futures data prevents a complete reproduction. The tracked reports can be read without data.
+- Recomputing needs `data/`; `python build.py --force-from s0` rebuilds the core stages but halts at s9 on the tracked look counter. See [Running it](#running-it) for the command sequence and limits.
 
-`WRITEUP.md` is the full account. Every number there carries its hold-out look count and
-audit status, and every one is reproduced by the code here.
+The claim ledger records the 2026-09-12 audit and the presentation provenance added on 2026-09-13. The write-up reports the retained measurements, their limitations and the withdrawn wording.
+
+## What the repository contains
+
+Three signals — trend, carry and value — specified in advance on daily futures data from free sources across 13–27 markets, with a modelled cost, a portfolio layer and a drawdown-mandate simulator; a sealed two-year hold-out; and a screen of candidate claims recorded in a private local repository in commits preceding the result commits (not verifiable from this repository; commit order, not execution order).
+
+The measurements are in `WRITEUP.md`. In summary: trend net Sharpe 0.24, carry 0.08 (design MDE in Sharpe units 0.61), value −0.44, combined 0.06; no Sharpe interval has been computed for any of them. Hold-out net Sharpe −1.28; the block was scored 2026-09-09 (−1.18 on a partial final bar) and 2026-09-12 (−1.28 on the settled close). Of the candidate screen: none of the three non-control candidates predicted to clear cleared; three of the four predicted sign-right/not-cleared matched that prediction; the fourth, C18 (crypto funding-rate carry), cleared with gross alpha +1.015 %/wk, month-block SE 0.27, t 3.73; net alpha with costs entered into the weekly series has not been computed. The halt-rule record and the registration status are in `WRITEUP.md`.
 
 ## Running it
 
@@ -30,51 +24,27 @@ pip install -r requirements.txt
 ./reproduce.sh
 ```
 
-`reproduce.sh` runs `python build.py` (stages s0–s9, each gated, resumable from
-`reports/progress.json`; `python build.py --force-from s4` re-runs from a stage), then the
-candidate fetch, the splice check, the pre-registration dispersions, the eight tests in
-their pre-registered order, and the C18 audit. About an hour on a laptop. All data
-sources are keyless: Yahoo Finance, TreasuryDirect, Binance, EIA. `config.END` fixes the
-last bar at 2026-09-09 so the numbers match the write-up. `data/` is rebuilt and not
-tracked; `reports/` is tracked so the results can be read without running the pipeline,
-and a reproduction overwrites it.
+`reproduce.sh` runs `python build.py` (stages s0–s9), then the candidate fetch, the splice check, the pre-registration dispersions, the eight candidate tests and the C18 audit. Data sources are keyless: Yahoo Finance, TreasuryDirect, Binance, EIA. `config.END` fixes the last bar at 2026-09-09. `data/` is not tracked; `reports/` is tracked.
 
-The hold-out (`config.SEALED_START`, the last two years) is opened by s9 and counted in
-`reports/holdout_looks.json`. In the original run it was opened once, on 2026-09-09; the
-reproduction of 2026-09-12 opened it once again and produced the same number, and the
-tracked `holdout_looks.json` and `RESULTS.md` carry that reproduction's date and single
-look. Re-deriving a recorded result is not a second look; no decision was taken after
-either. Do not tune anything on it.
+On a fresh clone the default build skips every stage because the tracked progress file marks them complete; a forced rebuild (`python build.py --force-from s0`) runs the stages and halts at s9 because the tracked look counter already records a look. The public `LOG.md` is regenerated by `reproduce.sh` and carries neither the C18 void entry nor the original timestamps.
 
-Reproduction note: the original run fetched its data on 2026-09-09 before that session had
-closed, so its final bar was a partial print; it reported a hold-out Sharpe of −1.18. With the
-settled close the same code gives −1.28, and every training-period number is unchanged to the
-printed precision except the randomised diagnostics (placebo and shuffle percentiles), which
-move by a few hundredths because the placebo's per-market flip rate is estimated from the
-full series. WRITEUP.md carries the settled-close numbers.
+Selected literal phrases in this README and `WRITEUP.md` are checked for presence against the tracked reports by `python -m tests.test_documents`, without validating their interpretation. `python -m tests.test_asof` and `python -m tests.test_stitching` run the as-of and stitching checks.
 
 ## What each module does
 
 | module | role |
 |---|---|
-| `config.py` | every constant: universe and contract specs, cost inputs, signal parameters, bands, dates |
+| `config.py` | constants: universe and contract specs, cost inputs, signal parameters, bands, dates |
 | `build.py`, `progress.py` | orchestrator and stage bookkeeping; a failed gate halts the run |
-| `stages/s0_fetch.py` | daily bars from Yahoo Finance with an `asof_time` per row |
-| `stages/rolls.py` | exchange-rule expiry dates per contract family |
-| `stages/s0_stitch.py` | Yahoo's `=F` series are unadjusted front-month splices; locates each switch day, drops it, rebuilds Panama and ratio series, and produces the roll-treatment variants for the sensitivity check |
-| `stages/s0_grid.py` | the as-of grid: own bars on their date, reference series lagged one day |
-| `stages/s0.py`, `tests/` | as-of test on random timestamps, stitching invariants, roll-sign refutation clauses |
-| `stages/s1.py` | per-market cost model and the edge/cost ratio, computed before any return is read |
-| `stages/s2.py`, `s3.py`, `s5.py` | trend, carry (basis where a spot reference exists; rates from the Treasury curve) and value, each evaluated standalone by `stages/signal_eval.py` with placebo, randomisation and stitching sensitivity |
-| `backtest.py` | the one P&L engine: contracts × neutralised dollar changes, costs on every trade and roll, monthly block-bootstrap MDE |
-| `portfolio.py`, `stages/s4.py` | sector caps, Ledoit–Wolf shrinkage, portfolio-level vol targeting, effective breadth |
-| `stages/s6.py` | the three-signal programme, its correlation matrix, contribution by signal, randomisation and placebo |
-| `simulator.py`, `stages/s7.py`, `s8.py` | the drawdown-mandate simulator on the real path, and the feasibility sweep |
-| `stages/s9.py` | opens the hold-out once and writes `reports/RESULTS.md` |
-| `lib/asof.py`, `holdout.py`, `power.py`, `validate.py` | audit machinery carried from the previous project: as-of joins with tolerances, purge/embargo and the look counter, MDE from block-bootstrap standard errors, placebo and block-shuffle randomisation |
-| `candidates/common.py` | the pre-registered designs: event windows, the commodity panel slope with month fixed effects, the C18 weekly funding book, placebos |
-| `candidates/prereg.py` | design dispersions and MDEs at N = 20, printed without any mean |
-| `candidates/run.py` | one test per invocation, in the pre-registered order; writes `reports/candidates/<key>.md` |
-| `candidates/fetch.py`, `splice_check.py`, `audit_c18.py` | the candidate data (SPY, VIX, auctions, Binance), the splice premise check against NYMEX settlements, and the C18 audit |
+| `stages/s0_fetch.py`, `rolls.py`, `s0_stitch.py`, `s0_grid.py`, `s0.py` | daily bars with an `asof_time` per row; exchange-rule expiries; roll-switch offsets selected on the full price history including the sealed period; the as-of grid; the as-of and stitching tests |
+| `stages/s1.py` | the cost model and the projected edge/cost ratio under an assumed gross Sharpe of 0.4; the return panel is read to compute dollar volatility; cost normalisation uses the final 250 observations |
+| `stages/s2.py`, `s3.py`, `s5.py`, `signal_eval.py` | trend, carry and value, each evaluated standalone with a placebo, a block permutation and the stitching sensitivity |
+| `backtest.py` | the P&L engine; costs on trades and rolls; monthly block bootstrap of the daily mean return, reported in Sharpe units as a mean-return MDE |
+| `portfolio.py`, `stages/s4.py` | sector scaling (sectors above a 35 % standalone-risk share are scaled down once by cap/share), Ledoit–Wolf shrinkage, vol targeting, diversification ratio squared |
+| `stages/s6.py` | the three-signal programme, its correlation matrix, leave-one-signal-out Sharpe differences, a 40-draw placebo |
+| `simulator.py`, `stages/s7.py`, `s8.py` | the drawdown-mandate simulator on the training path and the 500-mandate sweep |
+| `stages/s9.py` | scores the hold-out and writes `reports/RESULTS.md`; the consistency check uses a training-based calculation |
+| `lib/holdout.py` | the look counter used by s9 |
+| `candidates/common.py`, `prereg.py`, `run.py`, `fetch.py`, `splice_check.py`, `audit_c18.py` | the candidate designs, the design dispersions (computed from the same data the tests then use), the eight tests, the candidate data, the splice check for the four energy contracts, and the post-hoc C18 audit |
 
 Python 3.9 or later. No credentials are used anywhere.
