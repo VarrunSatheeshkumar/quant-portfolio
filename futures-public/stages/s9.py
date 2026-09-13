@@ -26,7 +26,29 @@ def stats_json(stage):
     return json.loads(p.read_text())
 
 
+def retained_result():
+    """Validate the historical reports without reading or scoring hold-out data."""
+    counter = holdout.LookCounter(LOOKS)
+    entry = counter.data.get("holdout", {})
+    resume_aborted = (counter.count("holdout") == 1 and entry.get("aborted")
+                      and not (config.STAGES / "s9_stats.json").exists())
+    if counter.count("holdout") == 0 or resume_aborted:
+        return None
+    required = [config.REPORTS / "RESULTS.md", config.STAGE_REPORTS / "s9.md"]
+    missing = [str(path) for path in required if not path.is_file() or not path.read_text().strip()]
+    if missing:
+        progress.halt("s9", "historical hold-out reports missing or empty: " + ", ".join(missing)
+                      + "; restore the original reports; the hold-out will not be re-scored")
+    last = (entry.get("history") or [{}])[-1].get("at", "")[:10]
+    return (f"historical hold-out retained (look count {counter.count('holdout')}, last {last}); "
+            "not re-scored; tracked RESULTS.md and s9.md validated and retained; "
+            "s9 data files are not regenerated")
+
+
 def main():
+    retained = retained_result()
+    if retained is not None:
+        return retained
     counter = holdout.LookCounter(LOOKS)
     entry = counter.data.get("holdout", {})
     if counter.count("holdout") == 1 and entry.get("aborted") and not (config.STAGES / "s9_stats.json").exists():
@@ -35,15 +57,6 @@ def main():
         entry["history"].append({"note": f"scoring completed {date.today().isoformat()} by the final run", "at": pd.Timestamp.utcnow().isoformat()})
         entry["aborted"] = False
         counter.path.write_text(json.dumps(counter.data, indent=2))
-    elif counter.count("holdout") > 0:
-        # The tracked counter already records a scoring. A second scoring is not a hold-out, so
-        # this run does not re-score: the tracked RESULTS.md and s9.md are retained as they are,
-        # and the reproduction continues to the candidate tests.
-        last = (entry.get("history") or [{}])[-1].get("at", "")[:10]
-        line = (f"hold-out already scored (look count {counter.count('holdout')}, last {last}); not re-scored -- "
-                f"a second scoring is not a hold-out; tracked RESULTS.md and s9.md retained")
-        print(f"s9: {line}")
-        return line
     else:
         counter.look("holdout", note=f"opened {date.today().isoformat()} after s0-s8 complete and every decision final")
 

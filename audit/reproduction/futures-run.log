@@ -1,0 +1,91 @@
+Sun Sep 13 16:40:10 BST 2026
+== sh ./reproduce.sh on the fixed clone (capped at 60 min)
+<user-home>/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+data/grid/w0.parquet absent (fresh clone, or data/ cleared): the tracked progress file is ignored and every stage runs
+s0: gate PASS — 27 markets, 820 as-of checks, rolls at expiry+1; largest removed artefact NG 10.98%/yr
+s1: gate PASS — edge/cost 2.3 (favourable); turnover 76.8x/yr, 1.8 bp/side, Sharpe drag 0.177
+s2: gate PASS — trend net Sharpe 0.24, placebo p95 0.02, 10.0 bp/side vs 3.24 cost, splice artefact -0.14
+s3: gate PASS — trend-carry corr -0.07 (covered -0.05); carry standalone net Sharpe 0.08 (OUTSIDE BAND: MDE 0.61, underpowered by design), placebo NOT cleared (p95 0.24), 6.2 bp/side vs 2.81 cost
+s4: gate PASS — realised vol 17.6% vs target 15% (rolling-year median 17.5%); effective breadth 10.2; trend+carry net Sharpe 0.34
+s5: gate PASS — value-trend corr -0.47; value net Sharpe -0.44 (OUTSIDE BAND: MDE 0.57), placebo NOT cleared (p95 0.19), -31.8 bp/side vs 5.59 cost
+s6: gate PASS — combined net Sharpe 0.06 (OUTSIDE BAND, machinery verified: result recorded), vol 16.6%, maxDD -53%, breadth 8.6, shuffled gross -0.07, placebo cleared (p95 0.05)
+s7: gate PASS — base mandate at 15% vol: pass 22.3%, timeout 49.9%, breach dd 12.2% / daily 15.6%, median 30 days
+s8: gate PASS — 53/500 mandates attainable; binds: breach_daily 68%, breach_dd 28%, timeout 4%; pass-max vol 25% vs Calmar-max 40% on SPEC mandate
+s9: hold-out already scored (look count 1, last 2026-09-12); not re-scored -- a second scoring is not a hold-out; tracked RESULTS.md and s9.md retained
+s9: hold-out already scored (look count 1, last 2026-09-12); not re-scored -- a second scoring is not a hold-out; tracked RESULTS.md and s9.md retained
+<user-home>/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+16:42:48 spy (8460, 9) 1993-01-29 2026-09-09
+16:42:48 vix (9241, 8) 1990-01-02 2026-09-09
+16:42:53 treasury Note (1967, 120)
+16:42:55 treasury Bond (394, 120)
+16:42:55 treasury done (2361, 10)
+16:42:56 binance symbols with >=3y history 142
+16:43:02 binance 0 1000FLOKIUSDT funding rows 3668
+16:46:10 binance 20 ASTRUSDT funding rows 3913
+16:48:59 binance 40 COMPUSDT funding rows 6789
+16:51:20 binance 60 GALAUSDT funding rows 5455
+16:53:41 binance 80 LINKUSDT funding rows 7284
+16:55:53 binance 100 QNTUSDT funding rows 4263
+16:58:16 binance 120 TLMUSDT funding rows 4361
+17:00:40 binance 140 ZILUSDT funding rows 7451
+17:00:49 binance done
+17:00:49 all done
+<user-home>/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+  market  days  share_days_equal_c1  share_days_equal_c1_2002on  held_to_expiry_2002on  new_front_2002on  n_expiries  held_to_expiry  new_front_on_switch  identity_ok  mean_spread_E  share_spread_pos  mean_abs_spread_E  mean_abs_real_move
+0     CL  5917               0.9669                      0.9846                 0.9625            0.9813         283          0.9435               0.9682       0.9541         0.0861            0.6714             0.6668              1.0645
+1     NG  5909               0.9711                      0.9837                 0.9147            0.9845         274          0.8869               0.9781       0.9489         0.0733            0.7445             0.1377              0.1334
+2     HO  5904               0.9782                      0.9878                 0.9529            0.9882         271          0.9262               0.9889       0.9594        -0.0074            0.5572             0.0283              0.0399
+3     RB  4640               0.9881                      0.9881                 0.9535            0.9907         215          0.9535               0.9907       0.9860        -0.0176            0.3442             0.0579              0.0393
+PREMISE HOLDS
+C14  n=  6210  SE 0.7373 bp/day; clears at |stat| >= 2.227 bp/day in the predicted direction (t >= 3.02); MDE 2.064 unadjusted / **2.846 at N = 20** bp/day  | {'cost_bp': 0.86, 'first': '2002-01-03', 'last': '2026-09-09'}
+C19  n=  5834  SE 1.623 pp (breach_daily share); clears at |stat| >= 4.901 pp (breach_daily share) in the predicted direction (t >= 3.02); MDE 4.544 unadjusted / **6.265 at N = 20** pp (breach_daily share)  | {'se_pass_pp': 1.1435442467002965, 'mean_multiplier': 0.8724998438847918, 'share_days_capped': 0.4346793349168646, 'path_end': '2024-08-02'}
+C2   n=  1796  SE 0.05833 sigma (3-bar sum); clears at |stat| >= 0.1761 sigma (3-bar sum) in the predicted direction (t >= 3.02); MDE 0.1633 unadjusted / **0.2251 at N = 20** sigma (3-bar sum)  | {'per_market': {'CL': 258, 'CT': 120, 'HO': 268, 'KC': 122, 'NG': 243, 'RB': 268, 'SB': 99, 'ZC': 123, 'ZS': 172, 'ZW': 123}, 'cost_sigma_3x_spread': {'CL': 0.028, 'NG': 0.075, 'HO': 0.012, 'RB': 0.022, 'ZC': 0.365, 'ZS': 0.178, 'ZW': 0.191, 'KC': 0.077, 'SB': 0.455, 'CT': 0.266}}
+C9   n=  3835  SE 0.08498 sigma_m per 1 sd of signal; clears at |stat| >= 0.2566 sigma_m per 1 sd of signal in the predicted direction (t >= 3.02); MDE 0.2379 unadjusted / **0.328 at N = 20** sigma_m per 1 sd of signal  | {'months': 295, 'ls_se_sigma_m': 0.19066099799786707, 'tercile_turnover': 0.15404896421845574, 'median_rt_cost_sigma': 0.02505446623093682}
+C1   n=  3835  SE 0.07984 sigma_m per 1 sd of signal; clears at |stat| >= 0.2411 sigma_m per 1 sd of signal in the predicted direction (t >= 3.02); MDE 0.2236 unadjusted / **0.3082 at N = 20** sigma_m per 1 sd of signal  | {'months': 295, 'ls_se_sigma_m': 0.1860990208886807, 'tercile_turnover': 0.12165725047080979, 'median_rt_cost_sigma': 0.02505446623093682}
+C11  n=   474  SE 0.101 sigma (post - pre, 4 bars); clears at |stat| >= 0.305 sigma (post - pre, 4 bars) in the predicted direction (t >= 3.02); MDE 0.2828 unadjusted / **0.3898 at N = 20** sigma (post - pre, 4 bars)  | {'per_market': {'ZB': 219, 'ZN': 255}, 'cost_two_round_trips': {'ZN': 0.256, 'ZB': 0.242}}
+C15  n=  3164  SE 0.03857 sigma (signed 2-bar sum); clears at |stat| >= 0.1165 sigma (signed 2-bar sum) in the predicted direction (t >= 3.02); MDE 0.108 unadjusted / **0.1489 at N = 20** sigma (signed 2-bar sum)  | {'per_market': {'CL': 1001, 'HO': 1080, 'RB': 1083}, 'cost_one_round_trip': {'CL': 0.009, 'HO': 0.004, 'RB': 0.007}}
+C18  n=   342  SE 0.272 % per week (alpha on BTC); clears at |stat| >= 0.8216 % per week (alpha on BTC) in the predicted direction (t >= 3.02); MDE 0.7617 unadjusted / **1.05 at N = 20** % per week (alpha on BTC)  | {'first': '2020-02-17', 'last': '2026-08-31', 'mean_symbols': 108.53216374269006, 'turnover': 0.414713786003402, 'cost_pct_week': 0.0829427572006804}
+C14 CLEARED: overnight 3.04 bp/day, t = 4.13, shuffle t = -0.24
+C19 NOT CLEARED: Δbreach_daily -0.51 pp (t -0.32), Δpass -1.27 pp, placebo p5 -2.38
+C2 NOT CLEARED: mean +0.051σ, t = 0.87, placebo p5 -0.066
+C9 NOT CLEARED: slope +0.181, t = 2.12, placebo p95 +0.121, L/S +0.534σ/mo
+C1 NOT CLEARED: slope +0.198, t = 2.48, placebo p95 +0.112, L/S +0.368σ/mo
+C11 NOT CLEARED: mean +0.173σ, t = 1.72, pre -0.114, post +0.060
+C15 NOT CLEARED: mean +0.061σ, t = 1.58, pseudo max -0.006
+C18 CLEARED: alpha +1.015 %/wk, t = 3.73, placebo p95 +0.399
+# C18 audit — before recording a result above its band
+
+Long-short weekly return decomposed into the price leg and the funding leg (both %/week, month-block SE).
+
+| component / period | mean | SE | t | weeks |
+|---|---|---|---|---|
+| total (all) | +1.036 | 0.283 | +3.67 | 341 |
+| price leg (all) | +0.501 | 0.274 | +1.83 | 341 |
+| funding leg (all) | +0.535 | 0.035 | +15.32 | 341 |
+| total 2020-02 to 2021-12 | +2.249 | 0.827 | +2.72 | 98 |
+| total 2022-01 to 2026-08 | +0.547 | 0.204 | +2.69 | 243 |
+| price leg 2022+ | +0.081 | 0.204 | +0.40 | 243 |
+| funding leg 2022+ | +0.466 | 0.034 | +13.72 | 243 |
+
+* signal at entry: bottom-quintile funding -0.489 %/week, top-quintile +0.473 %/week (7-day sums)
+* beta of the long-short on BTC: +0.027; alpha +1.015 vs raw mean +1.042 %/week
+* names in a leg with no price a week later (dropped from the leg mean): 0 of 15192 leg-slots (0.00%)
+* cost sensitivity at 41% weekly turnover: 20 bp round trip → 0.08; 50 bp → 0.20; 100 bp → 0.41 %/week against +1.04
+* survivorship: the universe is perpetuals still trading in 2026-09 with ≥ 3 years of history; perpetuals delisted before then are absent. A high-funding name that died would have paid the short leg; a negative-funding name that died would have cost the long leg. The direction of the bias is not determinable from this data and is recorded as an open limitation.
+
+## Verdict
+
+* price leg works against the funding (price t <= -2): **not fired**
+* lives in 2020-21 only (2022+ total t < 2): **not fired**
+* depends on names vanishing mid-week (> 2% of leg-slots): **not fired**
+* does not survive 50 bp round trip: **not fired**
+* beta does the work (|beta| > 0.3): **not fired**
+
+**AUDIT PASSED — recorded as cleared, with the survivorship limitation attached.**
+documents: 49 quoted phrases match reports/, 0 failures
+  (7 figures quoted from the private record or from diagnostics on untracked data are not checkable here)
+done: see reports/RESULTS.md and reports/candidates/
+reproduce.sh exit=0

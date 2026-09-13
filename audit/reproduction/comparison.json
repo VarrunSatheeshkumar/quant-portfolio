@@ -1,0 +1,187 @@
+{
+  "purpose": "Read-only comparison of the retained 2026-09-13 clone with the takeover baseline f0bf041. This does not rerun a study or establish causal/statistical validity.",
+  "saved_clone_revision": "1433ea5d824228c4b254d77fdd5a26d7034ef07f",
+  "takeover_baseline": "f0bf041",
+  "files": [
+    {
+      "path": "btc-public/reports/results/economics.json",
+      "baseline_sha256": "d43030118e7bcabf8eec5328c451868943db28276ebae5b230cede91a26b6595",
+      "saved_clone_sha256": "d43030118e7bcabf8eec5328c451868943db28276ebae5b230cede91a26b6595",
+      "identical": true
+    },
+    {
+      "path": "btc-public/reports/results/event_study.json",
+      "baseline_sha256": "f1c188f96e34353dd75ec2bb3201e2a42d416a3968a1cde54389dcb4b5c2c6f7",
+      "saved_clone_sha256": "f1c188f96e34353dd75ec2bb3201e2a42d416a3968a1cde54389dcb4b5c2c6f7",
+      "identical": true
+    },
+    {
+      "path": "btc-public/reports/results/har.json",
+      "baseline_sha256": "d5a7f480412e2683af349c9ada08194c9ddec8c67656ca6030697b8aab9f9217",
+      "saved_clone_sha256": "d5a7f480412e2683af349c9ada08194c9ddec8c67656ca6030697b8aab9f9217",
+      "identical": true
+    },
+    {
+      "path": "btc-public/reports/results/instrument.json",
+      "baseline_sha256": "d14c2afcb0c4f5592a64f98df29e50cf5d367e659dc3688a695e5a8b877b3c4f",
+      "saved_clone_sha256": "d14c2afcb0c4f5592a64f98df29e50cf5d367e659dc3688a695e5a8b877b3c4f",
+      "identical": true
+    },
+    {
+      "path": "btc-public/reports/results/vol_model.json",
+      "baseline_sha256": "b1adea86c6f5960e233cc2e446a5ec1e4309411e22e478c7e05d58bece8df2f4",
+      "saved_clone_sha256": "b1adea86c6f5960e233cc2e446a5ec1e4309411e22e478c7e05d58bece8df2f4",
+      "identical": true
+    },
+    {
+      "path": "futures-public/reports/stage_reports/s0.md",
+      "baseline_sha256": "86df8dcfb5da771a9769764a66e683cfd008a160f4536cf859d02e9dbfec45f0",
+      "saved_clone_sha256": "86df8dcfb5da771a9769764a66e683cfd008a160f4536cf859d02e9dbfec45f0",
+      "identical": true
+    },
+    {
+      "path": "futures-public/reports/stage_reports/s1.md",
+      "baseline_sha256": "0a96c5d408e2aef8c7da78ecf9a540dee9535a01e385259dc7b4792b54b9ea05",
+      "saved_clone_sha256": "0a96c5d408e2aef8c7da78ecf9a540dee9535a01e385259dc7b4792b54b9ea05",
+      "identical": true
+    },
+    {
+      "path": "futures-public/reports/stage_reports/s2.md",
+      "baseline_sha256": "4a89c055b8eabc10840a83f4b2b9650aadf800cc53499b328bf96b71eee67f18",
+      "saved_clone_sha256": "4a89c055b8eabc10840a83f4b2b9650aadf800cc53499b328bf96b71eee67f18",
+      "identical": true
+    },
+    {
+      "path": "futures-public/reports/stage_reports/s3.md",
+      "baseline_sha256": "6199b9b02ea7a2fd85c02959883fa0b962b9ec926200fd202cf02f4481e50833",
+      "saved_clone_sha256": "6199b9b02ea7a2fd85c02959883fa0b962b9ec926200fd202cf02f4481e50833",
+      "identical": true
+    },
+    {
+      "path": "futures-public/reports/stage_reports/s4.md",
+      "baseline_sha256": "83110d6c5fea46abe6771b61896be1f7bd751fabe0e0a81cc6bc8d97ed79d3d9",
+      "saved_clone_sha256": "83110d6c5fea46abe6771b61896be1f7bd751fabe0e0a81cc6bc8d97ed79d3d9",
+      "identical": true
+    },
+    {
+      "path": "futures-public/reports/stage_reports/s5.md",
+      "baseline_sha256": "bdd9589d6120c185bf3f420db85172adfc495924158bd4774aedd105219f54c7",
+      "saved_clone_sha256": "bdd9589d6120c185bf3f420db85172adfc495924158bd4774aedd105219f54c7",
+      "identical": true
+    },
+    {
+      "path": "futures-public/reports/stage_reports/s6.md",
+      "baseline_sha256": "2901c369f245530cd9d84bcc63a7c63c20f6baede294432c06f325e1dc6da5f1",
+      "saved_clone_sha256": "2901c369f245530cd9d84bcc63a7c63c20f6baede294432c06f325e1dc6da5f1",
+      "identical": true
+    },
+    {
+      "path": "futures-public/reports/stage_reports/s7.md",
+      "baseline_sha256": "16e4f2e7a37f6418826546fd632d985887de5a0bf32c03ec67cb5b1a6cbdd3d4",
+      "saved_clone_sha256": "16e4f2e7a37f6418826546fd632d985887de5a0bf32c03ec67cb5b1a6cbdd3d4",
+      "identical": true
+    },
+    {
+      "path": "futures-public/reports/stage_reports/s8.md",
+      "baseline_sha256": "5768201b1da8c124739d3fb5178242b0869927720ee8a03f09f1e8b142596836",
+      "saved_clone_sha256": "5768201b1da8c124739d3fb5178242b0869927720ee8a03f09f1e8b142596836",
+      "identical": true
+    },
+    {
+      "path": "futures-public/reports/stage_reports/s9.md",
+      "baseline_sha256": "78191a7c529b4b8fc02bbb3873c640c2e836e70b117f23965af8219620a218e4",
+      "saved_clone_sha256": "78191a7c529b4b8fc02bbb3873c640c2e836e70b117f23965af8219620a218e4",
+      "identical": true
+    },
+    {
+      "path": "futures-public/reports/candidates/C1.md",
+      "baseline_sha256": "e418d03e4a8c7f40fd3478fc23c0524e05b7d29b746d18c46578f8c720d1413b",
+      "saved_clone_sha256": "e418d03e4a8c7f40fd3478fc23c0524e05b7d29b746d18c46578f8c720d1413b",
+      "identical": true
+    },
+    {
+      "path": "futures-public/reports/candidates/C11.md",
+      "baseline_sha256": "1cc252cc318f5248251d3fe477b3891d56298935d91782c97050df82058c096d",
+      "saved_clone_sha256": "1cc252cc318f5248251d3fe477b3891d56298935d91782c97050df82058c096d",
+      "identical": true
+    },
+    {
+      "path": "futures-public/reports/candidates/C14.md",
+      "baseline_sha256": "0006108af3fef140dea8d262c8addaf386f745be4b3749ebfaa3d8bfdd01028c",
+      "saved_clone_sha256": "0006108af3fef140dea8d262c8addaf386f745be4b3749ebfaa3d8bfdd01028c",
+      "identical": true
+    },
+    {
+      "path": "futures-public/reports/candidates/C15.md",
+      "baseline_sha256": "d867afb56c8758402e19fb09185d4657e81916edd128b483e0d67c112e48a163",
+      "saved_clone_sha256": "d867afb56c8758402e19fb09185d4657e81916edd128b483e0d67c112e48a163",
+      "identical": true
+    },
+    {
+      "path": "futures-public/reports/candidates/C18.md",
+      "baseline_sha256": "4ab11e2b4ba3a7f74c423699af954c70cdb32116737028330f5fae227feff7bc",
+      "saved_clone_sha256": "4ab11e2b4ba3a7f74c423699af954c70cdb32116737028330f5fae227feff7bc",
+      "identical": true
+    },
+    {
+      "path": "futures-public/reports/candidates/C18_AUDIT.md",
+      "baseline_sha256": "2e1abf5775f556a82143fb9b14e531ba3152d8382cb98c781fcc0faeb171dc4c",
+      "saved_clone_sha256": "2e1abf5775f556a82143fb9b14e531ba3152d8382cb98c781fcc0faeb171dc4c",
+      "identical": true
+    },
+    {
+      "path": "futures-public/reports/candidates/C19.md",
+      "baseline_sha256": "d0c63fb8743b0262c4433cb8052d2ba22f38ba8296078e956d6f4012f1f5e5ab",
+      "saved_clone_sha256": "d0c63fb8743b0262c4433cb8052d2ba22f38ba8296078e956d6f4012f1f5e5ab",
+      "identical": true
+    },
+    {
+      "path": "futures-public/reports/candidates/C2.md",
+      "baseline_sha256": "f636688941ea51ef4c88b0b9a43eb2cfc4dd58a949bea9f838175e87ecd3cbce",
+      "saved_clone_sha256": "f636688941ea51ef4c88b0b9a43eb2cfc4dd58a949bea9f838175e87ecd3cbce",
+      "identical": true
+    },
+    {
+      "path": "futures-public/reports/candidates/C9.md",
+      "baseline_sha256": "b5345be36fe86ec73ec9a113060db2e83b4523a076b24a0a8a5412f9ba85cbc1",
+      "saved_clone_sha256": "b5345be36fe86ec73ec9a113060db2e83b4523a076b24a0a8a5412f9ba85cbc1",
+      "identical": true
+    },
+    {
+      "path": "futures-public/reports/candidates/LOG.md",
+      "baseline_sha256": "422fe8a9a2b4f78cc9462ead542391d50a33a66875517b195c121b2f48d6efb4",
+      "saved_clone_sha256": "1e94aad7493639e916185d24297dafb71416501db311c79e229daf62f0499866",
+      "identical": false
+    },
+    {
+      "path": "futures-public/reports/candidates/SPLICE_CHECK.md",
+      "baseline_sha256": "0c87f3ffa7f3c9f6397ef74f5cb12037aaab9199ecc057afe90cf6dce0d32418",
+      "saved_clone_sha256": "0c87f3ffa7f3c9f6397ef74f5cb12037aaab9199ecc057afe90cf6dce0d32418",
+      "identical": true
+    },
+    {
+      "path": "futures-public/reports/candidates/prereg_design.json",
+      "baseline_sha256": "d26924a7901e6f3490943d925946ffdc7d5d32805b4d87d993400d4288baa073",
+      "saved_clone_sha256": "d26924a7901e6f3490943d925946ffdc7d5d32805b4d87d993400d4288baa073",
+      "identical": true
+    },
+    {
+      "path": "futures-public/reports/RESULTS.md",
+      "baseline_sha256": "1466116c8482325b73dbeb45c2cca7c55417b8d501867c947d40e4e8a613ea11",
+      "saved_clone_sha256": "1466116c8482325b73dbeb45c2cca7c55417b8d501867c947d40e4e8a613ea11",
+      "identical": true
+    },
+    {
+      "path": "futures-public/reports/holdout_looks.json",
+      "baseline_sha256": "385b0030753e8dcf4f993f47f7e5387b2d1cad4496ccb3d878e1968d9ef6fff0",
+      "saved_clone_sha256": "385b0030753e8dcf4f993f47f7e5387b2d1cad4496ccb3d878e1968d9ef6fff0",
+      "identical": true
+    },
+    {
+      "path": "futures-public/reports/progress.json",
+      "baseline_sha256": "0b9b75ce9559b317c5b34c7d31ccff3f8dfc87c1126016c563abc6b059ad679a",
+      "saved_clone_sha256": "4919ef89079daf0c20f89316e4b3be7d606a109156531a6316cea59ba9cd01a1",
+      "identical": false
+    }
+  ]
+}

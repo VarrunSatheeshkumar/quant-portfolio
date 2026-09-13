@@ -1,0 +1,60 @@
+Sun Sep 13 16:15:43 BST 2026
+== python run.py on the fixed clone (capped at 45 min)
+=== fetch ===
+[fetch] futures_klines
+  futures_klines_5m: 701,280 rows
+[fetch] premium_index
+  premium_5m: 698,942 rows
+[fetch] funding
+  funding: 7,305 rows
+[fetch] metrics
+  metrics_5m: 630,371 rows
+[fetch] dvol
+  dvol_1h: 47,833 rows
+[fetch] liquidations
+  liquidations: 148,572 rows
+  liq_5m: 23,309 rows
+[fetch] book_snapshots
+  book_5m: 23,323 rows
+[fetch] deribit_option_fills
+  option_fills: 524,945 rows
+fetch complete
+=== grid ===
+grid: 701,280 rows x 50 cols, 2020-01-01 00:05:00+00:00 -> 2026-09-01 00:00:00+00:00
+  worst staleness by source, minutes: {'futures_klines_5m': 0, 'premium_5m': 15, 'funding': 480, 'metrics_5m': 60, 'dvol_1h': 55, 'liq_5m': 5, 'book_5m': 5}
+=== asof_test ===
+as-of: 380 column-timestamp checks over 20 timestamps, 0 failures
+forward-target direction: 0 failures
+PASS
+=== map ===
+  rung 5x done
+  rung 10x done
+  rung 20x done
+  rung 50x done
+map: mix={5: 0.0, 10: 0.2, 20: 0.25, 50: 0.55}, log-scale corr with real prints=0.2970, fitted on 13,583 bars
+vol_model: already done, skipping
+har: already done, skipping
+event_study: already done, skipping
+instrument: already done, skipping
+economics: already done, skipping
+=== doc_test ===
+documents: 52 quoted phrases match reports/results/, 0 failures; 5 data-derived phrases match data/
+  (2 historical figures from the private project are quoted and not checkable here)
+pipeline complete
+[capped after 2700s]
+Sun Sep 13 17:00:43 BST 2026
+== data/ after
+data/interim/leverage_mix.json
+data/interim/map_features.parquet
+data/raw/liquidations.parquet
+data/raw/premium_5m.parquet
+data/raw/option_fills.parquet
+data/raw/funding.parquet
+data/raw/dvol_1h.parquet
+data/raw/liq_5m.parquet
+data/raw/metrics_5m.parquet
+data/raw/futures_klines_5m.parquet
+data/raw/book_5m.parquet
+data/grid/asof_manifest.json
+data/grid/grid.parquet
+292M	data

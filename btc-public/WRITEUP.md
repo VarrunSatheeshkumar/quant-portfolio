@@ -18,7 +18,7 @@ The ridge model is refitted monthly on a trailing year; its GARCH and map-featur
 
 Option entry prices are amount-weighted averages of buy-flagged and sell-flagged fills over the four-hour entry window, with missing sides imputed from the other leg's half-spread. Eight structures were costed; the smallest stored MDE is 41.8 bps, computed as 2.80 × SD(long − short)/√(2n) on weekly entries treated as independent.
 
-52 selected literal phrases in this document and the README are checked for presence against `reports/results/` and `config.py` by `tests/test_documents.py`, without validating their interpretation; five further figures that come from `data/` are checked only when it is present. Default `run.py` runs skip stages whose artefacts exist; `--only` and `--force-from` recompute them.
+52 selected literal phrases in this document and the README are checked for presence against `reports/results/` and `config.py` by `tests/test_documents.py`, without validating their interpretation; up to five further data-derived phrases are checked when their source files are available. Default `run.py` runs skip stages whose artefacts exist; `--only` and `--force-from` recompute them.
 
 ## What the measurements are
 
@@ -62,12 +62,12 @@ The matched difference is −7.1 bps; under independent per-print relabelling (m
 **Disposition.**
 - Question: whether price continues after liquidation prints the map did not predict.
 - Established: the three intervals above at the print unit; the 30-minute interval lies inside ±10 bps with a design MDE of 6.5 bps; the matched difference −7.1 bps under the placebo procedure described.
-- Unresolved: the observation unit (53,088 prints share bars and days on 61 day-blocks, and the origin of the 14 blocks beyond the 47 first-of-month days was not verified); the placebo's null (independent per-print relabelling, min cell 3 against 15 for the real difference); why price does not respond — anticipation was tested privately through two implications and both were inconclusive.
+- Unresolved: the observation unit (53,088 prints share bars and days on 61 day-blocks, and the origin of the 14 blocks beyond the 47 first-of-month days was not verified); the placebo's null (independent per-print relabelling, min cell 3 against 15 for the real difference); the mechanism behind the measured continuation — anticipation was tested privately through two implications and both were inconclusive.
 - Decision: preserved as unresolved. The three intervals stand as the measurement at the print unit; the randomisation sentence and the mechanism sentence are withdrawn. Resolution would require recomputing the interval with prints sharing a bar counted once, on the same day blocks; that has not been done.
 
 ### The other four framings
 
-Framing 1 = matched difference without an interval plus an absolute-move slope with one; framing 2 = null with an interval, MDE above the registered band; framing 3 = raw effect with an interval, controlled effect without one; framing 4 = point differences without intervals.
+Framing 1 = matched difference without an interval plus an absolute-move slope with one; framing 2 = interval including zero, MDE above the registered band; framing 3 = raw effect with an interval, controlled effect without one; framing 4 = point differences without intervals.
 
 Framing 1's matched difference (+8.7 bps over 11 cells) has no interval; its absolute-move slope has an interval [197, 446] and MDE 172. The public within-cell regression of absolute 60-minute move (bps) on map share has slope +332 [197, 446]; the private v2 regression of absolute move (decimal) on log share had slope −0.00053 [−0.00065, −0.00004]. The specifications differ and do not support a common directional conclusion.
 
@@ -79,7 +79,7 @@ Framing 4's differences (weekend −1.4 bps over 178 cells; Asia +1.2 bps over 4
 
 **Disposition.**
 - Question: whether the response appears through a cluster relative to matched empty levels (1), when flow is scaled by the depth waiting for it (2), by cluster age (3), or when liquidity providers are thin (4).
-- Established: the per-framing statement above — 1 = matched difference without an interval plus an absolute-move slope with one; 2 = null with an interval; 3 = raw effect with an interval, controlled effect without one; 4 = point differences without intervals.
+- Established: the per-framing statement above — 1 = matched difference without an interval plus an absolute-move slope with one; 2 = interval including zero; 3 = raw effect with an interval, controlled effect without one; 4 = point differences without intervals.
 - Unresolved: framing 1's direction (the two stored regressions differ in specification and the registered v2 statistic is not among them); framing 3's controlled slope has no interval and the control is not in the v3 registration.
 - Decision: framings 1, 2 and 4 stopped — nothing further was computed: the registered v2 statistic was a ratio that is not among the stored statistics, framing 2's interval includes zero on 70 book days, and framing 4 has no intervals. Framing 3 preserved as unresolved; resolution would require an interval for the momentum-controlled contrast, which has not been computed.
 
@@ -109,8 +109,6 @@ On the 2021-onward subsample (190 weekly strips) the stored idealised MDE is 81.
 
 The relevant work here is constructing event rows from timestamped market data, comparing volatility forecasts with explicit benchmarks, and reporting intervals alongside their observation unit and assumptions. I would present this as research machinery and inference practice, with the limitations above; it is not evidence of live trading, execution or inventory management.
 
-What this does not demonstrate: readiness to turn research into a trading decision. No strategy return is presented net of costs, and nothing here concerns execution, inventory, adverse selection or continuous quoting.
-
 ## What could not be established
 
 Whether within-cell absolute movement rises or falls with map share: unknown. Whether the GARCH optimiser converged: unknown. Which per-trade dispersion convention was intended (one side of the trade, or the paired difference): unknown. Whether the difference over HAR-RV is attributable to the map-derived features rather than to DVOL, GARCH, funding, premium index, OI ratio, liquidation counts or time-of-day: not tested. No uncertainty was computed for the differences over HAR-RV. The option-fill file in the archive was not produced by the fetch code as written; its acquisition schedule is unknown. The origin of the 14 day-blocks beyond the 47 first-of-month training days was not verified.
@@ -129,7 +127,7 @@ HAR was fitted on training rows and scored on the sealed outcomes; the repositor
 
 ### Corrections to previously published figures and sentences
 
-Each correction below is a row of the [claim ledger](../audit/CLAIM_LEDGER.md): every numerical and interpretive claim in these two projects, traced to the artefact that produces it, with the wording each source permits. Claims the sources did not support were withdrawn rather than softened. The registration artefacts, the halt-rule record and the inspection history behind the rows are in the [evidence record](../audit/EVIDENCE_RECORD.md).
+The [claim ledger](../audit/CLAIM_LEDGER.md) records the sources and permitted interpretations behind these corrections. Its scope and private-source limitations are described in the [audit guide](../audit/README.md); it is not an exhaustive certification. The historical registration and inspection evidence is in the [evidence record](../audit/EVIDENCE_RECORD.md).
 
 - "seven-day half-life" → 3.5-day half-life (the configured value).
 - "(looks: 0; measured on sample days inside the training window)" on the locator result: withdrawn; the sample includes sealed-block days.
@@ -156,4 +154,4 @@ Each correction below is a row of the [claim ledger](../audit/CLAIM_LEDGER.md): 
 
 ### What I would do differently
 
-With the same data again I would compute the cost ratio before mining for any signal: the private v1 record's six-basis-points-against-ten arithmetic (not reproducible here) was computed after the variant mining, and P8's cost ratio was projected before any signal was evaluated as a result.
+I would make the cost assumptions and the effect worth investigating explicit before searching for signals. P8's initial cost screen illustrates that process, conditional on its assumed gross Sharpe and cost model.

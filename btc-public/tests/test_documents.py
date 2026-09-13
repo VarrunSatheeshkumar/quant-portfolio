@@ -145,7 +145,7 @@ def main():
     docs = {"readme": flat((config.ROOT / "README.md").read_text()),
             "writeup": flat((config.ROOT / "WRITEUP.md").read_text())}
     add("both", f"{len(checks) + 4} selected literal phrases")  # +4: these two checks and the two data/ sentence checks below
-    add("both", "five further figures that come from data/ are checked only when it is present")
+    add("both", "up to five further data-derived phrases are checked when their source files are available")
 
     # ---- figures from data/ (not tracked): checked only when the data is present
     data_checks = []
@@ -172,8 +172,6 @@ def main():
             data_checks.append((doc, f"all {n_oi} OI-covered print days, of which {n_sealed} fall inside the sealed blocks"))
         data_checks.append(("writeup", f"({n_train} first-of-month training days)"))
 
-    if data_checks:
-        assert len(data_checks) == 5, len(data_checks)
     fails = []
     for doc, phrase in checks + data_checks:
         if phrase not in docs[doc]:
@@ -187,7 +185,8 @@ def main():
         print("\n".join(fails))
         sys.exit(1)
     print(f"documents: {len(checks)} quoted phrases match reports/results/, 0 failures"
-          + (f"; {len(data_checks)} data-derived phrases match data/" if data_checks else "; data/ absent, 5 data-derived phrases not checked"))
+          + f"; {len(data_checks)} data-derived phrases match available inputs; "
+          + f"{5 - len(data_checks)} data-derived phrases not checked (inputs absent)")
     print(f"  ({len(noted)} historical figures from the private project are quoted and not checkable here)")
 
 

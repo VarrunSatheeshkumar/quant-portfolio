@@ -34,10 +34,15 @@ MONTHS = {m: i for i, m in enumerate(["Jan", "Feb", "Mar", "Apr", "May", "Jun", 
 def fetch_series(series, folder):
     cache = config.RAW / "cand" / f"eia_{series}.parquet"
     if cache.exists():
-        return pd.read_parquet(cache)["v"]
+        s = pd.read_parquet(cache)["v"]
+        if s.dropna().empty:
+            raise ValueError(f"{series}: cached EIA series has no settlements")
+        return s
     url = f"https://www.eia.gov/dnav/{folder}/hist/{series}D.htm"
-    html = requests.get(url, headers=H, timeout=90).text
-    s = parse_hist_page(html)
+    response = requests.get(url, headers=H, timeout=90)
+    response.raise_for_status()
+    s = parse_hist_page(response.text)
+    cache.parent.mkdir(parents=True, exist_ok=True)
     pd.DataFrame({"v": s}).to_parquet(cache)
     return s
 
@@ -54,6 +59,8 @@ def parse_hist_page(html):
             v = v.replace("&nbsp;", "").strip()
             if v:
                 out[start + pd.Timedelta(days=i)] = float(v)
+    if not out:
+        raise ValueError("EIA history page contains no settlement observations")
     s = pd.Series(out).sort_index()
     s.index.name = "date"
     return s
@@ -65,6 +72,8 @@ def check_market(m):
     y = pd.read_parquet(config.RAW / f"{m}.parquet")["close"]
     y.index = pd.DatetimeIndex(y.index).tz_localize(None).normalize() if getattr(y.index, "tz", None) is not None else pd.DatetimeIndex(y.index).normalize()
     j = pd.concat([y.rename("yahoo"), c1.rename("c1"), c2.rename("c2")], axis=1).loc["2000-01-01":config.END].dropna(subset=["yahoo", "c1"])
+    if j.empty or j.c2.dropna().empty:
+        raise ValueError(f"{m}: no overlapping Yahoo/C1/C2 settlement observations")
     j["match_c1"] = (j.yahoo - j.c1).abs() <= TOL[m]
     j["match_c2"] = (j.yahoo - j.c2).abs() <= TOL[m]
     exp = rolls.expiries(m, config.UNIVERSE[m]["months"], j.index.min(), j.index.max())
@@ -86,10 +95,16 @@ def check_market(m):
                  yahoo_change_S=float(j.yahoo[S] - j.yahoo[E]),
                  real_move_S=float(j.c1[S] - j.c2.get(E, np.nan)))            # the new contract's own move
         rows.append(r)
+    if not rows:
+        raise ValueError(f"{m}: no eligible expiry/switch observations")
     t = pd.DataFrame(rows)
+    if not np.isfinite(t[["yahoo_E", "c1_E", "c2_E", "yahoo_S", "c1_S"]].to_numpy()).all():
+        raise ValueError(f"{m}: missing or non-finite settlements at an eligible expiry/switch")
     t["identity_ok"] = (t.yahoo_change_S - (t.spread_E + t.real_move_S)).abs() <= 3 * TOL[m]
     t2 = t[pd.to_datetime(t.expiry) >= "2002-01-01"]
     j2 = j.loc["2002-01-01":]
+    if t2.empty or j2.empty:
+        raise ValueError(f"{m}: no eligible observations from 2002 onward")
     overall = dict(market=m, days=len(j), share_days_equal_c1=float(j.match_c1.mean()),
                    share_days_equal_c1_2002on=float(j2.match_c1.mean()),
                    held_to_expiry_2002on=float(t2.held_to_expiry.mean()), new_front_2002on=float(t2.new_front_on_switch.mean()),
@@ -102,17 +117,18 @@ def check_market(m):
 
 
 def main():
+    checked = {}
+    for m in EIA:
+        try:
+            checked[m] = check_market(m)
+        except Exception as e:      # noqa: BLE001
+            raise RuntimeError(f"splice check incomplete for {m}: {e}; no verdict or report written") from e
     lines = ["# Splice premise check — Yahoo `=F` against NYMEX settlements (via EIA)", "",
              "Premise under test: Yahoo's series holds each contract through its last trading day (exchange rule, `stages/rolls.py`), "
              "switches to the new front on the next bar, and that bar's close-to-close change equals the calendar spread at expiry "
              "plus the new contract's own move. Settlements are NYMEX's, republished by EIA for the two nearest contracts.", ""]
     summ = []
-    for m in EIA:
-        try:
-            o, t, j = check_market(m)
-        except Exception as e:      # noqa: BLE001
-            lines += [f"## {m}: FAILED — {e!r}", ""]
-            continue
+    for m, (o, t, j) in checked.items():
         summ.append(o)
         t.to_parquet(config.RAW / "cand" / f"splice_check_{m}.parquet")
         # five by hand: spread across the sample, including the largest spread and April 2020 for CL

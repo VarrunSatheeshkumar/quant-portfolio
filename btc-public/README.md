@@ -4,14 +4,10 @@ Part one of three. Part two: [futures trend, carry and value](../futures-public/
 
 **Start here**
 
-- Begin with the [measurements and dispositions](WRITEUP.md#what-the-measurements-are), then follow [one cluster touch](WRITEUP.md#one-touch-from-map-state-to-measurement) through the calculation.
-- The [claim ledger](../audit/CLAIM_LEDGER.md): every numerical and interpretive claim in these two projects, traced to the artefact that produces it, with the wording each source permits — 117 rows, one per assertion, with withdraw and unknown as permitted outcomes. Claims the sources did not support were withdrawn rather than softened. Section H records the worked examples and navigation added on 2026-09-13; section I cites 8 operational statements. The [evidence record](../audit/EVIDENCE_RECORD.md) holds the registration artefacts, the halt-rule record and the sealed-block inspection history behind the rows.
-- Read [event_study.json](reports/results/event_study.json) for locator/price-response outputs, [har.json](reports/results/har.json) for the forecast comparison, and [instrument.json](reports/results/instrument.json) / [economics.json](reports/results/economics.json) for option measurements and conditional formula outputs.
-- Those JSONs are tracked and readable on a fresh clone. Default `python run.py` on a fresh clone fetches the nine raw sources into `data/` from Binance Vision, Tardis and Deribit, builds the grid, runs the as-of check, calibrates the map, skips the five tracked result JSONs, and runs the document check; it does not regenerate those estimates by default. On 2026-09-13 a fresh clone completed that sequence in under 45 minutes: the grid came back with the same 701,280 rows, the as-of check passed (380 checks, 0 failures), and the map calibration reproduced the archived leverage mix and log-scale correlation (0.2970) exactly. The fresh fetch returned the same row counts as the archived files for five sources and different counts for `premium_5m` (698,942 against 699,230), `dvol_1h` (47,833 against 47,717) and the option fills (524,945 fills on 296 Friday entry days from 2021-01-01, as the fetch code specifies, against the archived 633,631 fills on 417 entry days from 2020-01-01); the tracked instrument and economics JSONs were computed from the archived fills, so recomputing them with `--force-from instrument` on a fresh clone uses a different sample.
-- Recomputing with `--only` or `--force-from` needs the upstream data; the archived option-fill file is not reproducible by the fetch code as written. See [Running it](#running-it).
-
-
-The write-up reports the retained measurements, their limitations and the withdrawn wording; every sentence in it and in this README corresponds to a ledger row.
+- Read the [measurements and decisions](WRITEUP.md#what-the-measurements-are), then check [one cluster touch](WRITEUP.md#one-touch-from-map-state-to-measurement) by hand.
+- [event_study.json](reports/results/event_study.json) contains the locator and continuation outputs; [har.json](reports/results/har.json) contains the forecast comparison; the write-up explains the option measurements and conditional formula outputs.
+- The [claim ledger](../audit/CLAIM_LEDGER.md) records sources and permitted interpretations; the [audit guide](../audit/README.md) explains its scope and private-source limitations. Coverage is not an exhaustive certification.
+- Tracked results can be read without data. `python run.py` fetches/builds missing data but skips existing result JSONs; [Running it](#running-it) distinguishes retained outputs from recomputation.
 
 ## What the repository contains
 
@@ -26,7 +22,9 @@ pip install -r requirements.txt
 python run.py
 ```
 
-The fetch code uses public keyless endpoints; the option-fill file in the archive was not produced by that code as written. Default `run.py` runs skip stages whose artefacts exist; `--only` and `--force-from` recompute them. `data/` is gitignored; `reports/results/` is tracked. 52 selected literal phrases in this README and `WRITEUP.md` are checked for presence against `reports/results/` and `config.py` by `tests/test_documents.py`, without validating their interpretation; five further figures that come from `data/` are checked only when it is present.
+The fetch code uses public keyless endpoints; the option-fill file in the archive was not produced by that code as written. Default `run.py` runs skip stages whose artefacts exist; `--only` and `--force-from` recompute them. `data/` is gitignored; `reports/results/` is tracked. 52 selected literal phrases in this README and `WRITEUP.md` are checked for presence against `reports/results/` and `config.py` by `tests/test_documents.py`, without validating their interpretation; up to five further data-derived phrases are checked when their source files are available.
+
+The [saved reproduction record](../audit/REPRODUCTION.md) includes the previous session's log: it reaches `pipeline complete`, followed by a wrapper timeout marker, without a captured process exit code. The five tracked result JSONs were skipped. The fetched option-fill sample differed from the archive, so forcing the instrument/economics stages would use different inputs; those stages were not recomputed in that run.
 
 ## What each module does
 
