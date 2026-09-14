@@ -1,12 +1,22 @@
 # Forced flow in BTC perpetuals: the measurements
 
+Start with [one cluster touch](#one-touch-from-map-state-to-measurement), then compare the [continuation estimates](#price-after-liquidation-prints) and [volatility forecasts](#the-volatility-forecast).
+
 The claim ledger ([`audit/CLAIM_LEDGER.md`](../audit/CLAIM_LEDGER.md)) records the 2026-09-12 audit and the presentation provenance added on 2026-09-13. Where the ledger records a figure as unknown, this document says unknown.
 
 ## What was asked
 
-Five framings of "does price respond to the liquidation map?" were tested, each with a hypothesis recorded privately before its result commit; the public statistics for framing 1 are not the registered statistic. The registered v2 statistic was a ratio of mean signed continuations after cluster touches to the same after matched empty touches; neither absolute-move regression reported below is the registered statistic.
+Five framings of "does price respond to the liquidation map?" were tested, each with a hypothesis recorded privately before its result commit; the public statistics for framing 1 are not the registered statistic.
 
-For the volatility comparison against HAR-RV (private v13), hypothesis, code and result were committed together; commit order is silent on sequence. For v2 through v12, a commit recording the hypothesis precedes the commit recording the result (author-dated, local, unpushed). Nothing may be said about when the v13 criterion was written.
+The framing numbers identify the five price-response questions below. The locator, volatility forecast and option structures have separate sections.
+
+| Framing | Question | Where to read |
+| --- | --- | --- |
+| 1 | Cluster touches relative to matched empty levels | [Cluster comparison](#framing-1) |
+| 2 | Flow scaled by the depth waiting for it | [Depth comparison](#framing-2) |
+| 3 | Cluster age | [Age comparison](#framing-3) |
+| 4 | Weekend and Asia comparisons | [Regime comparison](#framing-4) |
+| 5 | Price after liquidation prints the map did not predict | [Continuation table](#price-after-liquidation-prints) |
 
 ## What was built
 
@@ -67,26 +77,46 @@ The matched difference is −7.1 bps; under independent per-print relabelling (m
 - Question: whether price continues after liquidation prints the map did not predict.
 - Established: see the measurements above.
 - Unresolved: the observation unit (53,088 prints share bars and days on 61 day-blocks, and the origin of the 14 blocks beyond the 47 first-of-month days was not verified); the placebo's null (independent per-print relabelling, min cell 3 against 15 for the real difference); the mechanism behind the measured continuation — anticipation was tested privately through two implications and both were inconclusive.
-- Decision: preserved as unresolved. The three intervals stand as the measurement at the print unit; the randomisation sentence and the mechanism sentence are withdrawn. Resolution would require recomputing the interval with prints sharing a bar counted once, on the same day blocks; that has not been done.
+- Decision: retain the three intervals as measurements at the print unit; leave the question unresolved. The randomisation sentence and the mechanism sentence are withdrawn. Resolution would require recomputing the interval with prints sharing a bar counted once, on the same day blocks; that has not been done.
 
-### The other four framings
+<a id="the-other-four-framings"></a>
+
+### Cluster, depth, age and regime: framings 1–4
 
 Framing 1 = matched difference without an interval plus an absolute-move slope with one; framing 2 = interval including zero, MDE above the registered band; framing 3 = raw effect with an interval, controlled effect without one; framing 4 = point differences without intervals.
 
+<a id="framing-1"></a>
+
+#### Framing 1 — Cluster versus matched empty levels
+
 Framing 1's matched difference (+8.7 bps over 11 cells) has no interval; its absolute-move slope has an interval [197, 446] and MDE 172. The public within-cell regression of absolute 60-minute move (bps) on map share has slope +332 [197, 446]; the private v2 regression of absolute move (decimal) on log share had slope −0.00053 [−0.00065, −0.00004]. The specifications differ and do not support a common directional conclusion.
+
+The registered v2 statistic was a ratio of mean signed continuations after cluster touches to the same after matched empty touches; neither absolute-move regression reported above is the registered statistic.
+
+<a id="framing-2"></a>
+
+#### Framing 2 — Flow relative to depth
 
 Framing 2: slope −0.09 [−0.63, 0.42], MDE 0.75 bps per unit log-pressure, n 4,036 on 70 book days.
 
+<a id="framing-3"></a>
+
+#### Framing 3 — Cluster age
+
 Framing 3: raw slope −11.6 [−17.7, −6.4] bps per unit log-age, MDE 8.0, n 28,220 on 1,373 days; the momentum-controlled slope is −2.8 with no interval. The momentum control is not in the v3 registration and is present in the completed analysis; the docstring gives its rationale.
+
+<a id="framing-4"></a>
+
+#### Framing 4 — Weekend and Asia comparisons
 
 Framing 4's differences (weekend −1.4 bps over 178 cells; Asia +1.2 bps over 45 cells) have no intervals.
 
-**Disposition.**
+**Disposition (framings 1–4).**
 
 - Question: whether the response appears through a cluster relative to matched empty levels (1), when flow is scaled by the depth waiting for it (2), by cluster age (3), or when liquidity providers are thin (4).
 - Established: see the measurements above.
 - Unresolved: framing 1's direction (the two stored regressions differ in specification and the registered v2 statistic is not among them); framing 3's controlled slope has no interval and the control is not in the v3 registration.
-- Decision: framings 1, 2 and 4 stopped — nothing further was computed: the registered v2 statistic was a ratio that is not among the stored statistics, framing 2's interval includes zero on 70 book days, and framing 4 has no intervals. Framing 3 preserved as unresolved; resolution would require an interval for the momentum-controlled contrast, which has not been computed.
+- Decision: framings 1, 2 and 4 stopped — nothing further was computed: the registered v2 statistic was a ratio that is not among the stored statistics, framing 2's interval includes zero on 70 book days, and framing 4 has no intervals. Framing 3 remains unresolved; resolution would require an interval for the momentum-controlled contrast, which has not been computed.
 
 ### The volatility forecast
 
@@ -100,8 +130,8 @@ The GARCH parameters coincide with arch's starting-value grid and convergence st
 
 - Question: whether Model A forecasts realised volatility better than GARCH(1,1) and HAR-RV, and whether the map-derived features carry the difference.
 - Established: see the measurements above.
-- Unresolved: whether the differences over HAR are distinguishable from zero (no uncertainty computed); which features carry them (not tested); whether the GARCH optimiser converged (not preserved in the output).
-- Decision: preserved as unresolved. The point differences stand; "the map features carry a few points of R²" is withdrawn. Resolution would require an interval for the paired loss differences and a comparison without the map-derived features on the same evaluation rows; neither has been computed.
+- Unresolved: whether the differences over HAR are distinguishable from zero (no uncertainty computed); whether the difference over HAR-RV is attributable to the map-derived features rather than to DVOL, GARCH, funding, premium index, OI ratio, liquidation counts or time-of-day (not tested); whether the GARCH optimiser converged (not preserved in the output).
+- Decision: retain the point differences; leave the question unresolved. "the map features carry a few points of R²" is withdrawn. Resolution would require an interval for the paired loss differences and a comparison without the map-derived features on the same evaluation rows; neither has been computed.
 
 ### The option structures
 
@@ -113,32 +143,26 @@ Cost of 20.1 bps for the daily-hedged straddle comprises fees and hedge fees; th
 
 Option entry prices are amount-weighted averages of buy-flagged and sell-flagged fills over the four-hour entry window, with missing sides imputed from the other leg's half-spread.
 
+The option-fill file in the archive was not produced by the fetch code as written; its acquisition schedule is unknown.
+
 **Disposition.**
 
 - Question: whether any option structure could express the forecast at the 10 bps band, and what the measured difference over HAR would be worth per trade.
 - Established: see the measurements above.
-- Unresolved: which per-trade dispersion convention was intended; how the option-fill file was acquired; whether the same correlation applies to every structure (assumed, unsupported).
+- Unresolved: which per-trade dispersion convention was intended (one side of the trade, or the paired difference); how the option-fill file was acquired; whether the same correlation applies to every structure (assumed, unsupported).
 - Decision: stopped. The economic conclusions are withdrawn and no repair was undertaken, because each input to them is unresolved — the dispersion convention, the cost basis and the file's provenance — and the formula's assumptions have no support in the artefacts.
 
 ## Relevance to a research or trading role
 
 The relevant work here is constructing event rows from timestamped market data, comparing volatility forecasts with explicit benchmarks, and reporting intervals alongside their observation unit and assumptions. I would present this as research machinery and inference practice, with the limitations above; it is not evidence of live trading, execution or inventory management.
 
-## What could not be established
-
-Whether within-cell absolute movement rises or falls with map share: unknown. The origin of the 14 day-blocks beyond the 47 first-of-month training days was not verified.
-
-Whether the GARCH optimiser converged: unknown. Whether the difference over HAR-RV is attributable to the map-derived features rather than to DVOL, GARCH, funding, premium index, OI ratio, liquidation counts or time-of-day: not tested. No uncertainty was computed for the differences over HAR-RV.
-
-Which per-trade dispersion convention was intended (one side of the trade, or the paired difference): unknown. The option-fill file in the archive was not produced by the fetch code as written; its acquisition schedule is unknown.
-
-Anticipation of forced flow was tested privately through two implications; both were inconclusive. The six-basis-point edge against a ten-basis-point round trip, and the 82,152 variants, are the author's account from the private v1 record and are not reproducible here. Five audit episodes are documented in the private decision log; the consequences attributed to each are the author's retrospective account.
-
 ## What the audit found
 
 ### Registration
 
-The public repository re-implements four analyses of a private project; its figures differ from the private figures. For v2 through v12, a commit recording the hypothesis precedes the commit recording the result (author-dated, local, unpushed). For v13, hypothesis, code and result were committed together; commit order is silent on sequence.
+The public repository re-implements four analyses of a private project; its figures differ from the private figures. For v2 through v12, a commit recording the hypothesis precedes the commit recording the result (author-dated, local, unpushed).
+
+For the volatility comparison against HAR-RV (private v13), hypothesis, code and result were committed together; commit order is silent on sequence. Nothing may be said about when the v13 criterion was written.
 
 ### Sealed-block scoring history
 
@@ -149,6 +173,10 @@ HAR was fitted on training rows and scored on the sealed outcomes; the repositor
 **14 assertions are explicitly withdrawn** in the correction record; corrected, replaced or qualified statements are excluded from that count.  
 **Three consequential examples (editorial choice):** “cleared its placebo comfortably”; “the map features carry a few points of R²”; “a value may appear at time t only if it was publicly knowable at t”.  
 See [the full correction record](../audit/CORRECTIONS.md#btc-p7) for the original wording and the count definition.
+
+### Private project history
+
+The six-basis-point edge against a ten-basis-point round trip, and the 82,152 variants, are the author's account from the private v1 record and are not reproducible here. Five audit episodes are documented in the private decision log; the consequences attributed to each are the author's retrospective account.
 
 ### What I would do differently
 

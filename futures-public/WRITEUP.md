@@ -1,5 +1,7 @@
 # Trend, carry and value on free futures data: the measurements
 
+Start with the [futures strategy table](#the-three-signals). For the separate crypto funding candidate, follow [one C18 week](#worked-example-constructing-one-c18-week) from positions to its gross return and cost proxy.
+
 The claim ledger ([`audit/CLAIM_LEDGER.md`](../audit/CLAIM_LEDGER.md)) records the 2026-09-12 audit and the presentation provenance added on 2026-09-13. Where the ledger records a figure as unknown, this document says unknown.
 
 ## What was asked
@@ -10,24 +12,19 @@ Three signals — trend, carry and value — were specified in advance with a mo
 
 Twenty further candidate claims were then recorded in a private local repository in commits preceding the result commits; this is not verifiable from the public repository, and it is commit order, not execution order. The registered clearing rule is a two-sided cutoff of t ≥ 3.02 at α = 0.05/20.
 
+## Reading the research
+
+| Part | Contents | Where to read |
+| --- | --- | --- |
+| Futures programme | Trend, carry and value; the combined portfolio; the historical hold-out | [Signal results](#the-three-signals) |
+| Candidate screen | Futures candidate claims and the separate crypto funding candidate C18 | [Futures candidates](#the-candidate-screen) · [C18](#c18-crypto-funding-rate-carry) |
+| Mandate simulator | Outcomes of the specified drawdown mandates on the training path | [Simulator results](#the-mandate-simulator) |
+
 ## What was built
 
-For the four energy contracts, on 98.4–98.8 % of eligible dates from 2002 with available observations the Yahoo close matches the EIA C1 settlement within tolerance; on 91–96 % of eligible expiry dates it matches C1 and not C2, from which holding to expiry is inferred. Removed switch-day changes sum to 11 % a year in natural gas and −12 % in gasoline. The stitching sensitivity recomputes each signal's and the combined programme's Sharpe under five roll treatments and two adjustment series. Roll-switch offsets were selected on the full price history including the sealed period.
+For the four energy contracts, on 98.4–98.8 % of eligible dates from 2002 with available observations the Yahoo close matches the EIA C1 settlement within tolerance; on 91–96 % of eligible expiry dates it matches C1 and not C2, from which holding to expiry is inferred. Removed switch-day changes sum to 11 % a year in natural gas and −12 % in gasoline. The stitching sensitivity recomputes each signal's and the combined programme's Sharpe under five roll treatments and two adjustment series. Roll-switch offsets were selected on the full price history including the sealed period. Settlement verification of the splice premise covers the four energy contracts only.
 
 Realised sector shares reach 44.6 % (ags), 36.5 % (energy) and 35.1 % (FX) at their maxima in the trend-plus-carry book. Sectors above a 35 % standalone-risk share are scaled down once by cap/share. The reported breadth figure is the diversification ratio squared.
-
-The positive control: on SPY's overnight return, `block_se` and one sign-flipped block shuffle return t = 4.13 and −0.24; the futures stitching, sizing, roll and cost code paths are not involved.
-
-**Disposition (positive control).**
-
-- Question: whether the inference helpers return a known effect.
-- Established: the measurements above.
-- Unresolved: whether those code paths recover a known effect — not tested.
-- Decision: stopped; a control through the full machinery was not run.
-
-The funding-carry candidate's placebo uses 400 books with symbols assigned at random within each week; 95th percentile of their alphas +0.40.
-
-The candidate uses a universe of Binance USDT perpetuals with status TRADING at fetch time and at least three years of history; the universe is survivor-conditioned, and the direction of bias is not computed anywhere.
 
 ## What the measurements are
 
@@ -70,11 +67,20 @@ The block was scored 2026-09-09 (−1.18 on a partial final bar) and 2026-09-12 
 
 ### The candidate screen
 
-None of the three non-control candidates predicted to clear cleared; three of the four predicted sign-right/not-cleared matched that prediction; the fourth, C18, cleared. C9, C1, C11 and C15 returned the registered sign; C2 did not.
+| Prediction under the registered cutoff | Observed outcome |
+| --- | --- |
+| Three non-control candidates would clear. | None cleared. |
+| Four candidates would have the right sign without clearing. | Three matched that prediction; C18 cleared. |
 
-C9 (t 2.12) and C1 (t 2.48) exceed the unadjusted 5 % cutoff and not the registered corrected cutoff of 3.02 — an explicitly unadjusted diagnostic, not a clearance. C11: +0.17σ, t = 1.72. C15: +0.06σ, t = 1.58, obtained after a candidate had cleared, contrary to the registered clear-halt (see the halt-rule record below).
+C9, C1, C11 and C15 returned the registered sign; C2 did not.
 
-C19 (a VIX-regime exposure cap): Δbreach_daily −0.5 points, t = −0.32, monthly-block SE on overlapping 60-day windows. C2 (expiring-contract pressure): +0.05σ, t = 0.87, the opposite sign to its prediction.
+| Candidate | Measurement |
+| --- | --- |
+| Skewness premium (C9) and roll-gap carry (C1) | C9 (t 2.12) and C1 (t 2.48) exceed the unadjusted 5 % cutoff and not the registered corrected cutoff of 3.02 — an explicitly unadjusted diagnostic, not a clearance. |
+| Treasury auction concession (C11) | C11: +0.17σ, t = 1.72. |
+| Post-EIA-report drift (C15) | C15: +0.06σ, t = 1.58, obtained after a candidate had cleared, contrary to the registered clear-halt (see the halt-rule record below). |
+| VIX-regime exposure cap (C19) | C19 (a VIX-regime exposure cap): Δbreach_daily −0.5 points, t = −0.32, monthly-block SE on overlapping 60-day windows. |
+| Expiring-contract pressure (C2) | C2 (expiring-contract pressure): +0.05σ, t = 0.87, the opposite sign to its prediction. |
 
 If the observed slope were the true effect, the standard error fell as N^(−1/2), and the additional data resembled the existing panel, 80 % power at the N = 20 threshold would need (3.86/2.3)² ≈ 2.8 × the sample.
 
@@ -87,11 +93,30 @@ None of these futures candidates met the registered threshold.
 - Unresolved: the 2.8× sample extrapolation holds only under its stated assumptions; C15 was run outside the registered stopping rule.
 - Decision: stopped. None met the registered threshold, the candidate tests used every futures bar on disk through 2026-09-09, and the three-same-reason halt fired after C11 (record below).
 
+#### What the control checks
+
+The positive control: on SPY's overnight return, `block_se` and one sign-flipped block shuffle return t = 4.13 and −0.24; the futures stitching, sizing, roll and cost code paths are not involved.
+
+**Disposition (positive control).**
+
+- Question: whether the inference helpers return a known effect.
+- Established: the measurements above.
+- Unresolved: whether the futures stitching, sizing, roll and cost code paths recover a known effect — not tested.
+- Decision: stopped; a control through the full machinery was not run.
+
+<a id="c18-crypto-funding-rate-carry"></a>
+
+### C18 — Crypto funding-rate carry
+
 C18 (crypto funding-rate carry): gross alpha +1.015 %/wk, month-block SE 0.27, t 3.73, over 342 weeks, ~109 symbols, 22 names per leg on average (max 29).
+
+The funding-carry candidate's placebo uses 400 books with symbols assigned at random within each week; 95th percentile of their alphas +0.40.
+
+The candidate uses a universe of Binance USDT perpetuals with status TRADING at fetch time and at least three years of history; the universe is survivor-conditioned, and the direction of bias is not computed anywhere.
 
 Gross point estimates by period: +2.25 %/wk in 2020–21, +0.55 %/wk from 2022, with the 2022-on price leg +0.08 (t 0.4) and the 2022-on sub-sample t = 2.69. The funding leg — future funding received on a book selected by trailing funding — is +0.47 %/wk (SE 0.03) after 2021.
 
-The charged cost, 0.083 %/wk, prices a one-leg round trip on the share of names replaced. The sum of absolute target-weight changes is 1.9 × one leg's notional per week (drift ignored); at 10 bp per side that is 0.19 %/wk, at 25 bp 0.47 %/wk. Net alpha with costs entered into the weekly series has not been computed.
+The charged cost, 0.083 %/wk, prices a one-leg round trip on the share of names replaced. The sum of absolute target-weight changes is 1.9 × one leg's notional per week (drift ignored); at 10 bp per side that is 0.19 %/wk, at 25 bp 0.47 %/wk. Net alpha with costs entered into the weekly series has not been computed. Whether C18 would clear with costs in the series: unknown.
 
 Five post-hoc audit clauses (recorded with the result) did not fire. The first run was logged in the private record as void; the numeric clearing threshold was recomputed from 0.099 to 0.822 %/wk after the re-fetch.
 
@@ -99,8 +124,8 @@ Five post-hoc audit clauses (recorded with the result) did not fire. The first r
 
 - Question: whether a weekly book long the bottom and short the top funding quintile of Binance USDT perpetuals earns alpha over BTC net of cost.
 - Established: the measurements above.
-- Unresolved: net alpha with costs entered into the weekly series (not computed); the direction of the survivorship bias (not computed); the per-side cost (unknown).
-- Decision: preserved as unresolved. The gross result and its decomposition stand; "+0.93 % net" is withdrawn; the result carries the label given in the halt-rule record below. The result is labelled survivor-conditioned here. Delisted contracts have not been recovered.
+- Unresolved: net alpha with costs entered into the weekly series (not computed); the direction of the survivorship bias (not computed); the per-side cost applicable to Binance small-cap perpetuals (unknown here).
+- Decision: retain the gross result and its decomposition; leave the question unresolved. "+0.93 % net" is withdrawn; the result carries the label given in the halt-rule record below. The result is labelled survivor-conditioned here. Delisted contracts have not been recovered.
 
 ### Worked example: constructing one C18 week
 
@@ -148,15 +173,11 @@ The historical simulator reports a 22.3 % pass rate for the example mandate at 1
 - Question: which of 500 specified mandates reach a 50 % pass probability on the training path, and which non-pass outcome is most common for each.
 - Established: the measurements above.
 - Unresolved: drawdown is measured from the first running peak, not from initial capital; realised sector shares exceed the 35 % cap; the 23 % synthetic prior is unrecovered.
-- Decision: preserved as descriptive. Nothing was recomputed. Resolution of the accounting items would require recomputing the drawdown from initial capital and the sector shares after scaling; neither has been done.
+- Decision: retain the historical simulator outputs as descriptions. Nothing was recomputed. Resolution of the accounting items would require recomputing the drawdown from initial capital and the sector shares after scaling; neither has been done.
 
 ## Relevance to a research or trading role
 
 The relevant material is the construction of signal and portfolio returns, explicit cost units, benchmark and placebo comparisons, and the distinction between a point estimate and what its uncertainty supports. I would present this as research machinery and inference practice, including the documented halt-rule departures; it is not evidence of live trading, execution or inventory management.
-
-## What could not be established
-
-Whether C18 would clear with costs in the series: unknown. The direction of the survivorship bias in the C18 universe: not computed. The per-side cost applicable to Binance small-cap perpetuals: unknown here. No interval for the hold-out Sharpe, or for any standalone Sharpe, has been computed. Whether the score files read by the combined placebo include sealed rows: not established. Settlement verification of the splice premise covers the four energy contracts only. The synthetic 23 % prior has not been recovered.
 
 ## What the audit found
 
