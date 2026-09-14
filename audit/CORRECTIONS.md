@@ -6,6 +6,8 @@ This record preserves the full correction lists formerly in the two write-ups. T
 
 ## BTC (P7)
 
+References such as "above" in the preserved list below refer to the [BTC write-up](../btc-public/WRITEUP.md).
+
 The count is **14 explicitly withdrawn assertions across 12 bullets** in the original correction section below. Each separately quoted assertion followed by “withdrawn” counts once: the bullet beginning “Four were underpowered” contains three assertions. Statements described only as corrected, replaced, qualified or newly reported are excluded. This is a count of explicit withdrawals in this correction section, not a count of all corrections or all withdrawals elsewhere in the write-up.
 
 The three examples retained in the write-up are an editorial choice, not a ranking established by the audit.
@@ -39,6 +41,8 @@ The [claim ledger](../audit/CLAIM_LEDGER.md) records the sources and permitted i
 
 
 ## Futures (P8)
+
+References such as "above" in the preserved list below refer to the [futures write-up](../futures-public/WRITEUP.md).
 
 <a id="futures-p8"></a>
 
