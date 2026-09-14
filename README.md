@@ -1,6 +1,6 @@
 # Quantitative Finance Portfolio
 
-I'm an undergraduate in mathematics and statistics, applying for quantitative trading roles. These projects are the work I've done outside coursework: foundations, a scored competition entry, and two independent research programmes with a published audit of both.
+I'm an undergraduate in mathematics and economics, applying for quantitative trading roles. These projects are the work I've done outside coursework: foundations, a scored competition entry, and two independent research programmes with a published audit of both.
 
 Neither research programme established a tradable strategy from its results. Both were then audited — by independent review and against a claim ledger — and several previously published findings were withdrawn; the corrections are published in full.
 
