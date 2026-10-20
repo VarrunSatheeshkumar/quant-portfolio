@@ -1,4 +1,4 @@
-# Quantitative Finance portfolio
+# Quantitative Finance Portfolio
 
 I'm an undergraduate in mathematics and economics, applying for quantitative trading roles. These projects are the work I've done outside coursework: foundations, a scored competition entry, and two independent research programmes with a published audit of both.
 
