@@ -1,0 +1,136 @@
+{
+  "summary": [
+    {
+      "portfolio": "Current",
+      "two_week_sd_pct": 3.91,
+      "two_week_sd_gbp": 3910,
+      "var95_gbp": 6432,
+      "p_loss_over_5k_pct": 10.0,
+      "risk_on_capital_pct": 40.0,
+      "risk_on_risk_share_pct": 80.4,
+      "ai_semis_risk_share_pct": 66.8,
+      "ai_selloff_stress_gbp": -3613,
+      "ai_rally_gbp": 3613,
+      "risk_share_by_asset_pct": {
+        "NVIDIA": 36.2,
+        "Applied Materials": 30.7,
+        "Walmart": 2.0,
+        "Home Depot": 4.3,
+        "BAE Systems": 4.2,
+        "Rolls-Royce": 9.1,
+        "Bitcoin": 8.4,
+        "Ethereum": 5.2
+      }
+    },
+    {
+      "portfolio": "Halfway",
+      "two_week_sd_pct": 3.4,
+      "two_week_sd_gbp": 3403,
+      "var95_gbp": 5599,
+      "p_loss_over_5k_pct": 7.1,
+      "risk_on_capital_pct": 34.5,
+      "risk_on_risk_share_pct": 67.8,
+      "ai_semis_risk_share_pct": 49.4,
+      "ai_selloff_stress_gbp": -3091,
+      "ai_rally_gbp": 3091,
+      "risk_share_by_asset_pct": {
+        "NVIDIA": 26.5,
+        "Applied Materials": 22.9,
+        "Walmart": 5.8,
+        "Home Depot": 7.3,
+        "BAE Systems": 7.8,
+        "Rolls-Royce": 11.3,
+        "Bitcoin": 10.5,
+        "Ethereum": 7.9
+      }
+    },
+    {
+      "portfolio": "Equal risk",
+      "two_week_sd_pct": 3.05,
+      "two_week_sd_gbp": 3048,
+      "var95_gbp": 5013,
+      "p_loss_over_5k_pct": 5.0,
+      "risk_on_capital_pct": 29.0,
+      "risk_on_risk_share_pct": 50.0,
+      "ai_semis_risk_share_pct": 25.0,
+      "ai_selloff_stress_gbp": -2580,
+      "ai_rally_gbp": 2580,
+      "risk_share_by_asset_pct": {
+        "NVIDIA": 12.5,
+        "Applied Materials": 12.5,
+        "Walmart": 12.5,
+        "Home Depot": 12.5,
+        "BAE Systems": 12.5,
+        "Rolls-Royce": 12.5,
+        "Bitcoin": 12.5,
+        "Ethereum": 12.5
+      }
+    }
+  ],
+  "trades": [
+    {
+      "asset": "NVIDIA",
+      "current_pct": 15.0,
+      "halfway_pct": 11.0,
+      "change_pct": -4.0,
+      "change_gbp": -4000,
+      "equal_risk_pct": 6.4
+    },
+    {
+      "asset": "Applied Materials",
+      "current_pct": 10.0,
+      "halfway_pct": 7.5,
+      "change_pct": -2.5,
+      "change_gbp": -2500,
+      "equal_risk_pct": 5.0
+    },
+    {
+      "asset": "Walmart",
+      "current_pct": 10.0,
+      "halfway_pct": 12.5,
+      "change_pct": 2.5,
+      "change_gbp": 2500,
+      "equal_risk_pct": 15.0
+    },
+    {
+      "asset": "Home Depot",
+      "current_pct": 10.0,
+      "halfway_pct": 11.0,
+      "change_pct": 1.0,
+      "change_gbp": 1000,
+      "equal_risk_pct": 12.6
+    },
+    {
+      "asset": "BAE Systems",
+      "current_pct": 10.0,
+      "halfway_pct": 12.0,
+      "change_pct": 2.0,
+      "change_gbp": 2000,
+      "equal_risk_pct": 13.7
+    },
+    {
+      "asset": "Rolls-Royce",
+      "current_pct": 10.0,
+      "halfway_pct": 10.0,
+      "change_pct": 0.0,
+      "change_gbp": 0,
+      "equal_risk_pct": 9.7
+    },
+    {
+      "asset": "Bitcoin",
+      "current_pct": 10.0,
+      "halfway_pct": 10.0,
+      "change_pct": 0.0,
+      "change_gbp": 0,
+      "equal_risk_pct": 9.9
+    },
+    {
+      "asset": "Ethereum",
+      "current_pct": 5.0,
+      "halfway_pct": 6.0,
+      "change_pct": 1.0,
+      "change_gbp": 1000,
+      "equal_risk_pct": 7.7
+    }
+  ]
+}

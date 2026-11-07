@@ -6,3 +6,6 @@ plots/
 # Local session and review-copy artifacts
 .Rhistory
 ARCHIVE_NOTES.txt
+
+# P9 price data is not redistributed
+p9_umushroom_event_risk/data/prices.txt

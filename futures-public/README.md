@@ -4,9 +4,11 @@ Part two of three. Part one: [BTC forced flow](../btc-public/) · Part three: eq
 
 **Start here**
 
+- [Known limitations](WRITEUP.md#known-limitations) lists what this evaluation does not establish.
+
 - Read the [strategy table](WRITEUP.md#the-three-signals) for the futures programme. For the separate crypto funding candidate, check [one C18 week](WRITEUP.md#worked-example-constructing-one-c18-week) from funding ranks to its return and cost proxy.
 - [Stage reports](reports/stage_reports/) contain the futures outputs; [C18.md](reports/candidates/C18.md) and [C18_AUDIT.md](reports/candidates/C18_AUDIT.md) retain historical generated wording. Use the write-up for the current cost and halt-rule qualifications.
-- The [claim ledger](../audit/CLAIM_LEDGER.md) records sources and permitted interpretations; the [audit guide](../audit/README.md) explains its scope and private-source limitations. Coverage is not an exhaustive certification.
+- The [claim ledger](../audit/CLAIM_LEDGER.md) records sources and permitted interpretations; the [audit guide](../audit/README.md) explains its scope and private-source limitations.
 - Tracked reports need no data. `./reproduce.sh` rebuilds missing stage outputs and runs the candidate chain while retaining the already scored hold-out; see [Running it](#running-it) for the prerequisites and output status.
 
 ## Measurements
@@ -32,7 +34,7 @@ pip install -r requirements.txt
 ./reproduce.sh
 ```
 
-`reproduce.sh` runs `python build.py` (stages s0–s9), then the candidate fetch, the splice check, the pre-registration dispersions, the eight candidate tests and the C18 audit. Data sources are keyless: Yahoo Finance, TreasuryDirect, Binance, EIA. `config.END` fixes the last bar at 2026-09-09. `data/` is not tracked; `reports/` is tracked.
+`reproduce.sh` runs `python build.py` (stages s0–s9), then the candidate fetch, the splice check, the design-dispersion step (`candidates/prereg.py`), the eight candidate tests and the C18 audit. Data sources are keyless: Yahoo Finance, TreasuryDirect, Binance, EIA. `config.END` fixes the last bar at 2026-09-09. `data/` is not tracked; `reports/` is tracked.
 
 The build checks the saved outputs required by each stage. A missing output reruns that stage and invalidates downstream completion records; a fresh clone runs s0–s8. The already scored hold-out is retained only when both tracked reports (`reports/RESULTS.md` and `reports/stage_reports/s9.md`) are present and nonempty; its status is recorded as retained, not newly scored. Missing retained reports stop the run. The splice check also stops on missing or empty inputs without issuing a research verdict.
 

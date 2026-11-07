@@ -1,0 +1,253 @@
+{
+  "sample": {
+    "first": "2026-05-04",
+    "last": "2026-11-06",
+    "days_used": 125,
+    "event_days_dropped": [
+      "2026-05-19",
+      "2026-05-21",
+      "2026-07-30",
+      "2026-08-18",
+      "2026-08-20",
+      "2026-08-27"
+    ],
+    "shrinkage": 0.094
+  },
+  "last_prices_gbp": {
+    "NVIDIA": 139.84,
+    "Applied Materials": 249.28,
+    "Walmart": 94.04,
+    "Home Depot": 257.34,
+    "BAE Systems": 1846.0,
+    "Rolls-Royce": 1261.2,
+    "Bitcoin": 56740.12,
+    "Ethereum": 1674.81
+  },
+  "portfolio": {
+    "two_week_sd_pct": 3.91,
+    "two_week_sd_gbp": 3910,
+    "diffusive_sd_pct": 3.14,
+    "event_sd_pct": 2.34,
+    "event_share_of_variance_pct": 35.7,
+    "var95_gbp": 6432,
+    "var99_gbp": 9094,
+    "risk_on_capital_pct": 40.0,
+    "risk_on_risk_share_pct": 80.4,
+    "diversification_ratio": 2.12,
+    "erc_two_week_sd_pct": 3.05
+  },
+  "sleeve_risk_share_pct": {
+    "AI / semis": 66.8,
+    "US consumer": 6.3,
+    "UK industrials": 13.3,
+    "Crypto": 13.6
+  },
+  "sleeve_capital_pct": {
+    "AI / semis": 25.0,
+    "US consumer": 20.0,
+    "UK industrials": 20.0,
+    "Crypto": 15.0
+  },
+  "per_asset": [
+    {
+      "asset": "NVIDIA",
+      "weight_pct": 15.0,
+      "ann_vol_pct": 39.4,
+      "two_week_sd_pct": 13.7,
+      "implied_move_pct": 9.0,
+      "implied_source": "options, 6 Nov",
+      "risk_share_pct": 36.2,
+      "naive_share_pct": 34.9,
+      "erc_weight_pct": 6.4,
+      "deploy_trigger_daily_pct": -5.0
+    },
+    {
+      "asset": "Applied Materials",
+      "weight_pct": 10.0,
+      "ann_vol_pct": 69.1,
+      "two_week_sd_pct": 19.0,
+      "implied_move_pct": 10.4,
+      "implied_source": "options, 6 Nov",
+      "risk_share_pct": 30.7,
+      "naive_share_pct": 26.9,
+      "erc_weight_pct": 5.0,
+      "deploy_trigger_daily_pct": -8.7
+    },
+    {
+      "asset": "Walmart",
+      "weight_pct": 10.0,
+      "ann_vol_pct": 25.7,
+      "two_week_sd_pct": 7.7,
+      "implied_move_pct": 4.6,
+      "implied_source": "options, Aug level",
+      "risk_share_pct": 2.0,
+      "naive_share_pct": 11.9,
+      "erc_weight_pct": 15.0,
+      "deploy_trigger_daily_pct": -3.2
+    },
+    {
+      "asset": "Home Depot",
+      "weight_pct": 10.0,
+      "ann_vol_pct": 29.4,
+      "two_week_sd_pct": 7.9,
+      "implied_move_pct": 4.2,
+      "implied_source": "options, Aug level",
+      "risk_share_pct": 4.3,
+      "naive_share_pct": 10.9,
+      "erc_weight_pct": 12.6,
+      "deploy_trigger_daily_pct": -3.7
+    },
+    {
+      "asset": "BAE Systems",
+      "weight_pct": 10.0,
+      "ann_vol_pct": 31.5,
+      "two_week_sd_pct": 7.3,
+      "implied_move_pct": 3.0,
+      "implied_source": "assumed, no listed options",
+      "risk_share_pct": 4.2,
+      "naive_share_pct": 7.8,
+      "erc_weight_pct": 13.7,
+      "deploy_trigger_daily_pct": -4.0
+    },
+    {
+      "asset": "Rolls-Royce",
+      "weight_pct": 10.0,
+      "ann_vol_pct": 36.2,
+      "two_week_sd_pct": 8.1,
+      "implied_move_pct": 3.0,
+      "implied_source": "assumed, no listed options",
+      "risk_share_pct": 9.1,
+      "naive_share_pct": 7.8,
+      "erc_weight_pct": 9.7,
+      "deploy_trigger_daily_pct": -4.6
+    },
+    {
+      "asset": "Bitcoin",
+      "weight_pct": 10.0,
+      "ann_vol_pct": 36.6,
+      "two_week_sd_pct": 7.3,
+      "implied_move_pct": null,
+      "implied_source": "-",
+      "risk_share_pct": 8.4,
+      "naive_share_pct": 0.0,
+      "erc_weight_pct": 9.9,
+      "deploy_trigger_daily_pct": -4.6
+    },
+    {
+      "asset": "Ethereum",
+      "weight_pct": 5.0,
+      "ann_vol_pct": 49.6,
+      "two_week_sd_pct": 9.9,
+      "implied_move_pct": null,
+      "implied_source": "-",
+      "risk_share_pct": 5.2,
+      "naive_share_pct": 0.0,
+      "erc_weight_pct": 7.7,
+      "deploy_trigger_daily_pct": -6.3
+    }
+  ],
+  "correlations": {
+    "NVIDIA": {
+      "NVIDIA": 1.0,
+      "Applied Materials": 0.51,
+      "Walmart": -0.18,
+      "Home Depot": -0.07,
+      "BAE Systems": 0.0,
+      "Rolls-Royce": 0.23,
+      "Bitcoin": 0.29,
+      "Ethereum": 0.28
+    },
+    "Applied Materials": {
+      "NVIDIA": 0.51,
+      "Applied Materials": 1.0,
+      "Walmart": -0.25,
+      "Home Depot": -0.08,
+      "BAE Systems": -0.04,
+      "Rolls-Royce": 0.25,
+      "Bitcoin": 0.18,
+      "Ethereum": 0.16
+    },
+    "Walmart": {
+      "NVIDIA": -0.18,
+      "Applied Materials": -0.25,
+      "Walmart": 1.0,
+      "Home Depot": 0.25,
+      "BAE Systems": 0.07,
+      "Rolls-Royce": -0.1,
+      "Bitcoin": -0.09,
+      "Ethereum": -0.11
+    },
+    "Home Depot": {
+      "NVIDIA": -0.07,
+      "Applied Materials": -0.08,
+      "Walmart": 0.25,
+      "Home Depot": 1.0,
+      "BAE Systems": 0.03,
+      "Rolls-Royce": 0.21,
+      "Bitcoin": -0.03,
+      "Ethereum": -0.01
+    },
+    "BAE Systems": {
+      "NVIDIA": 0.0,
+      "Applied Materials": -0.04,
+      "Walmart": 0.07,
+      "Home Depot": 0.03,
+      "BAE Systems": 1.0,
+      "Rolls-Royce": 0.26,
+      "Bitcoin": -0.0,
+      "Ethereum": -0.06
+    },
+    "Rolls-Royce": {
+      "NVIDIA": 0.23,
+      "Applied Materials": 0.25,
+      "Walmart": -0.1,
+      "Home Depot": 0.21,
+      "BAE Systems": 0.26,
+      "Rolls-Royce": 1.0,
+      "Bitcoin": 0.15,
+      "Ethereum": 0.11
+    },
+    "Bitcoin": {
+      "NVIDIA": 0.29,
+      "Applied Materials": 0.18,
+      "Walmart": -0.09,
+      "Home Depot": -0.03,
+      "BAE Systems": -0.0,
+      "Rolls-Royce": 0.15,
+      "Bitcoin": 1.0,
+      "Ethereum": 0.81
+    },
+    "Ethereum": {
+      "NVIDIA": 0.28,
+      "Applied Materials": 0.16,
+      "Walmart": -0.11,
+      "Home Depot": -0.01,
+      "BAE Systems": -0.06,
+      "Rolls-Royce": 0.11,
+      "Bitcoin": 0.81,
+      "Ethereum": 1.0
+    }
+  },
+  "sensitivity_sd_pct_and_risk_on_share_pct": {
+    "Base case": [
+      3.91,
+      80.4
+    ],
+    "UK update moves 0%": [
+      3.87,
+      81.9
+    ],
+    "UK update moves 5%": [
+      3.97,
+      77.8
+    ],
+    "Sample covariance (no shrinkage)": [
+      3.97,
+      81.4
+    ],
+    "Past event days kept in": [
+      3.92,
+      80.1
+    ]
+  }
+}

@@ -4,6 +4,8 @@
 
 The challenge is ongoing — the public leaderboard updates on every submission and the private one twice a year — so both figures are dated snapshots.
 
+The code is withheld while the challenge runs and will be published here when it closes; it is available to recruiters on request.
+
 ---
 
 ## What this is

@@ -4,6 +4,18 @@ Start with [one cluster touch](#one-touch-from-map-state-to-measurement), then c
 
 The claim ledger ([`audit/CLAIM_LEDGER.md`](../audit/CLAIM_LEDGER.md)) records the 2026-09-12 audit and the presentation provenance added on 2026-09-13. Where the ledger records a figure as unknown, this document says unknown.
 
+## Known limitations
+
+Read these before the measurements. They are disclosed throughout the write-up; this list puts them in one place.
+
+- GARCH and the map's leverage mix were calibrated on training print days through 2025 and supply inputs to the 2022 sealed block, so that block is not a chronological out-of-sample test.
+- The R² differences over the HAR benchmark have no computed uncertainty, and no map-feature ablation was run; the intraday HAR has lower QLIKE in three of four sealed cells, so the features' contribution is unresolved.
+- The sealed blocks were scored six times on four dates (2026-09-02 twice, 09-06, 09-07, 09-12 twice); the "looks" values in `reports/results/` are literals written by the code, not a counter.
+- For v2–v12 a commit recording the hypothesis precedes the result commit (author-dated, local, unpushed); for v13 hypothesis, code and result were committed together. The public statistics for framing 1 are not the registered statistic.
+- The option-economics conclusions were withdrawn on review (see [What the audit found](#what-the-audit-found)).
+
+P9 ([`../p9_umushroom_event_risk/`](../p9_umushroom_event_risk/)) is run under a corrected protocol: model, data cutoff, weights, ledger and scoring rule frozen before the window, one scoring on a fixed date. It demonstrates the revised process; it does not repair this evaluation.
+
 ## What was asked
 
 Five framings of "does price respond to the liquidation map?" were tested, each with a hypothesis recorded privately before its result commit; the public statistics for framing 1 are not the registered statistic.

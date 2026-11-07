@@ -4,6 +4,18 @@ Start with the [futures strategy table](#the-three-signals). For the separate cr
 
 The claim ledger ([`audit/CLAIM_LEDGER.md`](../audit/CLAIM_LEDGER.md)) records the 2026-09-12 audit and the presentation provenance added on 2026-09-13. Where the ledger records a figure as unknown, this document says unknown.
 
+## Known limitations
+
+Read these before the measurements. They are disclosed throughout the write-up; this list puts them in one place.
+
+- Roll-switch offsets were selected on the full price history including the sealed period, and cost normalisation read the nominal hold-out, so the hold-out is not an untouched evaluation; it was also scored twice (−1.18 on a partial final bar on 2026-09-09, −1.28 on the settled close on 2026-09-12).
+- No Sharpe interval was computed for any signal or for the combined programme.
+- Two departures from the registered stopping rules: C18 was run after overriding the three-same-reason halt, and C15 after C18 cleared, contrary to the clear-halt rule (see [the halt-rule record](#the-halt-rule-record)).
+- C18's net alpha with weekly costs entered into the return series is uncomputed, and its universe is survivor-conditioned.
+- Candidate claims were recorded in a private repository in commits preceding the result commits; this is commit order, not execution order, and is not verifiable from the public repository.
+
+P9 ([`../p9_umushroom_event_risk/`](../p9_umushroom_event_risk/)) is run under a corrected protocol: model, data cutoff, weights, ledger and scoring rule frozen before the window, one scoring on a fixed date. It demonstrates the revised process; it does not repair this evaluation.
+
 ## What was asked
 
 The projected edge/cost ratio is 2.3 under an assumed gross Sharpe of 0.4 and the specified cost and schedule model; the median modelled round trip is 2.7 bp, 4.1 % of the median daily dollar move over the final 250 observations.
@@ -199,7 +211,7 @@ The hold-out was scored on 2026-09-09 and 2026-09-12, with an aborted registrati
 
 The full corrections list explicitly marks **10 quoted assertions as withdrawn**, counting paired assertions separately.
 Three highlighted corrections: "+0.93 % per week net of a 20-basis-point round trip at 41 % weekly turnover" is withdrawn; "opened once" becomes two scorings, −1.18 and −1.28; "Breadth is the sample size" is withdrawn.
-The [full corrections and counting convention](../audit/CORRECTIONS.md#futures-p8), [claim ledger](../audit/CLAIM_LEDGER.md), [audit guide](../audit/README.md) and [evidence record](../audit/EVIDENCE_RECORD.md) retain the sources, permitted interpretations and private-source limitations; coverage is not an exhaustive certification.
+The [full corrections and counting convention](../audit/CORRECTIONS.md#futures-p8), [claim ledger](../audit/CLAIM_LEDGER.md), [audit guide](../audit/README.md) and [evidence record](../audit/EVIDENCE_RECORD.md) retain the sources, permitted interpretations and private-source limitations; the audit guide describes the ledger's scope.
 
 ### What I would do differently
 

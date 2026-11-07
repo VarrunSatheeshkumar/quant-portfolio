@@ -4,9 +4,11 @@ Part one of three. Part two: [futures trend, carry and value](../futures-public/
 
 **Start here**
 
+- [Known limitations](WRITEUP.md#known-limitations) lists what this evaluation does not establish.
+
 - Check [one cluster touch](WRITEUP.md#one-touch-from-map-state-to-measurement) by hand, then read the [continuation table](WRITEUP.md#price-after-liquidation-prints) and [forecast comparison](WRITEUP.md#the-volatility-forecast).
 - [event_study.json](reports/results/event_study.json) contains the locator and continuation outputs; [har.json](reports/results/har.json) contains the forecast comparison; the write-up explains the option measurements and conditional formula outputs.
-- The [claim ledger](../audit/CLAIM_LEDGER.md) records sources and permitted interpretations; the [audit guide](../audit/README.md) explains its scope and private-source limitations. Coverage is not an exhaustive certification.
+- The [claim ledger](../audit/CLAIM_LEDGER.md) records sources and permitted interpretations; the [audit guide](../audit/README.md) explains its scope and private-source limitations.
 - Tracked results can be read without data. `python run.py` fetches/builds missing data but skips existing result JSONs; [Running it](#running-it) distinguishes retained outputs from recomputation.
 
 ## Measurements
