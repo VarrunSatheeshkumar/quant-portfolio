@@ -1,6 +1,6 @@
 # Quantitative Finance Portfolio
 
-**Varrun Satheeshkumar** · Mathematics and Economics, University of Nottingham; conditional offer for the MSci Mathematics with Statistics at Bristol from 2027 (expected graduation 2030) · applying for quantitative trading roles · [LinkedIn](https://linkedin.com/in/varrun-satheeshkumar-968832264)
+**Varrun Satheeshkumar** · Mathematics and Economics, University of Nottingham; conditional offer for the MSci Mathematics with Statistics at Bristol from 2027 (expected graduation 2030 including integrated master's; 2029 without) · applying for quantitative trading roles · [LinkedIn](https://linkedin.com/in/varrun-satheeshkumar-968832264)
 
 Independent work alongside first-year studies: two research programmes on market data (BTC liquidation flow; futures trend, carry and value), a live investment-competition risk model, a scored machine-learning competition entry, and foundations in pricing, optimisation and econometrics.
 
