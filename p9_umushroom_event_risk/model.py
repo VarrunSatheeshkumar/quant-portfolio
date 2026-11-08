@@ -42,6 +42,13 @@ IMPLIED_SOURCE = {"NVDA": "options, 6 Nov", "AMAT": "options, 6 Nov", "WMT": "op
                   "HD": "options, Aug level", "BAE": "assumed, no listed options",
                   "RR": "assumed, no listed options", "BTC": "-", "ETH": "-"}
 
+# The brief's rule of thumb also gave crypto a two-week move scaled from 30-day implied volatility
+# (DVOL about 38 for BTC, 60 for ETH, x sqrt(14/365)). Used only for the rule-of-thumb comparison.
+RULE_OF_THUMB_CRYPTO_MOVE = {"BTC": 38 * math.sqrt(14 / 365), "ETH": 60 * math.sqrt(14 / 365)}
+
+# BA.L and RR.L closes are quoted in pence; constant scaling leaves log returns unchanged.
+PENCE = {"BAE", "RR"}
+
 # Earnings-reaction days in the sample (verified report dates only); dropped from the diffusive fit.
 PAST_EVENT_DAYS = ["2026-05-19", "2026-05-21", "2026-07-30", "2026-08-18", "2026-08-20", "2026-08-27"]
 
@@ -113,17 +120,19 @@ def main(price_file, out_dir):
     daily_sd = np.sqrt(np.diag(lw.covariance_))
     corr = pd.DataFrame(lw.covariance_ / np.outer(daily_sd, daily_sd), index=ASSETS, columns=ASSETS)
 
-    naive = w * np.array([IMPLIED_MOVE[a] or 0 for a in ASSETS])  # the brief's weight x implied move
+    # the brief's rule of thumb: weight x implied move, crypto from DVOL; no correlations or day-to-day risk
+    naive = w * np.array([IMPLIED_MOVE[a] if IMPLIED_MOVE[a] is not None else RULE_OF_THUMB_CRYPTO_MOVE[a]
+                          for a in ASSETS])
     erc = equal_risk_weights(cov_t, w.sum())
     sig_erc, _ = euler(erc, cov_t)
 
-    def sensitivity(uk_move=None, use_sample=False, keep_events=False):
+    def sensitivity(uk_move=None, use_sample=False, keep_events=False, jump_factor=math.sqrt(math.pi / 2)):
         r = rets_all if keep_events else rets
         c = (np.cov(r.values, rowvar=False) if use_sample else LedoitWolf().fit(r.values).covariance_) * HORIZON_DAYS
         im = dict(IMPLIED_MOVE)
         if uk_move is not None:
             im["BAE"] = im["RR"] = uk_move
-        j = np.diag([((im[a] or 0) / 100 * math.sqrt(math.pi / 2)) ** 2 for a in ASSETS])
+        j = np.diag([((im[a] or 0) / 100 * jump_factor) ** 2 for a in ASSETS])
         s, rcs = euler(w, c + j)
         on = sum(rcs[ASSETS.index(a)] for a in RISK_ON) / s
         return round(100 * s, 2), round(100 * on, 1)
@@ -134,6 +143,7 @@ def main(price_file, out_dir):
         "UK update moves 5%": sensitivity(uk_move=5.0),
         "Sample covariance (no shrinkage)": sensitivity(use_sample=True),
         "Past event days kept in": sensitivity(keep_events=True),
+        "Implied moves read as one s.d.": sensitivity(jump_factor=1.0),
     }
 
     per_asset = []
@@ -155,7 +165,8 @@ def main(price_file, out_dir):
         "sample": {"first": str(rets_all.index[0].date()), "last": str(rets_all.index[-1].date()),
                    "days_used": len(rets), "event_days_dropped": [str(d.date()) for d in drop],
                    "shrinkage": round(float(lw.shrinkage_), 3)},
-        "last_prices_gbp": {NAMES[a]: round(float(prices[a].iloc[-1]), 2) for a in ASSETS},
+        "last_prices_gbp": {NAMES[a]: round(float(prices[a].iloc[-1]) / (100 if a in PENCE else 1), 3 if a in PENCE else 2)
+                            for a in ASSETS},
         "portfolio": {
             "two_week_sd_pct": round(100 * sig_t, 2),
             "two_week_sd_gbp": round(CAPITAL_GBP * sig_t),
@@ -164,6 +175,7 @@ def main(price_file, out_dir):
             "var95_gbp": round(CAPITAL_GBP * 1.645 * sig_t), "var99_gbp": round(CAPITAL_GBP * 2.326 * sig_t),
             "risk_on_capital_pct": round(100 * sum(WEIGHTS[a] for a in RISK_ON), 1),
             "risk_on_risk_share_pct": round(100 * sum(share[ASSETS.index(a)] for a in RISK_ON), 1),
+            "rule_of_thumb_risk_on_share_pct": round(100 * sum(naive[ASSETS.index(a)] for a in RISK_ON) / naive.sum(), 1),
             "diversification_ratio": round(float(w @ np.sqrt(np.diag(cov_t)) / sig_t), 2),
             "erc_two_week_sd_pct": round(100 * sig_erc, 2),
         },

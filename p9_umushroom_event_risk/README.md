@@ -10,9 +10,9 @@ A two-person event-driven £100k paper portfolio (8 positions, 20% cash) timed t
 
 - **Two-week portfolio volatility: 3.9% (about £3,900).** 95% VaR about £6,400; 99% about £9,100 (normal approximation).
 - **Concentration:** NVIDIA, Applied Materials, Bitcoin and Ethereum are 40% of capital but **80% of modelled risk**. AI and semiconductors alone are 25% of capital and 67% of risk.
-- **Walmart is the hedge:** 10% of capital, 2% of risk, because it is negatively correlated with NVIDIA (−0.18) and Applied Materials (−0.25).
+- **Walmart is a low-risk diversifier:** 10% of capital, 2% of risk. Its correlations with NVIDIA (−0.18) and Applied Materials (−0.25) are negative, but its contribution to portfolio risk is still positive, so it diversifies rather than hedges.
 - **Event risk** (the earnings days) is 36% of portfolio variance; the rest is ordinary day-to-day movement.
-- **The earlier rule of thumb was wrong:** weight × implied move put about 70% of risk in the risk-on sleeve; with correlations included it is 80%.
+- **The earlier rule of thumb understated it:** weight × implied move (crypto two-week moves scaled from DVOL 38 and 60) put 71.5% of risk in the risk-on sleeve. The model, which adds day-to-day volatility and correlations, puts it at 80%; most of the gap is Walmart, whose report-day move is large but whose overall contribution is small. Without the crypto moves the rule of thumb gives 61.8% (`rule_of_thumb_risk_on_share_pct` in `out/results.json` uses the DVOL version).
 - **Equal-risk alternative:** equal risk contribution would cut NVIDIA to 6.4% and Applied Materials to 5.0%, raise Walmart to 15%, and lower volatility to 3.1%. Not adopted: the ranked score rewards dispersion, so the tilt is deliberate.
 
 | Holding | Weight | Ann. vol | 2-week s.d. | Share of risk | ERC weight | Deploy trigger (daily) |
@@ -50,7 +50,7 @@ Trades: NVIDIA 15% → 11%, Applied Materials 10% → 7.5%, Walmart 10% → 12.5
 1. Daily closes 1 May – 6 Nov 2026, converted to sterling with GBP/USD; log returns on US trading days (UK bank holidays carry the previous close; crypto and FX are sampled on US trading days, so weekend moves fall into Monday).
 2. Six past earnings-reaction days with verified dates are dropped so event moves are not counted twice; 125 days remain.
 3. Diffusive covariance: Ledoit–Wolf shrinkage (intensity 0.09), scaled to 10 days.
-4. Event risk: each report inside the window adds variance from its options-implied move m, the expected absolute move, so the jump s.d. is m·√(π/2).
+4. Event risk: each report inside the window adds variance from its options-implied move m. The sources publish options-implied expected moves (conventionally the at-the-money straddle price as a share of the stock price), read here as the expected absolute move, so under a zero-mean normal the jump s.d. is m·√(π/2). If an input were instead a one-s.d. move this overstates that jump by 25%; the robustness table tests it.
 5. Euler risk contributions, sleeve shares, and an equal-risk-contribution portfolio for comparison.
 
 ## Robustness
@@ -62,8 +62,21 @@ Trades: NVIDIA 15% → 11%, Applied Materials 10% → 7.5%, Walmart 10% → 12.5
 | UK update moves 5% | 3.97% | 77.8% |
 | Sample covariance (no shrinkage) | 3.97% | 81.4% |
 | Past event days kept in | 3.92% | 80.1% |
+| Implied moves read as one s.d. (no √(π/2)) | 3.65% | 79.9% |
 
 The headline holds across every variant.
+
+### Implied-move inputs
+
+| Holding | Input | Source | Observed | Definition |
+|---|---|---|---|---|
+| NVIDIA | ±9.0% | EarningsWatcher, Unusual Whales | 6 Nov 2026 | Published expected move into the 17 Nov report |
+| Applied Materials | ±10.4% | EarningsWatcher | 6 Nov 2026 | Published expected move into the 12 Nov report |
+| Walmart | ±4.6% | Benzinga | August 2026 (previous report) | Published expected move for the August report; stand-in until rechecked |
+| Home Depot | ±4.2% | Benzinga | August 2026 (previous report) | Published expected move for the August report; stand-in until rechecked |
+| BAE Systems, Rolls-Royce | ±3.0% | Assumption | — | No listed options; tested at 0% and 5% |
+
+The option expiry and exact method behind each published move were not recorded, a gap in provenance. Each input is rechecked the day before its report; a changed input is logged as a new dated row, and the 6 Nov run is kept as the frozen baseline.
 
 ## Caveats
 
@@ -78,6 +91,8 @@ The headline holds across every variant.
 ## Call ledger
 
 `ledger.csv` records each catalyst call (implied move, expected direction, rationale, exit rule, target weight). The file is dated 7 Nov 2026 19:50 UTC, before every report in the window; its status column records when each row was confirmed. The same calls are posted in the UMushroom portfolio Description, which the platform dates, before the first catalyst (US CPI, 10 Nov). After 22 Nov the ledger gains an `outcome` column and no other column is edited.
+
+**Scoring rule (fixed 8 Nov 2026, before any catalyst).** Directional calls (the six equities): a hit if the close on the first full session after the report or update is above the close on the last session before it, in the stock's own currency; for after-close reports (Applied Materials, NVIDIA) that is the next day's close against the report day's close. If BAE publishes no update by 20 Nov, its call is recorded as void. Hit rate = hits ÷ scored calls. Alongside it: each realised report-day move against its implied move, and each holding's return in sterling from its fill to the 20 Nov close. Bitcoin and Ethereum carry no directional call; their realised two-week moves are compared with the model's two-week s.d.
 
 `POSTMORTEM.md`, added after 22 Nov, will compare realised and implied moves per catalyst, report the hit rate, attribute returns by sleeve, and keep every wrong call.
 
