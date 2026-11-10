@@ -4,7 +4,7 @@
 
 A two-person event-driven £100k paper portfolio (8 positions, 20% cash) timed to earnings and trading updates before the 22 Nov score lock; I built the risk model. The model measures where the portfolio's two-week risk sits. Every figure below is a model output, not a realised outcome: the competition's own scoring on 22 Nov is the only realised result, and a post-mortem will be added then.
 
-**Protocol.** Model code, the 6 Nov data cutoff, the target weights and the call ledger were fixed before the evaluation window (9–20 Nov) and are not refitted afterwards. The portfolio is scored once, by the competition, on 22 Nov. This is a prospective demonstration of process; it does not establish risk calibration or trading skill.
+**Protocol.** Model code, the 6 Nov data cutoff and the call ledger were fixed before the evaluation window (9–20 Nov) and are not refitted afterwards; the weights actually held are recorded in the rebalance section. The portfolio is scored once, by the competition, on 22 Nov. This is a prospective demonstration of process; it does not establish risk calibration or trading skill.
 
 ## Modelled result (horizon 9–20 Nov, 10 trading days)
 
@@ -30,9 +30,11 @@ Deploy trigger = a one-day fall of two daily standard deviations, the size of mo
 
 ## Rebalance: halfway to equal risk (`compare.py`)
 
-Holding the 4th of 52 place in the University of Bristol heat (top 10 qualify) favours protecting rank over adding variance, so the book moves halfway from the current weights towards equal risk, rounded to 0.5% and keeping cash at 20%.
+Holding the 4th of 52 place in the University of Bristol heat (top 10 qualify) argued for protecting rank: move halfway from the current weights towards equal risk, rounded to 0.5% and keeping cash at 20%. The BAE and Ethereum steps were executed on 9 Nov. On 10 Nov, before any catalyst, the team kept the other initial weights, accepting the higher modelled risk because the ranked score rewards dispersion.
 
-| | Current | Halfway (adopted) | Equal risk |
+Weights as held from 10 Nov: NVIDIA 14.3%, Applied Materials 10.9%, Walmart 9.9%, Home Depot 10.2%, BAE 12.4%, Rolls-Royce 10.4%, Bitcoin 9.7%, Ethereum 5.8%, cash 16.5%. The post-mortem scores both the held and the halfway sizing.
+
+| | Current | Halfway (modelled, not executed) | Equal risk |
 |---|---|---|---|
 | Two-week volatility | 3.91% | 3.40% | 3.05% |
 | 95% two-week VaR | £6,432 | £5,599 | £5,013 |
@@ -43,7 +45,7 @@ Holding the 4th of 52 place in the University of Bristol heat (top 10 qualify) f
 
 *NVIDIA and Applied Materials fall by their implied moves; Bitcoin and Ethereum fall one two-week s.d.
 
-Trades: NVIDIA 15% → 11%, Applied Materials 10% → 7.5%, Walmart 10% → 12.5%, Home Depot 10% → 11%, BAE 10% → 12%, Ethereum 5% → 6%; Rolls-Royce and Bitcoin unchanged. The cost is symmetric: about £500–800 less gain in a strong two weeks.
+Planned trades (only BAE and Ethereum executed): NVIDIA 15% → 11%, Applied Materials 10% → 7.5%, Walmart 10% → 12.5%, Home Depot 10% → 11%, BAE 10% → 12%, Ethereum 5% → 6%; Rolls-Royce and Bitcoin unchanged. The cost is symmetric: about £500–800 less gain in a strong two weeks.
 
 ## Method
 
@@ -90,7 +92,7 @@ The option expiry and exact method behind each published move were not recorded,
 
 ## Call ledger
 
-`ledger.csv` records each catalyst call (implied move, expected direction, rationale, exit rule, target weight). The file is dated 7 Nov 2026 19:50 UTC, before every report in the window; its status column records when each row was confirmed. The same calls are posted in the UMushroom portfolio Description, which the platform dates, before the first catalyst (US CPI, 10 Nov). After 22 Nov the ledger gains an `outcome` column and no other column is edited.
+`ledger.csv` records each catalyst call (implied move, expected direction, rationale, exit rule, target weight). `target_weight_pct` holds the planned halfway weights; the weights actually held are in the rebalance section above. The file is dated 7 Nov 2026 19:50 UTC, before every report in the window; its status column records when each row was confirmed. The same calls are posted in the UMushroom portfolio Description, which the platform dates, before the first catalyst (US CPI, 10 Nov). After 22 Nov the ledger gains an `outcome` column and no other column is edited.
 
 **Scoring rule (fixed 8 Nov 2026, before any catalyst).** Directional calls (the six equities): a hit if the close on the first full session after the report or update is above the close on the last session before it, in the stock's own currency; for after-close reports (Applied Materials, NVIDIA) that is the next day's close against the report day's close. If BAE publishes no update by 20 Nov, its call is recorded as void. Hit rate = hits ÷ scored calls. Alongside it: each realised report-day move against its implied move, and each holding's return in sterling from its fill to the 20 Nov close. Bitcoin and Ethereum carry no directional call; their realised two-week moves are compared with the model's two-week s.d.
 
