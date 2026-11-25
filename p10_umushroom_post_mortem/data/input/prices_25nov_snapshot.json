@@ -1,0 +1,40 @@
+{
+ "NVDA": {
+  "price": 149.3,
+  "time_utc": "2026-11-25 21:00 (official close)"
+ },
+ "WMT": {
+  "price": 131.94,
+  "time_utc": "2026-11-25 21:00 (official close)"
+ },
+ "HD": {
+  "price": 361.32,
+  "time_utc": "2026-11-25 21:00 (official close)"
+ },
+ "AMAT": {
+  "price": 311.18,
+  "time_utc": "2026-11-25 21:00 (official close)"
+ },
+ "SYRE": {
+  "price": 102.36,
+  "time_utc": "2026-11-25 21:00 (official close)"
+ },
+ "BTC-USD": {
+  "price": 60141.5703,
+  "time_utc": "2026-11-25 21:00"
+ },
+ "GBPUSD=X": {
+  "price": 1.3119,
+  "time_utc": "2026-11-25 21:00"
+ },
+ "BA.L": {
+  "price": 1839.0,
+  "time_utc": "2026-11-25 16:30 (official close)"
+ },
+ "RR.L": {
+  "price": 1251.2,
+  "time_utc": "2026-11-25 16:30 (official close)"
+ },
+ "_taken_utc": "2026-11-25 21:06",
+ "_label": "25 Nov close: US shares at the official 21:00 UK close (US markets closed 26 Nov for Thanksgiving), UK shares at the 16:30 official close, Bitcoin and GBP/USD at 21:00 UK"
+}

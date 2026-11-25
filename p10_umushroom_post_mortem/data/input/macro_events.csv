@@ -1,0 +1,12 @@
+date,release,note
+2026-11-10,US October CPI,from CONTEXT.md / P9 ledger; annotated only (acts through beta)
+2026-11-12,UK GDP Q3 first estimate,+0.7% q/q in line (ONS)
+2026-11-13,US PPI Oct,+0.3% m/m vs 0.4% (secondary)
+2026-11-16,BIS rule on Chinese remote access to AI chips,company-relevant for NVDA (Al Jazeera 17 Nov)
+2026-11-17,US retail sales Oct,+0.2% vs 0.1-0.2%
+2026-11-18,UK CPI Oct,3.6% vs 3.7%; FOMC minutes 19:00 UK
+2026-11-17,WSJ (relayed by Reuters/The Star) reports SEC civil probe of NVIDIA disclosures after CEO exit; SEC: does not comment (reported not confirmed),The Star (Malaysia) 18 Nov 2026 relaying the WSJ: NVIDIA faces an SEC probe after its chief executive resigned
+2026-11-20,Reuters (two people briefed; original not fetchable - reuters.com blocks automated access; relayed by 247wallst) reports SEC enforcement staff examining potential accounting issues at NVIDIA; SEC declined to comment; NVIDIA did not immediately respond (reported not confirmed),https://247wallst.com/investing/2026/11/20/nvidia-stock-plunges-12-after-reuters-reports-an-sec-probe-of-its-accounting-its-nvidias-worst-day-since-deepseek-and-it-has-lost-2-7-trillion-since-october/
+2026-11-20,Broad AI/chip sell-off: NVDA -14.01% to 125.53; AMD -13.26%; AVGO -12.12% (Fool: 'Reports of a SEC accounting investigation added to mounting concerns'),https://www.fool.com/coverage/stock-market-today/2026/11/20/stock-market-today-nov-20-nvidia-s-usd2-5-trillion-rout-deepens-as-sec-accounting-probe-adds-to-wall-street-s-ai-sell-off/
+2026-11-20,Axios AI/tech sell-off piece: HTTP 403 to automated fetch; content unverified,https://www.axios.com/2026/11/20/anthropic-ipo-nvidia-ai-tech-selloff
+2026-11-20,EDGAR check: NVDA 8-Ks since 12 Nov = 12 Nov (items 5.02/9.01) and 17 Nov (2.02/9.01); no Item 4.02 and no company statement on the SEC report,https://data.sec.gov/submissions/CIK0001045810.json

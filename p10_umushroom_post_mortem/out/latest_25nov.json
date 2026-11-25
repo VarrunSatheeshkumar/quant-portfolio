@@ -1,0 +1,134 @@
+{
+ "label": "Mark to market at the 25 Nov close, the last common US/UK equity close before the 26 Nov 18:00 pitch (US closed 26 Nov for Thanksgiving; UK shares, Bitcoin and FX can still move on 26 Nov); book unchanged since the 20 Nov cut-off",
+ "snapshot_taken_utc": "2026-11-25 21:06",
+ "gbpusd": 1.3119,
+ "nav_gbp": 95228.63,
+ "return_vs_100k_pct": -4.77,
+ "change_since_20nov_platform_gbp": 3762.13,
+ "change_since_20nov_yahoo_gbp": 3789.03,
+ "cash_gbp": 15884.58,
+ "cash_pct": 16.68,
+ "usd_share_pct": 60.3,
+ "holdings": {
+  "AMAT": {
+   "price_local": 311.18,
+   "price_time_utc": "2026-11-25 21:00 (official close)",
+   "units": 40.1455,
+   "value_gbp": 9522.43,
+   "change_since_20nov_gbp": 238.59,
+   "local_return_vs_avg_fill_pct": -6.65,
+   "gbp_return_vs_cost_pct": -4.71,
+   "weight_pct": 10.0
+  },
+  "BAE": {
+   "price_local": 18.39,
+   "price_time_utc": "2026-11-25 16:30 (official close)",
+   "units": 650.0542,
+   "value_gbp": 11954.5,
+   "change_since_20nov_gbp": 162.51,
+   "local_return_vs_avg_fill_pct": -3.87,
+   "gbp_return_vs_cost_pct": -3.87,
+   "weight_pct": 12.55
+  },
+  "BTC": {
+   "price_local": 60141.5703,
+   "price_time_utc": "2026-11-25 21:00",
+   "units": 0.1764,
+   "value_gbp": 8086.72,
+   "change_since_20nov_gbp": 160.85,
+   "local_return_vs_avg_fill_pct": -20.56,
+   "gbp_return_vs_cost_pct": -19.12,
+   "weight_pct": 8.49
+  },
+  "HD": {
+   "price_local": 361.32,
+   "price_time_utc": "2026-11-25 21:00 (official close)",
+   "units": 38.8884,
+   "value_gbp": 10710.54,
+   "change_since_20nov_gbp": 635.43,
+   "local_return_vs_avg_fill_pct": 4.28,
+   "gbp_return_vs_cost_pct": 6.61,
+   "weight_pct": 11.25
+  },
+  "NVDA": {
+   "price_local": 149.3,
+   "price_time_utc": "2026-11-25 21:00 (official close)",
+   "units": 123.5688,
+   "value_gbp": 14062.67,
+   "change_since_20nov_gbp": 2209.49,
+   "local_return_vs_avg_fill_pct": -15.07,
+   "gbp_return_vs_cost_pct": -13.41,
+   "weight_pct": 14.77
+  },
+  "RR": {
+   "price_local": 12.512,
+   "price_time_utc": "2026-11-25 16:30 (official close)",
+   "units": 792.8957,
+   "value_gbp": 9920.71,
+   "change_since_20nov_gbp": -169.68,
+   "local_return_vs_avg_fill_pct": -5.28,
+   "gbp_return_vs_cost_pct": -5.26,
+   "weight_pct": 10.42
+  },
+  "SYRE": {
+   "price_local": 102.36,
+   "price_time_utc": "2026-11-25 21:00 (official close)",
+   "units": 29.8102,
+   "value_gbp": 2325.92,
+   "change_since_20nov_gbp": 196.72,
+   "local_return_vs_avg_fill_pct": 4.84,
+   "gbp_return_vs_cost_pct": 5.39,
+   "weight_pct": 2.44
+  },
+  "WMT": {
+   "price_local": 131.94,
+   "price_time_utc": "2026-11-25 21:00 (official close)",
+   "units": 126.8802,
+   "value_gbp": 12760.56,
+   "change_since_20nov_gbp": 355.1,
+   "local_return_vs_avg_fill_pct": 4.11,
+   "gbp_return_vs_cost_pct": 6.2,
+   "weight_pct": 13.4
+  }
+ },
+ "risk": {
+  "ann_vol_pct": 16.63,
+  "two_week_sd_pct": 3.26,
+  "two_week_var95_gbp": 5110,
+  "var95_1y_normal_gbp": 26054,
+  "risk_share_pct": {
+   "NVDA": 30.94,
+   "AMAT": 18.75,
+   "WMT": 6.97,
+   "HD": 7.61,
+   "BAE": 11.32,
+   "RR": 12.18,
+   "BTC": 9.05,
+   "SYRE": 3.19
+  },
+  "ai_crypto_risk_share_pct": 58.7,
+  "sleeve_risk_share_pct": {
+   "AI/semis": 49.7,
+   "US consumer": 14.6,
+   "UK industrials": 23.5,
+   "Crypto": 9.0,
+   "Satellite": 3.2
+  },
+  "cov": "component E, 156 weeks to 20 Nov"
+ },
+ "observed_decline_stress": {
+  "full_gbp": -6102.11,
+  "ai_crypto_only_gbp": -6585.89,
+  "x_p9_ai_stress_ai_crypto": 1.82
+ },
+ "w_star_pct": {
+  "NVDA": 6.23,
+  "AMAT": 6.0,
+  "WMT": 14.31,
+  "HD": 14.58,
+  "BAE": 10.05,
+  "RR": 9.69,
+  "BTC": 13.69,
+  "SYRE": 8.08
+ }
+}

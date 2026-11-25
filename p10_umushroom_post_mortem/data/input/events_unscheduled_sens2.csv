@@ -1,0 +1,3 @@
+event_id,asset,type,announce_local,timing,reaction_day,source
+U1,NVDA,unscheduled,2026-11-12 08:52 ET (8-K accepted),before_open,2026-11-12,https://www.sec.gov/Archives/edgar/data/1045810/000104581026000082/0001045810-26-000082-index.htm
+U2,NVDA,unscheduled (reported not confirmed),2026-11-20 (Reuters report intraday),during_session,2026-11-20,https://247wallst.com/investing/2026/11/20/nvidia-stock-plunges-12-after-reuters-reports-an-sec-probe-of-its-accounting-its-nvidias-worst-day-since-deepseek-and-it-has-lost-2-7-trillion-since-october/

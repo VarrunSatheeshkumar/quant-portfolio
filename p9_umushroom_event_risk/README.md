@@ -2,9 +2,9 @@
 
 [Portfolio home](../README.md)
 
-A two-person event-driven £100k paper portfolio (8 positions, 20% cash) timed to earnings and trading updates before the 22 Nov score lock; I built the risk model. The model measures where the portfolio's two-week risk sits. Every figure below is a model output, not a realised outcome: the competition's own scoring on 22 Nov is the only realised result, and a post-mortem will be added then.
+A two-person event-driven £100k paper portfolio (8 positions, 20% cash) timed to earnings and trading updates before the Stage 1 cut-off on 20 Nov; I built the risk model. The model measures where the portfolio's two-week risk sits. Every figure below is a model output from before the window. The realised result is scored in [P10, the post-mortem](../p10_umushroom_post_mortem/): the portfolio lost 8.53%, 2.2 standard deviations of this model's forecast, past the 95% VaR and short of the 99%.
 
-**Protocol.** Model code, the 6 Nov data cutoff and the call ledger were fixed before the evaluation window (9–20 Nov) and are not refitted afterwards; the weights actually held are recorded in the rebalance section. The portfolio is scored once, by the competition, on 22 Nov. This is a prospective demonstration of process; it does not establish risk calibration or trading skill.
+**Protocol.** Model code, the 6 Nov data cutoff and the call ledger were fixed before the evaluation window (9–20 Nov) and are not refitted afterwards; the weights actually held are recorded in the rebalance section. The portfolio is scored once by the competition, at its value on the 20 Nov close, the Stage 1 cut-off. Some competition pages still showed a 22 Nov lock date; the organisers' support team confirmed 20 Nov. The platform's figure for that close was read on 21 Nov. This is a prospective demonstration of process; it does not establish risk calibration or trading skill.
 
 ## Modelled result (horizon 9–20 Nov, 10 trading days)
 
@@ -30,9 +30,9 @@ Deploy trigger = a one-day fall of two daily standard deviations, the size of mo
 
 ## Rebalance: halfway to equal risk (`compare.py`)
 
-Holding the 4th of 52 place in the University of Bristol heat (top 10 qualify) argued for protecting rank: move halfway from the current weights towards equal risk, rounded to 0.5% and keeping cash at 20%. The BAE and Ethereum steps were executed on 9 Nov. On 10 Nov, before any catalyst, the team kept the other initial weights, accepting the higher modelled risk because the ranked score rewards dispersion.
+Holding 4th place of 52 in the University of Bristol heat (team-reported; top 10 qualify) argued for protecting rank: move halfway from the current weights towards equal risk, rounded to 0.5% and keeping cash at 20%. The BAE and Ethereum steps were executed on 9 Nov. On 10 Nov, before any catalyst, the team kept the remaining initial weights, accepting the higher modelled risk because the ranked score rewards dispersion.
 
-Weights as held from 10 Nov: NVIDIA 14.3%, Applied Materials 10.9%, Walmart 9.9%, Home Depot 10.2%, BAE 12.4%, Rolls-Royce 10.4%, Bitcoin 9.7%, Ethereum 5.8%, cash 16.5%. The post-mortem scores both the held and the halfway sizing.
+Weights as held from 10 Nov (team-reported): NVIDIA 14.3%, Applied Materials 10.9%, Walmart 9.9%, Home Depot 10.2%, BAE 12.4%, Rolls-Royce 10.4%, Bitcoin 9.7%, Ethereum 5.8%, cash 16.5%. [P10](../p10_umushroom_post_mortem/) scores the held book and holds all three P9 sizings unchanged from the actual fills.
 
 | | Current | Halfway (modelled, not executed) | Equal risk |
 |---|---|---|---|
@@ -92,11 +92,11 @@ The option expiry and exact method behind each published move were not recorded,
 
 ## Call ledger
 
-`ledger.csv` records each catalyst call (implied move, expected direction, rationale, exit rule, target weight). `target_weight_pct` holds the planned halfway weights; the weights actually held are in the rebalance section above. The file is dated 7 Nov 2026 19:50 UTC, before every report in the window; its status column records when each row was confirmed. The same calls are posted in the UMushroom portfolio Description, which the platform dates, before the first catalyst (US CPI, 10 Nov). After 22 Nov the ledger gains an `outcome` column and no other column is edited.
+`ledger.csv` records each catalyst call (implied move, expected direction, rationale, exit rule, target weight). `target_weight_pct` holds the planned halfway weights; the weights actually held are in the rebalance section above. The team's ledger records the file as written on 7 Nov 2026 at 19:50 UTC, before every report in the window; its status column records when each row was confirmed. The same calls are posted in the UMushroom portfolio Description; the captured page shows no date on that block, so the 7 Nov date rests on the team's ledger. The planned `outcome` column was not added: the file is left as it was on 7 Nov, and the outcomes (1 hit of 6 calls) are scored in [P10](../p10_umushroom_post_mortem/) instead.
 
 **Scoring rule (fixed 8 Nov 2026, before any catalyst).** Directional calls (the six equities): a hit if the close on the first full session after the report or update is above the close on the last session before it, in the stock's own currency; for after-close reports (Applied Materials, NVIDIA) that is the next day's close against the report day's close. If BAE publishes no update by 20 Nov, its call is recorded as void. Hit rate = hits ÷ scored calls. Alongside it: each realised report-day move against its implied move, and each holding's return in sterling from its fill to the 20 Nov close. Bitcoin and Ethereum carry no directional call; their realised two-week moves are compared with the model's two-week s.d.
 
-`POSTMORTEM.md`, added after 22 Nov, will compare realised and implied moves per catalyst, report the hit rate, attribute returns by sleeve, and keep every wrong call.
+The post-mortem is [P10](../p10_umushroom_post_mortem/) rather than a `POSTMORTEM.md` here: it compares realised and implied moves per catalyst, reports the hit rate, attributes the loss by source and keeps every wrong call.
 
 ## Data sources
 

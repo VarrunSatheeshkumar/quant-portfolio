@@ -1,0 +1,7 @@
+{"source": "UMushroom platform, read by Varrun 19 Nov 2026 evening (CONTEXT.md)",
+ "nav_gbp": 96139.28, "return_pct": -3.86, "cash_gbp": 18091.56,
+ "quoted_prices": {"NVDA": 153.29, "WMT": 125.03, "BA.L": 18.28, "AMAT": 352.30, "BTC-USD": 62396.21},
+ "quoted_units": {"NVDA": 123.5688, "WMT": 126.8802, "BA.L": 650.0542, "AMAT": 40.1455, "HD": 38.8884,
+                  "RR.L": 792.8957, "BTC-USD": 0.1764},
+ "pending": {"SYRE": {"units": 29.8102, "usd_price": 101.46, "gbp_approx": 3024, "executes": "2026-11-20"}},
+ "earlier_claims": {"open_cost_gbp": 81201.25, "eth_realised_gbp": -707.18}}

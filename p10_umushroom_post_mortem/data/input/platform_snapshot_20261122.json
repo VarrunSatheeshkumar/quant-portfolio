@@ -1,0 +1,32 @@
+{
+ "source": "UMushroom portfolio page, read from the platform page (read only) 2026-11-21 ~21:50 UTC",
+ "nav_gbp": 91466.5,
+ "return_pct": -8.53,
+ "cash_gbp": 15884.57,
+ "quoted_prices": {
+  "NVDA": 125.53,
+  "WMT": 127.95,
+  "AMAT": 302.63,
+  "HD": 339.04,
+  "BA.L": 18.14,
+  "RR.L": 12.73,
+  "SYRE": 93.47,
+  "BTC-USD": 60320.75
+ },
+ "weights_pct": {
+  "WMT": 13.57,
+  "NVDA": 12.97,
+  "BA.L": 12.89,
+  "RR.L": 11.03,
+  "HD": 11.02,
+  "AMAT": 10.16,
+  "SYRE": 2.33,
+  "BTC-USD": 8.89
+ },
+ "syre_fill": {
+  "units": 29.8102,
+  "usd_price": 97.63,
+  "gbp_cash": -2206.99,
+  "added_on": "2026-11-19 (platform 'Added On')"
+ }
+}

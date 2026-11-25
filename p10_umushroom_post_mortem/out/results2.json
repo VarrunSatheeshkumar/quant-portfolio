@@ -1,0 +1,3891 @@
+{
+ "asof": "2026-11-20",
+ "platform": {
+  "valuation_date": "2026-11-20",
+  "observed": "2026-11-21 ~21:50 UTC (shows the 20 Nov close)",
+  "nav": 91466.5,
+  "return_pct": -8.53,
+  "cash": 15884.57,
+  "cash_pct_nav": 17.37,
+  "identity_pnl": -8533.5,
+  "yahoo_nav": 91439.6,
+  "yahoo_minus_platform": -26.9
+ },
+ "var_yahoo": {
+  "loss_gbp": 8560.4,
+  "var95": 6432,
+  "var99": 9094,
+  "var95_breached": true,
+  "var99_breached": false,
+  "excess_over_var95": 2128.4,
+  "headroom_to_var99": 533.6,
+  "ai_selloff_stress_gbp": -3613,
+  "loss_vs_ai_stress_x": 2.37
+ },
+ "var_platform": {
+  "loss_gbp": 8533.5,
+  "var95": 6432,
+  "var99": 9094,
+  "var95_breached": true,
+  "var99_breached": false,
+  "excess_over_var95": 2101.5,
+  "headroom_to_var99": 560.5,
+  "ai_selloff_stress_gbp": -3613,
+  "loss_vs_ai_stress_x": 2.36
+ },
+ "z": {
+  "yahoo_vs_3.91": -2.189,
+  "platform_vs_3.91": -2.182,
+  "platform_vs_held_4.19": -2.037
+ },
+ "attr": {
+  "market_sector_pct": 67.2,
+  "crypto_pct": 31.7,
+  "fx_pct": -11.0,
+  "fx_scope": "fx_pct: the four US equities only",
+  "fx_all_dollar_holdings_pct": -15.1,
+  "report_day_pct": 3.9,
+  "other_specific_pct": 23.7,
+  "execution_pct": -16.3,
+  "syre_pct": 0.9,
+  "systematic_pct": 87.8,
+  "systematic_range_pct": [
+   80.537,
+   97.194
+  ],
+  "n_variants": 36,
+  "nvda_total_gbp": -4387.82
+ },
+ "nvda_20nov": {
+  "raw_pct": -14.01,
+  "spy_only": {
+   "predicted_pct": -7.27,
+   "abnormal_pct": -6.73
+  },
+  "spy_smh": {
+   "r_pct": -14.01,
+   "m_pct": -3.64,
+   "s_pct": -10.6,
+   "b_m": 1.998,
+   "b_s": 0.41,
+   "g": 2.732,
+   "predicted_pct": -7.54,
+   "abnormal_pct": -6.47,
+   "abnormal_z": -3.78,
+   "spy_only_abnormal_pct": -6.73,
+   "spy_only_predicted_pct": -7.27
+  },
+  "spy_peers": {
+   "r_pct": -14.01,
+   "m_pct": -3.64,
+   "s_pct": -10.83,
+   "b_m": 1.998,
+   "b_s": 0.217,
+   "g": 3.075,
+   "predicted_pct": -7.2,
+   "abnormal_pct": -6.81,
+   "abnormal_z": -3.76,
+   "spy_only_abnormal_pct": -6.73,
+   "spy_only_predicted_pct": -7.27
+  },
+  "moves_20nov_pct": {
+   "AMD": -13.25,
+   "AVGO": -12.19,
+   "TSM": -9.48,
+   "MU": -13.89,
+   "LRCX": -10.02,
+   "KLAC": -10.33,
+   "ASML": -6.63,
+   "SPY": -3.64,
+   "QQQ": -5.67,
+   "SMH": -10.6,
+   "AMAT": -10.71
+  },
+  "caveat": "On 20 Nov the sector is not independent of NVDA: the report was about NVDA and peers fell with it. The model cannot say which way causation ran.",
+  "peer_range_pct": [
+   -13.89,
+   -6.63
+  ]
+ },
+ "breach": {
+  "NVDA": {
+   "gbp_log_ret_pct": -36.88,
+   "p9_two_week_sd_pct": 13.7,
+   "z": -2.69
+  },
+  "AMAT": {
+   "gbp_log_ret_pct": -6.69,
+   "p9_two_week_sd_pct": 19.0,
+   "z": -0.35
+  },
+  "WMT": {
+   "gbp_log_ret_pct": 4.7,
+   "p9_two_week_sd_pct": 7.7,
+   "z": 0.61
+  },
+  "HD": {
+   "gbp_log_ret_pct": 1.49,
+   "p9_two_week_sd_pct": 7.9,
+   "z": 0.19
+  },
+  "BA.L": {
+   "gbp_log_ret_pct": -1.75,
+   "p9_two_week_sd_pct": 7.3,
+   "z": -0.24
+  },
+  "RR.L": {
+   "gbp_log_ret_pct": 0.9,
+   "p9_two_week_sd_pct": 8.1,
+   "z": 0.11
+  },
+  "BTC-USD": {
+   "gbp_log_ret_pct": -22.54,
+   "p9_two_week_sd_pct": 7.3,
+   "z": -3.09
+  },
+  "ETH-USD": {
+   "gbp_log_ret_pct": -29.43,
+   "p9_two_week_sd_pct": 9.9,
+   "z": -2.97
+  },
+  "_beyond_minus2": [
+   "NVDA",
+   "BTC-USD",
+   "ETH-USD"
+  ]
+ },
+ "deploy": {
+  "triggers_from_p9_file": {
+   "NVDA": -5.0,
+   "AMAT": -8.7,
+   "WMT": -3.2,
+   "HD": -3.7,
+   "BA.L": -4.0,
+   "RR.L": -4.6,
+   "BTC-USD": -4.6,
+   "ETH-USD": -6.3
+  },
+  "hits": [
+   {
+    "date": "2026-11-10",
+    "asset": "NVDA",
+    "local_pct": -5.47,
+    "gbp_pct": -6.05,
+    "trigger_pct": -5.0,
+    "hit_local": true,
+    "hit_gbp": true
+   },
+   {
+    "date": "2026-11-20",
+    "asset": "NVDA",
+    "local_pct": -14.01,
+    "gbp_pct": -13.61,
+    "trigger_pct": -5.0,
+    "hit_local": true,
+    "hit_gbp": true
+   },
+   {
+    "date": "2026-11-20",
+    "asset": "AMAT",
+    "local_pct": -10.71,
+    "gbp_pct": -10.3,
+    "trigger_pct": -8.7,
+    "hit_local": true,
+    "hit_gbp": true
+   },
+   {
+    "date": "2026-11-14",
+    "asset": "BTC-USD",
+    "local_pct": -6.04,
+    "gbp_pct": -6.04,
+    "trigger_pct": -4.6,
+    "hit_local": true,
+    "hit_gbp": true
+   },
+   {
+    "date": "2026-11-20",
+    "asset": "BTC-USD",
+    "local_pct": -5.01,
+    "gbp_pct": -4.58,
+    "trigger_pct": -4.6,
+    "hit_local": true,
+    "hit_gbp": false
+   }
+  ]
+ },
+ "sharpe": {
+  "T_sessions": 10,
+  "se_annualised": 5.43,
+  "note": "realised Sharpe not reported: the standard error over this many sessions makes it meaningless"
+ },
+ "counterfactual": {
+  "asof": "2026-11-20",
+  "fx": 1.3086435794830322,
+  "actual_nav": 91439.6,
+  "actual_pnl": -8560.4,
+  "books": {
+   "planned": {
+    "weights": {
+     "NVDA": 0.15,
+     "AMAT": 0.1,
+     "WMT": 0.1,
+     "HD": 0.1,
+     "BA.L": 0.1,
+     "RR.L": 0.1,
+     "BTC-USD": 0.1,
+     "ETH-USD": 0.05
+    },
+    "nav": 91245.14,
+    "pnl": -8754.86,
+    "return_pct": -8.755,
+    "vs_actual_gbp": -194.46,
+    "own_var95": 6432,
+    "breaches_own_var95": true,
+    "pnl_by_asset": {
+     "NVDA": -4188.02,
+     "AMAT": -709.86,
+     "WMT": 367.28,
+     "HD": 28.73,
+     "BA.L": -517.51,
+     "RR.L": -363.47,
+     "BTC-USD": -2073.07,
+     "ETH-USD": -1298.94
+    }
+   },
+   "halfway": {
+    "weights": {
+     "NVDA": 0.11,
+     "AMAT": 0.075,
+     "WMT": 0.125,
+     "HD": 0.11,
+     "BA.L": 0.12,
+     "RR.L": 0.1,
+     "BTC-USD": 0.1,
+     "ETH-USD": 0.06
+    },
+    "nav": 92270.81,
+    "pnl": -7729.19,
+    "return_pct": -7.729,
+    "vs_actual_gbp": 831.21,
+    "own_var95": 5599,
+    "breaches_own_var95": true,
+    "pnl_by_asset": {
+     "NVDA": -3071.21,
+     "AMAT": -532.4,
+     "WMT": 459.1,
+     "HD": 31.61,
+     "BA.L": -621.02,
+     "RR.L": -363.47,
+     "BTC-USD": -2073.07,
+     "ETH-USD": -1558.73
+    }
+   },
+   "equal_risk": {
+    "weights": {
+     "NVDA": 0.064,
+     "AMAT": 0.05,
+     "WMT": 0.15,
+     "HD": 0.126,
+     "BA.L": 0.13699999999999998,
+     "RR.L": 0.09699999999999999,
+     "BTC-USD": 0.099,
+     "ETH-USD": 0.077
+    },
+    "nav": 93331.04,
+    "pnl": -6668.96,
+    "return_pct": -6.669,
+    "vs_actual_gbp": 1891.44,
+    "own_var95": 5013,
+    "breaches_own_var95": true,
+    "pnl_by_asset": {
+     "NVDA": -1786.89,
+     "AMAT": -354.93,
+     "WMT": 550.93,
+     "HD": 36.2,
+     "BA.L": -708.99,
+     "RR.L": -352.57,
+     "BTC-USD": -2052.34,
+     "ETH-USD": -2000.37
+    }
+   }
+  }
+ },
+ "scorecard": {
+  "rules_hash_ok": true,
+  "locked_utc": "2026-11-21T21:00:26Z",
+  "assets": {
+   "NVDA": {
+    "rules": {
+     "R1": {
+      "finding": "No full-year guidance line; Q4 revenue guide raised to 130.0bn (quarterly only)",
+      "trigger": "none",
+      "url": "https://investor.nvidia.com/news/press-release-details/2026/NVIDIA-Announces-Financial-Results-for-Third-Quarter-Fiscal-2027/default.aspx",
+      "source_class": "primary"
+     },
+     "R2": {
+      "finding": "+1y EPS: S1 30d +4.34%; S2 vs S1 +0.00%",
+      "trigger": "none",
+      "url": "data/raw/estimates_20261119T174603Z ; data/raw/estimates_20261121T205835Z",
+      "source_class": "primary"
+     },
+     "R3": {
+      "finding": "Reuters (two people briefed; relayed by 247wallst; original not fetchable) reported SEC enforcement staff examining potential accounting issues; SEC declined to comment. Earlier (17-18 Nov) WSJ/Reuters: SEC probe of disclosures after CEO exit. EDGAR: no Item 4.02 8-K or restatement (8-Ks 12 Nov items 5.02/9.01; 17 Nov items 2.02/9.01)",
+      "trigger": "SOFT",
+      "url": "https://247wallst.com/investing/2026/11/20/nvidia-stock-plunges-12-after-reuters-reports-an-sec-probe-of-its-accounting-its-nvidias-worst-day-since-deepseek-and-it-has-lost-2-7-trillion-since-october/ ; The Star (Malaysia) 18 Nov 2026 relaying the WSJ: NVIDIA faces an SEC probe after its chief executive resigned ; https://data.sec.gov/submissions/CIK0001045810.json",
+      "source_class": "named report"
+     },
+     "R4": {
+      "finding": "CEO resigned 12 Nov effective immediately (8-K item 5.02); CFO named interim CEO; board search ongoing; no permanent successor named",
+      "trigger": "SOFT",
+      "url": "https://www.sec.gov/Archives/edgar/data/0001045810/000104581026000082/nvda-20261111.htm",
+      "source_class": "primary"
+     }
+    },
+    "triggers": [
+     "none",
+     "none",
+     "SOFT",
+     "SOFT"
+    ],
+    "status": "REVIEW-TRIM"
+   },
+   "AMAT": {
+    "rules": {
+     "R1": {
+      "finding": "No full-year guide; Q1 guide above consensus (quarterly only)",
+      "trigger": "none",
+      "url": "https://www.sec.gov/Archives/edgar/data/6951/000162828026073360/0001628280-26-073360-index.htm",
+      "source_class": "primary"
+     },
+     "R2": {
+      "finding": "+1y EPS: S1 30d +4.34%; S2 vs S1 -0.03%",
+      "trigger": "none",
+      "url": "data/raw/estimates_20261119T174603Z ; data/raw/estimates_20261121T205835Z",
+      "source_class": "primary"
+     },
+     "R3": {
+      "finding": "No report found (search limited to the 20 Nov sources and news search)",
+      "trigger": "none",
+      "url": "not sourced",
+      "source_class": "not sourced"
+     },
+     "R4": {
+      "finding": "No CEO/CFO change found (search limited)",
+      "trigger": "none",
+      "url": "not sourced",
+      "source_class": "not sourced"
+     }
+    },
+    "triggers": [
+     "none",
+     "none",
+     "none",
+     "none"
+    ],
+    "status": "HOLD"
+   },
+   "WMT": {
+    "rules": {
+     "R1": {
+      "finding": "FY EPS guide raised 2.80-2.87 -> 2.84-2.89",
+      "trigger": "none",
+      "url": "https://www.cnbc.com/2026/11/19/walmart-wmt-q3-2026-earnings.html",
+      "source_class": "named report"
+     },
+     "R2": {
+      "finding": "+1y EPS: S1 30d +0.06%; S2 vs S1 -0.01%",
+      "trigger": "none",
+      "url": "data/raw/estimates_20261119T174603Z ; data/raw/estimates_20261121T205835Z",
+      "source_class": "primary"
+     },
+     "R3": {
+      "finding": "No report found (search limited)",
+      "trigger": "none",
+      "url": "not sourced",
+      "source_class": "not sourced"
+     },
+     "R4": {
+      "finding": "No CEO/CFO change found (search limited)",
+      "trigger": "none",
+      "url": "not sourced",
+      "source_class": "not sourced"
+     }
+    },
+    "triggers": [
+     "none",
+     "none",
+     "none",
+     "none"
+    ],
+    "status": "HOLD"
+   },
+   "HD": {
+    "rules": {
+     "R1": {
+      "finding": "FY EPS growth guide narrowed flat-to-4% -> about 2%: midpoint unchanged (2%); other lines not sourced",
+      "trigger": "none",
+      "url": "https://www.cnbc.com/2026/11/17/home-depot-hd-q3-earnings-2026.html",
+      "source_class": "named report"
+     },
+     "R2": {
+      "finding": "+1y EPS: S1 30d -1.52%; S2 vs S1 -0.17%; cumulative -1.69% (< 2%)",
+      "trigger": "SOFT",
+      "url": "data/raw/estimates_20261119T174603Z ; data/raw/estimates_20261121T205835Z",
+      "source_class": "primary"
+     },
+     "R3": {
+      "finding": "No report found (search limited)",
+      "trigger": "none",
+      "url": "not sourced",
+      "source_class": "not sourced"
+     },
+     "R4": {
+      "finding": "CFO named CEO: planned succession with named successor -> watch",
+      "trigger": "watch",
+      "url": "https://www.cnbc.com/2026/11/17/home-depot-hd-q3-earnings-2026.html",
+      "source_class": "named report"
+     }
+    },
+    "triggers": [
+     "none",
+     "SOFT",
+     "none",
+     "watch"
+    ],
+    "status": "REVIEW"
+   },
+   "BA.L": {
+    "rules": {
+     "R1": {
+      "finding": "Sales/EBIT/EPS guidance unchanged; FCF raised >2.0bn -> c.3.0bn",
+      "trigger": "none",
+      "url": "https://www.baesystems.com/en/article/market-update-nov-2026",
+      "source_class": "primary"
+     },
+     "R2": {
+      "finding": "+1y EPS: S1 30d -0.43%; S2 vs S1 +0.08%",
+      "trigger": "none",
+      "url": "data/raw/estimates_20261119T174603Z ; data/raw/estimates_20261121T205835Z",
+      "source_class": "primary"
+     },
+     "R3": {
+      "finding": "No report found (search limited)",
+      "trigger": "none",
+      "url": "not sourced",
+      "source_class": "not sourced"
+     },
+     "R4": {
+      "finding": "No CEO/CFO change found (search limited)",
+      "trigger": "none",
+      "url": "not sourced",
+      "source_class": "not sourced"
+     }
+    },
+    "triggers": [
+     "none",
+     "none",
+     "none",
+     "none"
+    ],
+    "status": "HOLD"
+   },
+   "RR.L": {
+    "rules": {
+     "R1": {
+      "finding": "FY26 guidance reaffirmed (op profit 4.7-4.9bn; FCF 3.8-4.0bn)",
+      "trigger": "none",
+      "url": "https://www.rolls-royce.com/media/press-releases/2026/12-11-2026-rr-holdings-plc-trading-update.aspx",
+      "source_class": "primary"
+     },
+     "R2": {
+      "finding": "+1y EPS: S1 30d +0.15%; S2 vs S1 +0.00%",
+      "trigger": "none",
+      "url": "data/raw/estimates_20261119T174603Z ; data/raw/estimates_20261121T205835Z",
+      "source_class": "primary"
+     },
+     "R3": {
+      "finding": "No report found (search limited)",
+      "trigger": "none",
+      "url": "not sourced",
+      "source_class": "not sourced"
+     },
+     "R4": {
+      "finding": "No CEO/CFO change found (search limited)",
+      "trigger": "none",
+      "url": "not sourced",
+      "source_class": "not sourced"
+     }
+    },
+    "triggers": [
+     "none",
+     "none",
+     "none",
+     "none"
+    ],
+    "status": "HOLD"
+   },
+   "BTC-USD": {
+    "rules": {},
+    "triggers": [],
+    "status": "NO THESIS",
+    "note": "variance allocation, no directional call"
+   },
+   "SYRE": {
+    "rules": {},
+    "triggers": [],
+    "status": "NO THESIS",
+    "note": "no documented case (the team has not written one)"
+   }
+  }
+ },
+ "calls": {
+  "hits": 1,
+  "n": 6,
+  "all_abs_moves_below_implied": true,
+  "binom_one_sided": 0.1094,
+  "binom_two_sided": 0.2188
+ },
+ "placebo_10d": {
+  "n_windows": 492,
+  "k_at_or_below": 2,
+  "worst_pct": -10.43,
+  "weights": "held 9 Nov",
+  "history": "2 years to 6 Nov"
+ },
+ "E": {
+  "assumptions": {
+   "sharpe_grid": [
+    0.2,
+    0.3,
+    0.4
+   ],
+   "risk_free": 0.0,
+   "cash_return": 0.0,
+   "var_z": 1.645,
+   "weekly_day": "Friday close (W-FRI last obs)",
+   "annualise": 52,
+   "cap": 0.15,
+   "leverage": "none",
+   "cap_rule": "weights above 15% clipped; excess spread pro rata over uncapped names (cash unchanged)",
+   "expected_returns": "reverse-optimised pi = lambda * Sigma * w_held, lambda = S / sigma_p: ASSUMPTION",
+   "horizon_table": "P(loss over T) = Phi(-S * sqrt(T)): HYPOTHETICAL"
+  },
+  "held_weights_pct_yahoo_20nov": {
+   "NVDA": 12.96,
+   "WMT": 13.57,
+   "AMAT": 10.15,
+   "HD": 11.02,
+   "BAE": 12.9,
+   "RR": 11.04,
+   "BTC": 8.67,
+   "SYRE": 2.33
+  },
+  "cash_pct": 17.37,
+  "runs": {
+   "2026-11-06|156w": {
+    "end": "2026-11-06",
+    "weeks": 156,
+    "assets": [
+     "NVDA",
+     "AMAT",
+     "WMT",
+     "HD",
+     "BAE",
+     "RR",
+     "BTC",
+     "SYRE"
+    ],
+    "shrinkage": 0.129,
+    "first_week": "2023-11-17",
+    "last_week": "2026-11-06",
+    "ann_vol_by_asset_pct": {
+     "NVDA": 43.5,
+     "AMAT": 46.2,
+     "WMT": 27.5,
+     "HD": 26.6,
+     "BAE": 33.2,
+     "RR": 34.2,
+     "BTC": 43.4,
+     "SYRE": 72.0
+    },
+    "min_eig": 0.05208651794075503,
+    "held": {
+     "weights_pct": {
+      "NVDA": 12.96,
+      "AMAT": 10.15,
+      "WMT": 13.57,
+      "HD": 11.02,
+      "BAE": 12.9,
+      "RR": 11.04,
+      "BTC": 8.67,
+      "SYRE": 2.33
+     },
+     "invested_pct": 82.63,
+     "ann_vol_pct": 15.61,
+     "var95_1y_normal_gbp": 23481,
+     "risk_share_pct": {
+      "NVDA": 25.83,
+      "AMAT": 19.09,
+      "WMT": 8.11,
+      "HD": 8.06,
+      "BAE": 12.84,
+      "RR": 13.84,
+      "BTC": 9.18,
+      "SYRE": 3.05
+     },
+     "ai_crypto_risk_share_pct": 54.1,
+     "sleeve_risk_share_pct": {
+      "AI/semis": 44.9,
+      "US consumer": 16.2,
+      "UK industrials": 26.7,
+      "Crypto": 9.2,
+      "Satellite": 3.0
+     },
+     "rolling52_p5_pct": 12.62,
+     "rolling52_n": 105
+    },
+    "erc_capped": {
+     "weights_pct": {
+      "NVDA": 7.33,
+      "AMAT": 7.44,
+      "WMT": 15.0,
+      "HD": 14.16,
+      "BAE": 12.56,
+      "RR": 9.82,
+      "BTC": 10.4,
+      "SYRE": 5.91
+     },
+     "invested_pct": 82.63,
+     "ann_vol_pct": 14.73,
+     "var95_1y_normal_gbp": 22169,
+     "risk_share_pct": {
+      "NVDA": 12.74,
+      "AMAT": 12.8,
+      "WMT": 10.19,
+      "HD": 12.68,
+      "BAE": 12.9,
+      "RR": 12.88,
+      "BTC": 12.98,
+      "SYRE": 12.84
+     },
+     "ai_crypto_risk_share_pct": 38.5,
+     "sleeve_risk_share_pct": {
+      "AI/semis": 25.5,
+      "US consumer": 22.9,
+      "UK industrials": 25.8,
+      "Crypto": 13.0,
+      "Satellite": 12.8
+     },
+     "rolling52_p5_pct": 10.31,
+     "rolling52_n": 105
+    },
+    "sleeve_rp_capped": {
+     "weights_pct": {
+      "NVDA": 6.62,
+      "AMAT": 6.23,
+      "WMT": 13.85,
+      "HD": 14.31,
+      "BAE": 9.99,
+      "RR": 9.7,
+      "BTC": 13.88,
+      "SYRE": 8.04
+     },
+     "invested_pct": 82.63,
+     "ann_vol_pct": 15.24,
+     "var95_1y_normal_gbp": 22936,
+     "risk_share_pct": {
+      "NVDA": 10.45,
+      "AMAT": 9.55,
+      "WMT": 8.02,
+      "HD": 11.98,
+      "BAE": 8.35,
+      "RR": 11.65,
+      "BTC": 20.0,
+      "SYRE": 20.0
+     },
+     "ai_crypto_risk_share_pct": 40.0,
+     "sleeve_risk_share_pct": {
+      "AI/semis": 20.0,
+      "US consumer": 20.0,
+      "UK industrials": 20.0,
+      "Crypto": 20.0,
+      "Satellite": 20.0
+     },
+     "rolling52_p5_pct": 8.83,
+     "rolling52_n": 105
+    },
+    "implied_returns_ASSUMPTION": {
+     "0.2": {
+      "NVDA": 6.22,
+      "AMAT": 5.87,
+      "WMT": 1.86,
+      "HD": 2.28,
+      "BAE": 3.11,
+      "RR": 3.91,
+      "BTC": 3.3,
+      "SYRE": 4.09
+     },
+     "0.3": {
+      "NVDA": 9.33,
+      "AMAT": 8.8,
+      "WMT": 2.8,
+      "HD": 3.42,
+      "BAE": 4.66,
+      "RR": 5.87,
+      "BTC": 4.96,
+      "SYRE": 6.14
+     },
+     "0.4": {
+      "NVDA": 12.44,
+      "AMAT": 11.73,
+      "WMT": 3.73,
+      "HD": 4.56,
+      "BAE": 6.22,
+      "RR": 7.83,
+      "BTC": 6.61,
+      "SYRE": 8.18
+     }
+    },
+    "_w": {
+     "held": [
+      0.12962851980979795,
+      0.10152975297354756,
+      0.1356683537548283,
+      0.11018322477351168,
+      0.12895922554341882,
+      0.11035032961649,
+      0.08667874750108268,
+      0.023285316208732317
+     ],
+     "erc": [
+      0.0732810532574564,
+      0.07441707066332205,
+      0.15,
+      0.1416257877240456,
+      0.12563700938610542,
+      0.09818844331235593,
+      0.104006848134835,
+      0.05912725770328887
+     ],
+     "sleeve": [
+      0.06622389524421167,
+      0.06234753271877976,
+      0.1384881222355138,
+      0.14308893714064183,
+      0.09989193453448834,
+      0.09704383201948776,
+      0.13883228274845708,
+      0.080366933539829
+     ]
+    }
+   },
+   "2026-11-06|260w": {
+    "end": "2026-11-06",
+    "weeks": 260,
+    "assets": [
+     "NVDA",
+     "AMAT",
+     "WMT",
+     "HD",
+     "BAE",
+     "RR",
+     "BTC"
+    ],
+    "shrinkage": 0.0723,
+    "first_week": "2021-11-19",
+    "last_week": "2026-11-06",
+    "ann_vol_by_asset_pct": {
+     "NVDA": 45.2,
+     "AMAT": 44.2,
+     "WMT": 25.9,
+     "HD": 25.8,
+     "BAE": 29.7,
+     "RR": 36.9,
+     "BTC": 49.5
+    },
+    "min_eig": 0.04621923304473883,
+    "held": {
+     "weights_pct": {
+      "NVDA": 12.96,
+      "AMAT": 10.15,
+      "WMT": 13.57,
+      "HD": 11.02,
+      "BAE": 12.9,
+      "RR": 11.04,
+      "BTC": 8.67
+     },
+     "invested_pct": 80.3,
+     "ann_vol_pct": 15.72,
+     "var95_1y_normal_gbp": 23652,
+     "risk_share_pct": {
+      "NVDA": 28.13,
+      "AMAT": 19.96,
+      "WMT": 8.09,
+      "HD": 8.48,
+      "BAE": 8.96,
+      "RR": 14.06,
+      "BTC": 12.33
+     },
+     "ai_crypto_risk_share_pct": 60.4,
+     "sleeve_risk_share_pct": {
+      "AI/semis": 48.1,
+      "US consumer": 16.6,
+      "UK industrials": 23.0,
+      "Crypto": 12.3,
+      "Satellite": 0
+     },
+     "rolling52_p5_pct": -0.7,
+     "rolling52_n": 209
+    },
+    "erc_capped": {
+     "weights_pct": {
+      "NVDA": 7.45,
+      "AMAT": 7.85,
+      "WMT": 15.0,
+      "HD": 15.0,
+      "BAE": 15.0,
+      "RR": 10.64,
+      "BTC": 9.36
+     },
+     "invested_pct": 80.3,
+     "ann_vol_pct": 14.29,
+     "var95_1y_normal_gbp": 21501,
+     "risk_share_pct": {
+      "NVDA": 15.08,
+      "AMAT": 15.09,
+      "WMT": 11.17,
+      "HD": 14.59,
+      "BAE": 13.66,
+      "RR": 15.13,
+      "BTC": 15.28
+     },
+     "ai_crypto_risk_share_pct": 45.4,
+     "sleeve_risk_share_pct": {
+      "AI/semis": 30.2,
+      "US consumer": 25.8,
+      "UK industrials": 28.8,
+      "Crypto": 15.3,
+      "Satellite": 0
+     },
+     "rolling52_p5_pct": 0.84,
+     "rolling52_n": 209
+    },
+    "sleeve_rp_capped": {
+     "weights_pct": {
+      "NVDA": 6.68,
+      "AMAT": 6.84,
+      "WMT": 15.0,
+      "HD": 15.0,
+      "BAE": 13.23,
+      "RR": 10.67,
+      "BTC": 12.88
+     },
+     "invested_pct": 80.3,
+     "ann_vol_pct": 14.5,
+     "var95_1y_normal_gbp": 21814,
+     "risk_share_pct": {
+      "NVDA": 12.83,
+      "AMAT": 12.29,
+      "WMT": 10.61,
+      "HD": 13.97,
+      "BAE": 10.82,
+      "RR": 14.33,
+      "BTC": 25.16
+     },
+     "ai_crypto_risk_share_pct": 50.3,
+     "sleeve_risk_share_pct": {
+      "AI/semis": 25.1,
+      "US consumer": 24.6,
+      "UK industrials": 25.2,
+      "Crypto": 25.2,
+      "Satellite": 0
+     },
+     "rolling52_p5_pct": -1.17,
+     "rolling52_n": 209
+    },
+    "implied_returns_ASSUMPTION": {
+     "0.2": {
+      "NVDA": 6.82,
+      "AMAT": 6.18,
+      "WMT": 1.88,
+      "HD": 2.42,
+      "BAE": 2.18,
+      "RR": 4.0,
+      "BTC": 4.47
+     },
+     "0.3": {
+      "NVDA": 10.23,
+      "AMAT": 9.27,
+      "WMT": 2.81,
+      "HD": 3.63,
+      "BAE": 3.27,
+      "RR": 6.01,
+      "BTC": 6.71
+     },
+     "0.4": {
+      "NVDA": 13.64,
+      "AMAT": 12.36,
+      "WMT": 3.75,
+      "HD": 4.84,
+      "BAE": 4.37,
+      "RR": 8.01,
+      "BTC": 8.94
+     }
+    },
+    "_w": {
+     "held": [
+      0.12962851980979795,
+      0.10152975297354758,
+      0.1356683537548283,
+      0.1101832247735117,
+      0.12895922554341882,
+      0.11035032961649,
+      0.08667874750108268
+     ],
+     "erc": [
+      0.0745302418228315,
+      0.07850106473165282,
+      0.15,
+      0.15,
+      0.15,
+      0.10638964545691272,
+      0.09357720196127997
+     ],
+     "sleeve": [
+      0.0668410443537797,
+      0.06841869863570596,
+      0.15,
+      0.15,
+      0.13225222598421402,
+      0.1067012755689891,
+      0.12878490942998802
+     ]
+    }
+   },
+   "2026-11-20|156w": {
+    "end": "2026-11-20",
+    "weeks": 156,
+    "assets": [
+     "NVDA",
+     "AMAT",
+     "WMT",
+     "HD",
+     "BAE",
+     "RR",
+     "BTC",
+     "SYRE"
+    ],
+    "shrinkage": 0.1267,
+    "first_week": "2023-12-01",
+    "last_week": "2026-11-20",
+    "ann_vol_by_asset_pct": {
+     "NVDA": 46.2,
+     "AMAT": 47.9,
+     "WMT": 27.2,
+     "HD": 26.7,
+     "BAE": 33.3,
+     "RR": 34.6,
+     "BTC": 44.4,
+     "SYRE": 72.2
+    },
+    "min_eig": 0.05142353512187489,
+    "held": {
+     "weights_pct": {
+      "NVDA": 12.96,
+      "AMAT": 10.15,
+      "WMT": 13.57,
+      "HD": 11.02,
+      "BAE": 12.9,
+      "RR": 11.04,
+      "BTC": 8.67,
+      "SYRE": 2.33
+     },
+     "invested_pct": 82.63,
+     "ann_vol_pct": 16.23,
+     "var95_1y_normal_gbp": 24422,
+     "risk_share_pct": {
+      "NVDA": 26.86,
+      "AMAT": 19.5,
+      "WMT": 7.28,
+      "HD": 7.75,
+      "BAE": 12.33,
+      "RR": 13.65,
+      "BTC": 9.54,
+      "SYRE": 3.09
+     },
+     "ai_crypto_risk_share_pct": 55.9,
+     "sleeve_risk_share_pct": {
+      "AI/semis": 46.4,
+      "US consumer": 15.0,
+      "UK industrials": 26.0,
+      "Crypto": 9.5,
+      "Satellite": 3.1
+     },
+     "rolling52_p5_pct": 9.85,
+     "rolling52_n": 105
+    },
+    "erc_capped": {
+     "weights_pct": {
+      "NVDA": 7.03,
+      "AMAT": 7.25,
+      "WMT": 15.0,
+      "HD": 14.41,
+      "BAE": 12.84,
+      "RR": 9.83,
+      "BTC": 10.3,
+      "SYRE": 5.97
+     },
+     "invested_pct": 82.63,
+     "ann_vol_pct": 15.15,
+     "var95_1y_normal_gbp": 22790,
+     "risk_share_pct": {
+      "NVDA": 12.84,
+      "AMAT": 12.9,
+      "WMT": 9.43,
+      "HD": 12.71,
+      "BAE": 13.05,
+      "RR": 12.98,
+      "BTC": 13.16,
+      "SYRE": 12.94
+     },
+     "ai_crypto_risk_share_pct": 38.9,
+     "sleeve_risk_share_pct": {
+      "AI/semis": 25.7,
+      "US consumer": 22.1,
+      "UK industrials": 26.0,
+      "Crypto": 13.2,
+      "Satellite": 12.9
+     },
+     "rolling52_p5_pct": 10.09,
+     "rolling52_n": 105
+    },
+    "sleeve_rp_capped": {
+     "weights_pct": {
+      "NVDA": 6.23,
+      "AMAT": 6.0,
+      "WMT": 14.31,
+      "HD": 14.58,
+      "BAE": 10.05,
+      "RR": 9.69,
+      "BTC": 13.69,
+      "SYRE": 8.08
+     },
+     "invested_pct": 82.63,
+     "ann_vol_pct": 15.62,
+     "var95_1y_normal_gbp": 23500,
+     "risk_share_pct": {
+      "NVDA": 10.44,
+      "AMAT": 9.56,
+      "WMT": 7.91,
+      "HD": 12.09,
+      "BAE": 8.3,
+      "RR": 11.7,
+      "BTC": 20.0,
+      "SYRE": 20.0
+     },
+     "ai_crypto_risk_share_pct": 40.0,
+     "sleeve_risk_share_pct": {
+      "AI/semis": 20.0,
+      "US consumer": 20.0,
+      "UK industrials": 20.0,
+      "Crypto": 20.0,
+      "Satellite": 20.0
+     },
+     "rolling52_p5_pct": 8.9,
+     "rolling52_n": 105
+    },
+    "implied_returns_ASSUMPTION": {
+     "0.2": {
+      "NVDA": 6.73,
+      "AMAT": 6.24,
+      "WMT": 1.74,
+      "HD": 2.28,
+      "BAE": 3.1,
+      "RR": 4.01,
+      "BTC": 3.57,
+      "SYRE": 4.31
+     },
+     "0.3": {
+      "NVDA": 10.09,
+      "AMAT": 9.35,
+      "WMT": 2.61,
+      "HD": 3.43,
+      "BAE": 4.66,
+      "RR": 6.02,
+      "BTC": 5.36,
+      "SYRE": 6.46
+     },
+     "0.4": {
+      "NVDA": 13.45,
+      "AMAT": 12.47,
+      "WMT": 3.48,
+      "HD": 4.57,
+      "BAE": 6.21,
+      "RR": 8.03,
+      "BTC": 7.15,
+      "SYRE": 8.62
+     }
+    },
+    "_w": {
+     "held": [
+      0.12962851980979795,
+      0.10152975297354756,
+      0.1356683537548283,
+      0.11018322477351168,
+      0.12895922554341882,
+      0.11035032961649,
+      0.08667874750108268,
+      0.023285316208732317
+     ],
+     "erc": [
+      0.07028652850696251,
+      0.07250941244521625,
+      0.15,
+      0.14407941504668723,
+      0.12840948320560633,
+      0.09834014237666647,
+      0.10298379318619874,
+      0.05967469541407161
+     ],
+     "sleeve": [
+      0.06227031237580077,
+      0.06004952406780072,
+      0.1430698663471743,
+      0.14581481747590425,
+      0.10047378426799412,
+      0.09685162476624352,
+      0.13691421174611101,
+      0.0808393291343805
+     ]
+    }
+   },
+   "2026-11-20|260w": {
+    "end": "2026-11-20",
+    "weeks": 260,
+    "assets": [
+     "NVDA",
+     "AMAT",
+     "WMT",
+     "HD",
+     "BAE",
+     "RR",
+     "BTC"
+    ],
+    "shrinkage": 0.0699,
+    "first_week": "2021-12-03",
+    "last_week": "2026-11-20",
+    "ann_vol_by_asset_pct": {
+     "NVDA": 46.8,
+     "AMAT": 45.2,
+     "WMT": 25.9,
+     "HD": 25.6,
+     "BAE": 29.8,
+     "RR": 36.6,
+     "BTC": 49.8
+    },
+    "min_eig": 0.04387614720726418,
+    "held": {
+     "weights_pct": {
+      "NVDA": 12.96,
+      "AMAT": 10.15,
+      "WMT": 13.57,
+      "HD": 11.02,
+      "BAE": 12.9,
+      "RR": 11.04,
+      "BTC": 8.67
+     },
+     "invested_pct": 80.3,
+     "ann_vol_pct": 16.05,
+     "var95_1y_normal_gbp": 24142,
+     "risk_share_pct": {
+      "NVDA": 28.86,
+      "AMAT": 20.24,
+      "WMT": 7.76,
+      "HD": 8.36,
+      "BAE": 8.83,
+      "RR": 13.64,
+      "BTC": 12.31
+     },
+     "ai_crypto_risk_share_pct": 61.4,
+     "sleeve_risk_share_pct": {
+      "AI/semis": 49.1,
+      "US consumer": 16.1,
+      "UK industrials": 22.5,
+      "Crypto": 12.3,
+      "Satellite": 0
+     },
+     "rolling52_p5_pct": 1.06,
+     "rolling52_n": 209
+    },
+    "erc_capped": {
+     "weights_pct": {
+      "NVDA": 7.28,
+      "AMAT": 7.73,
+      "WMT": 15.0,
+      "HD": 15.0,
+      "BAE": 15.0,
+      "RR": 10.85,
+      "BTC": 9.43
+     },
+     "invested_pct": 80.3,
+     "ann_vol_pct": 14.49,
+     "var95_1y_normal_gbp": 21795,
+     "risk_share_pct": {
+      "NVDA": 15.18,
+      "AMAT": 15.19,
+      "WMT": 10.85,
+      "HD": 14.53,
+      "BAE": 13.6,
+      "RR": 15.22,
+      "BTC": 15.43
+     },
+     "ai_crypto_risk_share_pct": 45.8,
+     "sleeve_risk_share_pct": {
+      "AI/semis": 30.4,
+      "US consumer": 25.4,
+      "UK industrials": 28.8,
+      "Crypto": 15.4,
+      "Satellite": 0
+     },
+     "rolling52_p5_pct": 1.89,
+     "rolling52_n": 209
+    },
+    "sleeve_rp_capped": {
+     "weights_pct": {
+      "NVDA": 6.48,
+      "AMAT": 6.71,
+      "WMT": 15.0,
+      "HD": 15.0,
+      "BAE": 13.32,
+      "RR": 10.83,
+      "BTC": 12.96
+     },
+     "invested_pct": 80.3,
+     "ann_vol_pct": 14.67,
+     "var95_1y_normal_gbp": 22075,
+     "risk_share_pct": {
+      "NVDA": 12.89,
+      "AMAT": 12.31,
+      "WMT": 10.29,
+      "HD": 13.97,
+      "BAE": 10.93,
+      "RR": 14.32,
+      "BTC": 25.28
+     },
+     "ai_crypto_risk_share_pct": 50.5,
+     "sleeve_risk_share_pct": {
+      "AI/semis": 25.2,
+      "US consumer": 24.3,
+      "UK industrials": 25.2,
+      "Crypto": 25.3,
+      "Satellite": 0
+     },
+     "rolling52_p5_pct": -0.09,
+     "rolling52_n": 209
+    },
+    "implied_returns_ASSUMPTION": {
+     "0.2": {
+      "NVDA": 7.14,
+      "AMAT": 6.39,
+      "WMT": 1.83,
+      "HD": 2.43,
+      "BAE": 2.2,
+      "RR": 3.97,
+      "BTC": 4.55
+     },
+     "0.3": {
+      "NVDA": 10.72,
+      "AMAT": 9.59,
+      "WMT": 2.75,
+      "HD": 3.65,
+      "BAE": 3.3,
+      "RR": 5.95,
+      "BTC": 6.83
+     },
+     "0.4": {
+      "NVDA": 14.29,
+      "AMAT": 12.79,
+      "WMT": 3.67,
+      "HD": 4.87,
+      "BAE": 4.4,
+      "RR": 7.93,
+      "BTC": 9.11
+     }
+    },
+    "_w": {
+     "held": [
+      0.12962851980979795,
+      0.10152975297354758,
+      0.1356683537548283,
+      0.1101832247735117,
+      0.12895922554341882,
+      0.11035032961649,
+      0.08667874750108268
+     ],
+     "erc": [
+      0.07282431204933165,
+      0.07733489726260287,
+      0.15,
+      0.15,
+      0.15,
+      0.10850183306165546,
+      0.09433711159908696
+     ],
+     "sleeve": [
+      0.0648345072282,
+      0.06709625415953568,
+      0.15,
+      0.15,
+      0.13321214679669896,
+      0.10830058430760368,
+      0.12955466148063866
+     ]
+    }
+   }
+  },
+  "held_vol_range_pct": [
+   15.61,
+   16.23
+  ],
+  "headline_held_vol_pct": 16.23,
+  "w_star_pct": {
+   "NVDA": 6.23,
+   "AMAT": 6.0,
+   "WMT": 14.31,
+   "HD": 14.58,
+   "BAE": 10.05,
+   "RR": 9.69,
+   "BTC": 13.69,
+   "SYRE": 8.08
+  },
+  "w_star_rule": "sleeve risk parity, 156 weeks, data to 20 Nov, capped 15% (fixed in PLAN2 before numbers)",
+  "horizon_table_HYPOTHETICAL": {
+   "0.2": {
+    "2 weeks": 48.4,
+    "1 year": 42.1,
+    "3 years": 36.5,
+    "5 years": 32.7
+   },
+   "0.3": {
+    "2 weeks": 47.7,
+    "1 year": 38.2,
+    "3 years": 30.2,
+    "5 years": 25.1
+   },
+   "0.4": {
+    "2 weeks": 46.9,
+    "1 year": 34.5,
+    "3 years": 24.4,
+    "5 years": 18.6
+   }
+  },
+  "syre_history_start": "2023-11-28 ticker change; 156w window starts 2023-11-17/12-01 (post Jun 2023 merger)"
+ },
+ "K": {
+  "decision_table": {
+   "AMAT": {
+    "status": "HOLD",
+    "current_pct": 10.15,
+    "w_star_pct": 6.0,
+    "target_pct": 10.15,
+    "action": "HOLD (trigger hit but at/above w*: no add); outside 25% band of w* 6.0% -> rebalance at next quarterly date",
+    "trigger_hit_20nov": true,
+    "trigger_hit_local_20nov_diagnostic": true
+   },
+   "BAE": {
+    "status": "HOLD",
+    "current_pct": 12.9,
+    "w_star_pct": 10.05,
+    "target_pct": 12.9,
+    "action": "HOLD; outside 25% band of w* 10.0% -> rebalance at next quarterly date",
+    "trigger_hit_20nov": false,
+    "trigger_hit_local_20nov_diagnostic": false
+   },
+   "BTC": {
+    "status": "NO THESIS",
+    "current_pct": 8.67,
+    "w_star_pct": 13.69,
+    "target_pct": 8.67,
+    "action": "HOLD (at or below risk budget)",
+    "trigger_hit_20nov": false,
+    "trigger_hit_local_20nov_diagnostic": true
+   },
+   "HD": {
+    "status": "REVIEW",
+    "current_pct": 11.02,
+    "w_star_pct": 14.58,
+    "target_pct": 11.02,
+    "action": "HOLD; no adds",
+    "trigger_hit_20nov": false,
+    "trigger_hit_local_20nov_diagnostic": false
+   },
+   "NVDA": {
+    "status": "REVIEW-TRIM",
+    "current_pct": 12.96,
+    "w_star_pct": 6.23,
+    "target_pct": 6.23,
+    "action": "TRIM to 6.2%; no adds",
+    "trigger_hit_20nov": true,
+    "trigger_hit_local_20nov_diagnostic": true
+   },
+   "RR": {
+    "status": "HOLD",
+    "current_pct": 11.04,
+    "w_star_pct": 9.69,
+    "target_pct": 11.04,
+    "action": "HOLD",
+    "trigger_hit_20nov": false,
+    "trigger_hit_local_20nov_diagnostic": false
+   },
+   "SYRE": {
+    "status": "NO THESIS",
+    "current_pct": 2.33,
+    "w_star_pct": 8.08,
+    "target_pct": 2.33,
+    "action": "HOLD at 2.3% (<= 2.5%), no documented case; EXIT unless the team documents a case",
+    "trigger_hit_20nov": false,
+    "trigger_hit_local_20nov_diagnostic": false
+   },
+   "WMT": {
+    "status": "HOLD",
+    "current_pct": 13.57,
+    "w_star_pct": 14.31,
+    "target_pct": 13.57,
+    "action": "HOLD",
+    "trigger_hit_20nov": false,
+    "trigger_hit_local_20nov_diagnostic": false
+   }
+  },
+  "cash_after_pct": 24.11,
+  "book_after": {
+   "weights_pct": {
+    "NVDA": 6.23,
+    "AMAT": 10.15,
+    "WMT": 13.57,
+    "HD": 11.02,
+    "BAE": 12.9,
+    "RR": 11.04,
+    "BTC": 8.67,
+    "SYRE": 2.33
+   },
+   "invested_pct": 75.89,
+   "ann_vol_pct": 14.13,
+   "var95_1y_normal_gbp": 21257,
+   "risk_share_pct": {
+    "NVDA": 12.54,
+    "AMAT": 22.2,
+    "WMT": 8.79,
+    "HD": 9.71,
+    "BAE": 15.26,
+    "RR": 16.68,
+    "BTC": 11.14,
+    "SYRE": 3.67
+   },
+   "ai_crypto_risk_share_pct": 45.9,
+   "sleeve_risk_share_pct": {
+    "AI/semis": 34.7,
+    "US consumer": 18.5,
+    "UK industrials": 31.9,
+    "Crypto": 11.1,
+    "Satellite": 3.7
+   }
+  },
+  "book_before_ai_crypto_risk_pct": 55.9,
+  "nvda_trim_gbp_approx": 6161,
+  "nvda_13nov_add": {
+   "units": 16.2204,
+   "cost_gbp": 1955.1,
+   "value_20nov_gbp": 1555.92,
+   "pnl_gbp": -399.18,
+   "passes_gate_today": false,
+   "why": "R4 (CEO exit 12 Nov, no permanent successor) live from 12 Nov -> REVIEW: no adds"
+  },
+  "cash_rule_audit": {
+   "cpi_10nov": {
+    "actual_mom": 0.4,
+    "consensus_mom": 0.3,
+    "core_actual": 0.3,
+    "core_consensus": 0.2,
+    "source": "https://investinglive.com/news/us-october-core-cpi-vs-0-2-expected/ ; https://stockanalysis.com/news/us-cpi-rises-october-2026/ (secondary)",
+    "qqq_10nov_pct": -0.68,
+    "clause_triggered": false,
+    "why": "hot CPI but Nasdaq proxy QQQ -0.68% > -2%"
+   },
+   "wmt_13nov_add_trigger": false,
+   "wmt_moves_9_13nov_pct": [
+    0.11,
+    -0.09,
+    0.1,
+    0.41,
+    1.51
+   ],
+   "nvda_13nov_add_after_trigger": "NVDA hit -5.0% trigger on 10 Nov (-5.47%); add made 13 Nov",
+   "untraded_hits": "sterling: BTC 14 Nov; NVDA, AMAT 20 Nov (BTC 20 Nov crossed in dollars only: -5.01% local, -4.58% sterling, trigger -4.6%)"
+  },
+  "note": "Recommendations only. The team decides and trades; the model places no orders."
+ },
+ "H": {
+  "book_weights_13nov": {
+   "NVDA": 0.15340489690076609,
+   "WMT": 0.1238944016397767,
+   "AMAT": 0.11338815752279448,
+   "HD": 0.10337182543342609,
+   "BA.L": 0.1236626375160133,
+   "RR.L": 0.10801648686717534,
+   "BTC-USD": 0.09177813492893977
+  },
+  "book_realised_6_20nov_pct": -7.19,
+  "sessions": 10,
+  "book_primary": {
+   "threshold_pct": -7.19,
+   "n_windows": 3044,
+   "k_windows_at_or_below": 34,
+   "share_windows_pct": 1.12,
+   "n_episodes": 11,
+   "episodes_by_spacing": {
+    "10": 11,
+    "21": 11,
+    "42": 9
+   },
+   "first": "2014-09-18",
+   "last": "2026-11-06",
+   "episodes": [
+    {
+     "date": "2015-08-24",
+     "fall_10d_pct": -9.92,
+     "fwd126_pct": 31.37,
+     "fwd252_pct": 76.2
+    },
+    {
+     "date": "2018-02-05",
+     "fall_10d_pct": -9.76,
+     "fwd126_pct": 14.3,
+     "fwd252_pct": -3.72
+    },
+    {
+     "date": "2018-10-12",
+     "fall_10d_pct": -7.25,
+     "fwd126_pct": 1.29,
+     "fwd252_pct": 17.01
+    },
+    {
+     "date": "2018-11-19",
+     "fall_10d_pct": -8.3,
+     "fwd126_pct": 12.03,
+     "fwd252_pct": 31.11
+    },
+    {
+     "date": "2020-03-09",
+     "fall_10d_pct": -9.53,
+     "fwd126_pct": 15.7,
+     "fwd252_pct": 53.87
+    },
+    {
+     "date": "2022-01-27",
+     "fall_10d_pct": -8.22,
+     "fwd126_pct": -0.92,
+     "fwd252_pct": 6.7
+    },
+    {
+     "date": "2022-04-12",
+     "fall_10d_pct": -7.78,
+     "fwd126_pct": -11.95,
+     "fwd252_pct": 19.35
+    },
+    {
+     "date": "2022-05-18",
+     "fall_10d_pct": -9.26,
+     "fwd126_pct": 3.79,
+     "fwd252_pct": 34.01
+    },
+    {
+     "date": "2022-06-21",
+     "fall_10d_pct": -8.26,
+     "fwd126_pct": 7.08,
+     "fwd252_pct": 46.88
+    },
+    {
+     "date": "2022-09-01",
+     "fall_10d_pct": -8.61,
+     "fwd126_pct": 27.19,
+     "fwd252_pct": 59.69
+    },
+    {
+     "date": "2025-04-04",
+     "fall_10d_pct": -8.41,
+     "fwd126_pct": 40.61,
+     "fwd252_pct": 50.85
+    }
+   ],
+   "forward": {
+    "126": {
+     "n_used": 11,
+     "n_dropped_window_past_cutoff": 0,
+     "unconditional_mean_pct": 15.75,
+     "unconditional_share_pos_pct": 85.5,
+     "obs_mean_pct": 12.77,
+     "obs_share_pos_pct": 81.8,
+     "pctile_mean": 23.2,
+     "pctile_share": 34.2,
+     "rand_mean_2.5_97.5_pct": [
+      7.61,
+      23.81
+     ],
+     "rand_share_2.5_97.5_pct": [
+      63.6,
+      100.0
+     ],
+     "verdict": "not distinguishable from any other date"
+    },
+    "252": {
+     "n_used": 11,
+     "n_dropped_window_past_cutoff": 0,
+     "unconditional_mean_pct": 35.46,
+     "unconditional_share_pos_pct": 91.7,
+     "obs_mean_pct": 35.63,
+     "obs_share_pos_pct": 90.9,
+     "pctile_mean": 50.7,
+     "pctile_share": 43.3,
+     "rand_mean_2.5_97.5_pct": [
+      21.56,
+      49.7
+     ],
+     "rand_share_2.5_97.5_pct": [
+      72.7,
+      100.0
+     ],
+     "verdict": "not distinguishable from any other date"
+    }
+   },
+   "caveat": "Hindsight-selected names (and a book built from them): forward returns reflect past winners."
+  },
+  "book_actual_8.5": {
+   "threshold_pct": -8.53,
+   "n_windows": 3044,
+   "k_windows_at_or_below": 22,
+   "share_windows_pct": 0.72,
+   "n_episodes": 8,
+   "episodes_by_spacing": {
+    "10": 8,
+    "21": 8,
+    "42": 7
+   },
+   "first": "2014-09-18",
+   "last": "2026-11-06",
+   "episodes": [
+    {
+     "date": "2015-08-24",
+     "fall_10d_pct": -9.92,
+     "fwd126_pct": 31.37,
+     "fwd252_pct": 76.2
+    },
+    {
+     "date": "2018-02-05",
+     "fall_10d_pct": -9.76,
+     "fwd126_pct": 14.3,
+     "fwd252_pct": -3.72
+    },
+    {
+     "date": "2018-11-20",
+     "fall_10d_pct": -9.3,
+     "fwd126_pct": 13.02,
+     "fwd252_pct": 30.77
+    },
+    {
+     "date": "2020-03-09",
+     "fall_10d_pct": -9.53,
+     "fwd126_pct": 15.7,
+     "fwd252_pct": 53.87
+    },
+    {
+     "date": "2022-05-18",
+     "fall_10d_pct": -9.26,
+     "fwd126_pct": 3.79,
+     "fwd252_pct": 34.01
+    },
+    {
+     "date": "2022-06-22",
+     "fall_10d_pct": -9.27,
+     "fwd126_pct": 8.88,
+     "fwd252_pct": 48.55
+    },
+    {
+     "date": "2022-09-01",
+     "fall_10d_pct": -8.61,
+     "fwd126_pct": 27.19,
+     "fwd252_pct": 59.69
+    },
+    {
+     "date": "2025-04-07",
+     "fall_10d_pct": -9.37,
+     "fwd126_pct": 38.02,
+     "fwd252_pct": 51.24
+    }
+   ],
+   "forward": {
+    "126": {
+     "n_used": 8,
+     "n_dropped_window_past_cutoff": 0,
+     "unconditional_mean_pct": 15.75,
+     "unconditional_share_pos_pct": 85.5,
+     "obs_mean_pct": 19.03,
+     "obs_share_pos_pct": 100.0,
+     "pctile_mean": 74.4,
+     "pctile_share": 86.7,
+     "rand_mean_2.5_97.5_pct": [
+      6.06,
+      25.33
+     ],
+     "rand_share_2.5_97.5_pct": [
+      62.5,
+      100.0
+     ],
+     "verdict": "not distinguishable from any other date"
+    },
+    "252": {
+     "n_used": 8,
+     "n_dropped_window_past_cutoff": 0,
+     "unconditional_mean_pct": 35.46,
+     "unconditional_share_pos_pct": 91.7,
+     "obs_mean_pct": 43.83,
+     "obs_share_pos_pct": 87.5,
+     "pctile_mean": 82.8,
+     "pctile_share": 32.1,
+     "rand_mean_2.5_97.5_pct": [
+      18.7,
+      52.57
+     ],
+     "rand_share_2.5_97.5_pct": [
+      75.0,
+      100.0
+     ],
+     "verdict": "not distinguishable from any other date"
+    }
+   },
+   "caveat": "Hindsight-selected names (and a book built from them): forward returns reflect past winners."
+  },
+  "book_equities_2004": {
+   "threshold_pct": -5.26,
+   "n_windows": 5739,
+   "k_windows_at_or_below": 155,
+   "share_windows_pct": 2.7,
+   "n_episodes": 36,
+   "episodes_by_spacing": {
+    "10": 40,
+    "21": 36,
+    "42": 28
+   },
+   "first": "2004-01-05",
+   "last": "2026-11-06",
+   "episodes": [
+    {
+     "date": "2004-07-14",
+     "fall_10d_pct": -7.85,
+     "fwd126_pct": 10.82,
+     "fwd252_pct": 26.48
+    },
+    {
+     "date": "2004-08-13",
+     "fall_10d_pct": -7.34,
+     "fwd126_pct": 25.5,
+     "fwd252_pct": 37.64
+    },
+    {
+     "date": "2006-05-16",
+     "fall_10d_pct": -5.54,
+     "fwd126_pct": 7.25,
+     "fwd252_pct": 8.96
+    },
+    {
+     "date": "2006-07-13",
+     "fall_10d_pct": -5.45,
+     "fwd126_pct": 20.88,
+     "fwd252_pct": 28.54
+    },
+    {
+     "date": "2008-01-08",
+     "fall_10d_pct": -5.87,
+     "fwd126_pct": -11.67,
+     "fwd252_pct": -5.47
+    },
+    {
+     "date": "2008-02-15",
+     "fall_10d_pct": -5.79,
+     "fwd126_pct": -0.38,
+     "fwd252_pct": -9.22
+    },
+    {
+     "date": "2008-06-19",
+     "fall_10d_pct": -5.51,
+     "fwd126_pct": -6.69,
+     "fwd252_pct": -4.81
+    },
+    {
+     "date": "2008-09-16",
+     "fall_10d_pct": -6.96,
+     "fwd126_pct": 3.66,
+     "fwd252_pct": 16.56
+    },
+    {
+     "date": "2008-10-16",
+     "fall_10d_pct": -11.69,
+     "fwd126_pct": 26.07,
+     "fwd252_pct": 33.56
+    },
+    {
+     "date": "2008-11-17",
+     "fall_10d_pct": -6.59,
+     "fwd126_pct": 13.57,
+     "fwd252_pct": 25.32
+    },
+    {
+     "date": "2009-01-20",
+     "fall_10d_pct": -5.44,
+     "fwd126_pct": 7.52,
+     "fwd252_pct": 24.55
+    },
+    {
+     "date": "2009-02-20",
+     "fall_10d_pct": -5.58,
+     "fwd126_pct": 16.67,
+     "fwd252_pct": 31.55
+    },
+    {
+     "date": "2009-05-13",
+     "fall_10d_pct": -5.75,
+     "fwd126_pct": 9.31,
+     "fwd252_pct": 29.15
+    },
+    {
+     "date": "2009-10-28",
+     "fall_10d_pct": -6.16,
+     "fwd126_pct": 19.98,
+     "fwd252_pct": 13.96
+    },
+    {
+     "date": "2010-06-29",
+     "fall_10d_pct": -6.39,
+     "fwd126_pct": 13.46,
+     "fwd252_pct": 11.21
+    },
+    {
+     "date": "2011-03-04",
+     "fall_10d_pct": -5.26,
+     "fwd126_pct": -11.24,
+     "fwd252_pct": 2.86
+    },
+    {
+     "date": "2011-08-04",
+     "fall_10d_pct": -8.12,
+     "fwd126_pct": 21.15,
+     "fwd252_pct": 24.91
+    },
+    {
+     "date": "2011-09-30",
+     "fall_10d_pct": -5.54,
+     "fwd126_pct": 18.81,
+     "fwd252_pct": 22.19
+    },
+    {
+     "date": "2015-08-24",
+     "fall_10d_pct": -8.1,
+     "fwd126_pct": 21.0,
+     "fwd252_pct": 55.68
+    },
+    {
+     "date": "2018-02-05",
+     "fall_10d_pct": -6.03,
+     "fwd126_pct": 12.16,
+     "fwd252_pct": 0.04
+    },
+    {
+     "date": "2018-03-23",
+     "fall_10d_pct": -5.49,
+     "fwd126_pct": 9.37,
+     "fwd252_pct": -0.47
+    },
+    {
+     "date": "2018-10-11",
+     "fall_10d_pct": -6.43,
+     "fwd126_pct": 2.56,
+     "fwd252_pct": 11.33
+    },
+    {
+     "date": "2018-11-19",
+     "fall_10d_pct": -6.14,
+     "fwd126_pct": 5.9,
+     "fwd252_pct": 22.33
+    },
+    {
+     "date": "2018-12-24",
+     "fall_10d_pct": -5.52,
+     "fwd126_pct": 18.67,
+     "fwd252_pct": 33.88
+    },
+    {
+     "date": "2019-05-13",
+     "fall_10d_pct": -5.42,
+     "fwd126_pct": 17.38,
+     "fwd252_pct": 16.96
+    },
+    {
+     "date": "2020-02-27",
+     "fall_10d_pct": -5.58,
+     "fwd126_pct": 10.35,
+     "fwd252_pct": 21.37
+    },
+    {
+     "date": "2020-10-30",
+     "fall_10d_pct": -6.18,
+     "fwd126_pct": 22.1,
+     "fwd252_pct": 46.41
+    },
+    {
+     "date": "2022-01-21",
+     "fall_10d_pct": -5.72,
+     "fwd126_pct": -0.02,
+     "fwd252_pct": 9.25
+    },
+    {
+     "date": "2022-04-12",
+     "fall_10d_pct": -6.42,
+     "fwd126_pct": -7.87,
+     "fwd252_pct": 20.5
+    },
+    {
+     "date": "2022-05-18",
+     "fall_10d_pct": -6.63,
+     "fwd126_pct": 7.82,
+     "fwd252_pct": 33.21
+    },
+    {
+     "date": "2022-06-22",
+     "fall_10d_pct": -5.87,
+     "fwd126_pct": 9.99,
+     "fwd252_pct": 42.0
+    },
+    {
+     "date": "2022-08-30",
+     "fall_10d_pct": -5.82,
+     "fwd126_pct": 21.96,
+     "fwd252_pct": 52.46
+    },
+    {
+     "date": "2024-07-30",
+     "fall_10d_pct": -5.42,
+     "fwd126_pct": 14.89,
+     "fwd252_pct": 33.3
+    },
+    {
+     "date": "2024-09-06",
+     "fall_10d_pct": -5.31,
+     "fwd126_pct": 12.6,
+     "fwd252_pct": 33.9
+    },
+    {
+     "date": "2025-04-04",
+     "fall_10d_pct": -8.33,
+     "fwd126_pct": 35.66,
+     "fwd252_pct": 52.59
+    },
+    {
+     "date": "2026-08-26",
+     "fall_10d_pct": -5.34,
+     "fwd126_pct": null,
+     "fwd252_pct": null
+    }
+   ],
+   "forward": {
+    "126": {
+     "n_used": 35,
+     "n_dropped_window_past_cutoff": 1,
+     "unconditional_mean_pct": 8.86,
+     "unconditional_share_pos_pct": 80.4,
+     "obs_mean_pct": 11.41,
+     "obs_share_pos_pct": 82.9,
+     "pctile_mean": 94.3,
+     "pctile_share": 65.2,
+     "rand_mean_2.5_97.5_pct": [
+      5.65,
+      12.04
+     ],
+     "rand_share_2.5_97.5_pct": [
+      68.6,
+      91.4
+     ],
+     "verdict": "not distinguishable from any other date"
+    },
+    "252": {
+     "n_used": 35,
+     "n_dropped_window_past_cutoff": 1,
+     "unconditional_mean_pct": 18.74,
+     "unconditional_share_pos_pct": 88.3,
+     "obs_mean_pct": 22.93,
+     "obs_share_pos_pct": 88.6,
+     "pctile_mean": 95.0,
+     "pctile_share": 50.3,
+     "rand_mean_2.5_97.5_pct": [
+      13.77,
+      23.71
+     ],
+     "rand_share_2.5_97.5_pct": [
+      77.1,
+      97.1
+     ],
+     "verdict": "not distinguishable from any other date"
+    }
+   },
+   "caveat": "Hindsight-selected names (and a book built from them): forward returns reflect past winners."
+  },
+  "single": {
+   "NVDA": {
+    "threshold_pct": -32.74,
+    "n_windows": 6743,
+    "k_windows_at_or_below": 35,
+    "share_windows_pct": 0.52,
+    "n_episodes": 9,
+    "episodes_by_spacing": {
+     "10": 9,
+     "21": 9,
+     "42": 8
+    },
+    "first": "2000-01-04",
+    "last": "2026-11-06",
+    "episodes": [
+     {
+      "date": "2000-03-27",
+      "fall_10d_pct": -41.67,
+      "fwd126_pct": 73.87,
+      "fwd252_pct": 56.35
+     },
+     {
+      "date": "2000-07-06",
+      "fall_10d_pct": -33.07,
+      "fwd126_pct": -24.62,
+      "fwd252_pct": 39.44
+     },
+     {
+      "date": "2000-11-30",
+      "fall_10d_pct": -41.26,
+      "fwd126_pct": 119.63,
+      "fwd252_pct": 205.38
+     },
+     {
+      "date": "2001-09-21",
+      "fall_10d_pct": -36.32,
+      "fwd126_pct": 70.78,
+      "fwd252_pct": -67.33
+     },
+     {
+      "date": "2002-06-27",
+      "fall_10d_pct": -38.25,
+      "fwd126_pct": -27.28,
+      "fwd252_pct": 32.08
+     },
+     {
+      "date": "2002-07-31",
+      "fall_10d_pct": -43.2,
+      "fwd126_pct": -8.22,
+      "fwd252_pct": 72.45
+     },
+     {
+      "date": "2004-08-06",
+      "fall_10d_pct": -35.5,
+      "fwd126_pct": 173.49,
+      "fwd252_pct": 199.58
+     },
+     {
+      "date": "2008-07-03",
+      "fall_10d_pct": -37.11,
+      "fwd126_pct": -30.26,
+      "fwd252_pct": -15.53
+     },
+     {
+      "date": "2008-10-07",
+      "fall_10d_pct": -33.27,
+      "fwd126_pct": 57.6,
+      "fwd252_pct": 91.99
+     }
+    ],
+    "forward": {
+     "126": {
+      "n_used": 9,
+      "n_dropped_window_past_cutoff": 0,
+      "unconditional_mean_pct": 24.34,
+      "unconditional_share_pos_pct": 72.3,
+      "obs_mean_pct": 45.0,
+      "obs_share_pos_pct": 55.6,
+      "pctile_mean": 90.7,
+      "pctile_share": 14.2,
+      "rand_mean_2.5_97.5_pct": [
+       -4.19,
+       55.52
+      ],
+      "rand_share_2.5_97.5_pct": [
+       44.4,
+       100.0
+      ],
+      "verdict": "not distinguishable from any other date"
+     },
+     "252": {
+      "n_used": 9,
+      "n_dropped_window_past_cutoff": 0,
+      "unconditional_mean_pct": 53.03,
+      "unconditional_share_pos_pct": 73.8,
+      "obs_mean_pct": 68.27,
+      "obs_share_pos_pct": 77.8,
+      "pctile_mean": 72.8,
+      "pctile_share": 58.5,
+      "rand_mean_2.5_97.5_pct": [
+       5.84,
+       106.05
+      ],
+      "rand_share_2.5_97.5_pct": [
+       44.4,
+       100.0
+      ],
+      "verdict": "not distinguishable from any other date"
+     }
+    },
+    "caveat": "Hindsight-selected names (and a book built from them): forward returns reflect past winners.",
+    "realised_10d_pct": -32.74,
+    "own_10d_sd_pct": 11.66,
+    "selected": true
+   },
+   "AMAT": {
+    "realised_10d_pct": -8.91,
+    "own_10d_sd_pct": 7.91,
+    "result": "no event"
+   },
+   "BTC-USD": {
+    "threshold_pct": -22.37,
+    "n_windows": 3044,
+    "k_windows_at_or_below": 77,
+    "share_windows_pct": 2.53,
+    "n_episodes": 14,
+    "episodes_by_spacing": {
+     "10": 17,
+     "21": 14,
+     "42": 13
+    },
+    "first": "2014-09-18",
+    "last": "2026-11-06",
+    "episodes": [
+     {
+      "date": "2014-10-07",
+      "fall_10d_pct": -22.86,
+      "fwd126_pct": -27.52,
+      "fwd252_pct": -27.73
+     },
+     {
+      "date": "2015-01-13",
+      "fall_10d_pct": -27.76,
+      "fwd126_pct": 26.55,
+      "fwd252_pct": 91.43
+     },
+     {
+      "date": "2015-08-18",
+      "fall_10d_pct": -25.99,
+      "fwd126_pct": 100.1,
+      "fwd252_pct": 171.56
+     },
+     {
+      "date": "2017-09-14",
+      "fall_10d_pct": -30.89,
+      "fwd126_pct": 164.29,
+      "fwd252_pct": 106.43
+     },
+     {
+      "date": "2018-01-17",
+      "fall_10d_pct": -25.32,
+      "fwd126_pct": -34.12,
+      "fwd252_pct": -67.12
+     },
+     {
+      "date": "2018-03-15",
+      "fall_10d_pct": -24.2,
+      "fwd126_pct": -21.49,
+      "fwd252_pct": -51.42
+     },
+     {
+      "date": "2018-08-08",
+      "fall_10d_pct": -22.93,
+      "fwd126_pct": -41.85,
+      "fwd252_pct": 88.13
+     },
+     {
+      "date": "2018-11-19",
+      "fall_10d_pct": -24.12,
+      "fwd126_pct": 61.8,
+      "fwd252_pct": 64.78
+     },
+     {
+      "date": "2020-03-12",
+      "fall_10d_pct": -43.41,
+      "fwd126_pct": 108.48,
+      "fwd252_pct": 1053.38
+     },
+     {
+      "date": "2021-05-17",
+      "fall_10d_pct": -23.89,
+      "fwd126_pct": 47.36,
+      "fwd252_pct": -31.41
+     },
+     {
+      "date": "2022-05-09",
+      "fall_10d_pct": -25.12,
+      "fwd126_pct": -32.0,
+      "fwd252_pct": -8.83
+     },
+     {
+      "date": "2022-06-14",
+      "fall_10d_pct": -30.15,
+      "fwd126_pct": -19.93,
+      "fwd252_pct": 15.17
+     },
+     {
+      "date": "2022-11-09",
+      "fall_10d_pct": -23.54,
+      "fwd126_pct": 68.79,
+      "fwd252_pct": 134.96
+     },
+     {
+      "date": "2026-02-05",
+      "fall_10d_pct": -29.91,
+      "fwd126_pct": 3.47,
+      "fwd252_pct": null
+     }
+    ],
+    "forward": {
+     "126": {
+      "n_used": 14,
+      "n_dropped_window_past_cutoff": 0,
+      "unconditional_mean_pct": 50.94,
+      "unconditional_share_pos_pct": 65.1,
+      "obs_mean_pct": 28.85,
+      "obs_share_pos_pct": 57.1,
+      "pctile_mean": 20.1,
+      "pctile_share": 25.4,
+      "rand_mean_2.5_97.5_pct": [
+       7.84,
+       105.09
+      ],
+      "rand_share_2.5_97.5_pct": [
+       42.9,
+       85.7
+      ],
+      "verdict": "not distinguishable from any other date"
+     },
+     "252": {
+      "n_used": 13,
+      "n_dropped_window_past_cutoff": 1,
+      "unconditional_mean_pct": 141.52,
+      "unconditional_share_pos_pct": 71.7,
+      "obs_mean_pct": 118.41,
+      "obs_share_pos_pct": 61.5,
+      "pctile_mean": 41.9,
+      "pctile_share": 19.6,
+      "rand_mean_2.5_97.5_pct": [
+       39.27,
+       296.78
+      ],
+      "rand_share_2.5_97.5_pct": [
+       46.2,
+       92.3
+      ],
+      "verdict": "not distinguishable from any other date"
+     }
+    },
+    "caveat": "Hindsight-selected names (and a book built from them): forward returns reflect past winners.",
+    "realised_10d_pct": -22.37,
+    "own_10d_sd_pct": 14.27,
+    "selected": true
+   },
+   "SMH": {
+    "threshold_pct": -13.77,
+    "n_windows": 6637,
+    "k_windows_at_or_below": 124,
+    "share_windows_pct": 1.87,
+    "n_episodes": 29,
+    "episodes_by_spacing": {
+     "10": 41,
+     "21": 29,
+     "42": 22
+    },
+    "first": "2000-06-06",
+    "last": "2026-11-06",
+    "episodes": [
+     {
+      "date": "2000-07-05",
+      "fall_10d_pct": -14.78,
+      "fwd126_pct": -36.53,
+      "fwd252_pct": -47.42
+     },
+     {
+      "date": "2000-09-12",
+      "fall_10d_pct": -14.53,
+      "fwd126_pct": -45.48,
+      "fwd252_pct": -60.17
+     },
+     {
+      "date": "2000-10-12",
+      "fall_10d_pct": -21.61,
+      "fwd126_pct": -24.93,
+      "fwd252_pct": -42.76
+     },
+     {
+      "date": "2000-11-30",
+      "fall_10d_pct": -21.44,
+      "fwd126_pct": -2.17,
+      "fwd252_pct": -1.92
+     },
+     {
+      "date": "2001-02-13",
+      "fall_10d_pct": -14.56,
+      "fwd126_pct": -8.34,
+      "fwd252_pct": -14.47
+     },
+     {
+      "date": "2001-03-20",
+      "fall_10d_pct": -14.8,
+      "fwd126_pct": -26.27,
+      "fwd252_pct": 9.23
+     },
+     {
+      "date": "2001-06-21",
+      "fall_10d_pct": -17.42,
+      "fwd126_pct": -4.86,
+      "fwd252_pct": -29.78
+     },
+     {
+      "date": "2001-09-10",
+      "fall_10d_pct": -14.37,
+      "fwd126_pct": 18.63,
+      "fwd252_pct": -44.28
+     },
+     {
+      "date": "2002-05-03",
+      "fall_10d_pct": -16.06,
+      "fwd126_pct": -37.06,
+      "fwd252_pct": -27.9
+     },
+     {
+      "date": "2002-06-07",
+      "fall_10d_pct": -16.99,
+      "fwd126_pct": -24.5,
+      "fwd252_pct": -13.89
+     },
+     {
+      "date": "2002-08-01",
+      "fall_10d_pct": -15.38,
+      "fwd126_pct": -14.31,
+      "fwd252_pct": 30.53
+     },
+     {
+      "date": "2002-09-03",
+      "fall_10d_pct": -18.87,
+      "fwd126_pct": -1.0,
+      "fwd252_pct": 59.22
+     },
+     {
+      "date": "2002-10-09",
+      "fall_10d_pct": -14.8,
+      "fwd126_pct": 34.18,
+      "fwd252_pct": 113.3
+     },
+     {
+      "date": "2002-12-09",
+      "fall_10d_pct": -14.15,
+      "fwd126_pct": 22.19,
+      "fwd252_pct": 61.61
+     },
+     {
+      "date": "2003-01-27",
+      "fall_10d_pct": -14.13,
+      "fwd126_pct": 48.88,
+      "fwd252_pct": 93.11
+     },
+     {
+      "date": "2008-01-11",
+      "fall_10d_pct": -13.87,
+      "fwd126_pct": -0.71,
+      "fwd252_pct": -39.5
+     },
+     {
+      "date": "2008-10-07",
+      "fall_10d_pct": -15.69,
+      "fwd126_pct": -8.16,
+      "fwd252_pct": 20.29
+     },
+     {
+      "date": "2008-11-14",
+      "fall_10d_pct": -17.59,
+      "fwd126_pct": 17.25,
+      "fwd252_pct": 53.98
+     },
+     {
+      "date": "2009-02-23",
+      "fall_10d_pct": -17.1,
+      "fwd126_pct": 59.83,
+      "fwd252_pct": 66.73
+     },
+     {
+      "date": "2011-08-08",
+      "fall_10d_pct": -15.51,
+      "fwd126_pct": 21.5,
+      "fwd252_pct": 17.64
+     },
+     {
+      "date": "2020-02-27",
+      "fall_10d_pct": -14.28,
+      "fwd126_pct": 35.49,
+      "fwd252_pct": 87.47
+     },
+     {
+      "date": "2022-01-27",
+      "fall_10d_pct": -16.08,
+      "fwd126_pct": -7.61,
+      "fwd252_pct": -7.98
+     },
+     {
+      "date": "2022-04-12",
+      "fall_10d_pct": -15.37,
+      "fwd126_pct": -26.88,
+      "fwd252_pct": 6.23
+     },
+     {
+      "date": "2022-06-13",
+      "fall_10d_pct": -13.93,
+      "fwd126_pct": 5.95,
+      "fwd252_pct": 48.9
+     },
+     {
+      "date": "2024-07-24",
+      "fall_10d_pct": -14.32,
+      "fwd126_pct": 9.01,
+      "fwd252_pct": 21.46
+     },
+     {
+      "date": "2025-03-06",
+      "fall_10d_pct": -14.75,
+      "fwd126_pct": 33.44,
+      "fwd252_pct": 80.0
+     },
+     {
+      "date": "2025-04-07",
+      "fall_10d_pct": -19.83,
+      "fwd126_pct": 82.29,
+      "fwd252_pct": 133.45
+     },
+     {
+      "date": "2026-07-29",
+      "fall_10d_pct": -14.65,
+      "fwd126_pct": null,
+      "fwd252_pct": null
+     },
+     {
+      "date": "2026-10-16",
+      "fall_10d_pct": -14.4,
+      "fwd126_pct": null,
+      "fwd252_pct": null
+     }
+    ],
+    "forward": {
+     "126": {
+      "n_used": 27,
+      "n_dropped_window_past_cutoff": 2,
+      "unconditional_mean_pct": 8.31,
+      "unconditional_share_pos_pct": 66.9,
+      "obs_mean_pct": 4.44,
+      "obs_share_pos_pct": 44.4,
+      "pctile_mean": 16.6,
+      "pctile_share": 0.5,
+      "rand_mean_2.5_97.5_pct": [
+       0.58,
+       16.21
+      ],
+      "rand_share_2.5_97.5_pct": [
+       51.9,
+       81.5
+      ],
+      "verdict": "different from a random date"
+     },
+     "252": {
+      "n_used": 27,
+      "n_dropped_window_past_cutoff": 2,
+      "unconditional_mean_pct": 17.77,
+      "unconditional_share_pos_pct": 66.8,
+      "obs_mean_pct": 21.22,
+      "obs_share_pos_pct": 59.3,
+      "pctile_mean": 70.9,
+      "pctile_share": 18.4,
+      "rand_mean_2.5_97.5_pct": [
+       5.75,
+       30.23
+      ],
+      "rand_share_2.5_97.5_pct": [
+       51.9,
+       81.5
+      ],
+      "verdict": "not distinguishable from any other date"
+     }
+    },
+    "caveat": "Hindsight-selected names (and a book built from them): forward returns reflect past winners.",
+    "realised_10d_pct": -13.77,
+    "own_10d_sd_pct": 6.23,
+    "selected": false
+   },
+   "QQQ": {
+    "threshold_pct": -7.26,
+    "n_windows": 6743,
+    "k_windows_at_or_below": 367,
+    "share_windows_pct": 5.44,
+    "n_episodes": 63,
+    "episodes_by_spacing": {
+     "10": 81,
+     "21": 63,
+     "42": 42
+    },
+    "first": "2000-01-04",
+    "last": "2026-11-06",
+    "episodes": [
+     {
+      "date": "2000-04-04",
+      "fall_10d_pct": -8.78,
+      "fwd126_pct": -17.6,
+      "fwd252_pct": -66.6
+     },
+     {
+      "date": "2000-05-10",
+      "fall_10d_pct": -8.73,
+      "fwd126_pct": 2.98,
+      "fwd252_pct": -42.61
+     },
+     {
+      "date": "2000-07-28",
+      "fall_10d_pct": -13.66,
+      "fwd126_pct": -22.88,
+      "fwd252_pct": -52.0
+     },
+     {
+      "date": "2000-09-15",
+      "fall_10d_pct": -10.15,
+      "fwd126_pct": -52.62,
+      "fwd252_pct": -69.13
+     },
+     {
+      "date": "2000-10-18",
+      "fall_10d_pct": -8.91,
+      "fwd126_pct": -37.95,
+      "fwd252_pct": -54.64
+     },
+     {
+      "date": "2000-11-17",
+      "fall_10d_pct": -12.32,
+      "fwd126_pct": -30.11,
+      "fwd252_pct": -44.73
+     },
+     {
+      "date": "2000-12-20",
+      "fall_10d_pct": -18.04,
+      "fwd126_pct": -22.4,
+      "fwd252_pct": -28.21
+     },
+     {
+      "date": "2001-02-05",
+      "fall_10d_pct": -7.34,
+      "fwd126_pct": -30.89,
+      "fwd252_pct": -40.44
+     },
+     {
+      "date": "2001-03-09",
+      "fall_10d_pct": -11.88,
+      "fwd126_pct": -25.28,
+      "fwd252_pct": -17.45
+     },
+     {
+      "date": "2001-04-10",
+      "fall_10d_pct": -7.98,
+      "fwd126_pct": -13.57,
+      "fwd252_pct": -12.01
+     },
+     {
+      "date": "2001-06-15",
+      "fall_10d_pct": -7.49,
+      "fwd126_pct": -4.91,
+      "fwd252_pct": -39.39
+     },
+     {
+      "date": "2001-07-18",
+      "fall_10d_pct": -8.74,
+      "fwd126_pct": -7.73,
+      "fwd252_pct": -43.29
+     },
+     {
+      "date": "2001-08-17",
+      "fall_10d_pct": -12.55,
+      "fwd126_pct": -7.28,
+      "fwd252_pct": -33.4
+     },
+     {
+      "date": "2001-09-25",
+      "fall_10d_pct": -15.94,
+      "fwd126_pct": 19.9,
+      "fwd252_pct": -26.36
+     },
+     {
+      "date": "2001-12-20",
+      "fall_10d_pct": -9.6,
+      "fwd126_pct": -32.12,
+      "fwd252_pct": -34.73
+     },
+     {
+      "date": "2002-02-07",
+      "fall_10d_pct": -9.63,
+      "fwd126_pct": -33.02,
+      "fwd252_pct": -32.34
+     },
+     {
+      "date": "2002-03-25",
+      "fall_10d_pct": -7.71,
+      "fwd126_pct": -40.89,
+      "fwd252_pct": -25.73
+     },
+     {
+      "date": "2002-04-26",
+      "fall_10d_pct": -7.4,
+      "fwd126_pct": -22.74,
+      "fwd252_pct": -11.47
+     },
+     {
+      "date": "2002-05-31",
+      "fall_10d_pct": -8.58,
+      "fwd126_pct": -7.09,
+      "fwd252_pct": -1.53
+     },
+     {
+      "date": "2002-07-02",
+      "fall_10d_pct": -17.47,
+      "fwd126_pct": 1.75,
+      "fwd252_pct": 29.31
+     },
+     {
+      "date": "2002-08-05",
+      "fall_10d_pct": -8.38,
+      "fwd126_pct": 12.83,
+      "fwd252_pct": 40.9
+     },
+     {
+      "date": "2002-09-05",
+      "fall_10d_pct": -13.9,
+      "fwd126_pct": 10.69,
+      "fwd252_pct": 53.09
+     },
+     {
+      "date": "2002-10-09",
+      "fall_10d_pct": -8.28,
+      "fwd126_pct": 28.46,
+      "fwd252_pct": 72.93
+     },
+     {
+      "date": "2002-12-09",
+      "fall_10d_pct": -9.02,
+      "fwd126_pct": 21.02,
+      "fwd252_pct": 36.52
+     },
+     {
+      "date": "2003-01-27",
+      "fall_10d_pct": -9.48,
+      "fwd126_pct": 30.0,
+      "fwd252_pct": 53.91
+     },
+     {
+      "date": "2006-05-22",
+      "fall_10d_pct": -7.65,
+      "fwd126_pct": 13.82,
+      "fwd252_pct": 20.54
+     },
+     {
+      "date": "2006-07-14",
+      "fall_10d_pct": -7.75,
+      "fwd126_pct": 26.21,
+      "fwd252_pct": 40.21
+     },
+     {
+      "date": "2007-11-09",
+      "fall_10d_pct": -7.29,
+      "fwd126_pct": -1.38,
+      "fwd252_pct": -38.26
+     },
+     {
+      "date": "2008-01-08",
+      "fall_10d_pct": -9.51,
+      "fwd126_pct": -4.48,
+      "fwd252_pct": -34.89
+     },
+     {
+      "date": "2008-06-30",
+      "fall_10d_pct": -7.37,
+      "fwd126_pct": -35.91,
+      "fwd252_pct": -19.06
+     },
+     {
+      "date": "2008-09-04",
+      "fall_10d_pct": -7.28,
+      "fwd126_pct": -39.63,
+      "fwd252_pct": -9.05
+     },
+     {
+      "date": "2008-10-06",
+      "fall_10d_pct": -14.73,
+      "fwd126_pct": -9.59,
+      "fwd252_pct": 20.95
+     },
+     {
+      "date": "2008-11-12",
+      "fall_10d_pct": -9.66,
+      "fwd126_pct": 16.59,
+      "fwd252_pct": 52.85
+     },
+     {
+      "date": "2009-01-20",
+      "fall_10d_pct": -9.86,
+      "fwd126_pct": 36.95,
+      "fwd252_pct": 65.14
+     },
+     {
+      "date": "2009-02-23",
+      "fall_10d_pct": -11.19,
+      "fwd126_pct": 45.03,
+      "fwd252_pct": 59.38
+     },
+     {
+      "date": "2010-01-29",
+      "fall_10d_pct": -7.76,
+      "fwd126_pct": 7.59,
+      "fwd252_pct": 31.45
+     },
+     {
+      "date": "2010-05-06",
+      "fall_10d_pct": -7.43,
+      "fwd126_pct": 14.56,
+      "fwd252_pct": 26.35
+     },
+     {
+      "date": "2010-06-30",
+      "fall_10d_pct": -8.58,
+      "fwd126_pct": 28.84,
+      "fwd252_pct": 32.87
+     },
+     {
+      "date": "2011-08-04",
+      "fall_10d_pct": -8.17,
+      "fwd126_pct": 15.2,
+      "fwd252_pct": 22.28
+     },
+     {
+      "date": "2011-10-03",
+      "fall_10d_pct": -9.66,
+      "fwd126_pct": 34.16,
+      "fwd252_pct": 35.72
+     },
+     {
+      "date": "2011-11-22",
+      "fall_10d_pct": -7.4,
+      "fwd126_pct": 14.63,
+      "fwd252_pct": 20.83
+     },
+     {
+      "date": "2015-08-24",
+      "fall_10d_pct": -11.75,
+      "fwd126_pct": 4.73,
+      "fwd252_pct": 20.73
+     },
+     {
+      "date": "2016-01-08",
+      "fall_10d_pct": -7.64,
+      "fwd126_pct": 7.25,
+      "fwd252_pct": 18.92
+     },
+     {
+      "date": "2018-02-08",
+      "fall_10d_pct": -8.85,
+      "fwd126_pct": 18.99,
+      "fwd252_pct": 10.67
+     },
+     {
+      "date": "2018-03-23",
+      "fall_10d_pct": -8.31,
+      "fwd126_pct": 16.15,
+      "fwd252_pct": 13.94
+     },
+     {
+      "date": "2018-10-11",
+      "fall_10d_pct": -8.73,
+      "fwd126_pct": 10.1,
+      "fwd252_pct": 13.68
+     },
+     {
+      "date": "2018-11-21",
+      "fall_10d_pct": -8.66,
+      "fwd126_pct": 11.19,
+      "fwd252_pct": 26.98
+     },
+     {
+      "date": "2020-02-27",
+      "fall_10d_pct": -12.22,
+      "fwd126_pct": 42.53,
+      "fwd252_pct": 53.63
+     },
+     {
+      "date": "2020-09-16",
+      "fall_10d_pct": -8.44,
+      "fwd126_pct": 13.84,
+      "fwd252_pct": 38.35
+     },
+     {
+      "date": "2021-03-03",
+      "fall_10d_pct": -7.42,
+      "fwd126_pct": 23.2,
+      "fwd252_pct": 12.85
+     },
+     {
+      "date": "2022-01-18",
+      "fall_10d_pct": -7.75,
+      "fwd126_pct": -17.96,
+      "fwd252_pct": -25.2
+     },
+     {
+      "date": "2022-02-23",
+      "fall_10d_pct": -8.27,
+      "fwd126_pct": -4.07,
+      "fwd252_pct": -10.75
+     },
+     {
+      "date": "2022-04-12",
+      "fall_10d_pct": -8.55,
+      "fwd126_pct": -22.33,
+      "fwd252_pct": -5.43
+     },
+     {
+      "date": "2022-05-18",
+      "fall_10d_pct": -11.67,
+      "fwd126_pct": -1.59,
+      "fwd252_pct": 16.47
+     },
+     {
+      "date": "2022-06-21",
+      "fall_10d_pct": -8.33,
+      "fwd126_pct": -3.63,
+      "fwd252_pct": 31.2
+     },
+     {
+      "date": "2022-08-29",
+      "fall_10d_pct": -8.6,
+      "fwd126_pct": -3.94,
+      "fwd252_pct": 24.68
+     },
+     {
+      "date": "2022-09-30",
+      "fall_10d_pct": -7.46,
+      "fwd126_pct": 20.26,
+      "fwd252_pct": 33.7
+     },
+     {
+      "date": "2022-12-27",
+      "fall_10d_pct": -7.48,
+      "fwd126_pct": 38.43,
+      "fwd252_pct": 57.12
+     },
+     {
+      "date": "2024-07-24",
+      "fall_10d_pct": -7.87,
+      "fwd126_pct": 14.64,
+      "fwd252_pct": 23.3
+     },
+     {
+      "date": "2025-03-03",
+      "fall_10d_pct": -7.64,
+      "fwd126_pct": 14.09,
+      "fwd252_pct": 23.5
+     },
+     {
+      "date": "2025-04-04",
+      "fall_10d_pct": -11.97,
+      "fwd126_pct": 44.11,
+      "fwd252_pct": 44.09
+     },
+     {
+      "date": "2026-07-29",
+      "fall_10d_pct": -7.8,
+      "fwd126_pct": null,
+      "fwd252_pct": null
+     },
+     {
+      "date": "2026-11-05",
+      "fall_10d_pct": -8.15,
+      "fwd126_pct": null,
+      "fwd252_pct": null
+     }
+    ],
+    "forward": {
+     "126": {
+      "n_used": 61,
+      "n_dropped_window_past_cutoff": 2,
+      "unconditional_mean_pct": 5.69,
+      "unconditional_share_pos_pct": 72.6,
+      "obs_mean_pct": 1.76,
+      "obs_share_pos_pct": 54.1,
+      "pctile_mean": 1.2,
+      "pctile_share": 0.0,
+      "rand_mean_2.5_97.5_pct": [
+       2.27,
+       9.0
+      ],
+      "rand_share_2.5_97.5_pct": [
+       62.3,
+       82.0
+      ],
+      "verdict": "different from a random date"
+     },
+     "252": {
+      "n_used": 61,
+      "n_dropped_window_past_cutoff": 2,
+      "unconditional_mean_pct": 12.43,
+      "unconditional_share_pos_pct": 79.4,
+      "obs_mean_pct": 5.91,
+      "obs_share_pos_pct": 57.4,
+      "pctile_mean": 0.7,
+      "pctile_share": 0.0,
+      "rand_mean_2.5_97.5_pct": [
+       7.24,
+       17.42
+      ],
+      "rand_share_2.5_97.5_pct": [
+       70.5,
+       86.9
+      ],
+      "verdict": "different from a random date"
+     }
+    },
+    "caveat": "Hindsight-selected names (and a book built from them): forward returns reflect past winners.",
+    "realised_10d_pct": -7.26,
+    "own_10d_sd_pct": 4.67,
+    "selected": false
+   },
+   "SPY": {
+    "threshold_pct": -6.19,
+    "n_windows": 6743,
+    "k_windows_at_or_below": 213,
+    "share_windows_pct": 3.16,
+    "n_episodes": 42,
+    "episodes_by_spacing": {
+     "10": 51,
+     "21": 42,
+     "42": 30
+    },
+    "first": "2000-01-04",
+    "last": "2026-11-06",
+    "episodes": [
+     {
+      "date": "2000-01-28",
+      "fall_10d_pct": -6.29,
+      "fwd126_pct": 5.09,
+      "fwd252_pct": 1.59
+     },
+     {
+      "date": "2000-04-14",
+      "fall_10d_pct": -9.56,
+      "fwd126_pct": 1.64,
+      "fwd252_pct": -11.37
+     },
+     {
+      "date": "2000-10-12",
+      "fall_10d_pct": -8.19,
+      "fwd126_pct": -11.15,
+      "fwd252_pct": -18.31
+     },
+     {
+      "date": "2000-11-20",
+      "fall_10d_pct": -6.32,
+      "fwd126_pct": -3.48,
+      "fwd252_pct": -13.23
+     },
+     {
+      "date": "2001-02-21",
+      "fall_10d_pct": -7.22,
+      "fwd126_pct": -7.29,
+      "fwd252_pct": -9.98
+     },
+     {
+      "date": "2001-03-23",
+      "fall_10d_pct": -6.95,
+      "fwd126_pct": -10.08,
+      "fwd252_pct": 1.38
+     },
+     {
+      "date": "2001-09-07",
+      "fall_10d_pct": -6.76,
+      "fwd126_pct": 8.38,
+      "fwd252_pct": -16.4
+     },
+     {
+      "date": "2002-07-01",
+      "fall_10d_pct": -6.48,
+      "fwd126_pct": -8.34,
+      "fwd252_pct": 3.29
+     },
+     {
+      "date": "2002-09-03",
+      "fall_10d_pct": -7.46,
+      "fwd126_pct": -4.58,
+      "fwd252_pct": 19.09
+     },
+     {
+      "date": "2002-10-09",
+      "fall_10d_pct": -7.41,
+      "fwd126_pct": 13.05,
+      "fwd252_pct": 35.72
+     },
+     {
+      "date": "2003-01-24",
+      "fall_10d_pct": -6.93,
+      "fwd126_pct": 16.92,
+      "fwd252_pct": 36.33
+     },
+     {
+      "date": "2007-07-27",
+      "fall_10d_pct": -6.29,
+      "fwd126_pct": -5.86,
+      "fwd252_pct": -13.08
+     },
+     {
+      "date": "2007-11-12",
+      "fall_10d_pct": -6.77,
+      "fwd126_pct": -1.03,
+      "fwd252_pct": -36.2
+     },
+     {
+      "date": "2008-01-08",
+      "fall_10d_pct": -6.22,
+      "fwd126_pct": -9.27,
+      "fwd252_pct": -33.16
+     },
+     {
+      "date": "2008-03-10",
+      "fall_10d_pct": -6.79,
+      "fwd126_pct": 0.2,
+      "fwd252_pct": -42.26
+     },
+     {
+      "date": "2008-09-15",
+      "fall_10d_pct": -6.76,
+      "fwd126_pct": -33.99,
+      "fwd252_pct": -9.59
+     },
+     {
+      "date": "2008-10-15",
+      "fall_10d_pct": -22.44,
+      "fwd126_pct": -1.78,
+      "fwd252_pct": 25.03
+     },
+     {
+      "date": "2008-11-14",
+      "fall_10d_pct": -10.54,
+      "fwd126_pct": 6.81,
+      "fwd252_pct": 31.72
+     },
+     {
+      "date": "2009-01-15",
+      "fall_10d_pct": -6.47,
+      "fwd126_pct": 12.96,
+      "fwd252_pct": 37.76
+     },
+     {
+      "date": "2009-02-20",
+      "fall_10d_pct": -8.45,
+      "fwd126_pct": 32.12,
+      "fwd252_pct": 46.9
+     },
+     {
+      "date": "2010-01-29",
+      "fall_10d_pct": -6.56,
+      "fwd126_pct": 3.6,
+      "fwd252_pct": 21.27
+     },
+     {
+      "date": "2010-05-06",
+      "fall_10d_pct": -6.68,
+      "fwd126_pct": 7.28,
+      "fwd252_pct": 20.65
+     },
+     {
+      "date": "2010-06-29",
+      "fall_10d_pct": -6.51,
+      "fwd126_pct": 22.03,
+      "fwd252_pct": 26.87
+     },
+     {
+      "date": "2011-08-04",
+      "fall_10d_pct": -10.58,
+      "fwd126_pct": 13.17,
+      "fwd252_pct": 18.34
+     },
+     {
+      "date": "2011-09-30",
+      "fall_10d_pct": -6.89,
+      "fwd126_pct": 26.7,
+      "fwd252_pct": 30.31
+     },
+     {
+      "date": "2011-11-22",
+      "fall_10d_pct": -6.8,
+      "fwd126_pct": 12.39,
+      "fwd252_pct": 20.87
+     },
+     {
+      "date": "2015-08-24",
+      "fall_10d_pct": -10.01,
+      "fwd126_pct": 3.09,
+      "fwd252_pct": 18.06
+     },
+     {
+      "date": "2016-01-08",
+      "fall_10d_pct": -6.84,
+      "fwd126_pct": 12.35,
+      "fwd252_pct": 20.53
+     },
+     {
+      "date": "2018-02-05",
+      "fall_10d_pct": -6.64,
+      "fwd126_pct": 8.76,
+      "fwd252_pct": 5.3
+     },
+     {
+      "date": "2018-03-23",
+      "fall_10d_pct": -7.1,
+      "fwd126_pct": 14.18,
+      "fwd252_pct": 11.05
+     },
+     {
+      "date": "2018-10-11",
+      "fall_10d_pct": -6.37,
+      "fwd126_pct": 7.63,
+      "fwd252_pct": 10.9
+     },
+     {
+      "date": "2018-12-17",
+      "fall_10d_pct": -7.36,
+      "fwd126_pct": 15.94,
+      "fwd252_pct": 27.63
+     },
+     {
+      "date": "2020-02-25",
+      "fall_10d_pct": -6.58,
+      "fwd126_pct": 10.81,
+      "fwd252_pct": 27.65
+     },
+     {
+      "date": "2022-01-21",
+      "fall_10d_pct": -6.4,
+      "fwd126_pct": -9.01,
+      "fwd252_pct": -7.14
+     },
+     {
+      "date": "2022-02-23",
+      "fall_10d_pct": -6.43,
+      "fwd126_pct": -1.23,
+      "fwd252_pct": -4.54
+     },
+     {
+      "date": "2022-05-03",
+      "fall_10d_pct": -6.44,
+      "fwd126_pct": -6.87,
+      "fwd252_pct": -1.05
+     },
+     {
+      "date": "2022-06-13",
+      "fall_10d_pct": -9.7,
+      "fwd126_pct": 7.29,
+      "fwd252_pct": 18.56
+     },
+     {
+      "date": "2022-08-30",
+      "fall_10d_pct": -7.33,
+      "fwd126_pct": 0.77,
+      "fwd252_pct": 14.94
+     },
+     {
+      "date": "2022-09-30",
+      "fall_10d_pct": -7.36,
+      "fwd126_pct": 16.02,
+      "fwd252_pct": 19.89
+     },
+     {
+      "date": "2024-08-05",
+      "fall_10d_pct": -6.72,
+      "fwd126_pct": 17.54,
+      "fwd252_pct": 23.72
+     },
+     {
+      "date": "2025-03-11",
+      "fall_10d_pct": -6.45,
+      "fwd126_pct": 18.02,
+      "fwd252_pct": 21.22
+     },
+     {
+      "date": "2025-04-10",
+      "fall_10d_pct": -7.49,
+      "fwd126_pct": 25.2,
+      "fwd252_pct": 33.9
+     }
+    ],
+    "forward": {
+     "126": {
+      "n_used": 42,
+      "n_dropped_window_past_cutoff": 0,
+      "unconditional_mean_pct": 4.78,
+      "unconditional_share_pos_pct": 72.6,
+      "obs_mean_pct": 5.38,
+      "obs_share_pos_pct": 66.7,
+      "pctile_mean": 65.0,
+      "pctile_share": 16.8,
+      "rand_mean_2.5_97.5_pct": [
+       1.77,
+       7.69
+      ],
+      "rand_share_2.5_97.5_pct": [
+       59.5,
+       83.3
+      ],
+      "verdict": "not distinguishable from any other date"
+     },
+     "252": {
+      "n_used": 42,
+      "n_dropped_window_past_cutoff": 0,
+      "unconditional_mean_pct": 9.87,
+      "unconditional_share_pos_pct": 77.8,
+      "obs_mean_pct": 9.86,
+      "obs_share_pos_pct": 69.0,
+      "pctile_mean": 49.6,
+      "pctile_share": 6.7,
+      "rand_mean_2.5_97.5_pct": [
+       5.34,
+       14.18
+      ],
+      "rand_share_2.5_97.5_pct": [
+       66.7,
+       88.1
+      ],
+      "verdict": "not distinguishable from any other date"
+     }
+    },
+    "caveat": "Hindsight-selected names (and a book built from them): forward returns reflect past winners.",
+    "realised_10d_pct": -6.19,
+    "own_10d_sd_pct": 3.31,
+    "selected": false
+   }
+  }
+ },
+ "G": {
+  "G1": {
+   "NVDA": {
+    "r2_10d_mkt_sector": 0.705,
+    "n_blocks": 125,
+    "calendar": "own trading sessions",
+    "share_var_on_report_days": 0.103,
+    "report_days": 20,
+    "share_of_days": 0.016
+   },
+   "WMT": {
+    "r2_10d_mkt_sector": 0.308,
+    "n_blocks": 125,
+    "calendar": "own trading sessions",
+    "share_var_on_report_days": 0.258,
+    "report_days": 20,
+    "share_of_days": 0.016
+   },
+   "AMAT": {
+    "r2_10d_mkt_sector": 0.733,
+    "n_blocks": 125,
+    "calendar": "own trading sessions",
+    "share_var_on_report_days": 0.057,
+    "report_days": 20,
+    "share_of_days": 0.016
+   },
+   "HD": {
+    "r2_10d_mkt_sector": 0.351,
+    "n_blocks": 125,
+    "calendar": "own trading sessions",
+    "share_var_on_report_days": 0.092,
+    "report_days": 20,
+    "share_of_days": 0.016
+   },
+   "BA.L": {
+    "r2_10d_mkt_sector": 0.079,
+    "n_blocks": 126,
+    "calendar": "own trading sessions"
+   },
+   "RR.L": {
+    "r2_10d_mkt_sector": 0.274,
+    "n_blocks": 126,
+    "calendar": "own trading sessions"
+   }
+  },
+  "G2": {
+   "per_ticker": {
+    "NVDA": {
+     "1": {
+      "s_E": 0.084,
+      "s_PE": 0.916,
+      "n": 23
+     },
+     "4": {
+      "s_E": 0.6,
+      "s_PE": 0.4,
+      "n": 20
+     },
+     "12": {
+      "s_E": 0.412,
+      "s_PE": 0.588,
+      "n": 12
+     },
+     "20": {
+      "s_E": -0.312,
+      "s_PE": 1.312,
+      "n": 4
+     }
+    },
+    "WMT": {
+     "1": {
+      "s_E": 0.053,
+      "s_PE": 0.947,
+      "n": 91
+     },
+     "4": {
+      "s_E": 0.059,
+      "s_PE": 0.941,
+      "n": 88
+     },
+     "12": {
+      "s_E": 0.06,
+      "s_PE": 0.94,
+      "n": 80
+     },
+     "20": {
+      "s_E": -0.007,
+      "s_PE": 1.007,
+      "n": 72
+     }
+    },
+    "AMAT": {
+     "1": {
+      "s_E": 0.005,
+      "s_PE": 0.995,
+      "n": 84
+     },
+     "4": {
+      "s_E": 0.236,
+      "s_PE": 0.764,
+      "n": 78
+     },
+     "12": {
+      "s_E": 0.466,
+      "s_PE": 0.534,
+      "n": 70
+     },
+     "20": {
+      "s_E": 0.656,
+      "s_PE": 0.344,
+      "n": 62
+     }
+    },
+    "HD": {
+     "1": {
+      "s_E": 0.108,
+      "s_PE": 0.892,
+      "n": 93
+     },
+     "4": {
+      "s_E": 0.39,
+      "s_PE": 0.61,
+      "n": 90
+     },
+     "12": {
+      "s_E": 0.709,
+      "s_PE": 0.291,
+      "n": 82
+     },
+     "20": {
+      "s_E": 0.716,
+      "s_PE": 0.284,
+      "n": 74
+     }
+    }
+   },
+   "pooled": {
+    "1": {
+     "s_E": 0.05,
+     "s_PE": 0.95,
+     "n": 291
+    },
+    "4": {
+     "s_E": 0.337,
+     "s_PE": 0.663,
+     "n": 276
+    },
+    "12": {
+     "s_E": 0.489,
+     "s_PE": 0.511,
+     "n": 244
+    },
+    "20": {
+     "s_E": 0.619,
+     "s_PE": 0.381,
+     "n": 212
+    }
+   },
+   "dropped_floor": {
+    "NVDA": {
+     "1": 30,
+     "4": 26,
+     "12": 28,
+     "20": 28
+    },
+    "WMT": {
+     "1": 0,
+     "4": 0,
+     "12": 0,
+     "20": 0
+    },
+    "AMAT": {
+     "1": 5,
+     "4": 8,
+     "12": 8,
+     "20": 8
+    },
+    "HD": {
+     "1": 0,
+     "4": 0,
+     "12": 0,
+     "20": 0
+    }
+   },
+   "n": {},
+   "pooled_ci95": {
+    "1": [
+     -0.083,
+     0.162
+    ],
+    "4": [
+     0.088,
+     0.505
+    ],
+    "12": [
+     0.172,
+     0.74
+    ],
+    "20": [
+     0.307,
+     0.789
+    ]
+   },
+   "pooled_diff_20_1": {
+    "point": 0.569,
+    "ci95": [
+     0.284,
+     0.71
+    ],
+    "ci99": [
+     0.188,
+     0.768
+    ],
+    "bootstrap": "paired: the same calendar-quarter blocks (length 20) for both horizons"
+   },
+   "rises_per_ticker": {
+    "NVDA": false,
+    "WMT": false,
+    "AMAT": true,
+    "HD": true
+   },
+   "claim_bar_met": false,
+   "interval_note": "Block-bootstrap intervals are too narrow here: in a synthetic null with ~100 quarters they exclude a true zero difference far more often than nominal (test T18); read them as descriptive.",
+   "exceptions": [
+    "NVDA",
+    "WMT"
+   ],
+   "caveat": "Trailing EPS is backward-looking; a fall in the multiple can be rational news about future earnings; four hindsight-chosen tickers; the 1-quarter figure is near zero partly by construction.",
+   "n_draws": 20000,
+   "seed": 20261122
+  },
+  "G2_floor_sensitivity_TTM_gt_0_LABELLED_SENSITIVITY": {
+   "per_ticker": {
+    "NVDA": {
+     "1": {
+      "s_E": 0.126,
+      "s_PE": 0.874,
+      "n": 53
+     },
+     "4": {
+      "s_E": 0.442,
+      "s_PE": 0.558,
+      "n": 46
+     },
+     "12": {
+      "s_E": 0.651,
+      "s_PE": 0.349,
+      "n": 40
+     },
+     "20": {
+      "s_E": 0.891,
+      "s_PE": 0.109,
+      "n": 32
+     }
+    },
+    "WMT": {
+     "1": {
+      "s_E": 0.053,
+      "s_PE": 0.947,
+      "n": 91
+     },
+     "4": {
+      "s_E": 0.059,
+      "s_PE": 0.941,
+      "n": 88
+     },
+     "12": {
+      "s_E": 0.06,
+      "s_PE": 0.94,
+      "n": 80
+     },
+     "20": {
+      "s_E": -0.007,
+      "s_PE": 1.007,
+      "n": 72
+     }
+    },
+    "AMAT": {
+     "1": {
+      "s_E": -0.321,
+      "s_PE": 1.321,
+      "n": 87
+     },
+     "4": {
+      "s_E": 0.416,
+      "s_PE": 0.584,
+      "n": 84
+     },
+     "12": {
+      "s_E": 0.598,
+      "s_PE": 0.402,
+      "n": 76
+     },
+     "20": {
+      "s_E": 0.824,
+      "s_PE": 0.176,
+      "n": 68
+     }
+    },
+    "HD": {
+     "1": {
+      "s_E": 0.108,
+      "s_PE": 0.892,
+      "n": 93
+     },
+     "4": {
+      "s_E": 0.39,
+      "s_PE": 0.61,
+      "n": 90
+     },
+     "12": {
+      "s_E": 0.709,
+      "s_PE": 0.291,
+      "n": 82
+     },
+     "20": {
+      "s_E": 0.716,
+      "s_PE": 0.284,
+      "n": 74
+     }
+    }
+   },
+   "pooled": {
+    "1": {
+     "s_E": -0.052,
+     "s_PE": 1.052,
+     "n": 324
+    },
+    "4": {
+     "s_E": 0.396,
+     "s_PE": 0.604,
+     "n": 308
+    },
+    "12": {
+     "s_E": 0.579,
+     "s_PE": 0.421,
+     "n": 278
+    },
+    "20": {
+     "s_E": 0.741,
+     "s_PE": 0.259,
+     "n": 246
+    }
+   },
+   "dropped_floor": {
+    "NVDA": {
+     "1": 0,
+     "4": 0,
+     "12": 0,
+     "20": 0
+    },
+    "WMT": {
+     "1": 0,
+     "4": 0,
+     "12": 0,
+     "20": 0
+    },
+    "AMAT": {
+     "1": 2,
+     "4": 2,
+     "12": 2,
+     "20": 2
+    },
+    "HD": {
+     "1": 0,
+     "4": 0,
+     "12": 0,
+     "20": 0
+    }
+   },
+   "n": {},
+   "pooled_ci95": {
+    "1": [
+     -0.32,
+     0.133
+    ],
+    "4": [
+     0.054,
+     0.713
+    ],
+    "12": [
+     0.138,
+     0.845
+    ],
+    "20": [
+     0.501,
+     0.875
+    ]
+   },
+   "pooled_diff_20_1": {
+    "point": 0.793,
+    "ci95": [
+     0.452,
+     1.161
+    ],
+    "ci99": [
+     0.318,
+     1.348
+    ],
+    "bootstrap": "paired: the same calendar-quarter blocks (length 20) for both horizons"
+   },
+   "rises_per_ticker": {
+    "NVDA": true,
+    "WMT": false,
+    "AMAT": true,
+    "HD": true
+   },
+   "claim_bar_met": true,
+   "interval_note": "Block-bootstrap intervals are too narrow here: in a synthetic null with ~100 quarters they exclude a true zero difference far more often than nominal (test T18); read them as descriptive.",
+   "exceptions": [
+    "WMT"
+   ],
+   "caveat": "Trailing EPS is backward-looking; a fall in the multiple can be rational news about future earnings; four hindsight-chosen tickers; the 1-quarter figure is near zero partly by construction.",
+   "n_draws": 2000,
+   "seed": 20261122
+  },
+  "G2_rows_dropped": {
+   "NVDA": {
+    "same_day_duplicates": 0,
+    "after_cutoff": 1,
+    "ttm_with_missing_quarter": 12
+   },
+   "WMT": {
+    "same_day_duplicates": 2,
+    "after_cutoff": 1,
+    "ttm_with_missing_quarter": 0
+   },
+   "AMAT": {
+    "same_day_duplicates": 0,
+    "after_cutoff": 1,
+    "ttm_with_missing_quarter": 3
+   },
+   "HD": {
+    "same_day_duplicates": 0,
+    "after_cutoff": 1,
+    "ttm_with_missing_quarter": 0
+   }
+  },
+  "G2_split_check_T19": {
+   "NVDA 2021-07-20": 1.172,
+   "NVDA 2024-06-10": 1.228,
+   "WMT 2024-02-26": 1.05
+  },
+  "G3": {
+   "BOOK_13Nov": {
+    "5": {
+     "VR": 0.888,
+     "z_robust": -1.3
+    },
+    "10": {
+     "VR": 0.855,
+     "z_robust": -1.17
+    },
+    "21": {
+     "VR": 0.839,
+     "z_robust": -0.95
+    },
+    "63": {
+     "VR": 0.857,
+     "z_robust": -0.57
+    },
+    "reading_10d": "no evidence that two-week moves reverse"
+   },
+   "NVDA": {
+    "5": {
+     "VR": 0.928,
+     "z_robust": -1.55
+    },
+    "10": {
+     "VR": 0.915,
+     "z_robust": -1.22
+    },
+    "21": {
+     "VR": 0.93,
+     "z_robust": -0.69
+    },
+    "63": {
+     "VR": 1.047,
+     "z_robust": 0.28
+    },
+    "reading_10d": "no evidence that two-week moves reverse"
+   },
+   "WMT": {
+    "5": {
+     "VR": 0.919,
+     "z_robust": -1.29
+    },
+    "10": {
+     "VR": 0.858,
+     "z_robust": -1.62
+    },
+    "21": {
+     "VR": 0.837,
+     "z_robust": -1.36
+    },
+    "63": {
+     "VR": 0.728,
+     "z_robust": -1.5
+    },
+    "reading_10d": "no evidence that two-week moves reverse"
+   },
+   "AMAT": {
+    "5": {
+     "VR": 0.908,
+     "z_robust": -1.59
+    },
+    "10": {
+     "VR": 0.874,
+     "z_robust": -1.48
+    },
+    "21": {
+     "VR": 0.841,
+     "z_robust": -1.33
+    },
+    "63": {
+     "VR": 0.786,
+     "z_robust": -1.14
+    },
+    "reading_10d": "no evidence that two-week moves reverse"
+   },
+   "HD": {
+    "5": {
+     "VR": 0.967,
+     "z_robust": -0.41
+    },
+    "10": {
+     "VR": 0.925,
+     "z_robust": -0.61
+    },
+    "21": {
+     "VR": 0.92,
+     "z_robust": -0.47
+    },
+    "63": {
+     "VR": 0.81,
+     "z_robust": -0.8
+    },
+    "reading_10d": "no evidence that two-week moves reverse"
+   },
+   "BA.L": {
+    "5": {
+     "VR": 1.004,
+     "z_robust": 0.09
+    },
+    "10": {
+     "VR": 0.971,
+     "z_robust": -0.4
+    },
+    "21": {
+     "VR": 0.942,
+     "z_robust": -0.56
+    },
+    "63": {
+     "VR": 0.776,
+     "z_robust": -1.32
+    },
+    "reading_10d": "no evidence that two-week moves reverse"
+   },
+   "RR.L": {
+    "5": {
+     "VR": 0.941,
+     "z_robust": -0.8
+    },
+    "10": {
+     "VR": 0.9,
+     "z_robust": -0.91
+    },
+    "21": {
+     "VR": 0.919,
+     "z_robust": -0.52
+    },
+    "63": {
+     "VR": 0.956,
+     "z_robust": -0.17
+    },
+    "reading_10d": "no evidence that two-week moves reverse"
+   },
+   "BTC-USD": {
+    "5": {
+     "VR": 0.99,
+     "z_robust": -0.2
+    },
+    "10": {
+     "VR": 1.026,
+     "z_robust": 0.35
+    },
+    "21": {
+     "VR": 1.102,
+     "z_robust": 0.97
+    },
+    "63": {
+     "VR": 1.27,
+     "z_robust": 1.57
+    },
+    "reading_10d": "no evidence that two-week moves reverse"
+   }
+  },
+  "G4": "CUT (PLAN2 section 7 cut list)",
+  "G2_UK": "CUT (PLAN2 section 7: UK names in G2 dropped); not sourced",
+  "caveat": "Trailing EPS is backward-looking; a fall in the multiple can be rational news about future earnings; four hindsight-chosen tickers; the 1-quarter figure is near zero partly by construction."
+ }
+}

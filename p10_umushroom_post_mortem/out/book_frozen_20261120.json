@@ -1,0 +1,97 @@
+{
+ "frozen_utc": "2026-11-21T21:09:11Z",
+ "asof_close": "2026-11-20",
+ "units": {
+  "AMAT": 40.1455,
+  "BA.L": 650.0542,
+  "BTC-USD": 0.1764,
+  "ETH-USD": 0.0,
+  "HD": 38.8884,
+  "NVDA": 123.5688,
+  "RR.L": 792.8957,
+  "SYRE": 29.8102,
+  "WMT": 126.8802
+ },
+ "cash_gbp": 15884.58,
+ "nav_yahoo_20nov": 91439.6,
+ "platform_nav": 91466.5,
+ "prices_file": "20261121T205901Z",
+ "transactions_sha256": "58866c8d49e85629949f53d08e998ac854704f96984e00ba7de72e6badba5861",
+ "decision_table": {
+  "AMAT": {
+   "status": "HOLD",
+   "current_pct": 10.15,
+   "w_star_pct": 6.0,
+   "target_pct": 10.15,
+   "action": "HOLD (trigger hit but at/above w*: no add); outside 25% band of w* 6.0% -> rebalance at next quarterly date",
+   "trigger_hit_20nov": true
+  },
+  "BAE": {
+   "status": "HOLD",
+   "current_pct": 12.9,
+   "w_star_pct": 10.05,
+   "target_pct": 12.9,
+   "action": "HOLD; outside 25% band of w* 10.0% -> rebalance at next quarterly date",
+   "trigger_hit_20nov": false
+  },
+  "BTC": {
+   "status": "NO THESIS",
+   "current_pct": 8.67,
+   "w_star_pct": 13.69,
+   "target_pct": 8.67,
+   "action": "HOLD (at or below risk budget)",
+   "trigger_hit_20nov": true
+  },
+  "HD": {
+   "status": "REVIEW",
+   "current_pct": 11.02,
+   "w_star_pct": 14.58,
+   "target_pct": 11.02,
+   "action": "HOLD; no adds",
+   "trigger_hit_20nov": false
+  },
+  "NVDA": {
+   "status": "REVIEW-TRIM",
+   "current_pct": 12.96,
+   "w_star_pct": 6.23,
+   "target_pct": 6.23,
+   "action": "TRIM to 6.2%; no adds",
+   "trigger_hit_20nov": true
+  },
+  "RR": {
+   "status": "HOLD",
+   "current_pct": 11.04,
+   "w_star_pct": 9.69,
+   "target_pct": 11.04,
+   "action": "HOLD",
+   "trigger_hit_20nov": false
+  },
+  "SYRE": {
+   "status": "NO THESIS",
+   "current_pct": 2.33,
+   "w_star_pct": 8.08,
+   "target_pct": 2.33,
+   "action": "HOLD at 2.3% (<= 2.5%), no documented case; EXIT unless the team documents a case",
+   "trigger_hit_20nov": false
+  },
+  "WMT": {
+   "status": "HOLD",
+   "current_pct": 13.57,
+   "w_star_pct": 14.31,
+   "target_pct": 13.57,
+   "action": "HOLD",
+   "trigger_hit_20nov": false
+  }
+ },
+ "w_star_pct": {
+  "NVDA": 6.23,
+  "AMAT": 6.0,
+  "WMT": 14.31,
+  "HD": 14.58,
+  "BAE": 10.05,
+  "RR": 9.69,
+  "BTC": 13.69,
+  "SYRE": 8.08
+ },
+ "purpose": "3- and 6-month paper record of the 20 Nov book and the recommended actions."
+}

@@ -1,0 +1,40 @@
+{
+ "estimator": "pooled 20q-1q slope difference; within-company means recomputed in each bootstrap draw",
+ "old_gate": "95% lower bound > 0 and at least 3 of 4 companies rising",
+ "new_gate": "99% lower bound > 0 and at least 3 of 4 companies rising (claim_bar_met)",
+ "null_runs": {
+  "original_panels_rng18": {
+   "n_sims": 1000,
+   "false_claims_old_gate_95": 72,
+   "false_claims_new_gate_99": 28,
+   "ci95_lo_above_0": 81,
+   "ci95_hi_below_0": 87,
+   "ci99_lo_above_0": 30,
+   "ci99_hi_below_0": 47
+  },
+  "fresh_panels_rng20261125": {
+   "n_sims": 1000,
+   "false_claims_old_gate_95": 71,
+   "false_claims_new_gate_99": 28,
+   "ci95_lo_above_0": 74,
+   "ci95_hi_below_0": 98,
+   "ci99_lo_above_0": 30,
+   "ci99_hi_below_0": 34
+  },
+  "previous_estimator_fixed_means_original_panels": {
+   "n_sims": 1000,
+   "false_claims_old_gate_95": 115,
+   "false_claims_new_gate_99": 73,
+   "ci95_lo_above_0": 136,
+   "ci95_hi_below_0": 124,
+   "ci99_lo_above_0": 81,
+   "ci99_hi_below_0": 81
+  }
+ },
+ "abs_errs": [
+  0.000869883046197395,
+  0.0034600807097725506,
+  0.011059293715672713,
+  0.023052513720935752
+ ]
+}

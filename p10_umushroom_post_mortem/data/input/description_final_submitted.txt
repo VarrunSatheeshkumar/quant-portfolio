@@ -1,0 +1,72 @@
+Final strategy Description as submitted/locked (pasted by Varrun 23 Nov)
+
+STRATEGY NOW
+
+Our strategy focuses on sterling growth over a five-year investment horizon, without leverage. We size positions based on risk, hold investments while their fundamentals remain sound and sell only when investment thesis tests fail, not because of price movements. These rules were revised on 21 Nov, following the loss.
+
+RESULT
+
+The portfolio's NAV stands at £91,467 (-8.5%), representing a deviation of 2.2 standard deviations from our 6 Nov forecast. The two-week 95% VaR (£6,432) was breached, while the 99% VaR (£9,094) was not. Of six calls, 1 was successful and 5 were unsuccessful. Our model had flagged concentration risks in AI and cryptocurrency, but we chose to override those warnings.
+
+INVESTMENT STRATEGY OVERVIEW
+
+Long-term growth was our primary objective. We selected large, established companies with the intention of holding them for five years. The competition's two-week window was a secondary consideration, influencing only our entry timing around November reports and our initial position sizing. All six companies either exceeded estimates or reaffirmed guidance, supporting our long-term investment case. However, our six predictions of report-day share-price movements failed to demonstrate reliable forecasting skill, so we discontinued that approach. On 13 Nov, we sold Ethereum at a loss and increased our NVIDIA position one day after its chief executive departed, taking the holding slightly above our 15% limit.
+
+Objective (assumption, not forecast): A Sharpe ratio of 0.3, equivalent to approximately 5% annually above sterling cash, our chosen benchmark, at current volatility. Loss tolerance: 16% annual volatility, with a one-year 95% VaR of £24,400 (normal tails).
+
+We do not assume that prices will necessarily recover.
+
+MACROECONOMIC AND GEOPOLITICAL CONSIDERATIONS
+
+AI investment continues despite export restrictions, supporting our AI semiconductor sleeve (16 Nov US rule on Chinese remote AI-chip access): NVIDIA guided next-quarter revenue to $130.0bn against expectations of $125.1bn, assuming no China data-centre sales; Applied Materials also issued guidance above consensus.
+
+European rearmament supports our UK defence sleeve: BAE Systems increased free-cash-flow guidance from over £2.0bn to approximately £3.0bn, while Rolls-Royce reaffirmed its guidance.
+
+US consumer under firm inflation is the view behind our US consumer sleeve (October CPI rose 0.4% monthly against expectations of 0.3%): Walmart raised guidance, while Home Depot's estimates declined by 1.7%.
+
+Bitcoin: Held as a variance allocation, without a directional price view.
+
+Currency: We have no specific exchange-rate forecast and therefore leave dollar holdings unhedged (sterling weakened from 1.335 to 1.309 dollars since 7 Nov).
+
+Each macroeconomic view remains valid only while its underlying holdings pass our investment tests.
+
+STRATEGIC ASSET ALLOCATION
+
+Without a proven forecasting advantage, we focus on allocating risk rather than predicting returns. Risk is divided equally across five investment sleeves, each receiving one-fifth of the total risk budget, with a 15% limit on individual holdings.
+
+Risk-budget weights, with current allocations in brackets: AI semiconductors 12% (23%); US consumer 29% (25%); UK defence 20% (24%); Bitcoin 14% (9%); Spyre 8% (2%); cash 17%.
+
+Below budget: Bitcoin and Spyre, as neither currently has an established investment thesis (Spyre: limit to 2.5% or exit). Above budget: NVIDIA at 13.0% against 6.2% (potential trim under review; no further purchases) and Applied Materials at 10.2% against 6.0%, to be addressed through quarterly rebalancing.
+
+Although AI and cryptocurrency are separate sleeves, their recent declines occurred together. We therefore monitor them as a combined risk exposure: 56% of portfolio risk currently, falling to 46% after the proposed trim and 40% at full budget allocations.
+
+Cash is deployed only into holdings with a documented thesis that pass every fundamental test and remain below budget, following a two-standard-deviation daily decline, with additional purchases limited to 5% of NAV. No holdings qualified on 20 Nov.
+
+INVESTMENT INSTRUMENT SELECTION
+
+The portfolio directly holds six large-cap equities, Bitcoin and Spyre. Each equity sleeve contains two liquid companies, allowing individual holdings to be linked to their respective risk budgets.
+
+Costs: No fund-management fees, with expenses mainly arising from currency conversion.
+
+Liquidity: All holdings trade daily.
+
+Quality: Four fundamental tests were introduced on 21 Nov, following the decline: reduced company guidance; falling earnings estimates; a regulatory or accounting event; or an unexpected departure of the chief executive or chief financial officer. A hard failure triggers a sale, two soft warnings prompt a review of a potential reduction, and one warning prevents additional purchases. NVIDIA currently has two warnings (a reported but unconfirmed SEC examination; no permanent chief executive), while Home Depot has one.
+
+ESG: ESG criteria were not applied during investment selection. BAE Systems and Rolls-Royce operate in the defence industry and are therefore unsuitable for ESG-constrained investors.
+
+RISK MANAGEMENT
+
+Market: Approximately 81–97% of the portfolio loss was associated with broader market, sector, currency and cryptocurrency movements, while stock-specific declines, mainly NVIDIA, contributed approximately a further quarter. Favourable execution prices on 9 Nov (Applied Materials purchased below the day's trading range) offset 16% of the loss; without these, the loss would have exceeded the 99% VaR threshold. The realised loss was 2.4 times our original AI sell-off stress estimate (£3,613), so future stress testing now uses the observed decline.
+
+Concentration: Individual position limits and sleeve-level risk budgets control exposure. Any NVIDIA financial restatement or non-reliance filing would trigger a sale.
+
+Currency: Approximately 59% of the portfolio is dollar-denominated and deliberately unhedged. Sterling's depreciation offset 11% of the loss, although this benefit was due to chance rather than forecasting skill.
+
+Liquidity: The portfolio maintains a 17% cash allocation.
+
+Monitoring: The investment scorecard will be reassessed on 27 Nov and at each earnings announcement, with quarterly rebalancing when allocations move outside the permitted 25% band.
+
+Calls logged on 7th November before any reports were published:
+Up - Applied Materials(12th November), Rolls-Royce(12th Nov), BAE(mid-Nov), NVIDIA and Home Depot(17th Nov), Walmart (19th Nov).
+Variance Allocations : Crypto ( BTC + ETH) -> non-directional calls since prior BTC analysis found no reliable prediction edge.
+* A call is hit if the first close after the report is above the last close before it ( for scoring purposes).

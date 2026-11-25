@@ -1,0 +1,10 @@
+{
+ "source": "PLAN2.md section 3-J, copied verbatim 2026-11-21 UK evening, before any evidence collection",
+ "R1": "guidance. Trigger if the latest report lowered the midpoint of any full-year guidance line (revenue, EPS, operating profit, free cash flow) vs the prior guide. Narrowing with an unchanged or higher midpoint is not a trigger. HARD.",
+ "R2": "estimates. Using +1y consensus EPS from two snapshots, S1 = 19 Nov and S2 = 22 Nov: first reading = S1 current vs S1 30daysAgo; second reading = S2 current vs S1 current. Both negative and cumulative fall >= 2%: HARD. Both negative and cumulative fall < 2%: SOFT. Otherwise none. Disclosure: the planner had seen S1 (HD -1.5%, BAE -0.4%, others up) when setting the 2% bar. Limitation to print: analysts will not have revised for 20 Nov news by 22 Nov. Re-run with S3 on 27 Nov.",
+ "R3": "regulatory or accounting. Level 2 (HARD): restatement, non-reliance 8-K (Item 4.02), late 10-Q/10-K, auditor resignation or qualified opinion, or formal charges. Level 1 (SOFT): a named-outlet report or a company-confirmed inquiry or subpoena about the company's own accounting, without any Level 2 item.",
+ "R4": "management. SOFT if a CEO or CFO left unplanned within 90 days and no permanent successor is named. A planned succession with a named successor is \"watch\", not a trigger.",
+ "price": "Price is never a trigger.",
+ "status": "Status: any HARD -> CUT. Two or more SOFT -> REVIEW-TRIM. One SOFT -> REVIEW. None -> HOLD.",
+ "no_thesis": "Assets with no fundamental thesis on file: BTC (\"variance allocation, no directional call\") -> NO THESIS, sized by risk budget only. SYRE -> NO THESIS until Varrun supplies a one-line rationale, catalyst date and what would break it; without that the recommendation is exit, or hold at <= 2.5% and say plainly that it has no documented case."
+}

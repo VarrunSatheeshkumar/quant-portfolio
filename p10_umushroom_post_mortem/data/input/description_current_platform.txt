@@ -1,0 +1,7 @@
+Event-driven book with November earnings and trading updates factored in: sized with a quant risk model (historical correlations and options-implied earnings moves) which estimates each holding's share of risk, two week volatility and 95% VaR.
+
+Calls logged on 7th November before any reports were published:
+Up - Applied Materials(12th November), Rolls-Royce(12th Nov), BAE(mid-Nov), NVIDIA and Home Depot(17th Nov), Walmart (19th Nov).
+Variance Allocations : Crypto ( BTC + ETH) -> non-directional calls since prior BTC analysis found no reliable prediction edge.
+
+* A call is hit if the first close after the report is above the last close before it ( for scoring purposes).

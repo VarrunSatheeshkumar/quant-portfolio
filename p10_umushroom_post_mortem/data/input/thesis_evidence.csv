@@ -1,0 +1,25 @@
+asset,rule,finding,trigger,event_date,url,source_class,collected_utc
+NVDA,R1,No full-year guidance line; Q4 revenue guide raised to 130.0bn (quarterly only),none,2026-11-17,https://investor.nvidia.com/news/press-release-details/2026/NVIDIA-Announces-Financial-Results-for-Third-Quarter-Fiscal-2027/default.aspx,primary,2026-11-21T21:10Z
+NVDA,R2,+1y EPS: S1 30d +4.34%; S2 vs S1 +0.00%,none,2026-11-21,data/raw/estimates_20261119T174603Z ; data/raw/estimates_20261121T205835Z,primary,2026-11-21T21:10Z
+NVDA,R3,Reuters (two people briefed; relayed by 247wallst; original not fetchable) reported SEC enforcement staff examining potential accounting issues; SEC declined to comment. Earlier (17-18 Nov) WSJ/Reuters: SEC probe of disclosures after CEO exit. EDGAR: no Item 4.02 8-K or restatement (8-Ks 12 Nov items 5.02/9.01; 17 Nov items 2.02/9.01),SOFT,2026-11-20,https://247wallst.com/investing/2026/11/20/nvidia-stock-plunges-12-after-reuters-reports-an-sec-probe-of-its-accounting-its-nvidias-worst-day-since-deepseek-and-it-has-lost-2-7-trillion-since-october/ ; The Star (Malaysia) 18 Nov 2026 relaying the WSJ: NVIDIA faces an SEC probe after its chief executive resigned ; https://data.sec.gov/submissions/CIK0001045810.json,named report,2026-11-21T21:12Z
+NVDA,R4,CEO resigned 12 Nov effective immediately (8-K item 5.02); CFO named interim CEO; board search ongoing; no permanent successor named,SOFT,2026-11-12,https://www.sec.gov/Archives/edgar/data/0001045810/000104581026000082/nvda-20261111.htm,primary,2026-11-21T21:12Z
+AMAT,R1,No full-year guide; Q1 guide above consensus (quarterly only),none,2026-11-12,https://www.sec.gov/Archives/edgar/data/6951/000162828026073360/0001628280-26-073360-index.htm,primary,2026-11-21T21:10Z
+AMAT,R2,+1y EPS: S1 30d +4.34%; S2 vs S1 -0.03%,none,2026-11-21,data/raw/estimates_20261119T174603Z ; data/raw/estimates_20261121T205835Z,primary,2026-11-21T21:10Z
+AMAT,R3,No report found (search limited to the 20 Nov sources and news search),none,,not sourced,not sourced,2026-11-21T21:12Z
+AMAT,R4,No CEO/CFO change found (search limited),none,,not sourced,not sourced,2026-11-21T21:12Z
+WMT,R1,FY EPS guide raised 2.80-2.87 -> 2.84-2.89,none,2026-11-19,https://www.cnbc.com/2026/11/19/walmart-wmt-q3-2026-earnings.html,named report,2026-11-21T21:10Z
+WMT,R2,+1y EPS: S1 30d +0.06%; S2 vs S1 -0.01%,none,2026-11-21,data/raw/estimates_20261119T174603Z ; data/raw/estimates_20261121T205835Z,primary,2026-11-21T21:10Z
+WMT,R3,No report found (search limited),none,,not sourced,not sourced,2026-11-21T21:12Z
+WMT,R4,No CEO/CFO change found (search limited),none,,not sourced,not sourced,2026-11-21T21:12Z
+HD,R1,FY EPS growth guide narrowed flat-to-4% -> about 2%: midpoint unchanged (2%); other lines not sourced,none,2026-11-17,https://www.cnbc.com/2026/11/17/home-depot-hd-q3-earnings-2026.html,named report,2026-11-21T21:10Z
+HD,R2,+1y EPS: S1 30d -1.52%; S2 vs S1 -0.17%; cumulative -1.69% (< 2%),SOFT,2026-11-21,data/raw/estimates_20261119T174603Z ; data/raw/estimates_20261121T205835Z,primary,2026-11-21T21:10Z
+HD,R3,No report found (search limited),none,,not sourced,not sourced,2026-11-21T21:12Z
+HD,R4,CFO named CEO: planned succession with named successor -> watch,watch,2026-11-17,https://www.cnbc.com/2026/11/17/home-depot-hd-q3-earnings-2026.html,named report,2026-11-21T21:10Z
+BA.L,R1,Sales/EBIT/EPS guidance unchanged; FCF raised >2.0bn -> c.3.0bn,none,2026-11-12,https://www.baesystems.com/en/article/market-update-nov-2026,primary,2026-11-21T21:10Z
+BA.L,R2,+1y EPS: S1 30d -0.43%; S2 vs S1 +0.08%,none,2026-11-21,data/raw/estimates_20261119T174603Z ; data/raw/estimates_20261121T205835Z,primary,2026-11-21T21:10Z
+BA.L,R3,No report found (search limited),none,,not sourced,not sourced,2026-11-21T21:12Z
+BA.L,R4,No CEO/CFO change found (search limited),none,,not sourced,not sourced,2026-11-21T21:12Z
+RR.L,R1,FY26 guidance reaffirmed (op profit 4.7-4.9bn; FCF 3.8-4.0bn),none,2026-11-12,https://www.rolls-royce.com/media/press-releases/2026/12-11-2026-rr-holdings-plc-trading-update.aspx,primary,2026-11-21T21:10Z
+RR.L,R2,+1y EPS: S1 30d +0.15%; S2 vs S1 +0.00%,none,2026-11-21,data/raw/estimates_20261119T174603Z ; data/raw/estimates_20261121T205835Z,primary,2026-11-21T21:10Z
+RR.L,R3,No report found (search limited),none,,not sourced,not sourced,2026-11-21T21:12Z
+RR.L,R4,No CEO/CFO change found (search limited),none,,not sourced,not sourced,2026-11-21T21:12Z

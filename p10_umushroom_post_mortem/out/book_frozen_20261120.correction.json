@@ -1,0 +1,25 @@
+{
+ "dated": "2026-11-25",
+ "applies_to": "book_frozen_20261120.json (transactions_sha256 field)",
+ "issue": "The frozen book records the ledger hash 58866c8d49e85629949f53d08e998ac854704f96984e00ba7de72e6badba5861, which is the ledger with the Spyre (SYRE) buy dated 2026-11-20. The published ledger dates that buy 2026-11-19 and hashes to dce7189476b95ad64bcdcc2e9dd41e0fe295281d8252bb8adbb311b1ba691c78.",
+ "evidence_for_19_nov": "The platform's holdings list shows Spyre 'Added On 19 Nov 2026', and the fill (29.8102 units at $97.63) equals the 19 Nov close.",
+ "effect": "Final units, cash (GBP 15,884.58), closing NAV at the 20 Nov Yahoo closes (GBP 91,439.60) and cumulative P&L are the same under both dates. The daily path is not: see daily_path_difference. Test T43 checks that changing the date back reproduces the recorded hash, and checks the endpoint and the daily-path figures.",
+ "frozen_hash_kept": "58866c8d49e85629949f53d08e998ac854704f96984e00ba7de72e6badba5861",
+ "corrected_ledger_hash": "dce7189476b95ad64bcdcc2e9dd41e0fe295281d8252bb8adbb311b1ba691c78",
+ "daily_path_difference": {
+  "nav_19nov_gbp": 6.78,
+  "pnl_20nov_gbp_published_ledger": -3721.49,
+  "pnl_20nov_gbp_frozen_ledger": -3714.71,
+  "explanation": "With the buy on 19 Nov, Spyre's fill-to-close gain on 19 Nov (GBP 6.78) lands on 19 Nov, raising that day's NAV by GBP 6.78; the 20 Nov daily P&L is lower by the same amount. Nothing after 20 Nov changes."
+ },
+ "decision_table_note": {
+  "dated": "2026-11-25",
+  "issue": "The frozen decision_table marks BTC trigger_hit_20nov = true. That flag accepted a crossing in either currency. The deployment rule is in sterling: Bitcoin fell 5.01% in dollars but 4.58% in sterling on 20 Nov, short of its 4.6% trigger, so under the rule it was not triggered.",
+  "effect": "None on any action or weight: Bitcoin has no written thesis, so it could not be added to either way. The generated table in results2.json (K.decision_table) now uses the sterling hit (trigger_hit_20nov = false for BTC) and keeps the either-currency reading as trigger_hit_local_20nov_diagnostic. The frozen file is left as it was."
+ },
+ "platform_nav_note": {
+  "dated": "2026-11-25",
+  "issue": "The frozen book is stamped frozen_utc 2026-11-21T21:09:11Z, but its platform_nav field (GBP 91,466.50) comes from the platform reading documented at about 21:50 UTC on 21 Nov (data/input/platform_snapshot_20261122.json; data/input/rules_quotes.txt records the page read at 21:45-21:55 UTC), roughly 40 minutes after that stamp. No earlier observation of that figure is on file in this folder.",
+  "effect": "Read platform_nav as a later annotation added to the frozen book, not as a value fixed at 21:09:11 UTC. The other fields (units, cash, the Yahoo NAV, the decision table) are unaffected. The frozen file is left as it was."
+ }
+}

@@ -1,0 +1,24 @@
+Rules / conditions / portfolio page check (PLAN2 Step 0.4) - read only
+Read 2026-11-21 ~21:45-21:55 UTC. Nothing clicked except navigation (portfolio link, "See All 3 more" list expander). No edit, save, buy, sell or post.
+
+CONDITIONS PAGE https://umushroom.com/en/contest/uk-investment-competition-2026/conditions-of-participation
+- "Stage 2 — Pitching Rounds (21 Nov - 28 Nov) ... 10-minute portfolio pitches centred around investment approach, strategy, and execution"
+- "This stage highlights critical analysis, teamwork, and the ability to clearly articulate investment decisions."
+- Final: "The jury evaluates performance, analysis, rationale, and situational skills to determine the final ranking"
+- "Documenting Your Strategy: 10% or 100 points of your score comes from documenting your strategy inside your portfolio. This part will be reviewed and judged by a jury."
+- Final presentation points: "- Strategy description - Macroeconomic and geopolitical factors considered for their investment strategy - Strategic asset allocation - Instruments selection approach - Risk management. Maximum number of slides: 5, not including the title and the team intro page."
+- "The jury's assessment will determine the final prize allocation, taking into account both the Stage 1 scores and the strategy presentations."
+- The page also has leftover "22nd November 2026" lock dates; per UMushroom Support email (19 Nov 22:18) the Stage 1 cut-off is 20 Nov and those lines are stale. Not used.
+- No character/word limit and no jury criteria for the Description. No "long-term" wording anywhere.
+
+RULES TAB (competition page)
+- "Stage 1 — Portfolio Management: 12/10/2026 to 20/11/2026"
+- "2. Documenting Your Strategy – 10% (100 points) ... This part will be reviewed by a jury."
+- "In portfolio management, any member may update the portfolio and submit the strategy on behalf of the team."
+
+PORTFOLIO PAGE the team's UMushroom portfolio page (The V² Fund)
+- Current value GBP 91,466.50; performance -8.53%; cash GBP 15,884.57 (17.37%); Risk level 5/10 (the page's Sharpe and Sortino over the 10-session window are left out: too short a sample to mean anything).
+- Spyre Therapeutics Inc: Added On 19 Nov 2026; USD 93.47; -4.26% (=> fill 97.63); 29.8102 sh; USD 2,786.36; 2.33%.
+- Bitcoin: USD 60,320.75 (platform mark), 0.1764, USD 10,640.58, 8.89%.
+- Other rows match the ledger units. A transaction-history list was not opened (History button not clicked).
+- Description (shows "Edit" button; no visible date on the block; field limit only visible in edit mode - not opened): current text begins "Event-driven book with November earnings and trading updates factored in..." and contains the 7 Nov call ledger ("Calls logged on 7th November before any reports were published: Up - Applied Materials(12th November), Rolls-Royce(12th Nov), BAE(mid-Nov), NVIDIA and Home Depot(17th Nov), Walmart (19th Nov)." plus the crypto variance-allocation line and the hit definition).

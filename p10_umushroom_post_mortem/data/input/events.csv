@@ -1,0 +1,7 @@
+event_id,asset,type,announce_local,timing,reaction_day,source,frozen_utc
+E1,RR.L,scheduled,2026-11-12 07:00 UK,before_open,2026-11-12,CONTEXT.md call ledger (RR trading update 12 Nov); RNS URL pending (see d1_sources.csv),2026-11-19T17:40Z
+E2,BA.L,scheduled,2026-11-12 07:00 UK,before_open,2026-11-12,CONTEXT.md (BAE scored 12 Nov; guidance reaffirmed); RNS URL pending,2026-11-19T17:40Z
+E3,AMAT,scheduled,2026-11-12 16:00 ET,after_close,2026-11-13,Yahoo earnings calendar snapshot data/raw/estimates_20261119T173410Z/AMAT_get_earnings_dates.csv,2026-11-19T17:40Z
+E4,HD,scheduled,2026-11-17 06:00 ET,before_open,2026-11-17,Yahoo earnings calendar snapshot HD_get_earnings_dates.csv,2026-11-19T17:40Z
+E5,NVDA,scheduled,2026-11-17 16:00 ET,after_close,2026-11-18,Yahoo earnings calendar snapshot NVDA_get_earnings_dates.csv,2026-11-19T17:40Z
+E6,WMT,scheduled,2026-11-19 06:00 ET,before_open,2026-11-19,Yahoo earnings calendar snapshot WMT_get_earnings_dates.csv,2026-11-19T17:40Z
